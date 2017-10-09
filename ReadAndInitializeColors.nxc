@@ -1,0 +1,80 @@
+int number = 1;
+byte handle;
+
+void FlipCube(){
+     RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
+     RotateMotorPID(OUT_B, 50, -90, 20, 40, 100);
+     Wait(300);
+     RotateMotorPID(OUT_B, 30, 120, 20, 40, 100);
+     Wait(300);
+     RotateMotorPID(OUT_B, 30, -35, 20, 40, 100);
+     Wait(700);
+     RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
+}
+
+void ResetColorSensor(){
+      OnFwd(OUT_A, 30);
+      Wait(2000);
+      Off(OUT_A);
+      Wait(500);
+}
+
+void TurnCube(int x){
+     RotateMotorPID(OUT_C, 10, x, 20, 40, 100);
+     Wait(700);
+}
+
+void ColorRead(int x){
+     unsigned int rawData[];
+     int temp;
+     RotateMotor(OUT_A, 40, x);
+     Wait(300);
+     SetSensor(S1,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
+     ReadSensorColorRaw(S1, rawData);
+     Write(handle, "Nr. ");
+     Write(handle, number);
+     Write(handle, "\n");
+     for(int i = 0; i < 4; i++){
+           temp = rawData[i];
+           Write(handle, temp);
+           Write(handle, "\n");
+     }
+     number++;
+}
+
+
+
+void ColorReadSide(){
+     ColorRead(-125);
+     ColorRead(35);
+     for(int i = 0; i < 4; i++) {
+             TurnCube(45);
+             ColorRead(20);
+             TurnCube(45);
+             ColorRead(-20);
+     }
+
+}
+
+
+void PlaceCube() {
+    RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
+    Wait(300);
+    RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
+}
+task main()
+{
+     byte hhh;
+     unsigned int result = CreateFile("data.txt", 1024, hhh);
+     handle = fopen("data.txt", "w");
+     ResetColorSensor();
+     PlaceCube();
+     ColorReadSide();
+     fclose(handle);
+     
+     NumOut(0, LCD_LINE1, result);
+     Wait(5000);
+     //PlaceCube();
+     //TurnCube(45);
+     //ColorRead(1);
+}
