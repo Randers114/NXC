@@ -1,0 +1,39 @@
+task main()
+{
+ int numberOfReadings = 20;
+
+ int rawRedAll;
+ int rawRedAvarage;
+ 
+ int rawGreenAll;
+ int rawGreenAvarage;
+ 
+ int rawBlueAll;
+ int rawBlueAvarage;
+ 
+ int rawAmbientAll;
+ int rawAmbientAvarage;
+ SetSensor(S1, _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
+
+ 
+ int counter = 0;
+ for(counter; counter < numberOfReadings; counter++){
+
+   rawRedAll = rawRedAll + ColorSensorRaw(S1, INPUT_RED);
+   rawGreenAll = rawGreenAll + ColorSensorRaw(S1, INPUT_GREEN);
+   rawBlueAll = rawBlueAll + ColorSensorRaw(S1, INPUT_BLUE);
+   rawAmbientAll = rawAmbientAll + ColorSensorRaw(S1, INPUT_BLANK);
+ }
+
+ rawRedAvarage = rawRedAll / numberOfReadings;
+ rawGreenAvarage = rawGreenAll / numberOfReadings;
+ rawBlueAvarage = rawBlueAll / numberOfReadings;
+ rawAmbientAvarage = rawAmbientAll / numberOfReadings;
+
+ NumOut(0, LCD_LINE1, rawRedAvarage);
+ NumOut(0, LCD_LINE2, rawGreenAvarage);
+ NumOut(0, LCD_LINE3, rawBlueAvarage);
+ NumOut(0, LCD_LINE4, rawAmbientAvarage);
+ 
+ Wait(5000);
+}
