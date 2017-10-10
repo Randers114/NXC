@@ -1,5 +1,5 @@
 int number = 1;
-byte handle;
+byte handle, hhh;
 
 void FlipCube(){
      RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
@@ -26,18 +26,29 @@ void TurnCube(int x){
 
 void ColorRead(int x){
      unsigned int rawData[];
-     int temp;
+     unsigned int count;
+     ArrayInit(rawData, 0, 4);
+     int kkk = 10;
+     string temp;
      RotateMotor(OUT_A, 40, x);
      Wait(300);
      SetSensor(S1,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
      ReadSensorColorRaw(S1, rawData);
-     Write(handle, "Nr. ");
-     Write(handle, number);
-     Write(handle, "\n");
+     unsigned int r = WriteString(hhh, "Nr.", count);
+     unsigned int r1 = WriteString(hhh, "1", count);
+     string n = NumToStr(number);
+     WriteString(hhh, n, count);
+     WriteString(hhh, "\n", count);
+     
+     //NumOut(0, LCD_LINE1, rawData[0]);
+     //NumOut(0, LCD_LINE2, rawData[1]);
+     //NumOut(0, LCD_LINE3, rawData[2]);
+     //Wait(10000);
+     
      for(int i = 0; i < 4; i++){
-           temp = rawData[i];
-           Write(handle, temp);
-           Write(handle, "\n");
+           temp = NumToStr(rawData[i]);
+           WriteString(hhh, temp, count);
+           WriteString(hhh, "\n", count);
      }
      number++;
 }
@@ -64,15 +75,17 @@ void PlaceCube() {
 }
 task main()
 {
-     byte hhh;
-     unsigned int result = CreateFile("data.txt", 1024, hhh);
-     handle = fopen("data.txt", "w");
+     unsigned int size = 1028;
+     unsigned int result = CreateFile("data.txt", size, hhh);
+     //unsigned int result2 = OpenFileAppend("data.txt", size, handle);
      ResetColorSensor();
      PlaceCube();
      ColorReadSide();
+     fclose(hhh);
      fclose(handle);
      
      NumOut(0, LCD_LINE1, result);
+     //NumOut(0, LCD_LINE2, result2);
      Wait(5000);
      //PlaceCube();
      //TurnCube(45);

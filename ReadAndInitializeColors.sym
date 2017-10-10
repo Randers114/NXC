@@ -1,0 +1,748 @@
+#SYMBOLS
+Index	Identifier	Type	Flag	Data	Size	RefCount
+0	__signed_stack_002main	6	1	0	4	2
+1	__signed_stack_001PlaceCube	6	1	4	4	4
+2	__signed_stack_002PlaceCube	6	1	8	4	4
+3	__signed_stack_001ColorReadSide	6	1	12	4	2
+4	__rotate_theAngle1	5	1	16	4	2
+5	__signed_stack_001main	6	1	20	4	2
+6	__signed_stack_002TurnCube	6	1	24	4	2
+7	__signed_stack_003TurnCube	6	1	28	4	2
+8	__signed_stack_004TurnCube	6	1	32	4	2
+9	__signed_stack_003PlaceCube	6	1	36	4	4
+10	__signed_stack_004PlaceCube	6	1	40	4	4
+11	__signed_stack_001TurnCube	6	1	44	4	2
+12	__DU0ColorRead	5	1	48	4	2
+13	__D0ColorReadSide	6	1	52	4	3
+14	__D0main	6	1	56	4	3
+15	__rotate_theAngle2	5	1	60	4	2
+16	__FOMutex	9	0	64	4	2
+17	__D0ColorRead	6	1	68	4	14
+18	__D0TurnCube	6	1	72	4	2
+19	__rotate_angle2	6	1	76	4	4
+20	__signed_stack_001ColorRead	6	1	80	4	6
+21	__DU0main	5	1	84	4	2
+22	__D0PlaceCube	6	1	88	4	4
+23	__D0ResetColorSensor	6	1	92	4	2
+24	__rotate_angle1	6	1	96	4	5
+25	__Wait_7qG2_ms_7qG2_000_inline_ResetColorSensor	5	1	100	4	2
+26	__rotate_theAngle0	5	1	104	4	2
+27	__rotateMutex1	9	0	108	4	4
+28	__rotate_angle0	6	1	112	4	4
+29	__rotate_RotCount1	4	1	116	2	4
+30	__ColorRead_7qG2_x_7qG2_000	4	1	118	2	5
+31	__rotate_RotCount2	4	1	120	2	4
+32	__ColorReadSide_7qG2_i_7qG2_001	4	1	122	2	4
+33	__ColorRead_7qG2_i_7qG2_001	4	1	124	2	5
+34	__ColorRead_7qG2_count_7qG2_000	3	1	126	2	6
+35	__rotate_OldRotCount2	4	1	128	2	2
+36	__rotate_OldRotCount1	4	1	130	2	2
+37	number	4	0	132	2	3
+38	__main_7qG2_size_7qG2_000	3	1	134	2	2
+39	__ArrHelper__ColorRead_6_0	3	1	136	2	2
+40	__rotate_RotCount0	4	1	138	2	4
+41	__TurnCube_7qG2_x_7qG2_000	4	1	140	2	3
+42	__main_7qG2_result_7qG2_000	3	1	142	2	2
+43	__rotate_OldRotCount0	4	1	144	2	2
+44	__fclose_7qG2_handle_7qG2_000_inline_main	1	1	146	1	2
+45	__constVal13	2	0	147	1	1
+46	__constVal4	2	0	148	1	1
+47	__constVal3	2	0	149	1	2
+48	____RotateMotor2_return	1	1	150	1	3
+49	__ResetSensorPort	1	1	151	1	3
+50	__constVal2	2	0	152	1	1
+51	____ResetSensorSubroutine_return	1	1	153	1	3
+52	__ResetSensorTmp	1	1	154	1	2
+53	__constVal96	2	0	155	1	3
+54	__constVal63	2	0	156	1	2
+55	__TurnCube_return	1	1	157	1	4
+56	hhh	1	1	158	1	9
+57	handle	1	1	159	1	2
+58	__ResetColorSensor_return	1	1	160	1	3
+59	__ColorRead_return	1	1	161	1	6
+60	____initialize_global_data_return	1	1	162	1	3
+61	__zfColorReadSide	1	1	163	1	3
+62	__zfColorRead	1	1	164	1	3
+63	__SetSensor_7qG2_port_7qG2_000_inline_ColorRead	1	1	165	1	4
+64	__ColorReadSide_return	1	1	166	1	3
+65	__PlaceCube_return	1	1	167	1	3
+66	__rotate_turnpct1	2	1	168	1	4
+67	__rotate_theUF1	1	1	169	1	6
+68	__rotate_theOM1	1	1	170	1	7
+69	__rotate_stop1	1	1	171	1	3
+70	__rotate_power1	1	1	172	1	5
+71	__rotate_firstPort1	1	1	173	1	5
+72	__rotate_sync1	1	1	174	1	3
+73	__rotate_theRVD1	1	1	175	1	3
+74	__rotate_rs1	1	1	176	1	2
+75	__rotate_thePower1	2	1	177	1	4
+76	__rotate_theRVI1	1	1	178	1	3
+77	__rotate_theRM1	1	1	179	1	4
+78	__rotate_theRS1	1	1	180	1	3
+79	__rotate_theRVP1	1	1	181	1	3
+80	__rotate_theTurnPct0	2	1	182	1	4
+81	__rotate_turnpct0	2	1	183	1	3
+82	__rotate_theUF0	1	1	184	1	6
+83	__rotate_theOM0	1	1	185	1	7
+84	__rotate_stop0	1	1	186	1	2
+85	__rotate_power0	1	1	187	1	4
+86	__rotate_firstPort0	1	1	188	1	5
+87	__rotate_sync0	1	1	189	1	2
+88	__rotate_theRVD0	1	1	190	1	2
+89	__rotate_rs0	1	1	191	1	2
+90	__rotate_thePower0	2	1	192	1	4
+91	__rotate_theRVI0	1	1	193	1	2
+92	__rotate_theRM0	1	1	194	1	4
+93	__rotate_theRS0	1	1	195	1	3
+94	__rotate_theRVP0	1	1	196	1	2
+95	__rotate_theRVP2	1	1	197	1	2
+96	__rotate_theRVI2	1	1	198	1	2
+97	__constVal32	2	0	199	1	16
+98	__rotate_theRM2	1	1	200	1	4
+99	__rotate_theRS2	1	1	201	1	3
+100	__rotate_rs2	1	1	202	1	2
+101	__rotate_thePower2	2	1	203	1	4
+102	__rotate_theTurnPct2	2	1	204	1	4
+103	____RotateMotor0_return	1	1	205	1	3
+104	__rotate_theRVD2	1	1	206	1	2
+105	__constVal1	2	0	207	1	16
+106	__rotate_firstPort2	1	1	208	1	5
+107	__rotate_sync2	1	1	209	1	2
+108	____RotateMotor1_return	1	1	210	1	4
+109	__rotate_theTurnPct1	2	1	211	1	4
+110	__rotate_power2	1	1	212	1	4
+111	__constVal0	2	1	213	1	31
+112	__rotate_theOM2	1	1	214	1	7
+113	__rotate_theUF2	1	1	215	1	6
+114	__rotate_stop2	1	1	216	1	2
+115	__rotate_turnpct2	2	1	217	1	3
+116	__ColorSensorReadArgs	8	0	7	20	4
+117	__ColorSensorReadArgs.Result	2	1	220	1	4
+118	__ColorSensorReadArgs.Port	1	1	221	1	4
+119	__ColorSensorReadArgs.ColorValue	4	1	222	2	4
+120	__ColorSensorReadArgs.RawArray	7	0	224	4	4
+121	__ColorSensorReadArgs.RawArray.RawArray_type	3	0	0	2	0
+122	__ColorSensorReadArgs.NormalizedArray	7	0	226	4	4
+123	__ColorSensorReadArgs.NormalizedArray.NormalizedArray_type	3	0	0	2	0
+124	__ColorSensorReadArgs.ScaledArray	7	0	228	4	4
+125	__ColorSensorReadArgs.ScaledArray.ScaledArray_type	4	0	0	2	0
+126	__ColorSensorReadArgs.Invalid	1	1	230	1	4
+127	__TextOutArgs	8	0	4	16	5
+128	__TextOutArgs.Result	2	1	232	1	5
+129	__TextOutArgs.Location	8	0	2	4	5
+130	__TextOutArgs.Location.X	4	1	236	2	5
+131	__TextOutArgs.Location.Y	4	1	238	2	5
+132	__TextOutArgs.Text	7	0	240	4	5
+133	__TextOutArgs.Text.Text_type	1	0	0	1	0
+134	__TextOutArgs.Options	5	1	244	4	5
+135	__FOArgs	8	0	4	12	5
+136	__FOArgs.Result	3	1	248	2	5
+137	__FOArgs.FileHandle	1	1	250	1	5
+138	__FOArgs.Filename	7	0	252	4	5
+139	__FOArgs.Filename.Filename_type	1	0	0	1	0
+140	__FOArgs.Length	5	1	256	4	5
+141	__FCArgs	8	0	2	4	5
+142	__FCArgs.Result	3	1	260	2	5
+143	__FCArgs.FileHandle	1	1	262	1	5
+144	__FWriteArgs	8	0	4	12	42
+145	__FWriteArgs.Result	3	1	264	2	42
+146	__FWriteArgs.FileHandle	1	1	266	1	42
+147	__FWriteArgs.Buffer	7	0	268	4	42
+148	__FWriteArgs.Buffer.Buffer_type	1	0	0	1	0
+149	__FWriteArgs.Length	5	1	272	4	42
+150	__strretvalColorRead	7	0	276	4	4
+151	__strretvalColorRead.__strretvalColorRead_type	1	0	0	1	0
+152	__strbufColorRead	7	0	278	4	4
+153	__strbufColorRead.__strbufColorRead_type	1	0	0	1	0
+154	__rotate_ports1	7	0	280	4	7
+155	__rotate_ports1.__rotate_ports1_type	1	0	0	1	0
+156	__rotate_ports2	7	0	282	4	6
+157	__rotate_ports2.__rotate_ports2_type	1	0	0	1	0
+158	__constStr0012	7	0	284	4	1
+159	__constStr0012.__constStr0012_type	1	1	0	1	0
+160	__rotate_ports0	7	0	286	4	6
+161	__rotate_ports0.__rotate_ports0_type	1	0	0	1	0
+162	__constStr0011	7	0	288	4	2
+163	__constStr0011.__constStr0011_type	1	1	0	1	0
+164	__ColorRead_7qG2_n_7qG2_000	7	0	290	4	2
+165	__ColorRead_7qG2_n_7qG2_000.__ColorRead_7qG2_n_7qG2_000_type	1	0	0	1	0
+166	__constStr0010	7	0	292	4	1
+167	__constStr0010.__constStr0010_type	1	1	0	1	0
+168	__ColorRead_7qG2_temp_7qG2_000	7	0	294	4	2
+169	__ColorRead_7qG2_temp_7qG2_000.__ColorRead_7qG2_temp_7qG2_000_type	1	0	0	1	0
+170	__ColorRead_7qG2_rawData_7qG2_000	7	0	296	4	3
+171	__ColorRead_7qG2_rawData_7qG2_000.__ColorRead_7qG2_rawData_7qG2_000_type	3	0	0	2	0
+172	__constStr0009	7	0	298	4	1
+173	__constStr0009.__constStr0009_type	1	1	0	1	0
+#SOURCES
+Clump	Line	PC	Source
+0	77	0	#line 77 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	78	0		subcall __initialize_global_data, ____initialize_global_data_return
+0	77	2	#line 77 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	78	2	#line 78 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	79	2		set __main_7qG2_size_7qG2_000, 1028
+0	78	5	#line 78 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	78	5	#line 78 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	79	5	#pragma macro 7
+0	79	5		acquire __FOMutex
+0	79	6		mov __FOArgs.Filename, __constStr0012
+0	79	8		mov __FOArgs.Length, __main_7qG2_size_7qG2_000
+0	79	10		syscall 1, __FOArgs
+0	79	13		mov hhh, __FOArgs.FileHandle
+0	79	15		mov __D0main, __FOArgs.Result
+0	79	17		release __FOMutex
+0	7489	18	#line 7489 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	78	18	#line 78 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	79	18		mov __main_7qG2_result_7qG2_000, __D0main
+0	81	20	#line 81 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	82	20		subcall ResetColorSensor, __ResetColorSensor_return
+0	81	22	#line 81 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	82	22	#line 82 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	83	22		subcall PlaceCube, __PlaceCube_return
+0	82	24	#line 82 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	83	24	#line 83 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	84	24		subcall ColorReadSide, __ColorReadSide_return
+0	83	26	#line 83 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	83	26	#line 83 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	84	26		mov __fclose_7qG2_handle_7qG2_000_inline_main, hhh
+0	83	28	#line 83 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	17590	28	#line 17590 "NXCDefs.h"
+0	17591	28	#pragma macro 5
+0	17591	28		mov __FCArgs.FileHandle, hhh
+0	17591	30		syscall 5, __FCArgs
+0	17591	33		mov __D0main, __FCArgs.Result
+0	7514	35	#line 7514 "NXCDefs.h"
+0	17590	35	#line 17590 "NXCDefs.h"
+0	17590	35	#line 17590 "NXCDefs.h"
+0	17590	35	#line 17590 "NXCDefs.h"
+0	84	35	#line 84 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	84	35	#line 84 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	84	35	#line 84 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	85	35		mov __fclose_7qG2_handle_7qG2_000_inline_main, handle
+0	84	37	#line 84 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	17590	37	#line 17590 "NXCDefs.h"
+0	17591	37	#pragma macro 5
+0	17591	37		mov __FCArgs.FileHandle, handle
+0	17591	39		syscall 5, __FCArgs
+0	7533	42	#line 7533 "NXCDefs.h"
+0	17590	42	#line 17590 "NXCDefs.h"
+0	17590	42	#line 17590 "NXCDefs.h"
+0	17590	42	#line 17590 "NXCDefs.h"
+0	86	42	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	86	42	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	86	42	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	87	42		set __signed_stack_001main, 0
+0	86	45	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	86	45	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	87	45		set __signed_stack_002main, 56
+0	86	48	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	86	48	#line 86 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	87	48		mov __DU0main, __main_7qG2_result_7qG2_000
+0	88	50	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	88	50	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	89	50		mov __TextOutArgs.Location.X, __signed_stack_001main
+0	88	52	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	89	52		mov __TextOutArgs.Location.Y, __signed_stack_002main
+0	88	55	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	89	55		set __TextOutArgs.Options, 0
+0	88	58	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	89	58		numtostr __TextOutArgs.Text, __DU0main
+0	88	61	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	89	61		syscall 13, __TextOutArgs
+0	88	64	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	88	64	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	88	64	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	88	64	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	88	64	#line 88 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	7921	64	#line 7921 "NXCDefs.h"
+0	7922	64		wait 5000
+0	7921	66	#line 7921 "NXCDefs.h"
+0	92	66	#line 92 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+0	93	66		exit -1, -1
+1	4476	0		brtst 4, __rotate_Done0, __rotate_angle0
+1	4477	3		sign __rotate_thePower0, __rotate_angle0
+1	4478	6		abs __rotate_theAngle0, __rotate_angle0
+1	4479	9		mul __rotate_thePower0, __rotate_thePower0, __rotate_power0
+1	4481	13		set __rotate_theUF0, 23
+1	4482	16		brtst 4, __rotate_NoSync0, __rotate_sync0
+1	4483	19		set __rotate_theOM0, 7
+1	4484	22		set __rotate_theRM0, 2
+1	4485	25		mov __rotate_theTurnPct0, __rotate_turnpct0
+1	4486	27		brtst 4, __rotate_Start0, __rotate_theTurnPct0
+1	4487	30		add __rotate_theUF0, __rotate_theUF0, __constVal32
+1	4488	34		jmp __rotate_Start0
+1	4490	36		set __rotate_theOM0, 3
+1	4491	39		set __rotate_theRM0, 0
+1	4492	42		set __rotate_theTurnPct0, 0
+1	4494	45		set __rotate_theRS0, 32
+1	4495	48		setout __rotate_ports0, 1, __rotate_theOM0, 8, __rotate_theRM0, 5, __rotate_theAngle0, 6, __rotate_theRS0, 10, __rotate_theRVP0, 11, __rotate_theRVI0, 12, __rotate_theRVD0, 2, __rotate_thePower0, 7, __rotate_turnpct0, 0, __rotate_theUF0
+1	4498	71		index __rotate_firstPort0, __rotate_ports0, 65535
+1	4500	75		getout __rotate_power0, __rotate_firstPort0, 2
+1	4501	79		brtst 4, __rotate_doneRunning0, __rotate_power0
+1	4502	82		getout __rotate_rs0, __rotate_firstPort0, 6
+1	4503	86		brcmp 4, __rotate_Running0, __rotate_rs0, __constVal32
+1	4505	90		brtst 4, __rotate_Reset0, __rotate_stop0
+1	4507	93		set __rotate_theOM0, 7
+1	4508	96		set __rotate_theUF0, 7
+1	4509	99		setout __rotate_ports0, 1, __rotate_theOM0, 8, __constVal1, 6, __rotate_theRS0, 2, __constVal0, 5, __constVal0, 0, __rotate_theUF0
+1	4511	114		getout __rotate_RotCount0, __rotate_firstPort0, 14
+1	4513	118		mov __rotate_OldRotCount0, __rotate_RotCount0
+1	4514	120		wait 50
+1	4516	122		getout __rotate_RotCount0, __rotate_firstPort0, 14
+1	4517	126		brcmp 5, __rotate_Stabilize0, __rotate_OldRotCount0, __rotate_RotCount0
+1	4518	130		set __rotate_theOM0, 4
+1	4519	133		setout __rotate_ports0, 8, __rotate_theRM0, 6, __constVal0, 1, __rotate_theOM0, 0, __constVal1
+1	4522	144		brtst 4, __rotate_Done0, __rotate_theTurnPct0
+1	4523	147		setout __rotate_ports0, 0, __constVal32
+1	4525	152		subret ____RotateMotor0_return
+2	4529	0		brtst 4, __rotate_Done1, __rotate_angle1
+2	4530	3		sign __rotate_thePower1, __rotate_angle1
+2	4531	6		abs __rotate_theAngle1, __rotate_angle1
+2	4532	9		mul __rotate_thePower1, __rotate_thePower1, __rotate_power1
+2	4534	13		set __rotate_theUF1, 23
+2	4535	16		brtst 4, __rotate_NoSync1, __rotate_sync1
+2	4536	19		set __rotate_theOM1, 7
+2	4537	22		set __rotate_theRM1, 2
+2	4538	25		mov __rotate_theTurnPct1, __rotate_turnpct1
+2	4539	27		brtst 4, __rotate_Start1, __rotate_theTurnPct1
+2	4540	30		add __rotate_theUF1, __rotate_theUF1, __constVal32
+2	4541	34		jmp __rotate_Start1
+2	4543	36		set __rotate_theOM1, 3
+2	4544	39		set __rotate_theRM1, 0
+2	4545	42		set __rotate_theTurnPct1, 0
+2	4547	45		set __rotate_theRS1, 32
+2	4548	48		setout __rotate_ports1, 1, __rotate_theOM1, 8, __rotate_theRM1, 5, __rotate_theAngle1, 6, __rotate_theRS1, 10, __rotate_theRVP1, 11, __rotate_theRVI1, 12, __rotate_theRVD1, 2, __rotate_thePower1, 7, __rotate_turnpct1, 0, __rotate_theUF1
+2	4551	71		index __rotate_firstPort1, __rotate_ports1, 65535
+2	4553	75		getout __rotate_power1, __rotate_firstPort1, 2
+2	4554	79		brtst 4, __rotate_doneRunning1, __rotate_power1
+2	4555	82		getout __rotate_rs1, __rotate_firstPort1, 6
+2	4556	86		brcmp 4, __rotate_Running1, __rotate_rs1, __constVal32
+2	4558	90		brtst 4, __rotate_Reset1, __rotate_stop1
+2	4560	93		set __rotate_theOM1, 7
+2	4561	96		set __rotate_theUF1, 7
+2	4562	99		setout __rotate_ports1, 1, __rotate_theOM1, 8, __constVal1, 6, __rotate_theRS1, 2, __constVal0, 5, __constVal0, 0, __rotate_theUF1
+2	4564	114		getout __rotate_RotCount1, __rotate_firstPort1, 14
+2	4566	118		mov __rotate_OldRotCount1, __rotate_RotCount1
+2	4567	120		wait 50
+2	4569	122		getout __rotate_RotCount1, __rotate_firstPort1, 14
+2	4570	126		brcmp 5, __rotate_Stabilize1, __rotate_OldRotCount1, __rotate_RotCount1
+2	4571	130		set __rotate_theOM1, 4
+2	4572	133		setout __rotate_ports1, 8, __rotate_theRM1, 6, __constVal0, 1, __rotate_theOM1, 0, __constVal1
+2	4575	144		brtst 4, __rotate_Done1, __rotate_theTurnPct1
+2	4576	147		setout __rotate_ports1, 0, __constVal32
+2	4578	152		subret ____RotateMotor1_return
+3	4582	0		brtst 4, __rotate_Done2, __rotate_angle2
+3	4583	3		sign __rotate_thePower2, __rotate_angle2
+3	4584	6		abs __rotate_theAngle2, __rotate_angle2
+3	4585	9		mul __rotate_thePower2, __rotate_thePower2, __rotate_power2
+3	4587	13		set __rotate_theUF2, 23
+3	4588	16		brtst 4, __rotate_NoSync2, __rotate_sync2
+3	4589	19		set __rotate_theOM2, 7
+3	4590	22		set __rotate_theRM2, 2
+3	4591	25		mov __rotate_theTurnPct2, __rotate_turnpct2
+3	4592	27		brtst 4, __rotate_Start2, __rotate_theTurnPct2
+3	4593	30		add __rotate_theUF2, __rotate_theUF2, __constVal32
+3	4594	34		jmp __rotate_Start2
+3	4596	36		set __rotate_theOM2, 3
+3	4597	39		set __rotate_theRM2, 0
+3	4598	42		set __rotate_theTurnPct2, 0
+3	4600	45		set __rotate_theRS2, 32
+3	4601	48		setout __rotate_ports2, 1, __rotate_theOM2, 8, __rotate_theRM2, 5, __rotate_theAngle2, 6, __rotate_theRS2, 10, __rotate_theRVP2, 11, __rotate_theRVI2, 12, __rotate_theRVD2, 2, __rotate_thePower2, 7, __rotate_turnpct2, 0, __rotate_theUF2
+3	4604	71		index __rotate_firstPort2, __rotate_ports2, 65535
+3	4606	75		getout __rotate_power2, __rotate_firstPort2, 2
+3	4607	79		brtst 4, __rotate_doneRunning2, __rotate_power2
+3	4608	82		getout __rotate_rs2, __rotate_firstPort2, 6
+3	4609	86		brcmp 4, __rotate_Running2, __rotate_rs2, __constVal32
+3	4611	90		brtst 4, __rotate_Reset2, __rotate_stop2
+3	4613	93		set __rotate_theOM2, 7
+3	4614	96		set __rotate_theUF2, 7
+3	4615	99		setout __rotate_ports2, 1, __rotate_theOM2, 8, __constVal1, 6, __rotate_theRS2, 2, __constVal0, 5, __constVal0, 0, __rotate_theUF2
+3	4617	114		getout __rotate_RotCount2, __rotate_firstPort2, 14
+3	4619	118		mov __rotate_OldRotCount2, __rotate_RotCount2
+3	4620	120		wait 50
+3	4622	122		getout __rotate_RotCount2, __rotate_firstPort2, 14
+3	4623	126		brcmp 5, __rotate_Stabilize2, __rotate_OldRotCount2, __rotate_RotCount2
+3	4624	130		set __rotate_theOM2, 4
+3	4625	133		setout __rotate_ports2, 8, __rotate_theRM2, 6, __constVal0, 1, __rotate_theOM2, 0, __constVal1
+3	4628	144		brtst 4, __rotate_Done2, __rotate_theTurnPct2
+3	4629	147		setout __rotate_ports2, 0, __constVal32
+3	4631	152		subret ____RotateMotor2_return
+4	4885	0		setin __constVal1, __ResetSensorPort, 5
+4	4887	4		getin __ResetSensorTmp, __ResetSensorPort, 5
+4	4888	8		brtst 5, __SensorStillInvalid, __ResetSensorTmp
+4	4889	11		subret ____ResetSensorSubroutine_return
+5	15	0	#line 15 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	16	0		set __D0ResetColorSensor, 30
+5	16	3	#line 16 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	17	3	#pragma macro 7
+5	17	3		setout __constVal0, 2, __D0ResetColorSensor, 1, __constVal3, 8, __constVal0, 6, __constVal32, 7, __constVal0, 5, __constVal0, 10, __constVal96, 11, __constVal32, 12, __constVal32, 0, __constVal63
+5	7008	26	#line 7008 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	16	26	#line 16 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	16	26	#line 16 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	17	26		set __Wait_7qG2_ms_7qG2_000_inline_ResetColorSensor, 2000
+5	16	29	#line 16 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	7921	29	#line 7921 "NXCDefs.h"
+5	7922	29		wait 2000
+5	7921	31	#line 7921 "NXCDefs.h"
+5	17	31	#line 17 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	18	31	#line 18 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	19	31	#pragma macro 7
+5	19	31		setout __constVal0, 2, __constVal0, 1, __constVal3, 8, __constVal0, 6, __constVal32, 7, __constVal0, 5, __constVal0, 10, __constVal96, 11, __constVal32, 12, __constVal32, 0, __constVal63
+5	7025	54	#line 7025 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	18	54	#line 18 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	18	54	#line 18 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	19	54		set __Wait_7qG2_ms_7qG2_000_inline_ResetColorSensor, 500
+5	18	57	#line 18 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	7921	57	#line 7921 "NXCDefs.h"
+5	7922	57		wait 500
+5	7921	59	#line 7921 "NXCDefs.h"
+5	19	59	#line 19 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	21	59	#line 21 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+5	22	59		subret __ResetColorSensor_return
+6	22	0	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	0		set __signed_stack_001TurnCube, 10
+6	22	3	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	22	3	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	3		mov __signed_stack_002TurnCube, __TurnCube_7qG2_x_7qG2_000
+6	22	5	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	22	5	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	5		set __signed_stack_003TurnCube, 20
+6	22	8	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	22	8	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	8		set __signed_stack_004TurnCube, 40
+6	22	11	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	22	11	#line 22 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	11		set __D0TurnCube, 100
+6	23	14	#line 23 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	24	14	#pragma macro 33
+6	24	14		arrbuild __rotate_ports2, __constVal2
+6	24	18		mov __rotate_power2, __signed_stack_001TurnCube
+6	24	20		mov __rotate_angle2, __signed_stack_002TurnCube
+6	24	22		mov __rotate_turnpct2, __constVal0
+6	24	24		mov __rotate_sync2, __constVal0
+6	24	26		mov __rotate_stop2, __constVal1
+6	24	28		mov __rotate_theRVP2, __signed_stack_003TurnCube
+6	24	30		mov __rotate_theRVI2, __signed_stack_004TurnCube
+6	24	32		mov __rotate_theRVD2, __D0TurnCube
+6	24	34		subcall __RotateMotor2, ____RotateMotor2_return
+6	7075	36	#line 7075 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	36	#line 23 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	36	#line 23 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	23	36	#line 23 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	7921	36	#line 7921 "NXCDefs.h"
+6	7922	36		wait 700
+6	7921	38	#line 7921 "NXCDefs.h"
+6	24	38	#line 24 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	26	38	#line 26 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+6	27	38		subret __TurnCube_return
+7	29	0	#line 29 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	30	0		arrinit __ColorRead_7qG2_rawData_7qG2_000, __constVal0, __constVal4
+7	29	4	#line 29 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	29	4	#line 29 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	31	4	#line 31 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	31	4	#line 31 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	32	4	#line 32 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	33	4		set __signed_stack_001ColorRead, 40
+7	32	7	#line 32 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	32	7	#line 32 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	33	7		mov __D0ColorRead, __ColorRead_7qG2_x_7qG2_000
+7	33	9	#line 33 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	34	9	#pragma macro 33
+7	34	9		arrbuild __rotate_ports0, __constVal0
+7	34	13		mov __rotate_power0, __signed_stack_001ColorRead
+7	34	15		mov __rotate_angle0, __D0ColorRead
+7	34	17		mov __rotate_turnpct0, __constVal0
+7	34	19		mov __rotate_sync0, __constVal0
+7	34	21		mov __rotate_stop0, __constVal1
+7	34	23		mov __rotate_theRVP0, __constVal32
+7	34	25		mov __rotate_theRVI0, __constVal0
+7	34	27		mov __rotate_theRVD0, __constVal96
+7	34	29		subcall __RotateMotor0, ____RotateMotor0_return
+7	7137	31	#line 7137 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	33	31	#line 33 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	33	31	#line 33 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	33	31	#line 33 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	7921	31	#line 7921 "NXCDefs.h"
+7	7922	31		wait 300
+7	7921	33	#line 7921 "NXCDefs.h"
+7	34	33	#line 34 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	34	33	#line 34 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	35	33		set __SetSensor_7qG2_port_7qG2_000_inline_ColorRead, 0
+7	34	36	#line 34 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	34	36	#line 34 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	3707	36	#line 3707 "NXCDefs.h"
+7	3708	36		setin __constVal13, __SetSensor_7qG2_port_7qG2_000_inline_ColorRead, 0
+7	3709	40		setin __constVal0, __SetSensor_7qG2_port_7qG2_000_inline_ColorRead, 1
+7	3710	44	#pragma macro 4
+7	3710	44		mov __ResetSensorPort, __SetSensor_7qG2_port_7qG2_000_inline_ColorRead
+7	3710	46		subcall __ResetSensorSubroutine, ____ResetSensorSubroutine_return
+7	7172	48	#line 7172 "NXCDefs.h"
+7	3711	48	#line 3711 "NXCDefs.h"
+7	35	48	#line 35 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	35	48	#line 35 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	36	48	#pragma macro 6
+7	36	48		mov __ColorSensorReadArgs.Port, __constVal0
+7	36	50		syscall 34, __ColorSensorReadArgs
+7	36	53		mov __ColorRead_7qG2_rawData_7qG2_000, __ColorSensorReadArgs.RawArray
+7	36	55		tst 4, __D0ColorRead, __ColorSensorReadArgs.Result
+7	7176	58	#line 7176 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	35	58	#line 35 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	35	58	#line 35 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	36	58	#line 36 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	37	58	#pragma macro 8
+7	37	58		mov __FWriteArgs.FileHandle, hhh
+7	37	60		strtoarr __FWriteArgs.Buffer, __constStr0009
+7	37	63		arrsize __FWriteArgs.Length, __FWriteArgs.Buffer
+7	37	66		syscall 4, __FWriteArgs
+7	37	69		mov __D0ColorRead, __FWriteArgs.Result
+7	37	71		mov __ColorRead_7qG2_count_7qG2_000, __FWriteArgs.Length
+7	7184	73	#line 7184 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	36	73	#line 36 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	37	73	#line 37 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	38	73	#pragma macro 8
+7	38	73		mov __FWriteArgs.FileHandle, hhh
+7	38	75		strtoarr __FWriteArgs.Buffer, __constStr0010
+7	38	78		arrsize __FWriteArgs.Length, __FWriteArgs.Buffer
+7	38	81		syscall 4, __FWriteArgs
+7	38	84		mov __D0ColorRead, __FWriteArgs.Result
+7	38	86		mov __ColorRead_7qG2_count_7qG2_000, __FWriteArgs.Length
+7	7194	88	#line 7194 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	37	88	#line 37 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	38	88	#line 38 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	39	88		mov __D0ColorRead, number
+7	39	90	#line 39 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	90		numtostr __strretvalColorRead, __D0ColorRead
+7	39	93	#line 39 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	93		strcat __strbufColorRead, __strretvalColorRead
+7	39	97	#line 39 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	97		mov __ColorRead_7qG2_n_7qG2_000, __strbufColorRead
+7	39	99	#line 39 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	99	#pragma macro 8
+7	40	99		mov __FWriteArgs.FileHandle, hhh
+7	40	101		strtoarr __FWriteArgs.Buffer, __ColorRead_7qG2_n_7qG2_000
+7	40	104		arrsize __FWriteArgs.Length, __FWriteArgs.Buffer
+7	40	107		syscall 4, __FWriteArgs
+7	40	110		mov __D0ColorRead, __FWriteArgs.Result
+7	40	112		mov __ColorRead_7qG2_count_7qG2_000, __FWriteArgs.Length
+7	7214	114	#line 7214 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	39	114	#line 39 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	39	114	#line 39 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	114	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	41	114	#pragma macro 8
+7	41	114		mov __FWriteArgs.FileHandle, hhh
+7	41	116		strtoarr __FWriteArgs.Buffer, __constStr0011
+7	41	119		arrsize __FWriteArgs.Length, __FWriteArgs.Buffer
+7	41	122		syscall 4, __FWriteArgs
+7	41	125		mov __D0ColorRead, __FWriteArgs.Result
+7	41	127		mov __ColorRead_7qG2_count_7qG2_000, __FWriteArgs.Length
+7	7218	129	#line 7218 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	129	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	40	129	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	47	129	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	129		set __ColorRead_7qG2_i_7qG2_001, 0
+7	47	132	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	47	132	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	132		mov __signed_stack_001ColorRead, __ColorRead_7qG2_i_7qG2_001
+7	47	134	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	47	134	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	134		set __D0ColorRead, 4
+7	47	137	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	137		cmp 0, __zfColorRead, __signed_stack_001ColorRead, __D0ColorRead
+7	47	141	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	141		mov __D0ColorRead, __zfColorRead
+7	47	143	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	143		brtst 4, __NXC_Label_695, __zfColorRead
+7	47	146	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	146		jmp __NXC_Label_696
+7	47	148	#line 47 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	148		add __ColorRead_7qG2_i_7qG2_001, __ColorRead_7qG2_i_7qG2_001, __constVal1
+7	48	152	#line 48 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	152		jmp __NXC_Label_694
+7	48	154	#line 48 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	154		mov __signed_stack_001ColorRead, __ColorRead_7qG2_i_7qG2_001
+7	48	156	#line 48 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	48	156	#line 48 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	156		index __ArrHelper__ColorRead_6_0, __ColorRead_7qG2_rawData_7qG2_000, __signed_stack_001ColorRead
+7	48	160	#line 48 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	160		mov __DU0ColorRead, __ArrHelper__ColorRead_6_0
+7	49	162	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	162		numtostr __strretvalColorRead, __DU0ColorRead
+7	49	165	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	165		strcat __strbufColorRead, __strretvalColorRead
+7	49	169	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	169		mov __ColorRead_7qG2_temp_7qG2_000, __strbufColorRead
+7	49	171	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	171	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	171	#pragma macro 8
+7	50	171		mov __FWriteArgs.FileHandle, hhh
+7	50	173		strtoarr __FWriteArgs.Buffer, __ColorRead_7qG2_temp_7qG2_000
+7	50	176		arrsize __FWriteArgs.Length, __FWriteArgs.Buffer
+7	50	179		syscall 4, __FWriteArgs
+7	50	182		mov __D0ColorRead, __FWriteArgs.Result
+7	50	184		mov __ColorRead_7qG2_count_7qG2_000, __FWriteArgs.Length
+7	7274	186	#line 7274 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	186	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	49	186	#line 49 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	186	#line 50 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	51	186	#pragma macro 8
+7	51	186		mov __FWriteArgs.FileHandle, hhh
+7	51	188		strtoarr __FWriteArgs.Buffer, __constStr0011
+7	51	191		arrsize __FWriteArgs.Length, __FWriteArgs.Buffer
+7	51	194		syscall 4, __FWriteArgs
+7	51	197		mov __D0ColorRead, __FWriteArgs.Result
+7	51	199		mov __ColorRead_7qG2_count_7qG2_000, __FWriteArgs.Length
+7	7278	201	#line 7278 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	201	#line 50 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	50	201	#line 50 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	52	201	#line 52 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	53	201		jmp __NXC_Label_697
+7	52	203	#line 52 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	53	203	#line 53 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	54	203		add number, number, __constVal1
+7	53	207	#line 53 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	57	207	#line 57 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+7	58	207		subret __ColorRead_return
+8	58	0	#line 58 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	59	0		set __ColorRead_7qG2_x_7qG2_000, -125
+8	58	3	#line 58 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	59	3	#line 59 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	60	3		subcall ColorRead, __ColorRead_return
+8	59	5	#line 59 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	59	5	#line 59 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	60	5		set __ColorRead_7qG2_x_7qG2_000, 35
+8	59	8	#line 59 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	60	8	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	8		subcall ColorRead, __ColorRead_return
+8	60	10	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	60	10	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	10		set __ColorReadSide_7qG2_i_7qG2_001, 0
+8	60	13	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	60	13	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	13		mov __signed_stack_001ColorReadSide, __ColorReadSide_7qG2_i_7qG2_001
+8	60	15	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	60	15	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	15		set __D0ColorReadSide, 4
+8	60	18	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	18		cmp 0, __zfColorReadSide, __signed_stack_001ColorReadSide, __D0ColorReadSide
+8	60	22	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	22		mov __D0ColorReadSide, __zfColorReadSide
+8	60	24	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	24		brtst 4, __NXC_Label_711, __zfColorReadSide
+8	60	27	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	27		jmp __NXC_Label_712
+8	60	29	#line 60 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	61	29		add __ColorReadSide_7qG2_i_7qG2_001, __ColorReadSide_7qG2_i_7qG2_001, __constVal1
+8	61	33	#line 61 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	62	33		jmp __NXC_Label_710
+8	61	35	#line 61 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	62	35		set __TurnCube_7qG2_x_7qG2_000, 45
+8	61	38	#line 61 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	62	38	#line 62 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	63	38		subcall TurnCube, __TurnCube_return
+8	62	40	#line 62 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	62	40	#line 62 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	63	40		set __ColorRead_7qG2_x_7qG2_000, 20
+8	62	43	#line 62 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	63	43	#line 63 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	64	43		subcall ColorRead, __ColorRead_return
+8	63	45	#line 63 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	63	45	#line 63 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	64	45		set __TurnCube_7qG2_x_7qG2_000, 45
+8	63	48	#line 63 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	64	48	#line 64 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	65	48		subcall TurnCube, __TurnCube_return
+8	64	50	#line 64 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	64	50	#line 64 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	65	50		set __ColorRead_7qG2_x_7qG2_000, -20
+8	64	53	#line 64 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	65	53	#line 65 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	66	53		subcall ColorRead, __ColorRead_return
+8	65	55	#line 65 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	70	55	#line 70 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	71	55		jmp __NXC_Label_713
+8	70	57	#line 70 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	70	57	#line 70 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+8	71	57		subret __ColorReadSide_return
+9	71	0	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	0		set __signed_stack_001PlaceCube, 30
+9	71	3	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	71	3	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	3		set __signed_stack_002PlaceCube, -140
+9	71	6	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	71	6	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	6		set __signed_stack_003PlaceCube, 20
+9	71	9	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	71	9	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	9		set __signed_stack_004PlaceCube, 40
+9	71	12	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	71	12	#line 71 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	12		set __D0PlaceCube, 100
+9	72	15	#line 72 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	73	15	#pragma macro 33
+9	73	15		acquire __rotateMutex1
+9	73	16		arrbuild __rotate_ports1, __constVal1
+9	73	20		mov __rotate_power1, __signed_stack_001PlaceCube
+9	73	22		mov __rotate_angle1, __signed_stack_002PlaceCube
+9	73	24		mov __rotate_turnpct1, __constVal0
+9	73	26		mov __rotate_sync1, __constVal0
+9	73	28		mov __rotate_stop1, __constVal1
+9	73	30		mov __rotate_theRVP1, __signed_stack_003PlaceCube
+9	73	32		mov __rotate_theRVI1, __signed_stack_004PlaceCube
+9	73	34		mov __rotate_theRVD1, __D0PlaceCube
+9	73	36		subcall __RotateMotor1, ____RotateMotor1_return
+9	73	38		release __rotateMutex1
+9	7418	39	#line 7418 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	39	#line 72 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	39	#line 72 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	72	39	#line 72 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	7921	39	#line 7921 "NXCDefs.h"
+9	7922	39		wait 300
+9	7921	41	#line 7921 "NXCDefs.h"
+9	73	41	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	73	41	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	74	41		set __signed_stack_001PlaceCube, 30
+9	73	44	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	73	44	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	74	44		set __signed_stack_002PlaceCube, 140
+9	73	47	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	73	47	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	74	47		set __signed_stack_003PlaceCube, 20
+9	73	50	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	73	50	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	74	50		set __signed_stack_004PlaceCube, 40
+9	73	53	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	73	53	#line 73 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	74	53		set __D0PlaceCube, 100
+9	74	56	#line 74 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	75	56	#pragma macro 33
+9	75	56		acquire __rotateMutex1
+9	75	57		arrbuild __rotate_ports1, __constVal1
+9	75	61		mov __rotate_power1, __signed_stack_001PlaceCube
+9	75	63		mov __rotate_angle1, __signed_stack_002PlaceCube
+9	75	65		mov __rotate_turnpct1, __constVal0
+9	75	67		mov __rotate_sync1, __constVal0
+9	75	69		mov __rotate_stop1, __constVal1
+9	75	71		mov __rotate_theRVP1, __signed_stack_003PlaceCube
+9	75	73		mov __rotate_theRVI1, __signed_stack_004PlaceCube
+9	75	75		mov __rotate_theRVD1, __D0PlaceCube
+9	75	77		subcall __RotateMotor1, ____RotateMotor1_return
+9	75	79		release __rotateMutex1
+9	7463	80	#line 7463 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	74	80	#line 74 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	75	80	#line 75 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+9	76	80		subret __PlaceCube_return
+10	95	0	#line 95 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
+10	96	0		subret ____initialize_global_data_return
+#CLUMPS
+Clump	Name	Offset	File
+0	main	0	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
+1	__RotateMotor0	69	NXTDefs.h
+2	__RotateMotor1	223	NXTDefs.h
+3	__RotateMotor2	377	NXTDefs.h
+4	__ResetSensorSubroutine	531	NXTDefs.h
+5	ResetColorSensor	544	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
+6	TurnCube	605	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
+7	ColorRead	645	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
+8	ColorReadSide	854	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
+9	PlaceCube	913	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
+10	__initialize_global_data	995	C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc
