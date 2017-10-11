@@ -514,7 +514,7 @@ Clump	Line	PC	Source
 7	41	117		mov __signed_stack_001ColorRead, __ColorRead_7qG2_i_7qG2_001
 7	40	119	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
 7	40	119	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
-7	41	119		set __D0ColorRead, 4
+7	41	119		set __D0ColorRead, 3
 7	40	122	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"
 7	41	122		cmp 0, __zfColorRead, __signed_stack_001ColorRead, __D0ColorRead
 7	40	126	#line 40 "C:\Users\Simon\Documents\NXC\ReadAndInitializeColors.nxc"

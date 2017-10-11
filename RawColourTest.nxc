@@ -1,5 +1,9 @@
 task main()
 {
+ byte handle;
+ unsigned int size = 1028;
+ unsigned int result = CreateFile("dataa.txt", size, handle);
+ unsigned int count;
  int numberOfReadings = 20;
 
  int rawRedAll;
@@ -30,10 +34,21 @@ task main()
  rawBlueAvarage = rawBlueAll / numberOfReadings;
  rawAmbientAvarage = rawAmbientAll / numberOfReadings;
 
+ string rBlue, rRed, rGreen;
+ rBlue = NumToStr(rawBlueAvarage);
+ rRed = NumToStr(rawRedAvarage);
+ rGreen = NumToStr(rawGreenAvarage);
+
+ WriteString(handle, rRed, count);
+ WriteString(handle, "\n", count);
+ WriteString(handle, rGreen, count);
+ WriteString(handle, "\n", count);
+ WriteString(handle, rBlue, count);
+
  NumOut(0, LCD_LINE1, rawRedAvarage);
  NumOut(0, LCD_LINE2, rawGreenAvarage);
  NumOut(0, LCD_LINE3, rawBlueAvarage);
  NumOut(0, LCD_LINE4, rawAmbientAvarage);
- 
+
  Wait(5000);
 }

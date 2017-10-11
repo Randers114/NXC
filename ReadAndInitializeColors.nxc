@@ -38,7 +38,7 @@ void ColorRead(int x){
      WriteString(handle, n, count);
      WriteString(handle, "\n", count);
      
-     for(int i = 0; i < 4; i++){
+     for(int i = 0; i < 3; i++){
            temp = NumToStr(rawData[i]);
            WriteString(handle, temp, count);
            WriteString(handle, "\n", count);
@@ -74,7 +74,6 @@ task main()
      ResetColorSensor();
      PlaceCube();
      ColorReadSide();
-     fclose(hhh);
      fclose(handle);
      
      NumOut(0, LCD_LINE1, result);
