@@ -60,12 +60,12 @@ void SwapOnFace(int FaceIdentifier, int SpaceOne, int SpaceTwo) /* swap space on
 
 void RotateFaceRight(int FaceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on the right face) */
 {
-	SwapOnFace(FaceIdentifier,1,5);
-	SwapOnFace(FaceIdentifier,5,7);
-	SwapOnFace(FaceIdentifier,7,3);
-	SwapOnFace(FaceIdentifier,0,2);
-	SwapOnFace(FaceIdentifier,2,8);
-	SwapOnFace(FaceIdentifier,8,6);
+	SwapOnFace(FaceIdentifier,1,3);
+	SwapOnFace(FaceIdentifier,3,7);
+	SwapOnFace(FaceIdentifier,7,5);
+	SwapOnFace(FaceIdentifier,0,6);
+	SwapOnFace(FaceIdentifier,6,8);
+	SwapOnFace(FaceIdentifier,8,2);
 }
 
 void SwapBetweenFaces(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
@@ -114,7 +114,7 @@ void TurnCubeRight() /* turn cube without holding it, aka turning the cube entir
 }
 
 void RotateButtomRight() /*holding the top and rotating the buttom face */
-{
+{	
 	/* swap colors on bot */
 	RotateFaceRight(5);
 	
@@ -288,34 +288,38 @@ void resetcube()
 void TestMethods()
 {
 	RotateButtomRight();
-	if(	strcmp(MyCube.sides[5],"gwgygryor") != 0 
-		&& strcmp(MyCube.sides[1], "ybbbrrwww") != 0 
-		&& strcmp(MyCube.sides[2], "wwbrwyooo") != 0 
-		&& strcmp(MyCube.sides[3], "ggbbyygwr") != 0)
+	if(	strcmp(MyCube.sides[5],"gwgygryor") == 0 /* COORECT */
+		&& strcmp(MyCube.sides[1], "wwwbrrbgg") == 0 /* maybe correct needs more testing with real cube */
+		&& strcmp(MyCube.sides[2], "wwbrwyooo") == 0 /*CORRECT */
+		&& strcmp(MyCube.sides[3], "ggbbyygwr") != 0) /* INCORRECT*/
 		printf("Test 1 succes!\n");
 	else
 		printf("Test 1 failed!\n");
+		for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[3][i]);
+		printf("\n");
+		
 	resetcube();
 	
 	ClawPull();
-	if(	strcmp(MyCube.sides[0],"wwbrwywww") != 0 
-		&& strcmp(MyCube.sides[1], "bbygrbgrb") != 0 
-		&& strcmp(MyCube.sides[2], "grrwgogyy") != 0 
-		&& strcmp(MyCube.sides[3], "wbyybrbgo") != 0 
-		&& strcmp(MyCube.sides[4], "ogooooroo") != 0 
-		&& strcmp(MyCube.sides[5], "ygrbyygwr") != 0) /* needs to be filled */
+	if(	strcmp(MyCube.sides[0],"wwbrwywww") == 0 
+		&& strcmp(MyCube.sides[1], "bbygrbgrb") == 0 
+		&& strcmp(MyCube.sides[2], "grrwgogyy") == 0 
+		&& strcmp(MyCube.sides[3], "wbyybrbgo") == 0 
+		&& strcmp(MyCube.sides[4], "ogooooroo") == 0 
+		&& strcmp(MyCube.sides[5], "ygrbyygwr") == 0) /* needs to be filled */
 		printf("Test 2 succes!\n");
 	else
 		printf("Test 2 failed!\n");
 	resetcube();
 	
 	TurnCubeRight();
-	if(	strcmp(MyCube.sides[0],"yrobbgwyb") != 0 
-		&& strcmp(MyCube.sides[1], "wwbrwywww") != 0 
-		&& strcmp(MyCube.sides[2], "roooogooo") != 0 
-		&& strcmp(MyCube.sides[3], "ggbrrbbby") != 0 
-		&& strcmp(MyCube.sides[4], "rwgyybrgy") != 0 
-		&& strcmp(MyCube.sides[5], "gwgygryor") != 0) /* needs to be filled */
+	if(	strcmp(MyCube.sides[0],"yrobbgwyb") == 0 
+		&& strcmp(MyCube.sides[1], "wwbrwywww") == 0 
+		&& strcmp(MyCube.sides[2], "roooogooo") == 0 
+		&& strcmp(MyCube.sides[3], "ggbrrbbby") == 0 
+		&& strcmp(MyCube.sides[4], "rwgyybrgy") == 0 
+		&& strcmp(MyCube.sides[5], "gwgygryor") == 0) /* needs to be filled */
 		printf("Test 3 succes!\n");
 	else
 		printf("Test 3 failed!\n");
