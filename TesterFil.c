@@ -42,12 +42,12 @@ void InitializeCube()/* init with hardcoded colors */
 
 void InitializeCubeTest()
 {
-	InitializeSide('w','b','y','y','b','r','b','g','o', 0); /* init top */
-	InitializeSide('y','b','b','b','r','r','b','g','g', 1);	/* init right */
-	InitializeSide('w','w','b','r','w','y','w','w','w', 2);	/* init front */
-	InitializeSide('y','g','r','b','y','y','g','w','r', 3);	/* init back */
-	InitializeSide('r','o','o','o','o','g','o','o','o', 4);	/* init left */
-	InitializeSide('g','r','r','w','g','o','g','y','y', 5);	/* init buttom */
+	InitializeSide('o','o','y','r','g','r','y','b','g', 0); /* init top */
+	InitializeSide('r','w','b','y','o','w','o','b','o', 1);	/* init right */
+	InitializeSide('g','y','w','g','w','o','w','w','w', 2);	/* init front */
+	InitializeSide('b','g','b','g','y','g','y','b','b', 3);	/* init back */
+	InitializeSide('g','y','r','w','r','r','w','o','g', 4);	/* init left */
+	InitializeSide('r','r','r','y','b','b','o','o','y', 5);	/* init buttom */
 }
 
 void SwapOnFace(int FaceIdentifier, int SpaceOne, int SpaceTwo) /* swap space one with space two on a given face */
@@ -87,6 +87,17 @@ void FaceSwap(int FaceOneIdentifier, int FaceTwoIdentifier) /* swap the pointer 
 
 void TurnCubeRight() /* turn cube without holding it, aka turning the cube entirly */
 {
+	
+/* 	0 = top
+	1 = right 
+	2 = front
+	3 = back
+	4 = left
+	5 = bottom
+*/
+	
+	/* TOP AND LEFT */
+	
 	/* face swap operations */
 	/* swap front to left */
 	FaceSwap(4,2);
@@ -107,7 +118,8 @@ void TurnCubeRight() /* turn cube without holding it, aka turning the cube entir
 	
 	
 	/* top face operations */
-	RotateFaceRight(0);
+	for(int i = 0; i<3;i++)
+		RotateFaceRight(0);
 	
 	/* bot face operations */
 	RotateFaceRight(5);
@@ -136,14 +148,15 @@ void RotateButtomRight() /*holding the top and rotating the buttom face */
 
 void ClawPull() /* representation changes when the claw pulls the cube front to top etc. */
 {
-	FaceSwap(2,0);
-	FaceSwap(0,3);
-	FaceSwap(3,5);
+	FaceSwap(2,5);
+	FaceSwap(5,3);
+	FaceSwap(3,0);
 
 	/* right face operations */
 	RotateFaceRight(1);
 	/* left face operations */
-	RotateFaceRight(4);
+	for (int i = 0; i<3; i++)
+		RotateFaceRight(4);
 }
 
 /* 
@@ -277,52 +290,114 @@ void resetcube()
 	}
 }
 
-/* 	0 = top
+
+
+void TestMethods()
+{
+	RotateButtomRight();
+	if(	strncmp(MyCube.sides[5],"oyrobrybr",9) == 0 /* COORECT */
+		&& strncmp(MyCube.sides[1], "wwwyowobo",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[2], "gywgwowog",9) == 0 /*CORRECT */
+		&& strncmp(MyCube.sides[3], "rwbgygybb",9) == 0) /* CORRECT*/
+		{
+			printf("Test 1 succes!\n");
+		}
+		
+	else
+	{
+		printf("Test 1 failed!\n");
+			for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[5][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[1][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[2][i]);
+		printf("\n");
+		for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[3][i]);
+		printf("\n");
+	}
+		
+	resetcube();
+	
+	ClawPull();
+	if(	strncmp(MyCube.sides[0],"gywgwowww",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[1], "oyrbowowb",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[2], "rrrybbooy",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[3], "ooyrgrybg",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[4], "rrgyrogww",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[5], "bgbgygybb",9) == 0) /* CORRECT */
+		{
+			printf("Test 2 succes!\n");
+		}
+	else
+	{
+		printf("Test 2 failed!\n");
+				printf("Test 1 failed!\n");
+			for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[0][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[1][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[2][i]);
+		printf("\n");
+		for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[3][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[4][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[5][i]);
+		printf("\n");
+	}
+		
+	resetcube();
+	
+	/* 	0 = top
 	1 = right 
 	2 = front
 	3 = back
 	4 = left
 	5 = bottom
 */
-
-void TestMethods()
-{
-	RotateButtomRight();
-	if(	strcmp(MyCube.sides[5],"gwgygryor") == 0 /* COORECT */
-		&& strcmp(MyCube.sides[1], "wwwbrrbgg") == 0 /* maybe correct needs more testing with real cube */
-		&& strcmp(MyCube.sides[2], "wwbrwyooo") == 0 /*CORRECT */
-		&& strcmp(MyCube.sides[3], "ggbbyygwr") != 0) /* INCORRECT*/
-		printf("Test 1 succes!\n");
+	
+	
+	TurnCubeRight();
+	if(	strncmp(MyCube.sides[0],"yrgogbory",9) == 0 /* wrong orientation */
+		&& strncmp(MyCube.sides[1], "wwwowgwyg",9) == 0 /* COORECT */
+		&& strncmp(MyCube.sides[2], "gyrwrrwog",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[3], "rwbyowobo",9) == 0 /* CORRECT */
+		&& strncmp(MyCube.sides[4], "bbygygbgb",9) == 0 /* INCORRECT */
+		&& strncmp(MyCube.sides[5], "oyrobrybr",9) == 0) /* COORECT */
+		printf("Test 3 succes!\n");
 	else
-		printf("Test 1 failed!\n");
+	{
+		printf("Test 3 failed!\n");
+			for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[0][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[1][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[2][i]);
+		printf("\n");
 		for (int i = 0; i < 9; i++)
 			printf("%c", MyCube.sides[3][i]);
 		printf("\n");
-		
-	resetcube();
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[4][i]);
+		printf("\n");
+				for (int i = 0; i < 9; i++)
+			printf("%c", MyCube.sides[5][i]);
+		printf("\n");
+	}
 	
-	ClawPull();
-	if(	strcmp(MyCube.sides[0],"wwbrwywww") == 0 
-		&& strcmp(MyCube.sides[1], "bbygrbgrb") == 0 
-		&& strcmp(MyCube.sides[2], "grrwgogyy") == 0 
-		&& strcmp(MyCube.sides[3], "wbyybrbgo") == 0 
-		&& strcmp(MyCube.sides[4], "ogooooroo") == 0 
-		&& strcmp(MyCube.sides[5], "ygrbyygwr") == 0) /* needs to be filled */
-		printf("Test 2 succes!\n");
-	else
-		printf("Test 2 failed!\n");
-	resetcube();
-	
-	TurnCubeRight();
-	if(	strcmp(MyCube.sides[0],"yrobbgwyb") == 0 
-		&& strcmp(MyCube.sides[1], "wwbrwywww") == 0 
-		&& strcmp(MyCube.sides[2], "roooogooo") == 0 
-		&& strcmp(MyCube.sides[3], "ggbrrbbby") == 0 
-		&& strcmp(MyCube.sides[4], "rwgyybrgy") == 0 
-		&& strcmp(MyCube.sides[5], "gwgygryor") == 0) /* needs to be filled */
-		printf("Test 3 succes!\n");
-	else
-		printf("Test 3 failed!\n");
 	resetcube();
 	
 	
