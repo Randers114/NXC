@@ -86,18 +86,7 @@ void FaceSwap(int FaceOneIdentifier, int FaceTwoIdentifier) /* swap the pointer 
 }
 
 void TurnCubeRight() /* turn cube without holding it, aka turning the cube entirly */
-{
-	
-/* 	0 = top
-	1 = right 
-	2 = front
-	3 = back
-	4 = left
-	5 = bottom
-*/
-	
-	/* TOP AND LEFT */
-	
+{	
 	/* face swap operations */
 	/* swap front to left */
 	FaceSwap(4,2);
@@ -116,7 +105,7 @@ void TurnCubeRight() /* turn cube without holding it, aka turning the cube entir
 	/*swap back to left */
 	FaceSwap(3,1);
 	
-	
+	/* face rotate operations */
 	/* top face operations */
 	for(int i = 0; i<3;i++)
 		RotateFaceRight(0);
@@ -358,21 +347,12 @@ void TestMethods()
 		
 	resetcube();
 	
-	/* 	0 = top
-	1 = right 
-	2 = front
-	3 = back
-	4 = left
-	5 = bottom
-*/
-	
-	
 	TurnCubeRight();
-	if(	strncmp(MyCube.sides[0],"yrgogbory",9) == 0 /* wrong orientation */
+	if(	strncmp(MyCube.sides[0],"yrgogbory",9) == 0 /* COORECT */
 		&& strncmp(MyCube.sides[1], "wwwowgwyg",9) == 0 /* COORECT */
 		&& strncmp(MyCube.sides[2], "gyrwrrwog",9) == 0 /* CORRECT */
 		&& strncmp(MyCube.sides[3], "rwbyowobo",9) == 0 /* CORRECT */
-		&& strncmp(MyCube.sides[4], "bbygygbgb",9) == 0 /* INCORRECT */
+		&& strncmp(MyCube.sides[4], "bbygygbgb",9) == 0 /* CORRECT */
 		&& strncmp(MyCube.sides[5], "oyrobrybr",9) == 0) /* COORECT */
 		printf("Test 3 succes!\n");
 	else
@@ -399,8 +379,6 @@ void TestMethods()
 	}
 	
 	resetcube();
-	
-	
 }
 
 void main()/* main program starts here */
