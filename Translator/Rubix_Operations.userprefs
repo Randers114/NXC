@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{EA5680E6-8E81-417E-8E71-EDECDC61EAA3}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Rubix_Operations/Operation.cs">
+    <Files>
+      <File FileName="Rubix_Operations/InitializeCube.cs" Line="1" Column="1" />
+      <File FileName="Rubix_Operations/TheCube.cs" Line="1" Column="1" />
+      <File FileName="Rubix_Operations/Program.cs" Line="1" Column="1" />
+      <File FileName="Rubix_Operations/Print.cs" Line="1" Column="1" />
+      <File FileName="Rubix_Operations/Operation.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
