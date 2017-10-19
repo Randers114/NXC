@@ -13,7 +13,7 @@ namespace Rubix_Operations
             InitializeCube rubix = new InitializeCube();
             rubix.InitCube();
 
-            string inputAlgorithm = "M d E ";
+            string inputAlgorithm = "M d E";
             string[] inputCharacter = inputAlgorithm.Split(' ');
             List<string> translatedAlgoritm = new List<string>();
 
