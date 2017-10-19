@@ -37,3 +37,9 @@ C:\Users\Nille\OneDrive\Skole\Filer\P5\Rubix_Operations\Rubix_Operations\obj\Deb
 F:\OneDrive\Skole\Filer\P5\Rubix_Operations\Rubix_Operations\bin\Debug\Rubix_Operations.exe.config
 F:\OneDrive\Skole\Filer\P5\Rubix_Operations\Rubix_Operations\obj\Debug\Rubix_Operations.exe
 F:\OneDrive\Skole\Filer\P5\Rubix_Operations\Rubix_Operations\obj\Debug\Rubix_Operations.pdb
+C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.exe.config
+C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.exe
+C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.pdb
+C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.exe
+C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.pdb
+C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.csprojResolveAssemblyReference.cache

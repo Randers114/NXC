@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Rubix_Operations
@@ -11,24 +12,30 @@ namespace Rubix_Operations
         private string InputAlgorithmCharacter { get; set; }
         private List<List<string>> Cube { get; set; }
 
+        public CubeColour Colours = new CubeColour();
+
         public Dictionaries LookUp = new Dictionaries();
 
         private string TopPosition { get; set; }
         private string FrontPosition { get; set; }
 
-        public AlgorithmTranslator(List<List<string>> cube, string frontColour)
+        public AlgorithmTranslator(List<List<string>> cube)
         {
             Cube = cube;
-            CubeColour.TopColour = "Yellow";
-            CubeColour.FrontColour = frontColour;
+            Colours.TopColour = Cube[0][4];
+            Colours.BottomColour = Cube[5][4];
+            Colours.FrontColour = Cube[2][4];
+            Colours.BackColour = Cube[3][4];
+            Colours.RightColour = Cube[1][4];
+            Colours.LeftColour = Cube[4][4];
         }
 
         public string StartUp(string inputAlgorithmCharater, List<List<string>> cube)
         {
             InputAlgorithmCharacter = inputAlgorithmCharater;
             Cube = cube;
-            TopPosition = FindFace(CubeColour.TopColour);
-            FrontPosition = FindFace(CubeColour.FrontColour);
+            TopPosition = FindFace(Colours.TopColour);
+            FrontPosition = FindFace(Colours.FrontColour);
 
             return Translate();
         }
@@ -43,12 +50,98 @@ namespace Rubix_Operations
                 return string.Empty;
             }
 
+            if (Regex.IsMatch(InputAlgorithmCharacter, @"[MEdrlu]"))
+            {
+                return CenterRotations();
+            }
+
             LookUp.AllRelations.TryGetValue(TopPosition + FrontPosition, out currentRelation);
             currentRelation.TryGetValue(InputAlgorithmCharacter.First().ToString(), out translation);
 
             if (InputAlgorithmCharacter.Contains('i'))
             {
                 translation += "i";
+            }
+
+            return translation;
+        }
+
+        private string CenterRotations()
+        {
+            string translation = string.Empty;
+
+            // No Doublelayers
+            if (InputAlgorithmCharacter == "M")
+            {
+                ChangeColourXInverted();
+                translation = "R Ti";
+            }
+            else if (InputAlgorithmCharacter == "E")
+            {
+                ChangeColourYInverted();
+                translation = "Di T";
+            }
+            if (InputAlgorithmCharacter == "Mi")
+            {
+                ChangeColourX();
+                translation = "Ri T";
+            }
+            else if (InputAlgorithmCharacter == "Ei")
+            {
+                ChangeColourY();
+                translation = "D Ti";
+            }
+
+            // Doublelayers left and right
+            else if (InputAlgorithmCharacter == "r")
+            {
+                ChangeColourX();
+                InputAlgorithmCharacter = "L";
+                translation = Translate();
+            }
+            else if (InputAlgorithmCharacter == "ri")
+            {
+                ChangeColourXInverted();
+                InputAlgorithmCharacter = "Li";
+                translation = Translate();
+            }
+            else if (InputAlgorithmCharacter == "l")
+            {
+                ChangeColourX();
+                InputAlgorithmCharacter = "R";
+                translation = Translate();
+            }
+            else if (InputAlgorithmCharacter == "li")
+            {
+                ChangeColourXInverted();
+                InputAlgorithmCharacter = "Ri";
+                translation = Translate();
+            }
+
+            // Doublelayers top and bottom
+            else if (InputAlgorithmCharacter == "t")
+            {
+                ChangeColourY();
+                InputAlgorithmCharacter = "D";
+                translation = Translate();
+            }
+            else if (InputAlgorithmCharacter == "ti")
+            {
+                ChangeColourYInverted();
+                InputAlgorithmCharacter = "Di";
+                translation = Translate();
+            }
+            else if (InputAlgorithmCharacter == "d")
+            {
+                ChangeColourY();
+                InputAlgorithmCharacter = "T";
+                translation = Translate();
+            }
+            else if (InputAlgorithmCharacter == "di")
+            {
+                ChangeColourYInverted();
+                InputAlgorithmCharacter = "Ti";
+                translation = Translate();
             }
 
             return translation;
@@ -83,31 +176,29 @@ namespace Rubix_Operations
 
         private void ChangeColourY()
         {
-            FrontPosition = FindFace((Cube[1])[4]);
-            CubeColour.FrontColour = (Cube[1])[4];
+            Colours.ChangeY();
+            FrontPosition = FindFace(Colours.FrontColour);
         }
 
         private void ChangeColourYInverted()
         {
-            FrontPosition = FindFace((Cube[4])[4]);
-            CubeColour.FrontColour = (Cube[4])[4];
+            Colours.ChangeYInverted();
+            FrontPosition = FindFace(Colours.FrontColour);
         }
 
         private void ChangeColourX()
         {
-            TopPosition = FindFace((Cube[2])[4]);
-            CubeColour.TopColour = (Cube[2])[4];
-            FrontPosition = FindFace((Cube[5])[4]);
-            CubeColour.FrontColour = (Cube[5])[4];
+            Colours.ChangeX();
+            FrontPosition = FindFace(Colours.FrontColour);
+            TopPosition = FindFace(Colours.TopColour);
 
-    }
+        }
 
         private void ChangeColourXInverted()
         {
-            TopPosition = FindFace((Cube[3])[4]);
-            CubeColour.TopColour = (Cube[3])[4];
-            FrontPosition = FindFace((Cube[0])[4]);
-            CubeColour.FrontColour = (Cube[0])[4];
+            Colours.ChangeXInverted();
+            FrontPosition = FindFace(Colours.FrontColour);
+            TopPosition = FindFace(Colours.TopColour);
         }
 
         private string FindFace(string colour)

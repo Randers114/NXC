@@ -141,8 +141,8 @@ namespace Rubix_Operations
             cube[5] = cubeCopy[3];
             cube[2] = cubeCopy[5];
 
-            ClawRightAndTurnBottom(cube[1], cubeCopy[1]);
-            ClawLeftAndTurnTop(cube[4], cubeCopy[4]);
+            ClawLeftAndTurnBottom(cube[1], cubeCopy[1]);
+            ClawRightAndTurnTop(cube[4], cubeCopy[4]);
         }
 
         private static void ClawInverted(List<List<string>> cube)
@@ -156,13 +156,13 @@ namespace Rubix_Operations
         {
             List<List<string>> cubeCopy = InitCopy(cube);
 
-            cube[1] = cubeCopy[2];
-            TurnSwapper(cube[2], cubeCopy[4]);
-            cube[4] = cubeCopy[3];
-            TurnSwapper(cube[3], cubeCopy[1]);
+            cube[3] = cubeCopy[1];
+            TurnSwapper(cube[1], cubeCopy[2]);
+            cube[2] = cubeCopy[4];
+            TurnSwapper(cube[4], cubeCopy[3]);
 
-            ClawRightAndTurnBottom(cube[5], cubeCopy[5]);
-            ClawLeftAndTurnTop(cube[0], cubeCopy[0]);
+            ClawLeftAndTurnBottom(cube[5], cubeCopy[5]);
+            ClawRightAndTurnTop(cube[0], cubeCopy[0]);
         }
 
         private static void TurnInverted(List<List<string>> cube)
@@ -176,7 +176,7 @@ namespace Rubix_Operations
         {
             List<List<string>> cubeCopy = InitCopy(cube);
 
-            ClawRightAndTurnBottom(cube[5], cubeCopy[5]);
+            ClawLeftAndTurnBottom(cube[5], cubeCopy[5]);
 
             LeftToFront(cube[2], cubeCopy[4]);
             FrontToRight(cube[1], cubeCopy[2]);
@@ -185,7 +185,7 @@ namespace Rubix_Operations
 
         }
 
-        private static void ClawRightAndTurnBottom(List<string> cubeSide, List<string> cubeSideCopy)
+        private static void ClawLeftAndTurnBottom(List<string> cubeSide, List<string> cubeSideCopy)
         {
             cubeSide[2] = cubeSideCopy[0];
             cubeSide[5] = cubeSideCopy[1];
@@ -197,7 +197,7 @@ namespace Rubix_Operations
             cubeSide[6] = cubeSideCopy[8];
         }
 
-        private static void ClawLeftAndTurnTop(List<string> cubeSide, List<string> cubeSideCopy)
+        private static void ClawRightAndTurnTop(List<string> cubeSide, List<string> cubeSideCopy)
         {
             cubeSide[6] = cubeSideCopy[0];
             cubeSide[3] = cubeSideCopy[1];
