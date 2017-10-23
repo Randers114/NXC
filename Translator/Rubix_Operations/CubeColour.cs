@@ -50,7 +50,7 @@ namespace Rubix_Operations
             FrontColour = BottomColour;
             BottomColour = BackColour;
             BackColour = TopColour;
-            TopColour = FrontColour;
+            TopColour = _tempColour;
         }
 
         public void ChangeXInverted()

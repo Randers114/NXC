@@ -13,7 +13,7 @@ namespace Rubix_Operations
             InitializeCube rubix = new InitializeCube();
             rubix.InitCube();
 
-            string inputAlgorithm = "M d E";
+            string inputAlgorithm = "Ri T T R Fi R T Ri Ti Ri F R R Ti R Ti";
             string[] inputCharacter = inputAlgorithm.Split(' ');
             List<string> translatedAlgoritm = new List<string>();
 
@@ -22,6 +22,7 @@ namespace Rubix_Operations
             foreach (string character in inputCharacter)
             {
                 translatedAlgoritm.Add(translator.StartUp(character, rubix.Cube));
+
                 if (translatedAlgoritm.Last().Contains(' '))
                 {
                     foreach (string operation in translatedAlgoritm.Last().Split(' '))

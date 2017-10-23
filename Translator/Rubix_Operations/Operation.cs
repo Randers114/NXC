@@ -8,39 +8,6 @@ namespace Rubix_Operations
 {
     class Operation
     {
-        // Left Doublelayers
-        public static void RotateLeftDoubleLayer()
-        {
-
-        }
-
-        public static void RotateLeftDoubleLayerInverted()
-        {
-
-        }
-
-        // Right doublelayers
-        public static void RotateRightDoubleLayer()
-        {
-
-        }
-
-        public static void RotateRightDoubleLayerInverted()
-        {
-
-        }
-
-        // Down doublelayers
-        public static void RotateDownDoubleLayer()
-        {
-
-        }
-
-        public static void RotateDownDoubleLayerInverted()
-        {
-
-        }
-
         // Rights
         public static void RotateRightFace(List<List<string>> cube)
         {
