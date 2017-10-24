@@ -13,7 +13,17 @@ namespace Rubix_Operations
             InitializeCube rubix = new InitializeCube();
             rubix.InitCube();
 
-            string inputAlgorithm = "Ri F R Fi Ri F R Fi R T Ri Ti R T Ri";
+            RunTranslate(rubix);
+            
+        }
+
+        private static void RunTranslate(InitializeCube rubix)
+        {
+            string inputAlgorithm = "F (R U R' U') F' f (R U R' U') f'";
+            inputAlgorithm = inputAlgorithm.Replace('\'', 'i').Replace('U', 'T').Replace("(", "").Replace(")", "");
+            Console.WriteLine(inputAlgorithm);
+            Print.Run(rubix.Cube);
+            Console.Clear();
             string[] inputCharacter = inputAlgorithm.Split(' ');
             List<string> translatedAlgoritm = new List<string>();
 
@@ -28,18 +38,13 @@ namespace Rubix_Operations
                     foreach (string operation in translatedAlgoritm.Last().Split(' '))
                     {
                         RunOperations(rubix, operation);
-                    } 
+                    }
 
                 }
                 else
                 {
                     RunOperations(rubix, translatedAlgoritm.Last());
                 }
-
-                //Console.WriteLine(translatedAlgoritm.Last());
-                //Print.Run(rubix.Cube);
-
-                //Console.Clear();
             }
 
             Console.WriteLine(inputAlgorithm);
@@ -51,8 +56,8 @@ namespace Rubix_Operations
                     Console.Write(character + " ");
                 }
             }
-
-            Console.ReadLine();
+            Console.WriteLine();
+            Print.Run(rubix.Cube);
         }
 
         private static void RunOperations(InitializeCube rubix, string operation)
@@ -104,45 +109,10 @@ namespace Rubix_Operations
        
         private static void Run(InitializeCube rubix)
         {
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Turn(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Claw(rubix.Cube);
-            //Operation.Rotate(rubix.Cube);
+            Operation.RotateRightFace(rubix.Cube);
+            Operation.RotateTopFace(rubix.Cube);
 
-            //Print.Run(rubix.Cube);
+            Print.Run(rubix.Cube);
         }
     }
 }

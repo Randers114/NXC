@@ -11,14 +11,19 @@ namespace Rubix_Operations
         public List<List<string>> Cube { get; set; }
         public void InitCube()
         {
-            InitializeSide top = new InitializeSide("Orange", "White", "Yellow", "Yellow", "Yellow", "White", "White", "Red", "White");
-            InitializeSide right = new InitializeSide("White", "Red", "White", "Red", "Green", "Orange", "Red", "Blue", "Green");
-            InitializeSide front = new InitializeSide("Orange", "Blue", "Orange", "Yellow", "Red", "Blue", "Blue", "Green", "Red");
-            InitializeSide back = new InitializeSide("Red", "Blue", "Red", "Orange", "Orange", "White", "Yellow", "Orange", "Green");
-            InitializeSide left = new InitializeSide("Green", "Red", "Blue", "Yellow", "Blue", "Green", "Blue", "White", "Yellow");
-            InitializeSide bottom = new InitializeSide("Orange", "Orange", "Blue", "Green", "White", "Green", "Yellow", "Yellow", "Green");
+            InitializeSide top = new InitializeSide("Blue", "Red", "Orange", "Blue", "Yellow", "Orange", "Orange", "Green", "Green");
+            InitializeSide right = new InitializeSide("Red", "Red", "Red", "Red", "Red", "Red",   "Blue",    "Yellow",     "Red");
+            InitializeSide front = new InitializeSide("Green", "Yellow", "Yellow", "Blue", "Blue", "Blue", "Blue", "Blue", "Blue");
+            InitializeSide back = new InitializeSide("Green", "Green", "Green", "Green", "Green", "Green",    "Red", "Yellow", "Yellow");
+            InitializeSide left = new InitializeSide("Yellow", "Yellow", "Yellow", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange");
+            InitializeSide bottom = new InitializeSide("White", "White", "White", "White", "White", "White", "White", "White", "White");
 
             Cube = new TheCube(top.Side, right.Side, front.Side, back.Side, left.Side, bottom.Side).cube;
         }
     }
+
+    //"Red", "Red", "Red", "Red", "Red", "Red"
+    //"Green", "Green",   "Green", "Green", "Green", "Green"
+    //"Orange", "Orange", "Orange", "Orange", "Orange", "Orange"
+    //"Blue", "Blue", "Blue", "Blue", "Blue", "Blue"
 }

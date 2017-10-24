@@ -43,3 +43,9 @@ C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\obj\D
 C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.exe
 C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.pdb
 C:\Users\Nille\OneDrive\Skole\Filer\P5\Git\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.csprojResolveAssemblyReference.cache
+C:\Users\Randers\Documents\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.exe.config
+C:\Users\Randers\Documents\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.exe
+C:\Users\Randers\Documents\NXC\Translator\Rubix_Operations\bin\Debug\Rubix_Operations.pdb
+C:\Users\Randers\Documents\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.csprojResolveAssemblyReference.cache
+C:\Users\Randers\Documents\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.exe
+C:\Users\Randers\Documents\NXC\Translator\Rubix_Operations\obj\Debug\Rubix_Operations.pdb

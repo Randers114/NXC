@@ -63,5 +63,25 @@ namespace Rubix_Operations
             BackColour = BottomColour;
             BottomColour = _tempColour;
         }
+
+        public void ChangeZ()
+        {
+            string _tempColour;
+            _tempColour = TopColour;
+            TopColour = LeftColour;
+            LeftColour = BottomColour;
+            BottomColour = RightColour;
+            RightColour = _tempColour;
+        }
+
+        public void ChangeZInverted()
+        {
+            string _tempColour;
+            _tempColour = TopColour;
+            TopColour = RightColour;
+            RightColour = BottomColour;
+            BottomColour = LeftColour;
+            LeftColour = _tempColour;
+        }
     }
 }

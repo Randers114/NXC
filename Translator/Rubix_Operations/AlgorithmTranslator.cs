@@ -50,7 +50,7 @@ namespace Rubix_Operations
                 return string.Empty;
             }
 
-            if (Regex.IsMatch(InputAlgorithmCharacter, @"[MEdrlu]"))
+            if (Regex.IsMatch(InputAlgorithmCharacter, @"[MEdrluf]"))
             {
                 return CenterRotations();
             }
@@ -75,6 +75,16 @@ namespace Rubix_Operations
             {
                 ChangeColourXInverted();
                 translation = "R Ti";
+            }
+            else if(InputAlgorithmCharacter == "f"){
+                ChangeColourZ();
+                InputAlgorithmCharacter = "B";
+                translation = Translate();
+            }
+            else if(InputAlgorithmCharacter == "fi"){
+                ChangeColourZInverted();
+                InputAlgorithmCharacter = "Bi";
+                translation = Translate();
             }
             else if (InputAlgorithmCharacter == "E")
             {
@@ -198,6 +208,16 @@ namespace Rubix_Operations
         {
             Colours.ChangeXInverted();
             FrontPosition = FindFace(Colours.FrontColour);
+            TopPosition = FindFace(Colours.TopColour);
+        }
+        private void ChangeColourZ()
+        {
+            Colours.ChangeZ();
+            TopPosition = FindFace(Colours.TopColour);
+        }
+        private void ChangeColourZInverted()
+        {
+            Colours.ChangeZInverted();
             TopPosition = FindFace(Colours.TopColour);
         }
 

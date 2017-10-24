@@ -137,8 +137,8 @@ namespace Rubix_Operations
             BottomBack.Add("B", "F");
             BottomBack.Add("T", "D");
             BottomBack.Add("D", "T");
-            BottomBack.Add("L", "R");
-            BottomBack.Add("R", "L");
+            BottomBack.Add("L", "L");
+            BottomBack.Add("R", "R");
 
             BottomLeft.Add("F", "L");
             BottomLeft.Add("B", "R");
