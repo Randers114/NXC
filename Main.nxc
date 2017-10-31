@@ -1,0 +1,9 @@
+#include "Graph.h"
+task main()
+{
+	InitializeCube();
+	InitializeCubeTest();
+	FillTestCube();
+	TestMethods();
+	Wait(5000);
+}

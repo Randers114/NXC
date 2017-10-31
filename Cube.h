@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include <string.h>
+
 
 char myCube[6][10];
 char testCube[6][10];
   /*
-  top
+    top
 	right
 	front
 	back
@@ -76,7 +75,7 @@ void SwapBetweenFaces(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* s
 void FaceSwap(int faceOneIdentifier, int faceTwoIdentifier) /* swap the pointer of two faces so they "swap places" */
 {
 	char temp;
-	
+
 	for(int i = 0; i < 9; i++)
   {
     temp = myCube[faceTwoIdentifier][i];
@@ -300,23 +299,23 @@ void TestMethods()
 		&& strncmp(myCube[2], "gywgwowog",9) == 0 /*CORRECT */
 		&& strncmp(myCube[3], "rwbgygybb",9) == 0) /* CORRECT*/
 		{
-			printf("Test 1 succes!\n");
+			//printf("Test 1 succes!\n");
 		}
 
 	else
-	{  
+	{
 			for (int i = 0; i < 9; i++)
-			printf("%c", myCube[5][i]);
-		printf("\n");
+			//printf("%c", myCube[5][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[1][i]);
-		printf("\n");
+			//printf("%c", myCube[1][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[2][i]);
-		printf("\n");
+			//printf("%c", myCube[2][i]);
+		//printf("\n");
 		for (int i = 0; i < 9; i++)
-			printf("%c", myCube[3][i]);
-		printf("\n");
+			//printf("%c", myCube[3][i]);
+		//printf("\n");
 	}
 
 	Resetcube();
@@ -329,29 +328,29 @@ void TestMethods()
 		&& strncmp(myCube[4], "rrgyrogww",9) == 0 /* CORRECT */
 		&& strncmp(myCube[5], "bgbgygybb",9) == 0) /* CORRECT */
 		{
-			printf("Test 2 succes!\n");
+			//printf("Test 2 succes!\n");
 		}
 	else
-	{   
+	{
 			for (int i = 0; i < 9; i++)
-			printf("%c", myCube[0][i]);
-		printf("\n");
+			//printf("%c", myCube[0][i]);
+		//printf("\n");
 
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[1][i]);
-		printf("\n");
+			//printf("%c", myCube[1][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[2][i]);
-		printf("\n");
+			//printf("%c", myCube[2][i]);
+		//printf("\n");
 		for (int i = 0; i < 9; i++)
-			printf("%c", myCube[3][i]);
-		printf("\n");
+			//printf("%c", myCube[3][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[4][i]);
-		printf("\n");
+			//printf("%c", myCube[4][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[5][i]);
-		printf("\n");
+			//printf("%c", myCube[5][i]);
+		//printf("\n");
 	}
 
 	Resetcube();
@@ -364,30 +363,30 @@ void TestMethods()
 		&& strncmp(myCube[4], "bbygygbgb",9) == 0 /* CORRECT */
 		&& strncmp(myCube[5], "oyrobrybr",9) == 0) /* COORECT */
 		{
-			printf("Test 3 succes!\n");
+			//printf("Test 3 succes!\n");
 		}
 	else
-	{    
+	{
 
 			for (int i = 0; i < 9; i++)
-			printf("%c", myCube[0][i]);
-		printf("\n");
+			//printf("%c", myCube[0][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[1][i]);
-		printf("\n");
+			//printf("%c", myCube[1][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[2][i]);
-		printf("\n");
+			//printf("%c", myCube[2][i]);
+		//printf("\n");
 		for (int i = 0; i < 9; i++)
-			printf("%c", myCube[3][i]);
-		printf("\n");
+			//printf("%c", myCube[3][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[4][i]);
-		printf("\n");
+			//printf("%c", myCube[4][i]);
+		//printf("\n");
 				for (int i = 0; i < 9; i++)
-			printf("%c", myCube[5][i]);
-		printf("\n");
-	
+			//printf("%c", myCube[5][i]);
+		//printf("\n");
+
 	}
 
 	Resetcube();
