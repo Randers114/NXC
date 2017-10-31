@@ -1,5 +1,11 @@
-int number = 1;
-byte handle;
+#include "WhiteCross.h"
+
+
+#define CENTER_SQUARE -125
+#define FIRST_EDGE_SQAURE 35
+#define EDGE_SQUARE -20
+#define CORNER_SQUARE 20
+
 
 void FlipCube(){
      RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
@@ -24,62 +30,193 @@ void TurnCube(int x){
      Wait(700);
 }
 
-void ColorRead(int x){
-     unsigned int rawData[];
-     unsigned int count;
-     ArrayInit(rawData, 0, 4);
-     string temp;
-     RotateMotor(OUT_A, 40, x);
-     Wait(300);
-     SetSensor(S1,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
-     ReadSensorColorRaw(S1, rawData);
-     unsigned int r = WriteString(handle, "Nr.", count);
-     string n = NumToStr(number);
-     WriteString(handle, n, count);
-     WriteString(handle, "\n", count);
-     
-     for(int i = 0; i < 3; i++){
-           temp = NumToStr(rawData[i]);
-           WriteString(handle, temp, count);
-           WriteString(handle, "\n", count);
-     }
-     number++;
-}
-
-
-
-void ColorReadSide(){
-     ColorRead(-125);
-     ColorRead(35);
-     for(int i = 0; i < 4; i++) {
-             TurnCube(45);
-             ColorRead(20);
-             TurnCube(45);
-             ColorRead(-20);
-     }
-
-}
-
-
 void PlaceCube() {
     RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
     Wait(300);
     RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
 }
+
+void ColorRead(int x){
+     unsigned int rawData[];
+     char tempColour;
+     RotateMotor(OUT_A, 40, x);
+     Wait(300);
+     SetSensor(S1,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
+     ReadSensorColorRaw(S1, rawData);
+
+     // Red 
+     if((rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     {
+        tempColour = 'r';
+     }
+     // Orange 
+     else if ((rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     {
+       tempColour = 'o';
+     }
+     // Green 
+     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     {
+        tempColour = 'g';
+     }
+     // Blue 
+     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     {
+        tempColour = 'b';
+     }
+     // White
+     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     {
+        tempColour = 'w';
+     }
+     // Yellow
+     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     {
+       tempColour = 'y';
+     }
+     else
+     {
+      // fejl 
+     }
+
+
+     
+}
+
+int MapColour(int placement)
+{
+    int tempPlacement = 0; 
+    switch(placement)
+    {
+      case 0: 
+        tempPlacement = 6;
+        
+        break;
+      
+      case 1: 
+        tempPlacement = 3;
+        
+        break;
+      case 2: 
+        tempPlacement = 0;
+
+        break;
+      case 3: 
+        tempPlacement = 1;
+
+        break;      
+      case 4: 
+        tempPlacement = 2;
+
+        break;      
+      case 5: 
+        tempPlacement = 5;
+
+        break;
+      case 6: 
+        tempPlacement = 8;
+
+        break;      
+      default:
+        break;
+    }
+
+    return tempPlacement;
+}
+
+
+void ColorReadSide(int face){
+   char[9] tempFace;
+
+   tempFace[4] = ColorRead(CENTER_SQUARE);
+   tempFace[7] = ColorRead(FIRST_EDGE_SQAURE);
+
+   int counter = 0;
+   for(int i = 0; i < 4; i++) {
+       TurnCube(45);
+       tempFace[MapColour(counter)] = ColorRead(CORNER_SQUARE);
+       counter++;
+
+       TurnCube(45);
+       tempFace[MapColour(counter)] = ColorRead(EDGE_SQUARE);
+       counter++;
+
+       PlaceCube();
+   }
+
+   InitializeSide(tempFace, face);
+}
+
+void MapFace(int placement){
+  int tempPlacement = 0;
+  switch(placement)
+  {
+    case 0: 
+      tempPlacement = 0;
+      
+      break;
+    case 1: 
+      tempPlacement = 2;
+      
+      break;
+    case 2: 
+      tempPlacement = 5;
+
+      break;
+    case 3: 
+      tempPlacement = 3;
+
+      break;      
+    case 4: 
+      tempPlacement = 4;
+
+      break;      
+    case 5: 
+      tempPlacement = 1;
+
+      break;      
+    default:
+      break;
+  }
+
+    return tempPlacement;
+}
+
+
+void ReadLeftThenRight(int face){
+  // Left face
+  ResetColorSensor();
+  PlaceCube();
+  TurnCube(90);
+  ClawPull();
+
+  //Right face
+  ColorReadSide(4);
+  ResetColorSensor();
+  PlaceCube();
+  DoubleClaw();
+  ColorReadSide(5);
+
+  //Reset cube for solving
+  ResetColorSensor();
+  ClawPull();
+  TripleTurn();
+}
+
 task main()
 {
-     unsigned int size = 1028;
-     unsigned int result = CreateFile("data.txt", size, handle);
-     //unsigned int result2 = OpenFileAppend("data.txt", size, handle);
+   for (int i = 0; i < 4; i++)
+   {
      ResetColorSensor();
      PlaceCube();
-     ColorReadSide();
-     fclose(handle);
-     
-     NumOut(0, LCD_LINE1, result);
-     //NumOut(0, LCD_LINE2, result2);
-     Wait(5000);
-     //PlaceCube();
-     //TurnCube(45);
-     //ColorRead(1);
+     ColorReadSide(MapFace(i));
+     ClawPull();
+   }
+
+   ReadLeftThenRight();
+
+   
+   NumOut(0, LCD_LINE1, result);
+   Wait(5000);
+
 }
