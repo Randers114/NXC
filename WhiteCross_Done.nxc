@@ -37,12 +37,12 @@ void InitializeCube()/* init with hardcoded colors */
 
 void InitializeCubeTest()
 {
-    InitializeSide('g','b','r','y','g','b','r','y','o', 0); /* init top */
-	InitializeSide('b','b','o','w','w','o','y','y','b', 1);	/* init right */
-	InitializeSide('g','g','w','w','r','g','r','b','g', 2);	/* init front */
-	InitializeSide('o','r','r','r','o','o','o','o','b', 3);	/* init back */
-	InitializeSide('y','o','w','y','y','r','y','g','g', 4);	/* init left */
-	InitializeSide('y','r','w','w','b','w','b','g','w', 5);	/* init bottom */
+    InitializeSide('g','o','w','b','y','o','o','o','o', 0); /* init top */
+	InitializeSide('y','w','o','w','r','g','o','y','g', 1);	/* init right */
+	InitializeSide('b','b','y','r','b','y','r','g','b', 2);	/* init front */
+	InitializeSide('r','g','g','b','g','r','r','w','g', 3);	/* init back */
+	InitializeSide('w','y','w','w','o','b','b','r','b', 4);	/* init left */
+	InitializeSide('w','r','y','y','w','g','y','o','r', 5);	/* init bottom */
 }
 
 void CubeCheck()
@@ -111,23 +111,23 @@ void FlipCube() /* Tells the robot to flip the cube. */
     RotateMotorPID(OUT_B, 30, -60, 20, 40, 100);
     Wait(300);
     RotateMotorPID(OUT_B, 70, -90, 20, 40, 100);
-    Wait(300);
+    Wait(100);
     RotateMotorPID(OUT_B, 30, 130, 20, 40, 100);
     Wait(300);
     RotateMotorPID(OUT_B, 30, -40, 20, 40, 100);
-    Wait(700);
+    Wait(500);
 }
 
 void TurnCube(int x) /* Tells the robot to turn the cube. */
 { 
     RotateMotorPID(OUT_C, 15, x, 20, 40, 100);
-    Wait(700);
+    Wait(300);
 }
 
 void RotateCube(int x) /* Same as turn, higher power. */
 {
     RotateMotorPID(OUT_C, 30, x, 20, 40, 100);
-    Wait(700);
+    Wait(300);
 }
 
 void SwapOnFace(int faceIdentifier, int spaceOne, int spaceTwo) /* swap space one with space two on a given face */
@@ -711,13 +711,6 @@ sub FindXPosition()
 			{
 				complementFace = face;
 				complementPiece = piece;
-				
-				PlaySound(SOUND_DOWN);
-				
-				TextOut(0, LCD_LINE1, "Coordinates: ");
-                NumOut(0, LCD_LINE2, face);
-                NumOut(0, LCD_LINE3, piece);
-
 			}
 		}
 	}     
@@ -861,7 +854,7 @@ sub WhiteCrossMoveset()
 			else if(complementPiece == 7)
 			{
 				TripleClaw();
-				DoubleTurn();
+				DoubleRotate();
 				ClawPull();
 			}
 
@@ -1026,6 +1019,7 @@ sub WhiteCrossMoveset()
 				ClawPull();	
 				RotateBottomRight();
 				TurnCubeRight();
+				ClawPull();
 			}
 
 		break;
@@ -1092,42 +1086,17 @@ sub DeterministicWhiteCross()
 		TurnToColour('r', 'w');
     	evaluateCorrect = EvaluateCorrectEdges();
 	}
-
-  /*  	for (int faceCheck = 0; faceCheck < 6; faceCheck++)
-	  {
-    // printf("face = %d\n",face);
-	  for (int pieceCheck = 1; pieceCheck < 8; pieceCheck += 2)
-	  {
-		 if (myCube[faceCheck][pieceCheck] == 'w' && myCube[faceCheck][4] == 'w')
-		 {
-         	whiteFace = faceCheck;
-         	whitePiece = pieceCheck;
-         	FindComplementingEdge();
-
-         	if (myCube[complementFace][complementPiece] == myCube[complementFace][4])
-         	{
-            	evaluateCorrect++;
-         	}
-		 }
-	  }
-  	}          */
-       
 }
 
 
 
 task main()
 {
-	//InitializeCubeTest();
-	//CubeCheck();
+	InitializeCubeTest();
+	CubeCheck();
 	//FillTestCube();
-	//DeterministicWhiteCross();
- // UnlockCube();
+	DeterministicWhiteCross();
 	
-  complementFace = 1;
-  complementPiece = 7;
-  WhiteCrossMoveset();
-
-  UnlockCube();
+    UnlockCube();
 
 }
