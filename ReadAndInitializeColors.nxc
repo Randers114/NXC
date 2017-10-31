@@ -6,28 +6,11 @@
 #define EDGE_SQUARE -20
 #define CORNER_SQUARE 20
 
-
-void FlipCube(){
-     RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
-     RotateMotorPID(OUT_B, 50, -90, 20, 40, 100);
-     Wait(300);
-     RotateMotorPID(OUT_B, 30, 120, 20, 40, 100);
-     Wait(300);
-     RotateMotorPID(OUT_B, 30, -35, 20, 40, 100);
-     Wait(700);
-     RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
-}
-
 void ResetColorSensor(){
       OnFwd(OUT_A, 30);
       Wait(2000);
       Off(OUT_A);
       Wait(500);
-}
-
-void TurnCube(int x){
-     RotateMotorPID(OUT_C, 10, x, 20, 40, 100);
-     Wait(700);
 }
 
 void PlaceCube() {
@@ -36,51 +19,46 @@ void PlaceCube() {
     RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
 }
 
-void ColorRead(int x){
+char ColorRead(int x){
      unsigned int rawData[];
      char tempColour;
      RotateMotor(OUT_A, 40, x);
      Wait(300);
      SetSensor(S1,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
-     ReadSensorColorRaw(S1, rawData);
+
 
      // Red 
-     if((rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     if((rawData[0] >= 505 && rawData[0] <= 519) && (rawData[1] >= 234 && rawData[1] <= 254) && (rawData[2] >= 187 && rawData[2] <= 199) )
      {
         tempColour = 'r';
      }
      // Orange 
-     else if ((rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     else if ((rawData[0] >= 529 && rawData[0] <= 541) && (rawData[1] >= 269 && rawData[1] <= 281) && (rawData[2] >= 188 && rawData[2] <= 198) )
      {
        tempColour = 'o';
      }
      // Green 
-     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     else if ((rawData[0] >= 303 && rawData[0] <= 325) && (rawData[1] >= 333 && rawData[1] <= 347) && (rawData[2] >= 234 && rawData[2] <= 248) )
      {
         tempColour = 'g';
      }
      // Blue 
-     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     else if ((rawData[0] >= 278 && rawData[0] <= 292) && (rawData[1] >= 259 && rawData[1] <= 272) && (rawData[2] >= 313 && rawData[2] <= 326) )
      {
         tempColour = 'b';
      }
+     // Yellow
+     else if ((rawData[0] >= 545 && rawData[0] <= 559) && (rawData[1] >= 426 && rawData[1] <= 438) && (rawData[2] >= 321 && rawData[2] <= 334) )
+     {
+        tempColour = 'y';
+     }
      // White
-     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
+     else
      {
         tempColour = 'w';
      }
-     // Yellow
-     else if (rawData[0] >= 207 && rawData[0] <= 211) && (rawData[1] >= 207 && rawData[1] <= 211) && (rawData[2] >= 207 && rawData[2] <= 211) )
-     {
-       tempColour = 'y';
-     }
-     else
-     {
-      // fejl 
-     }
 
-
-     
+     return tempColour;
 }
 
 int MapColour(int placement)
@@ -126,7 +104,7 @@ int MapColour(int placement)
 
 
 void ColorReadSide(int face){
-   char[9] tempFace;
+   char tempFace[9];
 
    tempFace[4] = ColorRead(CENTER_SQUARE);
    tempFace[7] = ColorRead(FIRST_EDGE_SQAURE);
@@ -147,7 +125,7 @@ void ColorReadSide(int face){
    InitializeSide(tempFace, face);
 }
 
-void MapFace(int placement){
+int MapFace(int placement){
   int tempPlacement = 0;
   switch(placement)
   {
@@ -183,7 +161,7 @@ void MapFace(int placement){
 }
 
 
-void ReadLeftThenRight(int face){
+void ReadLeftThenRight(){
   // Left face
   ResetColorSensor();
   PlaceCube();
@@ -216,7 +194,9 @@ task main()
    ReadLeftThenRight();
 
    
-   NumOut(0, LCD_LINE1, result);
+   //NumOut(0, LCD_LINE1, result);
    Wait(5000);
+   
+   CubeCheck();
 
 }
