@@ -1,0 +1,99 @@
+#SYMBOLS
+Index	Identifier	Type	Flag	Data	Size	RefCount
+0	__signed_stack_001main	6	1	0	4	2
+1	__D0main	6	1	4	4	2
+2	__rotate_theAngle1	5	1	8	4	2
+3	__rotate_angle1	6	1	12	4	4
+4	__rotate_OldRotCount1	4	1	16	2	2
+5	__rotate_RotCount1	4	1	18	2	4
+6	__rotate_theTurnPct1	2	1	20	1	4
+7	__rotate_thePower1	2	1	21	1	4
+8	__constVal32	2	0	22	1	4
+9	____initialize_global_data_return	1	1	23	1	3
+10	__constVal96	2	0	24	1	1
+11	____RotateMotor1_return	1	1	25	1	3
+12	__constVal1	2	0	26	1	4
+13	__constVal0	2	1	27	1	6
+14	__rotate_rs1	1	1	28	1	2
+15	__rotate_stop1	1	1	29	1	2
+16	__rotate_turnpct1	2	1	30	1	3
+17	__rotate_theUF1	1	1	31	1	6
+18	__rotate_power1	1	1	32	1	4
+19	__rotate_firstPort1	1	1	33	1	5
+20	__rotate_sync1	1	1	34	1	2
+21	__rotate_theRVP1	1	1	35	1	2
+22	__rotate_theRVI1	1	1	36	1	2
+23	__rotate_theRVD1	1	1	37	1	2
+24	__rotate_theOM1	1	1	38	1	7
+25	__rotate_theRM1	1	1	39	1	4
+26	__rotate_theRS1	1	1	40	1	3
+27	__rotate_ports1	7	0	42	4	6
+28	__rotate_ports1.__rotate_ports1_type	1	0	0	1	0
+#SOURCES
+Clump	Line	PC	Source
+0	3	0	#line 3 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	4	0		subcall __initialize_global_data, ____initialize_global_data_return
+0	3	2	#line 3 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	3	2	#line 3 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	4	2		set __signed_stack_001main, 100
+0	3	5	#line 3 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	3	5	#line 3 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	4	5		set __D0main, 90
+0	4	8	#line 4 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	5	8	#pragma macro 33
+0	5	8		arrbuild __rotate_ports1, __constVal1
+0	5	12		mov __rotate_power1, __signed_stack_001main
+0	5	14		mov __rotate_angle1, __D0main
+0	5	16		mov __rotate_turnpct1, __constVal0
+0	5	18		mov __rotate_sync1, __constVal0
+0	5	20		mov __rotate_stop1, __constVal1
+0	5	22		mov __rotate_theRVP1, __constVal32
+0	5	24		mov __rotate_theRVI1, __constVal0
+0	5	26		mov __rotate_theRVD1, __constVal96
+0	5	28		subcall __RotateMotor1, ____RotateMotor1_return
+0	5718	30	#line 5718 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	4	30	#line 4 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+0	5	30		exit -1, -1
+1	4529	0		brtst 4, __rotate_Done1, __rotate_angle1
+1	4530	3		sign __rotate_thePower1, __rotate_angle1
+1	4531	6		abs __rotate_theAngle1, __rotate_angle1
+1	4532	9		mul __rotate_thePower1, __rotate_thePower1, __rotate_power1
+1	4534	13		set __rotate_theUF1, 23
+1	4535	16		brtst 4, __rotate_NoSync1, __rotate_sync1
+1	4536	19		set __rotate_theOM1, 7
+1	4537	22		set __rotate_theRM1, 2
+1	4538	25		mov __rotate_theTurnPct1, __rotate_turnpct1
+1	4539	27		brtst 4, __rotate_Start1, __rotate_theTurnPct1
+1	4540	30		add __rotate_theUF1, __rotate_theUF1, __constVal32
+1	4541	34		jmp __rotate_Start1
+1	4543	36		set __rotate_theOM1, 3
+1	4544	39		set __rotate_theRM1, 0
+1	4545	42		set __rotate_theTurnPct1, 0
+1	4547	45		set __rotate_theRS1, 32
+1	4548	48		setout __rotate_ports1, 1, __rotate_theOM1, 8, __rotate_theRM1, 5, __rotate_theAngle1, 6, __rotate_theRS1, 10, __rotate_theRVP1, 11, __rotate_theRVI1, 12, __rotate_theRVD1, 2, __rotate_thePower1, 7, __rotate_turnpct1, 0, __rotate_theUF1
+1	4551	71		index __rotate_firstPort1, __rotate_ports1, 65535
+1	4553	75		getout __rotate_power1, __rotate_firstPort1, 2
+1	4554	79		brtst 4, __rotate_doneRunning1, __rotate_power1
+1	4555	82		getout __rotate_rs1, __rotate_firstPort1, 6
+1	4556	86		brcmp 4, __rotate_Running1, __rotate_rs1, __constVal32
+1	4558	90		brtst 4, __rotate_Reset1, __rotate_stop1
+1	4560	93		set __rotate_theOM1, 7
+1	4561	96		set __rotate_theUF1, 7
+1	4562	99		setout __rotate_ports1, 1, __rotate_theOM1, 8, __constVal1, 6, __rotate_theRS1, 2, __constVal0, 5, __constVal0, 0, __rotate_theUF1
+1	4564	114		getout __rotate_RotCount1, __rotate_firstPort1, 14
+1	4566	118		mov __rotate_OldRotCount1, __rotate_RotCount1
+1	4567	120		wait 50
+1	4569	122		getout __rotate_RotCount1, __rotate_firstPort1, 14
+1	4570	126		brcmp 5, __rotate_Stabilize1, __rotate_OldRotCount1, __rotate_RotCount1
+1	4571	130		set __rotate_theOM1, 4
+1	4572	133		setout __rotate_ports1, 8, __rotate_theRM1, 6, __constVal0, 1, __rotate_theOM1, 0, __constVal1
+1	4575	144		brtst 4, __rotate_Done1, __rotate_theTurnPct1
+1	4576	147		setout __rotate_ports1, 0, __constVal32
+1	4578	152		subret ____RotateMotor1_return
+2	7	0	#line 7 "C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc"
+2	8	0		subret ____initialize_global_data_return
+#CLUMPS
+Clump	Name	Offset	File
+0	main	0	C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc
+1	__RotateMotor1	33	NXTDefs.h
+2	__initialize_global_data	187	C:\Users\Nikolaj\Documents\GitHub\NXC\MotorTest.nxc

@@ -16,8 +16,8 @@ void InitializeSide(char a, char b, char c, char d, char e, char f, char g, char
 	myCube[sidenumber][2] = c;
 	myCube[sidenumber][3] = d;
 	myCube[sidenumber][4] = e;
-	myCube[sidenumber][5] = f;
 	myCube[sidenumber][6] = g;
+	myCube[sidenumber][5] = f;
 	myCube[sidenumber][7] = h;
 	myCube[sidenumber][8] = i;
 }
