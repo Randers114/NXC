@@ -1,6 +1,4 @@
 char myCube[6][10];
-char testCube[6][10];
-
 
 void InitializeSide(char face[], int sidenumber)
 {
