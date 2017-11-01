@@ -1,5 +1,4 @@
-#include "WhiteCross.h"
-
+#include "MotorOperations.h"
 
 #define CENTER_SQUARE -125
 #define FIRST_EDGE_SQAURE 35
@@ -11,32 +10,6 @@ void ResetColorSensor(){
       Wait(2000);
       Off(OUT_A);
       Wait(500);
-}
-
-void ColorRotate(int i){
-     for (int j = 0; j < i; j++){
-         RotateMotorPID(OUT_C, 15, 90, 20, 40, 100);
-         Wait(300);
-     }
-}
-
-void ColorClaw(int i){
-   for(int j = 0; j < i; j++){
-           LockCube();
-           RotateMotorPID(OUT_B, 70, -90, 20, 40, 100);
-           Wait(300);
-           RotateMotorPID(OUT_B, 30, 130, 20, 40, 100);
-           Wait(300);
-           RotateMotorPID(OUT_B, 30, -40, 20, 40, 100);
-           Wait(300);
-           UnlockCube();
-   }
-}
-
-void PlaceCube() {
-    RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
-    Wait(300);
-    RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
 }
 
 char ColorRead(int x){
@@ -123,7 +96,6 @@ int MapColour(int placement)
     return tempPlacement;
 }
 
-
 void ColorReadSide(int face){
    char tempFace[9];
 
@@ -181,7 +153,6 @@ int MapFace(int placement){
     return tempPlacement;
 }
 
-
 void ReadLeftThenRight(){
   // Left face
   ResetColorSensor();
@@ -221,5 +192,4 @@ task main()
    Wait(5000);
    
    CubeCheck();
-
 }

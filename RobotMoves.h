@@ -19,6 +19,12 @@ void UnlockCube()
     Wait(300);
 }
 
+void PlaceCube() {
+    RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
+    Wait(300);
+    RotateMotorPID(OUT_B, 30, 140, 20, 40, 100);
+}
+
 void FlipCube() /* Tells the robot to flip the cube. */
 {
     isLocked = TRUE;
