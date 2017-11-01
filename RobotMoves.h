@@ -127,7 +127,6 @@ void TurnCubeRight() /* turn cube without holding it, aka turning the cube entir
 	}
 
 	TurnCube(-90);
-
 }
 
 void RotateBottomRight() /*holding the top and rotating the Bottom face */

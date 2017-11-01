@@ -300,21 +300,6 @@ void FindComplementingEdge()
 	}
 }
 
-void FindXPosition()
-{
-	for (int face = 0; face < 6; face++)
-	{
-		for (int piece = 1; piece < 8; piece += 2)
-		{
-			if (myCube[face][piece] == 'x')
-			{
-				complementFace = face;
-				complementPiece = piece;
-			}
-		}
-	}     
-}
-
 /*
 Compound functions are moves to be executed by hand like inverted right or top or inverted bottom
 but reflect this in the representation since this is multiple moves, or a compound of other functions ;-)
@@ -332,17 +317,17 @@ void CompoundInvertedRight()
 	TurnCubeRight();
 	ClawPull();
 	for(int i = 0; i < 3; i++)
-		{
-			RotateButtomRight();
-		}
+    {
+        RotateButtomRight();
+    }
 }
 
 void CompoundLeft()
 {
 	for(int i = 0; i < 3; i++)
-		{
-			TurnCubeRight();
-		}
+	{
+		TurnCubeRight();
+	}
 	ClawPull();
 	RotateButtomRight();
 }
@@ -350,35 +335,35 @@ void CompoundLeft()
 void CompoundInvertedLeft()
 {
 	for(int i = 0; i < 3; i++)
-		{
-			TurnCubeRight();
-		}
+    {
+        TurnCubeRight();
+    }
 	ClawPull();
 	for(int i = 0; i < 3; i++)
-		{
-			RotateButtomRight();
-		}
+    {
+        RotateButtomRight();
+    }
 }
 
 void CompoundTop ()
 {
 	for(int i = 0; i < 2; i++)
-		{
-			ClawPull();
-		}
+    {
+        ClawPull();
+    }
 	RotateButtomRight();
 }
 
 void CompoundInvertedTop()
 {
 	for(int i = 0; i < 2; i++)
-		{
-			ClawPull();
-		}
+    {
+        ClawPull();
+    }
 	for(int i = 0; i < 3; i++)
-		{
-			RotateButtomRight();
-		}
+    {
+        RotateButtomRight();
+    }
 }
 
 void CompoundBottom()
@@ -389,30 +374,30 @@ void CompoundBottom()
 void CompoundInvertedBottom()
 {
 	for(int i = 0; i < 3; i++)
-		{
-			RotateButtomRight();
-		}
+    {
+        RotateButtomRight();
+    }
 }
 
 void CompoundFront()
 {
 	for(int i = 0; i < 3; i++)
-		{
-			ClawPull();
-		}
+    {
+        ClawPull();
+    }
 	RotateButtomRight();
 }
 
 void CompoundInvertedFront()
 {
 	for(int i = 0; i < 3; i++)
-		{
-			ClawPull();
-		}
+    {
+        ClawPull();
+    }
 	for(int i = 0; i < 3; i++)
-		{
-			RotateButtomRight();
-		}
+    {
+        RotateButtomRight();
+    }
 }
 
 void CompoundBack()
