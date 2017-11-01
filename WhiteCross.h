@@ -85,14 +85,14 @@ void CubeCheck()
 void LockCube()
 {
     isLocked = TRUE;
-    RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
+    RotateMotorPID(OUT_B, 50, -140, 20, 40, 100);
     Wait(300);
 }
 
 void UnlockCube()
 {
     isLocked = FALSE;
-    OnFwd(OUT_B, 30);
+    OnFwd(OUT_B, 50);
     Wait(1000);
     Off(OUT_B);
     Wait(300);

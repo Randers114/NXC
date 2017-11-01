@@ -13,6 +13,26 @@ void ResetColorSensor(){
       Wait(500);
 }
 
+void ColorRotate(int i){
+     for (int j = 0; j < i; j++){
+         RotateMotorPID(OUT_C, 15, 90, 20, 40, 100);
+         Wait(300);
+     }
+}
+
+void ColorClaw(int i){
+   for(int j = 0; j < i; j++){
+           LockCube();
+           RotateMotorPID(OUT_B, 70, -90, 20, 40, 100);
+           Wait(300);
+           RotateMotorPID(OUT_B, 30, 130, 20, 40, 100);
+           Wait(300);
+           RotateMotorPID(OUT_B, 30, -40, 20, 40, 100);
+           Wait(300);
+           UnlockCube();
+   }
+}
+
 void PlaceCube() {
     RotateMotorPID(OUT_B, 30, -140, 20, 40, 100);
     Wait(300);
@@ -22,9 +42,10 @@ void PlaceCube() {
 char ColorRead(int x){
      unsigned int rawData[];
      char tempColour;
-     RotateMotor(OUT_A, 40, x);
+     RotateMotorPID(OUT_A, 40, x, 20, 40, 100);
      Wait(300);
-     SetSensor(S1,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
+     SetSensor(S4,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
+     ReadSensorColorRaw(S4, rawData);
 
 
      // Red 
@@ -119,7 +140,7 @@ void ColorReadSide(int face){
        tempFace[MapColour(counter)] = ColorRead(EDGE_SQUARE);
        counter++;
 
-       PlaceCube();
+       //PlaceCube();
    }
 
    InitializeSide(tempFace, face);
@@ -165,30 +186,32 @@ void ReadLeftThenRight(){
   // Left face
   ResetColorSensor();
   PlaceCube();
-  TurnCube(90);
-  ClawPull();
+  ColorRotate(1);
+  ColorClaw(1);
 
   //Right face
   ColorReadSide(4);
   ResetColorSensor();
   PlaceCube();
-  DoubleClaw();
+  ColorClaw(2);
   ColorReadSide(5);
 
   //Reset cube for solving
   ResetColorSensor();
-  ClawPull();
-  TripleTurn();
+  ColorClaw(1);
+  ColorRotate(3);
 }
 
 task main()
 {
+   ResetColorSensor();
+   PlaceCube();
+   
    for (int i = 0; i < 4; i++)
    {
-     ResetColorSensor();
-     PlaceCube();
      ColorReadSide(MapFace(i));
-     ClawPull();
+     ResetColorSensor();
+     ColorClaw(1);
    }
 
    ReadLeftThenRight();
