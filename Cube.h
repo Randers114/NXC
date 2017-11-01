@@ -156,6 +156,167 @@ void ClawPullOperation() /* representation changes when the claw pulls the cube 
 		RotateFaceRight(4);
 }
 
+// FInd complementing edge for heuristic.
+void FindComplementingEdge()
+{
+	switch(whiteFace) /* 0 = Top, 1 = Right, 2 = Front, 3 = Back, 4 = Left, 5 = Bottom. */
+	{
+		case 0:
+			if(whitePiece == 1)
+			{
+				complementFace = 3;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 1;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 2;
+				complementPiece = 1;
+			}
+		break;
+
+		case 1: 
+			if(whitePiece == 1)
+			{
+				complementFace = 5;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 3;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 2;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 0;
+				complementPiece = 5;
+			}
+		break; 
+
+		case 2: 
+			if(whitePiece == 1)
+			{
+				complementFace = 0;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 5;
+				complementPiece = 1;
+			}
+		break; 
+
+		case 3:
+			if(whitePiece == 1)
+			{
+				complementFace = 5;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 0;
+				complementPiece = 1;
+			}
+		break;
+
+		case 4: 
+			if(whitePiece == 1)
+			{
+				complementFace = 0;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 3;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 5;
+				complementPiece = 3;
+			}
+		break; 
+
+		case 5: 
+			if(whitePiece == 1)
+			{
+				complementFace = 2;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 1;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 2;
+				complementPiece = 7;
+			}
+
+		break;
+	}
+}
+
+void FindXPosition()
+{
+	for (int face = 0; face < 6; face++)
+	{
+		for (int piece = 1; piece < 8; piece += 2)
+		{
+			if (myCube[face][piece] == 'x')
+			{
+				complementFace = face;
+				complementPiece = piece;
+			}
+		}
+	}     
+}
+
 /*
 Compound functions are moves to be executed by hand like inverted right or top or inverted bottom
 but reflect this in the representation since this is multiple moves, or a compound of other functions ;-)
