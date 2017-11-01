@@ -1,86 +1,9 @@
 char myCube[6][10];
 char testCube[6][10];
-  /*
-  	top
-	right
-	front
-	back
-	left
-	bottom
-  */
+
 
 int whiteFace, whitePiece, complementFace, complementPiece;
 bool isLocked = FALSE;
-
-void InitializeSide(char face[], int sidenumber)
-{
-	for (int i = 0; i < 9; i++)
-	{
-		myCube[sidenumber][i] = face[i];
-	}
-}
-/*
-void InitializeCube()/* init with hardcoded colors 
-{
-	InitializeSide('w','b','y','y','b','r','b','g','o', 0); /* init top 
-	InitializeSide('y','b','b','b','r','r','b','g','g', 1);	/* init right 
-	InitializeSide('w','w','b','r','w','y','w','w','w', 2);	/* init front 
-	InitializeSide('y','g','r','b','y','y','g','w','r', 3);	/* init back 
-	InitializeSide('r','o','o','o','o','g','o','o','o', 4);	/* init left 
-	InitializeSide('g','r','r','w','g','o','g','y','y', 5);	/* init bottom 
-}
-
-void InitializeCubeTest()
-{
-    InitializeSide('g','b','r','y','g','b','r','y','o', 0); /* init top 
-	InitializeSide('b','b','o','w','w','o','y','y','b', 1);	/* init right 
-	InitializeSide('g','g','w','w','r','g','r','b','g', 2);	/* init front 
-	InitializeSide('o','r','r','r','o','o','o','o','b', 3);	/* init back 
-	InitializeSide('y','o','w','y','y','r','y','g','g', 4);	/* init left 
-	InitializeSide('y','r','w','w','b','w','b','g','w', 5);	/* init bottom 
-}
-*/
-void CubeCheck()
-{
-  int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
-  
-  for (int face = 0; face < 6; face++)
-	{
-		for (int piece = 0; piece < 9; piece++)
-		{
-       if (myCube[face][piece] == 'w')
-		   {
-          white++;
-		   }
-       else if (myCube[face][piece] == 'o')
-		   {
-          orange++;
-		   }
-       else if (myCube[face][piece] == 'b')
-		   {
-          blue++;
-		   }
-		   else if (myCube[face][piece] == 'y')
-		   {
-          yellow++;
-		   }
-	     else if (myCube[face][piece] == 'g')
-		   {
-          green++;
-		   }
-       else if (myCube[face][piece] == 'r')
-		   {
-          red++;
-		   }
-		}
-	}
-	
-	if (white != 9 || orange != 9 || blue != 9 || yellow != 9 || green != 9 || red != 9)
-  {
-     PlaySound(SOUND_UP);
-     StopAllTasks();
-  }
-}
 
 void LockCube()
 {
@@ -164,7 +87,7 @@ void FaceSwap(int faceOneIdentifier, int faceTwoIdentifier) /* swap the pointer 
 
 }
 
-sub TurnCubeRight() /* turn cube without holding it, aka turning the cube entirely */
+void TurnCubeRight() /* turn cube without holding it, aka turning the cube entirely */
 {
 	/* face swap operations */
 	/* swap front to left */
@@ -203,7 +126,7 @@ sub TurnCubeRight() /* turn cube without holding it, aka turning the cube entire
 
 }
 
-sub RotateBottomRight() /*holding the top and rotating the Bottom face */
+void RotateBottomRight() /*holding the top and rotating the Bottom face */
 {
 	/* swap colors on bot */
 	RotateFaceRight(5);
@@ -231,7 +154,7 @@ sub RotateBottomRight() /*holding the top and rotating the Bottom face */
 	RotateCube(-90);
 }
 
-sub ClawPull() /* representation changes when the claw pulls the cube front to top etc. */
+void ClawPull() /* representation changes when the claw pulls the cube front to top etc. */
 {
 	FaceSwap(2,5);
 	FaceSwap(5,3);
@@ -243,7 +166,6 @@ sub ClawPull() /* representation changes when the claw pulls the cube front to t
 	for (int i = 0; i<3; i++)
 		RotateFaceRight(4);
 
-
 	if (!isLocked)
 	{
 		LockCube();
@@ -252,186 +174,47 @@ sub ClawPull() /* representation changes when the claw pulls the cube front to t
 	FlipCube();
 }
 
-/*
-Compound functions are moves to be executed by hand like inverted right or top or inverted bottom
-but reflect this in the representation since this is multiple moves, or a compound of other functions ;-)
-*/
 
-void CompoundRight()
-{
-	TurnCubeRight();
-	ClawPull();
-	RotateBottomRight();
-}
-
-void CompoundInvertedRight()
-{
-	TurnCubeRight();
-	ClawPull();
-	for(int i = 0; i < 3; i++)
-	{
-		RotateBottomRight();
-	}
-}
-
-void CompoundLeft()
-{
-	for(int i = 0; i < 3; i++)
-	{
-		TurnCubeRight();
-	}
-	ClawPull();
-	RotateBottomRight();
-}
-
-void CompoundInvertedLeft()
-{
-	for(int i = 0; i < 3; i++)
-	{
-		TurnCubeRight();
-	}
-	ClawPull();
-	for(int i = 0; i < 3; i++)
-	{
-		RotateBottomRight();
-	}
-}
-
-void CompoundTop ()
-{
-	for(int i = 0; i < 2; i++)
-	{
-		ClawPull();
-	}
-	RotateBottomRight();
-}
-
-void CompoundInvertedTop()
-{
-	for(int i = 0; i < 2; i++)
-	{
-		ClawPull();
-	}
-	for(int i = 0; i < 3; i++)
-	{
-		RotateBottomRight();
-	}
-}
-
-void CompoundBottom()
-{
-	RotateBottomRight();
-}
-
-void CompoundInvertedBottom()
-{
-	for(int i = 0; i < 3; i++)
-	{
-		RotateBottomRight();
-	}
-}
-
-void CompoundFront()
-{
-	for(int i = 0; i < 3; i++)
-	{
-		ClawPull();
-	}
-	RotateBottomRight();
-}
-
-void CompoundInvertedFront()
-{
-	for(int i = 0; i < 3; i++)
-	{
-		ClawPull();
-	}
-	for(int i = 0; i < 3; i++)
-	{
-		RotateBottomRight();
-	}
-}
-
-void CompoundBack()
-{
-	ClawPull();
-	RotateBottomRight();
-}
-
-void CompoundInvertedBack()
-{
-	ClawPull();
-	for(int i = 0; i < 3; i++)
-	{
-		RotateBottomRight();
-	}
-}
-
-void FillTestCube()
-{
-	for(int j = 0; j < 6; j++)
-	{
-    	for(int i = 0; i < 9; i++)
-    	{
-    		testCube[j][i] = myCube[j][i];
-    	}
-	}
-}
-
-void Resetcube()
-{
-	for(int j = 0; j < 6; j++)
-	{
-    	for(int i = 0; i < 9; i++)
-    	{
-    		myCube[j][i] = testCube[j][i];
-    	}
-	}
-}
-
-
-
-
-sub DoubleClaw()
+void DoubleClaw()
 {
 	ClawPull();
 	ClawPull();
 }
 
-sub TripleClaw()
+void TripleClaw()
 {
 	ClawPull();
 	ClawPull();
 	ClawPull();
 }
 
-sub DoubleRotate()
+void DoubleRotate()
 {
 	RotateBottomRight();
 	RotateBottomRight();
 }
 
-sub TripleRotate()
+void TripleRotate()
 {
 	RotateBottomRight();
 	RotateBottomRight();
 	RotateBottomRight();
 }
 
-sub DoubleTurn()
+void DoubleTurn()
 {
 	TurnCubeRight();
 	TurnCubeRight();
 }
 
-sub TripleTurn()
+void TripleTurn()
 {
 	TurnCubeRight();
 	TurnCubeRight();
 	TurnCubeRight();
 }
 
-sub TurnToColour(char colourFront, char colourTop)
+void TurnToColour(char colourFront, char colourTop)
 {
 	/* Turn to the requested colour, given by the two characters of colourFront and colourTop. */
 	int topFacePosition = 0;
@@ -551,7 +334,7 @@ bool EvaluateCorrectEdges()
 	return returnValue;
 }
 
-sub FindComplementingEdge()
+void FindComplementingEdge()
 {
 	switch(whiteFace) /* 0 = Top, 1 = Right, 2 = Front, 3 = Back, 4 = Left, 5 = Bottom. */
 	{
@@ -696,7 +479,7 @@ sub FindComplementingEdge()
 	}
 }
 
-sub FindXPosition()
+void FindXPosition()
 {
 	for (int face = 0; face < 6; face++)
 	{
@@ -718,7 +501,7 @@ sub FindXPosition()
 	}     
 }
 
-sub WhiteCrossMoveset()
+void WhiteCrossMoveset()
 {
 	switch(complementFace)
 	{
@@ -1028,7 +811,7 @@ sub WhiteCrossMoveset()
 
 }
 
-sub DoWhiteCrossPiece() /* If this returns 0, then the piece was already placed correctly. If it returns 1 then moves were made. */
+void DoWhiteCrossPiece() /* If this returns 0, then the piece was already placed correctly. If it returns 1 then moves were made. */
 {
     FindComplementingEdge();
 
@@ -1063,7 +846,7 @@ sub DoWhiteCrossPiece() /* If this returns 0, then the piece was already placed 
 
 
 
-sub DeterministicWhiteCross()
+void DeterministicWhiteCross()
 {
 	bool evaluateCorrect = FALSE;
   

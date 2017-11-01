@@ -1,0 +1,785 @@
+struct cube_t
+{
+ char sides[6][9];
+ /* top
+	right
+	front
+	back
+	left
+	bottom
+*/
+};
+
+cube_t MyCube;
+int whiteFace, whitePiece, complementFace, complementPiece;
+
+sub InitializeSide(char a, char b, char c, char d, char e, char f, char g, char h, char i, int sidenumber)
+{
+	MyCube.sides[sidenumber] = a;
+	MyCube.sides[sidenumber] = b;
+	MyCube.sides[sidenumber] = c;
+	MyCube.sides[sidenumber] = d;
+	MyCube.sides[sidenumber] = e;
+	MyCube.sides[sidenumber] = f;
+	MyCube.sides[sidenumber] = g;
+	MyCube.sides[sidenumber] = h;
+	MyCube.sides[sidenumber] = i;
+}
+
+/* init with hardcoded colors */
+sub InitializeCube()
+{
+	InitializeSide('w','g','w','w','y','y','o','b','r', 0); /* init top */
+	InitializeSide('y','o','g','y','o','w','g','w','b', 1);	/* init right */
+	InitializeSide('w','r','g','g','g','b','b','b','o', 2);	/* init front */
+	InitializeSide('w','o','o','r','b','g','r','y','r', 3);	/* init back */
+	InitializeSide('r','g','o','o','r','y','g','r','b', 4);	/* init left */
+	InitializeSide('y','w','y','r','w','o','b','b','y', 5);	/* init buttom */
+}
+
+sub ClawPull() /* representation changes when the claw pulls the cube front to top etc. */
+{
+	FaceSwap(2,5);
+	FaceSwap(5,3);
+	FaceSwap(3,0);
+
+	/* right face operations */
+	RotateFaceRight(1);
+	/* left face operations */
+	RotateFaceRight(4);
+}
+
+sub TurnCubeRight() /* turn cube without holding it, aka turning the cube entirly */
+{
+	/* face swap operations */
+	/* swap front to left */
+	SwapBetweenFaces(4,9,2,1);
+	SwapBetweenFaces(4,8,2,2);
+	SwapBetweenFaces(4,7,2,3);
+	SwapBetweenFaces(4,6,2,4);
+	SwapBetweenFaces(4,5,2,5);
+	SwapBetweenFaces(4,4,2,6);
+	SwapBetweenFaces(4,3,2,7);
+	SwapBetweenFaces(4,2,2,8);
+	SwapBetweenFaces(4,1,2,9);
+
+	/*swap left to back */
+	FaceSwap(4,3);
+
+	/*swap back to left */
+	SwapBetweenFaces(3,7,1,3)
+	SwapBetweenFaces(3,8,1,2)
+	SwapBetweenFaces(3,9,1,1)
+	SwapBetweenFaces(3,4,1,6)
+	SwapBetweenFaces(3,5,1,5)
+	SwapBetweenFaces(3,6,1,4)
+	SwapBetweenFaces(3,1,1,9)
+	SwapBetweenFaces(3,2,1,8)
+	SwapBetweenFaces(3,3,1,7)
+
+
+	/* top face operations */
+	RotateFaceRight(0);
+
+	/* bot face operations */
+	RotateFaceRight(5);
+}
+
+sub RotateFaceRight(int FaceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on that side) */
+{
+	SwapOnFace(FaceIdentifier,2,6);
+	SwapOnFace(FaceIdentifier,6,8);
+	SwapOnFace(FaceIdentifier,8,4);
+	SwapOnFace(FaceIdentifier,1,3);
+	SwapOnFace(FaceIdentifier,3,9);
+	SwapOnFace(FaceIdentifier,9,7);
+}
+
+sub RotateButtomRight() /*holding the top and rotating the buttom face */
+{
+	/* swap colors on bot */
+	RotateFaceRight(5);
+
+	/* rotate the 4 rows that get rotated */
+	/* front 7,8,9 to left 3,2,1 */
+	SwapBetweenFaces(2,7,1,3);
+	SwapBetweenFaces(2,8,1,2);
+	SwapBetweenFaces(2,9,1,1);
+	/* swap 3,2,1 left with 3,2,1 back */
+	SwapBetweenFaces(4,3,3,3);
+	SwapBetweenFaces(4,2,3,2);
+	SwapBetweenFaces(4,1,3,1);
+	/* swap 1,2,3 back with 9,8,7 right */
+	SwapBetweenFaces(3,1,1,9);
+	SwapBetweenFaces(3,2,1,8);
+	SwapBetweenFaces(3,3,1,7);
+
+}
+
+sub FaceSwap(int FaceOneIdentifier, int FaceTwoIdentifier) /* swap the pointer of two faces so they "swap places" */
+{
+	char[9] temp;
+	memcpy(temp, MyCube.sides[FaceTwoIdentifier], 10)
+	memcpy(MyCube.sides[FaceTwoIdentifier], MyCube.sides[FaceOneIdentifier], 10)
+	memcpy(MyCube.sides[FaceOneIdentifier], temp, 10)
+}
+
+
+sub SwapOnFace(int FaceIdentifier, int SpaceOne, int SpaceTwo) /* swap space one with space two on a given face */
+{
+	char temp;
+	temp = MyCube.sides[FaceIdentifier][SpaceTwo];
+	MyCube.sides[FaceIdentifier][SpaceTwo] = MyCube.sides[FaceIdentifier][SpaceOne];
+	MyCube.sides[FaceIdentifier][SpaceOne] = temp;
+}
+
+sub SwapBetweenFaces(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
+{
+	char temp;
+	temp = MyCube.sides[FaceTwo][SpaceTwo];
+	MyCube.sides[FaceTwo][SpaceTwo] = MyCube.sides[FaceOne][SpaceOne];
+	MyCube.sides[FaceOne][SpaceOne] = temp;
+}
+
+
+/*______________________________________________________
+				Deterministic White Cross				*/
+
+sub TurnToColour(char colourFront, char colourTop)
+{
+	/* Turn to the requested colour, given by the two characters of colourFront and colourTop. */
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (MyCube.sides[i][4] == colourTop)
+		{
+			int topFacePosition = i;
+			break;
+		}
+	}
+
+	switch(topFacePosition) /* Places the requested colourTop on the top layer. */
+	{
+		case 0: /* top */
+			break;
+
+		case 1: /* right */
+			TurnCubeRight();
+			ClawPull();
+			ClawPull();
+			ClawPull();
+			break;
+
+		case 2: /* front */
+			ClawPull();
+			break;
+
+		case 3: /* back */
+			ClawPull();
+			ClawPull();
+			ClawPull();
+			break;
+
+		case 4: /* left */
+			TurnCubeRight();
+			ClawPull();
+			break;
+
+		case 5: /* bottom */
+			ClawPull();
+			ClawPull();
+			break;
+	}
+
+
+	for (int j = 1; j < 5; j++)
+	{
+		if (MyCube.sides[j][4] == colourFront)
+		{
+			int frontFacePosition = j;
+			break;
+		}
+	}
+
+	switch(frontFacePosition) /* Places the wanted front face correctly, now that we know that the top is correct. TurnCubeRight turns the cube counter-clockwise*/
+	{
+		case 1: /* right */
+			TurnCubeRight();
+			TurnCubeRight();
+			TurnCubeRight();
+			break;
+
+		case 2: /* front */
+			break;
+
+		case 3: /* back */
+			TurnCubeRight();
+			TurnCubeRight();
+			break;
+
+		case 4: /* left */
+			TurnCubeRight();
+			break;
+
+	}
+
+}
+
+
+
+sub FindComplementingEdge()
+{
+	switch(whiteFace)
+	{
+		case 0:
+			if(whitePiece == 1)
+			{
+				complementFace = 3;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 1;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 2;
+				complementPiece = 1;
+			}
+		break;
+
+		case 1: 
+			if(whitePiece == 1)
+			{
+				complementFace = 5;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 3;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 2;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 0;
+				complementPiece = 5;
+			}
+		break; 
+
+		case 2: 
+			if(whitePiece == 1)
+			{
+				complementFace = 0;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 5;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 5;
+				complementPiece = 1;
+			}
+		break; 
+
+		case 3:
+			if(whitePiece == 1)
+			{
+				complementFace = 5;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 0;
+				complementPiece = 1;
+			}
+		break;
+
+		case 4: 
+			if(whitePiece == 1)
+			{
+				complementFace = 0;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 3;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 3;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 5;
+				complementPiece = 3;
+			}
+		break; 
+
+		case 5: 
+			if(whitePiece == 1)
+			{
+				complementFace = 2;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 3)
+			{
+				complementFace = 4;
+				complementPiece = 7;
+			}
+			else if (whitePiece == 5)
+			{
+				complementFace = 1;
+				complementPiece = 1;
+			}
+			else if (whitePiece == 7)
+			{
+				complementFace = 2;
+				complementPiece = 7;
+			}
+
+		break;
+	}
+}
+
+sub DoubleClaw()
+{
+	ClawPull();
+	ClawPull();
+}
+
+sub TripleClaw()
+{
+	ClawPull();
+	ClawPull();
+	ClawPull();
+}
+
+sub DoubleRotate()
+{
+	RotateButtomRight();
+	RotateButtomRight();
+}
+
+sub TripleRotate()
+{
+	RotateButtomRight();
+	RotateButtomRight();
+	RotateButtomRight();
+}
+
+sub DoubleTurn()
+{
+	TurnCubeRight();
+	TurnCubeRight();
+}
+
+sub TripleTurn()
+{
+	TurnCubeRight();
+	TurnCubeRight();
+	TurnCubeRight();
+}
+
+sub WhiteCrossMoveset()
+{
+	switch(complementFace)
+	{
+		/* TurnCubeRight();  ClawPull(); RotateButtomRight();*/
+		/* Top face */
+		case 0:							
+			if(complementPiece == 1)
+			{
+				ClawPull();
+				RotateButtomRight();
+				TripleTurn();
+				ClawPull();
+				TripleRotate();
+				TripleTurn();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();
+				DoubleRotate();
+				TurnCubeRight();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();
+			}
+			else if(complementPiece == 3)
+			{
+				TurnCubeRight();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();
+			}
+			else if(complementPiece == 5)
+			{
+				TurnCubeRight();
+				ClawPull();
+				TripleRotate();
+				TurnCubeRight();
+				ClawPull();
+				TripleRotate();
+				TurnCubeRight();
+				ClawPull();
+			}
+			else if(complementPiece == 7)
+			{
+				DoubleClaw();
+				TripleRotate();
+				TurnCubeRight();
+				ClawPull();
+				TripleRotate();
+				TripleClaw();
+				RotateButtomRight();
+				TripleTurn();
+				ClawPull();
+				TripleRotate();
+				ClawPull();
+			}
+		break;
+
+		/* Right face */
+		case 1:							
+			if(complementPiece == 1)
+			{
+				TripleRotate();
+				TripleClaw();
+				DoubleRotate();
+				ClawPull();
+			}
+			else if(complementPiece == 3)
+			{
+				TurnCubeRight();
+				ClawPull();
+				RotateButtomRight();
+				TripleClaw();
+				TripleRotate();
+				ClawPull();
+				TripleRotate();
+				TurnCubeRight();
+				ClawPull();
+				DoubleRotate();
+				TripleTurn();
+				ClawPull();
+			}
+			else if(complementPiece == 5)
+			{
+				TurnCubeRight();
+				ClawPull();
+				TripleRotate();
+				TripleClaw();
+				TripleRotate();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();
+				DoubleRotate();
+				TurnCubeRight();
+				ClawPull();
+			}
+			else if(complementPiece == 7)
+			{
+				TurnCubeRight();
+				ClawPull();
+				DoubleRotate();
+				ClawPull();
+				TripleRotate();
+				TurnCubeRight();
+				ClawPull();
+				DoubleRotate();
+				TripleClaw();
+			}
+
+		break;
+
+		/* front face */
+		case 2:							
+			if(complementPiece == 3)
+			{
+				TripleClaw();
+				RotateButtomRight();
+				ClawPull();
+			}
+			else if(complementPiece == 5)
+			{
+				TripleClaw();
+				TripleRotate();
+				ClawPull();
+			}
+			else if(complementPiece == 7)
+			{
+				TripleClaw();
+				DoubleTurn();
+				ClawPull();
+			}
+
+		break;
+
+		/* back face */
+		case 3:
+			if(complementPiece == 1)
+			{
+				DoubleRotate();
+				TripleClaw();
+				DoubleRotate();
+				ClawPull();
+			}
+			else if(complementPiece == 3)
+			{
+				ClawPull();
+				RotateButtomRight();
+				TripleClaw();
+				DoubleRotate();
+				ClawPull();
+				TripleRotate();
+				DoubleClaw();
+				DoubleRotate();
+				ClawPull();			
+			}
+			else if(complementPiece == 5)
+			{
+				ClawPull();
+				TripleRotate();
+				TripleClaw();
+				DoubleRotate();
+				ClawPull();
+				RotateButtomRight();
+				DoubleClaw();
+				DoubleRotate();
+				ClawPull();	
+			}
+			else if(complementPiece == 7)
+			{
+				ClawPull();
+				DoubleRotate();
+				TripleClaw();
+				DoubleRotate();
+				TripleClaw();
+				DoubleRotate();
+				ClawPull();				
+			}
+
+		break;
+
+		/* Left face */
+		case 4:
+			if(complementPiece == 1)
+			{
+				TripleTurn();
+				ClawPull();
+				DoubleRotate();
+				TripleClaw();
+				RotateButtomRight();
+				TripleTurn();
+				ClawPull();
+				DoubleRotate();
+				TripleClaw();
+			}
+			else if(complementPiece == 3)
+			{
+				TripleTurn();
+				ClawPull();
+				TripleRotate();
+				TripleClaw();
+				RotateButtomRight();
+				ClawPull();
+				RotateButtomRight();
+				TripleTurn();
+				ClawPull();
+				DoubleRotate();
+				TripleTurn();
+				ClawPull();
+			}
+			else if(complementPiece == 5)
+			{
+				TripleTurn();
+				ClawPull();
+				RotateButtomRight();
+				DoubleTurn();
+				ClawPull();
+				RotateButtomRight();
+				DoubleTurn();
+				ClawPull();
+				TripleRotate();
+				TripleTurn();
+				ClawPull();
+				DoubleRotate();
+				TripleTurn();
+				ClawPull();
+			}
+			else if(complementPiece == 7)
+			{
+				RotateButtomRight();
+				TripleClaw();
+				DoubleRotate();
+				ClawPull();	
+			}
+
+		break;
+
+		/* Bottom face */
+		case 5:
+			if(complementPiece == 1)
+			{
+				RotateButtomRight();
+				TripleTurn();
+				ClawPull();
+				TripleRotate();
+				TurnCubeRight();
+				ClawPull();
+				RotateButtomRight();
+				DoubleTurn();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();	
+			}
+			else if(complementPiece == 3)
+			{
+				TripleTurn();
+				ClawPull();
+				TripleRotate();
+				TripleTurn();
+				ClawPull();
+				RotateButtomRight();
+				DoubleTurn();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();				
+			}
+			else if(complementPiece == 5)
+			{
+				TurnCubeRight();
+				ClawPull();
+				RotateButtomRight();
+				TurnCubeRight();
+				ClawPull();
+				TripleRotate();
+				DoubleTurn();
+				ClawPull();
+				TripleRotate();
+				TripleTurn();
+				ClawPull();
+			}
+			else if(complementPiece == 7)
+			{
+				RotateButtomRight();
+				TripleTurn();
+				ClawPull();	
+				TripleRotate();
+				TripleTurn();
+				ClawPull();	
+				RotateButtomRight();
+				DoubleTurn();
+				ClawPull();	
+				RotateButtomRight();
+				TurnCubeRight();
+			}
+
+		break;
+	}
+}
+
+int DoWhiteCrossPiece() /* If this returns 0, then the piece was already placed correctly. If it returns 1 then moves were made. */
+{
+	FindComplementingEdge();
+
+	if ((MyCube.sides[whiteFace][whitePiece] == MyCube.sides[whiteFace][4]) && (MyCube.sides[complementFace][complementPiece] == MyCube.sides[complementFace][4]))
+	{
+		return 0;
+	}
+
+	else
+	{
+		char complementingColour = MyCube.sides[complementFace][complementPiece];
+
+		TurnToColour(complementingColour, 'w'); /* Orients the cube so that complementingColour is front and the top face is white. */
+
+		WhiteCrossMoveset();
+		/* GØR DE MOVES SOM VI SKAL GØRE, NU NÅR RUBIKS ER PLACERET KORREKT */
+
+
+		return 1;
+
+	}
+}
+
+
+
+
+sub DeterministicWhiteCross()
+{
+	for (int face = 0; face < 6; face++)
+	{
+		for (int piece = 1; piece < 8; piece + 2)
+		{
+			if (MyCube.sides[face][piece] == 'w')
+			{
+				whiteFace = face;
+				whitePiece = piece;
+
+				int evaluateCorrect = DoWhiteCrossPiece(); /* If DoWhiteCrossPiece() returns 0, then continue. If DoWhiteCrossPiece() returns 1, then call DeterministicWhiteCross. */
+				
+				if (evaluateCorrect == 1){
+					DeterministicWhiteCross();
+				}
+			}
+		}
+	}     
+}
+
+
+
+/* main program starts here */
+task main()
+{
+ InitializeCube();
+
+
+ PlaySound(SOUND_FAST_UP);
+
+/*
+	if(MyCube.cube[0].side[0] == 'w')
+  PlaySound(SOUND_UP);
+	else
+	PlaySound(SOUND_DOWN);
+*/
+}
