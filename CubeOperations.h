@@ -155,147 +155,339 @@ void ClawPullOperation() /* representation changes when the claw pulls the cube 
 }
 
 // FInd complementing edge for heuristic.
-void FindComplementingEdge()
+void FindComplementingEdge(int whiteFace, int whitePiece, int *complementFace, int *complementPiece)
 {
 	switch(whiteFace) /* 0 = Top, 1 = Right, 2 = Front, 3 = Back, 4 = Left, 5 = Bottom. */
 	{
 		case 0:
 			if(whitePiece == 1)
 			{
-				complementFace = 3;
-				complementPiece = 7;
+				*complementFace = 3;
+				*complementPiece = 7;
 			}
 			else if (whitePiece == 3)
 			{
-				complementFace = 4;
-				complementPiece = 1;
+				*complementFace = 4;
+				*complementPiece = 1;
 			}
 			else if (whitePiece == 5)
 			{
-				complementFace = 1;
-				complementPiece = 7;
+				*complementFace = 1;
+				*complementPiece = 7;
 			}
 			else if (whitePiece == 7)
 			{
-				complementFace = 2;
-				complementPiece = 1;
+				*complementFace = 2;
+				*complementPiece = 1;
 			}
 		break;
 
 		case 1: 
 			if(whitePiece == 1)
 			{
-				complementFace = 5;
-				complementPiece = 5;
+				*complementFace = 5;
+				*complementPiece = 5;
 			}
 			else if (whitePiece == 3)
 			{
-				complementFace = 3;
-				complementPiece = 5;
+				*complementFace = 3;
+				*complementPiece = 5;
 			}
 			else if (whitePiece == 5)
 			{
-				complementFace = 2;
-				complementPiece = 5;
+				*complementFace = 2;
+				*complementPiece = 5;
 			}
 			else if (whitePiece == 7)
 			{
-				complementFace = 0;
-				complementPiece = 5;
+				*complementFace = 0;
+				*complementPiece = 5;
 			}
 		break; 
 
 		case 2: 
 			if(whitePiece == 1)
 			{
-				complementFace = 0;
-				complementPiece = 7;
+				*complementFace = 0;
+				*complementPiece = 7;
 			}
 			else if (whitePiece == 3)
 			{
-				complementFace = 4;
-				complementPiece = 5;
+				*complementFace = 4;
+				*complementPiece = 5;
 			}
 			else if (whitePiece == 5)
 			{
-				complementFace = 1;
-				complementPiece = 5;
+				*complementFace = 1;
+				*complementPiece = 5;
 			}
 			else if (whitePiece == 7)
 			{
-				complementFace = 5;
-				complementPiece = 1;
+				*complementFace = 5;
+				*complementPiece = 1;
 			}
 		break; 
 
 		case 3:
 			if(whitePiece == 1)
 			{
-				complementFace = 5;
-				complementPiece = 7;
+				*complementFace = 5;
+				*complementPiece = 7;
 			}
 			else if (whitePiece == 3)
 			{
-				complementFace = 4;
-				complementPiece = 3;
+				*complementFace = 4;
+				*complementPiece = 3;
 			}
 			else if (whitePiece == 5)
 			{
-				complementFace = 1;
-				complementPiece = 3;
+				*complementFace = 1;
+				*complementPiece = 3;
 			}
 			else if (whitePiece == 7)
 			{
-				complementFace = 0;
-				complementPiece = 1;
+				*complementFace = 0;
+				*complementPiece = 1;
 			}
 		break;
 
 		case 4: 
 			if(whitePiece == 1)
 			{
-				complementFace = 0;
-				complementPiece = 3;
+				*complementFace = 0;
+				*complementPiece = 3;
 			}
 			else if (whitePiece == 3)
 			{
-				complementFace = 3;
-				complementPiece = 3;
+				*complementFace = 3;
+				*complementPiece = 3;
 			}
 			else if (whitePiece == 5)
 			{
-				complementFace = 1;
-				complementPiece = 3;
+				*complementFace = 1;
+				*complementPiece = 3;
 			}
 			else if (whitePiece == 7)
 			{
-				complementFace = 5;
-				complementPiece = 3;
+				*complementFace = 5;
+				*complementPiece = 3;
 			}
 		break; 
 
 		case 5: 
 			if(whitePiece == 1)
 			{
-				complementFace = 2;
-				complementPiece = 7;
+				*complementFace = 2;
+				*complementPiece = 7;
 			}
 			else if (whitePiece == 3)
 			{
-				complementFace = 4;
-				complementPiece = 7;
+				*complementFace = 4;
+				*complementPiece = 7;
 			}
 			else if (whitePiece == 5)
 			{
-				complementFace = 1;
-				complementPiece = 1;
+				*complementFace = 1;
+				*complementPiece = 1;
 			}
 			else if (whitePiece == 7)
 			{
-				complementFace = 2;
-				complementPiece = 7;
+				*complementFace = 2;
+				*complementPiece = 7;
 			}
 
+		break;
+	}
+}
+
+void FindComplementingCorners(int whiteFace, int whitePiece, int *complementFace, int *complementPiece, int *complementFace2, int *complementPiece2)
+{
+	switch(whiteFace) /* 0 = Top, 1 = Right, 2 = Front, 3 = Back, 4 = Left, 5 = Bottom. */
+	{
+		case 0:
+			if(whitePiece == 0)
+			{
+				*complementFace = 4;
+				*complementPiece = 0;
+				*complementFace2 = 3;
+				*complementPiece2 = 6;
+			}
+			else if (whitePiece == 2)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 6)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 8)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+		break;
+
+		case 1: 
+			if(whitePiece == 0)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 2)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 6)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 8)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+		break; 
+
+		case 2: 
+			if(whitePiece == 0)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 2)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 6)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 8)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+		break;
+
+		case 3:
+			if(whitePiece == 0)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 2)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 6)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 8)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+		break;
+
+		case 4: 
+			if(whitePiece == 0)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 2)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 6)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 8)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+		break;
+
+		case 5: 
+			if(whitePiece == 0)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 2)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 6)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
+			else if (whitePiece == 8)
+			{
+				*complementFace = 
+				*complementPiece = 
+				*complementFace2 = 
+				*complementPiece2 = 
+			}
 		break;
 	}
 }

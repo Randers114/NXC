@@ -27,12 +27,12 @@ void InitializeSide(char a, char b, char c, char d, char e, char f, char g, char
 
 void InitializeCube()/* init with hardcoded colors */
 {
-	InitializeSide('w','b','y','y','b','r','b','g','o', 0); /* init top */
-	InitializeSide('y','b','b','b','r','r','b','g','g', 1);	/* init right */
-	InitializeSide('w','w','b','r','w','y','w','w','w', 2);	/* init front */
-	InitializeSide('y','g','r','b','y','y','g','w','r', 3);	/* init back */
-	InitializeSide('r','o','o','o','o','g','o','o','o', 4);	/* init left */
-	InitializeSide('g','r','r','w','g','o','g','y','y', 5);	/* init bottom */
+  InitializeSide('r','w','r','g','w','y','o','o','o', 0); /* init top */
+	InitializeSide('y','b','y','w','b','r','b','o','b', 1);	/* init right */
+	InitializeSide('w','g','w','o','r','y','g','b','r', 2);	/* init front */
+	InitializeSide('r','b','b','g','o','r','w','r','w', 3);	/* init back */
+	InitializeSide('g','y','g','w','g','w','b','o','o', 4);	/* init left */
+	InitializeSide('y','y','g','b','y','r','y','w','o', 5);	/* init buttom */
 }
 
 void InitializeCubeTest()
@@ -1092,7 +1092,7 @@ sub DeterministicWhiteCross()
 
 task main()
 {
-	InitializeCubeTest();
+	InitializeCube();
 	CubeCheck();
 	//FillTestCube();
 	DeterministicWhiteCross();
