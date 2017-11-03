@@ -72,7 +72,7 @@ int CheckWhiteCorner(int whiteFace)
 
 int CheckCenterLayerEdges(int whiteFace)
 {
-	int face, oppositeFace, centerlayerpiece, centerPiece2, complementingFace, complementingPiece;
+	int face, oppositeFace, centerlayerpiece, centerPiece2, complementingFace, complementingPiece, heuristicValue;
 	switch(whiteFace)
 	{
 		case TOP_FACE:
@@ -100,7 +100,13 @@ int CheckCenterLayerEdges(int whiteFace)
 		break;
 	}
 	
-	
+	if(myCube[face][centerPiece] == myCube[face][])
+	{
+		
+	} else 
+	{
+		
+	}
 	
 	
 	

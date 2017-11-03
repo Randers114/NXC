@@ -5,6 +5,7 @@ char myCube[6][10];
 #define BACK_FACE 3
 #define LEFT_FACE 4
 #define BOTTOM_FACE 5
+#define CENTER_PIECE 4
  
 void InitializeSide(char face[], int sidenumber)
 {
