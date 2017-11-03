@@ -1,23 +1,27 @@
-#include "MotorOperations.h"
+#include "RobotMoves.h"
 
 #define CENTER_SQUARE -125
-#define FIRST_EDGE_SQAURE 35
+#define FIRST_EDGE_SQUARE 35
 #define EDGE_SQUARE -20
 #define CORNER_SQUARE 20
 
-void ResetColorSensor(){
-      OnFwd(OUT_A, 30);
-      Wait(2000);
-      Off(OUT_A);
-      Wait(500);
+void ResetColorSensor()
+{
+     // Resets the position of the color sensor.
+     OnFwd(OUT_A, 30);
+     Wait(2000);
+     Off(OUT_A);
+     Wait(500);
 }
 
-char ColorRead(int x){
+char ColorRead(int x)
+{
+     // Places the color sensor, reads the color of a given sub-square, and returns the color.
      unsigned int rawData[];
      char tempColour;
      RotateMotorPID(OUT_A, 40, x, 20, 40, 100);
-     Wait(300);
-     SetSensor(S4,  _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
+     Wait(100);
+     SetSensor(S4, _SENSOR_CFG(SENSOR_TYPE_COLORFULL, SENSOR_MODE_RAW));
      ReadSensorColorRaw(S4, rawData);
 
 
@@ -55,40 +59,41 @@ char ColorRead(int x){
      return tempColour;
 }
 
-int MapColour(int placement)
+int MapColourPlacement(int placement)
 {
+    // Switches on the sequence that the color-sensor reads the sub-squares, without the center-piece and the first edge-piece.
+    // Returns the matching placement in the representation. 
     int tempPlacement = 0; 
     switch(placement)
     {
       case 0: 
         tempPlacement = 6;
-        
         break;
       
       case 1: 
         tempPlacement = 3;
-        
         break;
+
       case 2: 
         tempPlacement = 0;
-
         break;
+
       case 3: 
         tempPlacement = 1;
+        break;
 
-        break;      
       case 4: 
         tempPlacement = 2;
-
         break;      
+
       case 5: 
         tempPlacement = 5;
-
         break;
+
       case 6: 
         tempPlacement = 8;
-
         break;      
+
       default:
         break;
     }
@@ -96,100 +101,117 @@ int MapColour(int placement)
     return tempPlacement;
 }
 
-void ColorReadSide(int face){
-   char tempFace[9];
+void ColorReadFace(int face)
+{
+    char tempFace[9];
 
-   tempFace[4] = ColorRead(CENTER_SQUARE);
-   tempFace[7] = ColorRead(FIRST_EDGE_SQAURE);
+    tempFace[4] = ColorRead(CENTER_SQUARE);
+    tempFace[7] = ColorRead(FIRST_EDGE_SQUARE);
 
-   int counter = 0;
-   for(int i = 0; i < 4; i++) {
+    int counter = 0;
+    for(int i = 0; i < 3; i++) {
        TurnCube(45);
-       tempFace[MapColour(counter)] = ColorRead(CORNER_SQUARE);
+       tempFace[MapColourPlacement(counter)] = ColorRead(CORNER_SQUARE);
        counter++;
 
        TurnCube(45);
-       tempFace[MapColour(counter)] = ColorRead(EDGE_SQUARE);
+       tempFace[MapColourPlacement(counter)] = ColorRead(EDGE_SQUARE);
        counter++;
 
        //PlaceCube();
-   }
+    }
 
-   InitializeSide(tempFace, face);
+    TurnCube(45);
+    tempFace[MapColourPlacement(counter)] = ColorRead(CORNER_SQUARE);
+
+    TurnCube(45);
+
+ //  InitializeSide(tempFace, face);
 }
 
-int MapFace(int placement){
-  int tempPlacement = 0;
-  switch(placement)
-  {
-    case 0: 
-      tempPlacement = 0;
-      
-      break;
-    case 1: 
-      tempPlacement = 2;
-      
-      break;
-    case 2: 
-      tempPlacement = 5;
+int MapFace(int placement)
+{
+    // Returns the face in the representation that corresponds to the current face in the sequence of reading the colors.
+    int tempPlacement = 0;
+    switch(placement)
+    {
+      case 0: 
+        tempPlacement = 0;
+        break;
 
-      break;
-    case 3: 
-      tempPlacement = 3;
+      case 1: 
+        tempPlacement = 2;
+        break;
 
-      break;      
-    case 4: 
-      tempPlacement = 4;
+      case 2: 
+        tempPlacement = 5;
+        break;
 
-      break;      
-    case 5: 
-      tempPlacement = 1;
+      case 3: 
+        tempPlacement = 3;
+        break;      
 
-      break;      
-    default:
-      break;
-  }
+      case 4: 
+        tempPlacement = 4;
+        break;      
+
+      case 5: 
+        tempPlacement = 1;
+        break;      
+
+      default:
+        break;
+    }
 
     return tempPlacement;
 }
 
-void ReadLeftThenRight(){
+void ReadLeftThenRight()
+{
   // Left face
   ResetColorSensor();
-  PlaceCube();
-  ColorRotate(1);
-  ColorClaw(1);
+  TurnCube(90);
+  FlipCube(1);
+  UnlockCube();
+  ColorReadFace(4);
 
   //Right face
-  ColorReadSide(4);
   ResetColorSensor();
-  PlaceCube();
-  ColorClaw(2);
-  ColorReadSide(5);
+  FlipCube(2);
+  UnlockCube();
+  ColorReadFace(5);
 
   //Reset cube for solving
   ResetColorSensor();
-  ColorClaw(1);
-  ColorRotate(3);
+  FlipCube(1);
+  UnlockCube();
+  TurnCube(270);
+}
+
+void ReadCubeColors()
+{
+    ResetColorSensor();
+    AlignCubeLayers();
+    UnlockCube();
+   
+    for (int i = 0; i < 4; i++)
+    {
+        ColorReadFace(MapFace(i));
+        ResetColorSensor();
+        FlipCube(1);
+        UnlockCube();
+    }
+
+    ReadLeftThenRight();
+
+   
+    //NumOut(0, LCD_LINE1, result);
+    Wait(5000);
 }
 
 task main()
 {
-   ResetColorSensor();
-   PlaceCube();
+    ReadCubeColors();
    
-   for (int i = 0; i < 4; i++)
-   {
-     ColorReadSide(MapFace(i));
-     ResetColorSensor();
-     ColorClaw(1);
-   }
-
-   ReadLeftThenRight();
-
-   
-   //NumOut(0, LCD_LINE1, result);
-   Wait(5000);
-   
-   CubeCheck();
+  //  CubeCheck();
 }

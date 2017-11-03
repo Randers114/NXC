@@ -105,7 +105,7 @@ void TurnCubeOperation() /* turn cube without holding it, aka turning the cube e
 {
 	/* face swap operations */
 	/* swap front to left */
-	FaceSwap(4,2);
+	FaceSwapOperation(4,2);
 
 	/*swap left to back */
 	SwapBetweenFacesOperation(4,0,3,8);
@@ -119,21 +119,21 @@ void TurnCubeOperation() /* turn cube without holding it, aka turning the cube e
 	SwapBetweenFacesOperation(4,8,3,0);
 
 	/*swap back to left */
-	FaceSwap(3,1);
+	FaceSwapOperation(3,1);
 
 	/* face rotate operations */
 	/* top face operations */
 	for(int i = 0; i<3 ; i++)
-		RotateFaceRight(0);
+		RotateFaceRightOperation(0);
 
 	/* bot face operations */
-	RotateFaceRight(5);
+	RotateFaceRightOperation(5);
 }
 
 void RotateBottomOperation() /*holding the top and rotating the buttom face */
 {
 	/* swap colors on bot */
-	RotateFaceRight(5);
+	RotateFaceRightOperation(5);
 
 	/* rotate the 4 rows that get rotated */
 	/* front 7,8,9 to left 7,8,9 */
@@ -153,15 +153,15 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 
 void ClawPullOperation() /* representation changes when the claw pulls the cube front to top etc. */
 {
-	FaceSwap(2,5);
-	FaceSwap(5,3);
-	FaceSwap(3,0);
+	FaceSwapOperation(2,5);
+	FaceSwapOperation(5,3);
+	FaceSwapOperation(3,0);
 
 	/* right face operations */
-	RotateFaceRight(1);
+	RotateFaceRightOperation(1);
 	/* left face operations */
 	for (int i = 0; i<3; i++)
-		RotateFaceRight(4);
+		RotateFaceRightOperation(4);
 }
 
 // FInd complementing edge for heuristic.
@@ -510,14 +510,14 @@ but reflect this in the representation since this is multiple moves, or a compou
 void RightOperation()
 {
 	TurnCubeOperation();
-	ClawPull();
+	ClawPullOperation();
 	RotateBottomOperation();
 }
 
 void InvertedRightOperation()
 {
 	TurnCubeOperation();
-	ClawPull();
+	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
     {
         RotateBottomOperation();
@@ -530,7 +530,7 @@ void LeftOperation()
 	{
 		TurnCubeOperation();
 	}
-	ClawPull();
+	ClawPullOperation();
 	RotateBottomOperation();
 }
 
@@ -540,7 +540,7 @@ void InvertedLeftOperation()
     {
         TurnCubeOperation();
     }
-	ClawPull();
+	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
     {
         RotateBottomOperation();
@@ -551,7 +551,7 @@ void TopOperation()
 {
 	for(int i = 0; i < 2; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	RotateBottomOperation();
 }
@@ -560,7 +560,7 @@ void InvertedTopOperation()
 {
 	for(int i = 0; i < 2; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	for(int i = 0; i < 3; i++)
     {
@@ -585,7 +585,7 @@ void FrontOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	RotateBottomOperation();
 }
@@ -594,7 +594,7 @@ void InvertedFrontOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	for(int i = 0; i < 3; i++)
     {
@@ -604,13 +604,13 @@ void InvertedFrontOperation()
 
 void BackOperation()
 {
-	ClawPull();
+	ClawPullOperation();
 	RotateBottomOperation();
 }
 
 void InvertedBackOperation()
 {
-	ClawPull();
+	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
 	{
 		RotateBottomOperation();
