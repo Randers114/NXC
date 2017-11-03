@@ -17,44 +17,46 @@ void InitializeSide(char face[], int sidenumber)
 
 void CubeCheck()
 {
-  int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
+	int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
   
-  for (int face = 0; face < 6; face++)
-	{
+  	for (int face = 0; face < 6; face++)
+  	{
+	
 		for (int piece = 0; piece < 9; piece++)
 		{
-       if (myCube[face][piece] == 'w')
-		   {
-          white++;
-		   }
-       else if (myCube[face][piece] == 'o')
-		   {
-          orange++;
-		   }
-       else if (myCube[face][piece] == 'b')
-		   {
-          blue++;
-		   }
-		   else if (myCube[face][piece] == 'y')
-		   {
-          yellow++;
-		   }
-	     else if (myCube[face][piece] == 'g')
-		   {
-          green++;
-		   }
-       else if (myCube[face][piece] == 'r')
-		   {
-          red++;
-		   }
+     		if (myCube[face][piece] == 'w')
+	  		{
+     	    	white++;
+	 	    }
+     	  	else if (myCube[face][piece] == 'o')
+	 	  	{
+      	    	orange++;
+	  	 	}
+      	 	else if (myCube[face][piece] == 'b')
+	  	 	{
+      	   		blue++;
+	  	 	}
+	  	 	else if (myCube[face][piece] == 'y')
+	  	 	{
+      	    	yellow++;
+	  	 	}
+	  	 	else if (myCube[face][piece] == 'g')
+	  	 	{
+      	    	green++;
+	  	 	}
+      	 	else if (myCube[face][piece] == 'r')
+	  	 	{
+      	    	red++;
+	  	 	}
 		}
-	}
+  	}
 	
+
 	if (white != 9 || orange != 9 || blue != 9 || yellow != 9 || green != 9 || red != 9)
-  {
-     PlaySound(SOUND_UP);
-     StopAllTasks();
-  }
+	{
+    	PlaySound(SOUND_UP);
+    	StopAllTasks();
+  	}
 }
 
 void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap space one with space two on a given face */
@@ -78,6 +80,7 @@ void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right 
 void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
 {
 	char temp;
+	
 	temp = myCube[FaceTwo][SpaceTwo];
 	myCube[FaceTwo][SpaceTwo] = myCube[FaceOne][SpaceOne];
 	myCube[FaceOne][SpaceOne] = temp;
@@ -88,11 +91,11 @@ void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the
 	char temp;
 
 	for(int i = 0; i < 9; i++)
-  {
-    temp = myCube[faceTwoIdentifier][i];
-    myCube[faceTwoIdentifier][i] = myCube[faceOneIdentifier][i];
-    myCube[faceOneIdentifier][i] = temp;
-  }
+	{
+    	temp = myCube[faceTwoIdentifier][i];
+    	myCube[faceTwoIdentifier][i] = myCube[faceOneIdentifier][i];
+    	myCube[faceOneIdentifier][i] = temp;
+  	}
 	// memcpy(temp, myCube[faceTwoIdentifier], 9);
 	//memcpy(myCube[faceTwoIdentifier], myCube[faceOneIdentifier], 9);
 	//memcpy(myCube[faceOneIdentifier], temp, 9);
