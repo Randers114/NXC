@@ -67,12 +67,12 @@ void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap
 
 void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on the right face) */
 {
-	SwapOnFace(faceIdentifier,1,3);
-	SwapOnFace(faceIdentifier,3,7);
-	SwapOnFace(faceIdentifier,7,5);
-	SwapOnFace(faceIdentifier,0,6);
-	SwapOnFace(faceIdentifier,6,8);
-	SwapOnFace(faceIdentifier,8,2);
+	SwapOnFaceOperation(faceIdentifier,1,3);
+	SwapOnFaceOperation(faceIdentifier,3,7);
+	SwapOnFaceOperation(faceIdentifier,7,5);
+	SwapOnFaceOperation(faceIdentifier,0,6);
+	SwapOnFaceOperation(faceIdentifier,6,8);
+	SwapOnFaceOperation(faceIdentifier,8,2);
 }
 
 void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
@@ -98,22 +98,22 @@ void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the
 	//memcpy(myCube[faceOneIdentifier], temp, 9);
 }
 
-void TurnCubeRightOperation() /* turn cube without holding it, aka turning the cube entirly */
+void TurnCubeOperation() /* turn cube without holding it, aka turning the cube entirly */
 {
 	/* face swap operations */
 	/* swap front to left */
 	FaceSwap(4,2);
 
 	/*swap left to back */
-	SwapBetweenFaces(4,0,3,8);
-	SwapBetweenFaces(4,1,3,7);
-	SwapBetweenFaces(4,2,3,6);
-	SwapBetweenFaces(4,3,3,5);
-	SwapBetweenFaces(4,4,3,4);
-	SwapBetweenFaces(4,5,3,3);
-	SwapBetweenFaces(4,6,3,2);
-	SwapBetweenFaces(4,7,3,1);
-	SwapBetweenFaces(4,8,3,0);
+	SwapBetweenFacesOperation(4,0,3,8);
+	SwapBetweenFacesOperation(4,1,3,7);
+	SwapBetweenFacesOperation(4,2,3,6);
+	SwapBetweenFacesOperation(4,3,3,5);
+	SwapBetweenFacesOperation(4,4,3,4);
+	SwapBetweenFacesOperation(4,5,3,3);
+	SwapBetweenFacesOperation(4,6,3,2);
+	SwapBetweenFacesOperation(4,7,3,1);
+	SwapBetweenFacesOperation(4,8,3,0);
 
 	/*swap back to left */
 	FaceSwap(3,1);
@@ -127,24 +127,24 @@ void TurnCubeRightOperation() /* turn cube without holding it, aka turning the c
 	RotateFaceRight(5);
 }
 
-void RotateBottomRightOperation() /*holding the top and rotating the buttom face */
+void RotateBottomOperation() /*holding the top and rotating the buttom face */
 {
 	/* swap colors on bot */
 	RotateFaceRight(5);
 
 	/* rotate the 4 rows that get rotated */
 	/* front 7,8,9 to left 7,8,9 */
-	SwapBetweenFaces(2,6,4,6);
-	SwapBetweenFaces(2,7,4,7);
-	SwapBetweenFaces(2,8,4,8);
+	SwapBetweenFacesOperation(2,6,4,6);
+	SwapBetweenFacesOperation(2,7,4,7);
+	SwapBetweenFacesOperation(2,8,4,8);
 	/* swap 7,8,9 left with 3,2,1 back */
-	SwapBetweenFaces(4,6,3,2);
-	SwapBetweenFaces(4,7,3,1);
-	SwapBetweenFaces(4,8,3,0);
+	SwapBetweenFacesOperation(4,6,3,2);
+	SwapBetweenFacesOperation(4,7,3,1);
+	SwapBetweenFacesOperation(4,8,3,0);
 	/* swap 3,2,1 back with 3,2,1 right */
-	SwapBetweenFaces(3,2,1,2);
-	SwapBetweenFaces(3,1,1,1);
-	SwapBetweenFaces(3,0,1,0);
+	SwapBetweenFacesOperation(3,2,1,2);
+	SwapBetweenFacesOperation(3,1,1,1);
+	SwapBetweenFacesOperation(3,0,1,0);
 
 }
 
@@ -504,56 +504,56 @@ Compound functions are moves to be executed by hand like inverted right or top o
 but reflect this in the representation since this is multiple moves, or a compound of other functions ;-)
 */
 
-void CompoundRight()
+void RightOperation()
 {
-	TurnCubeRight();
+	TurnCubeOperation();
 	ClawPull();
-	RotateButtomRight();
+	RotateBottomOperation();
 }
 
-void CompoundInvertedRight()
+void InvertedRightOperation()
 {
-	TurnCubeRight();
+	TurnCubeOperation();
 	ClawPull();
 	for(int i = 0; i < 3; i++)
     {
-        RotateButtomRight();
+        RotateBottomOperation();
     }
 }
 
-void CompoundLeft()
+void LeftOperation()
 {
 	for(int i = 0; i < 3; i++)
 	{
-		TurnCubeRight();
+		TurnCubeOperation();
 	}
 	ClawPull();
-	RotateButtomRight();
+	RotateBottomOperation();
 }
 
-void CompoundInvertedLeft()
+void InvertedLeftOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
-        TurnCubeRight();
+        TurnCubeOperation();
     }
 	ClawPull();
 	for(int i = 0; i < 3; i++)
     {
-        RotateButtomRight();
+        RotateBottomOperation();
     }
 }
 
-void CompoundTop ()
+void TopOperation()
 {
 	for(int i = 0; i < 2; i++)
     {
         ClawPull();
     }
-	RotateButtomRight();
+	RotateBottomOperation();
 }
 
-void CompoundInvertedTop()
+void InvertedTopOperation()
 {
 	for(int i = 0; i < 2; i++)
     {
@@ -561,55 +561,55 @@ void CompoundInvertedTop()
     }
 	for(int i = 0; i < 3; i++)
     {
-        RotateButtomRight();
+        RotateBottomOperation();
     }
 }
 
-void CompoundBottom()
+void BottomOperation()
 {
-	RotateButtomRight();
+	RotateBottomOperation();
 }
 
-void CompoundInvertedBottom()
-{
-	for(int i = 0; i < 3; i++)
-    {
-        RotateButtomRight();
-    }
-}
-
-void CompoundFront()
+void InvertedBottomOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
-        ClawPull();
+        RotateBottomOperation();
     }
-	RotateButtomRight();
 }
 
-void CompoundInvertedFront()
+void FrontOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
         ClawPull();
     }
+	RotateBottomOperation();
+}
+
+void InvertedFrontOperation()
+{
 	for(int i = 0; i < 3; i++)
     {
-        RotateButtomRight();
+        ClawPull();
+    }
+	for(int i = 0; i < 3; i++)
+    {
+        RotateBottomOperation();
     }
 }
 
-void CompoundBack()
+void BackOperation()
 {
 	ClawPull();
-	RotateButtomRight();
+	RotateBottomOperation();
 }
 
-void CompoundInvertedBack()
+void InvertedBackOperation()
 {
 	ClawPull();
 	for(int i = 0; i < 3; i++)
 	{
-		RotateButtomRight();
+		RotateBottomOperation();
 	}
 }

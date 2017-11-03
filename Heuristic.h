@@ -17,7 +17,7 @@ int FindWhiteFace()
 
 int CheckWhiteEdges(int whiteFace)
 {
-	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0, centerPiece = 4;
+	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0;
 	
 	for(i = 1; i < 8; i = i + 2)
 	{
@@ -25,7 +25,7 @@ int CheckWhiteEdges(int whiteFace)
 		{
 			FindComplementingEdge(whiteFace, i, &complementingFace, &complementingPiece);
 			
-			if(!(myCube[complementingFace][centerPiece] == myCube[complementingFace][complementingPiece]))
+			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
 				heuristicValue++;
 			}
@@ -40,7 +40,7 @@ int CheckWhiteEdges(int whiteFace)
 
 int CheckWhiteCorner(int whiteFace)
 {
-	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0, centerPiece = 4, complementingPiece2 = 0, complementingFace2 = 0;
+	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0, complementingPiece2 = 0, complementingFace2 = 0;
 	
 	for(i = 0; i < 9; i = i + 2)
 	{
@@ -48,11 +48,11 @@ int CheckWhiteCorner(int whiteFace)
 		{
 			FindComplementingCorners(whiteFace, i, &complementingFace, &complementingPiece, &complementingFace2, &complementingPiece2);
 			
-			if(!(myCube[complementingFace][centerPiece] == myCube[complementingFace][complementingPiece]))
+			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
 				heuristicValue++;
 			} 
-			else if(!(myCube[complementingFace2][centerPiece] == myCube[complementingFace2][complementingPiece2]))
+			else if(!(myCube[complementingFace2][CENTER_PIECE] == myCube[complementingFace2][complementingPiece2]))
 			{
 				heuristicValue++;
 			}
@@ -72,44 +72,59 @@ int CheckWhiteCorner(int whiteFace)
 
 int CheckCenterLayerEdges(int whiteFace)
 {
-	int face, oppositeFace, centerlayerpiece, centerPiece2, complementingFace, complementingPiece, heuristicValue;
+	int face, oppositeFace, centerlayerpiece, centerLayerPiece2, complementingFace, complementingPiece, heuristicValue = 0;
 	switch(whiteFace)
 	{
 		case TOP_FACE:
 		case BOTTOM_FACE:
 			face = FRONT_FACE;
 			oppositeFace = BACK_FACE;
-			centerPiece = 4;
-			centerPiece2 = 6;
+			centerlayerpiece = 4;
+			centerLayerPiece2 = 6;
 		break;
 		
 		case RIGHT_FACE:
 		case LEFT_FACE:
 			face = TOP_FACE;
 			oppositeFace = BOTTOM_FACE;
-			centerPiece = 2;
-			centerPiece2 = 8;
+			centerlayerpiece = 2;
+			centerLayerPiece2 = 8;
 		break;
 		
 		case FRONT_FACE:
 		case BACK_FACE:
 			face = TOP_FACE;
 			oppositeFace = BOTTOM_FACE;
-			centerPiece = 4;
-			centerPiece2 = 6;
+			centerlayerpiece = 4;
+			centerLayerPiece2 = 6;
 		break;
 	}
 	
-	if(myCube[face][centerPiece] == myCube[face][])
+	if(myCube[face][centerlayerpiece] == myCube[face][CENTER_PIECE])
 	{
-		
+		FindComplementingEdge(face, centerlayerpiece, &complementingFace, &complementingPiece)
+		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
+		{
+			heuristicValue++;
+		}
 	} else 
 	{
-		
+		heuristicValue++;
 	}
 	
+	if(myCube[oppositeFace][centerlayerpiece2] == myCube[oppositeFace][CENTER_PIECE])
+	{
+		FindComplementingEdge(face, centerlayerpiece2, &complementingFace, &complementingPiece)
+		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
+		{
+			heuristicValue++;
+		}
+	} else 
+	{
+		heuristicValue++;
+	}
 	
-	
+	return heuristicValue;
 	
 }
 

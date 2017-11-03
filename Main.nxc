@@ -1,9 +1,5 @@
-#include "Graph.h"
+#include "Heuristic.h"
 task main()
 {
-	InitializeCube();
-	InitializeCubeTest();
-	FillTestCube();
-	TestMethods();
-	Wait(5000);
+     InitializeSide({'g', 'w', 'r', 'g', 'w', 'w', 'r', 'w', 'y'}, TOP_FACE);
 }
