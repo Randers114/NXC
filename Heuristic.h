@@ -87,6 +87,11 @@ void IndividualEdgePieceCheck(int face, int centerLayerPiece, int &heuristicValu
 	{
 		heuristicValue++;
 	}
+	
+	//NumOut(0, LCD_LINE2, heuristicValue);
+	//Wait(SEC_3);
+	//ClearScreen();
+	//Wait(SEC_3);
 }
 
 int CheckCenterLayerEdges(int whiteFace)
@@ -98,24 +103,24 @@ int CheckCenterLayerEdges(int whiteFace)
 		case BOTTOM_FACE:
 			face = FRONT_FACE;
 			oppositeFace = BACK_FACE;
-			centerLayerPiece = 4;
-			centerLayerPiece2 = 6;
+			centerLayerPiece = 3;
+			centerLayerPiece2 = 5;
 		break;
 		
 		case RIGHT_FACE:
 		case LEFT_FACE:
 			face = TOP_FACE;
 			oppositeFace = BOTTOM_FACE;
-			centerLayerPiece = 2;
-			centerLayerPiece2 = 8;
+			centerLayerPiece = 1;
+			centerLayerPiece2 = 7;
 		break;
 		
 		case FRONT_FACE:
 		case BACK_FACE:
 			face = TOP_FACE;
 			oppositeFace = BOTTOM_FACE;
-			centerLayerPiece = 4;
-			centerLayerPiece2 = 6;
+			centerLayerPiece = 3;
+			centerLayerPiece2 = 5;
 		break;
 	}
 	

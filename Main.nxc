@@ -1,12 +1,12 @@
 #include "Heuristic.h"
 task main()
 {
-char top[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
-char right[10] = { 'g', 'g', 'g', 'r', 'r', 'r', 'r', 'r', 'r'};
-char front[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'o', 'o', 'o'};
-char back[10] = { 'r', 'r', 'r', 'b', 'b', 'b', 'b', 'b', 'b'};
-char left[10] = { 'o', 'o', 'o', 'o', 'o', 'o', 'b', 'b', 'b'};
-char bottom[10] = { 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'};
+char top[10] = { 'b', 'g', 'y', 'g', 'w', 'g', 'g', 'o', 'r'};
+char right[10] = { 'y', 'r', 'g', 'w', 'r', 'y', 'o', 'r', 'g'};
+char front[10] = { 'o', 'y', 'w', 'w', 'g', 'b', 'w', 'r', 'o'};
+char back[10] = { 'g', 'w', 'r', 'r', 'b', 'o', 'w', 'y', 'b'};
+char left[10] = { 'r', 'o', 'w', 'y', 'o', 'g', 'r', 'o', 'b'};
+char bottom[10] = { 'o', 'w', 'y', 'b', 'y', 'b', 'y', 'b', 'b'};
 
 
 InitializeSide(top, TOP_FACE);
@@ -15,7 +15,6 @@ InitializeSide(front, FRONT_FACE);
 InitializeSide(back, BACK_FACE);
 InitializeSide(left, LEFT_FACE);
 InitializeSide(bottom, BOTTOM_FACE);
-
      
      int heuval = HeuristicValue();
      

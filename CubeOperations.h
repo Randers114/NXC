@@ -299,8 +299,8 @@ void FindComplementingEdge(int face, int piece, int &complementFace, int &comple
 			}
 			else if (piece == 7)
 			{
-				complementFace = FRONT_FACE;
-				complementPiece = 7;
+				complementFace = BACK_FACE;
+				complementPiece = 1;
 			}
 
 		break;
