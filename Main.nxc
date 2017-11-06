@@ -1,5 +1,24 @@
 #include "Heuristic.h"
 task main()
 {
-     InitializeSide({'g', 'w', 'r', 'g', 'w', 'w', 'r', 'w', 'y'}, TOP_FACE);
+char top[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
+char right[10] = { 'g', 'g', 'g', 'r', 'r', 'r', 'r', 'r', 'r'};
+char front[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'o', 'o', 'o'};
+char back[10] = { 'r', 'r', 'r', 'b', 'b', 'b', 'b', 'b', 'b'};
+char left[10] = { 'o', 'o', 'o', 'o', 'o', 'o', 'b', 'b', 'b'};
+char bottom[10] = { 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'};
+
+
+InitializeSide(top, TOP_FACE);
+InitializeSide(right, RIGHT_FACE);
+InitializeSide(front, FRONT_FACE);
+InitializeSide(back, BACK_FACE);
+InitializeSide(left, LEFT_FACE);
+InitializeSide(bottom, BOTTOM_FACE);
+
+     
+     int heuval = HeuristicValue();
+     
+     NumOut(0, LCD_LINE1, heuval);
+     Wait(SEC_3);
 }

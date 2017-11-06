@@ -102,7 +102,7 @@ void TurnCubeOperation() /* turn cube without holding it, aka turning the cube e
 {
 	/* face swap operations */
 	/* swap front to left */
-	FaceSwap(4,2);
+	FaceSwapOperation(4,2);
 
 	/*swap left to back */
 	SwapBetweenFacesOperation(4,0,3,8);
@@ -116,21 +116,21 @@ void TurnCubeOperation() /* turn cube without holding it, aka turning the cube e
 	SwapBetweenFacesOperation(4,8,3,0);
 
 	/*swap back to left */
-	FaceSwap(3,1);
+	FaceSwapOperation(3,1);
 
 	/* face rotate operations */
 	/* top face operations */
 	for(int i = 0; i<3 ; i++)
-		RotateFaceRight(0);
+		RotateFaceRightOperation(0);
 
 	/* bot face operations */
-	RotateFaceRight(5);
+	RotateFaceRightOperation(5);
 }
 
 void RotateBottomOperation() /*holding the top and rotating the buttom face */
 {
 	/* swap colors on bot */
-	RotateFaceRight(5);
+	RotateFaceRightOperation(5);
 
 	/* rotate the 4 rows that get rotated */
 	/* front 7,8,9 to left 7,8,9 */
@@ -150,350 +150,350 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 
 void ClawPullOperation() /* representation changes when the claw pulls the cube front to top etc. */
 {
-	FaceSwap(2,5);
-	FaceSwap(5,3);
-	FaceSwap(3,0);
+	FaceSwapOperation(2,5);
+	FaceSwapOperation(5,3);
+	FaceSwapOperation(3,0);
 
 	/* right face operations */
-	RotateFaceRight(1);
+	RotateFaceRightOperation(1);
 	/* left face operations */
 	for (int i = 0; i<3; i++)
-		RotateFaceRight(4);
+		RotateFaceRightOperation(4);
 }
 
 // FInd complementing edge for heuristic.
-void FindComplementingEdge(int face, int piece, int *complementFace, int *complementPiece)
+void FindComplementingEdge(int face, int piece, int &complementFace, int &complementPiece)
 {
 	switch(face)
 	{
 		case TOP_FACE:
 			if(piece == 1)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 7;
+				complementFace = BACK_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 1;
+				complementFace = LEFT_FACE;
+				complementPiece = 1;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 7;
+				complementFace = RIGHT_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 1;
+				complementFace = FRONT_FACE;
+				complementPiece = 1;
 			}
 		break;
 
 		case RIGHT_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 5;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 5;
+				complementFace = BACK_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 5;
+				complementFace = FRONT_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 5;
+				complementFace = TOP_FACE;
+				complementPiece = 5;
 			}
 		break; 
 
 		case FRONT_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 7;
+				complementFace = TOP_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 5;
+				complementFace = LEFT_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 5;
+				complementFace = RIGHT_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 1;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 1;
 			}
 		break; 
 
 		case BACK_FACE:
 			if(piece == 1)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 7;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 3;
+				complementFace = LEFT_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 3;
+				complementFace = RIGHT_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 1;
+				complementFace = TOP_FACE;
+				complementPiece = 1;
 			}
 		break;
 
 		case LEFT_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 3;
+				complementFace = TOP_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 3;
+				complementFace = BACK_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 3;
+				complementFace = RIGHT_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 3;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 3;
 			}
 		break; 
 
 		case BOTTOM_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 7;
+				complementFace = FRONT_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 7;
+				complementFace = LEFT_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 1;
+				complementFace = RIGHT_FACE;
+				complementPiece = 1;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 7;
+				complementFace = FRONT_FACE;
+				complementPiece = 7;
 			}
 
 		break;
 	}
 }
 
-void FindComplementingCorners(int face, int piece, int *complementFace, int *complementPiece, int *complementFace2, int *complementPiece2)
+void FindComplementingCorners(int face, int piece, int &complementFace, int &complementPiece, int &complementFace2, int &complementPiece2)
 {
 	switch(face)
 	{
 		case TOP_FACE:
 			if(piece == 0)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 0;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 6;
+				complementFace = LEFT_FACE;
+				complementPiece = 0;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BACK_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = FRONT_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 8;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 2;
+				complementFace = RIGHT_FACE;
+				complementPiece = 8;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 2;
 			}
 		break;
 
 		case RIGHT_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 8;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 2;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 8;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 8;
-				*complementFace2 = BOTTOM_FACE;
-				*complementPiece2 = 2;
+				complementFace = FRONT_FACE;
+				complementPiece = 8;
+				complementFace2 = BOTTOM_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 2;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 8;
+				complementFace = TOP_FACE;
+				complementPiece = 2;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 8;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 2;
+				complementFace = TOP_FACE;
+				complementPiece = 8;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 2;
 			}
 		break; 
 
 		case FRONT_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 6;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = TOP_FACE;
+				complementPiece = 6;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 8;
+				complementFace = TOP_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 8;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 2;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 2;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 2;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 2;
 			}
 		break;
 
 		case BACK_FACE:
 			if(piece == 0)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 6;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 6;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 0;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 0;
+				complementFace = TOP_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 2;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 6;
+				complementFace = TOP_FACE;
+				complementPiece = 2;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 6;
 			}
 		break;
 
 		case LEFT_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 0;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 6;
+				complementFace = TOP_FACE;
+				complementPiece = 0;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 6;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 0;
+				complementFace = TOP_FACE;
+				complementPiece = 6;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 6;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 0;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 6;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 0;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 0;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 6;
 			}
 		break;
 
 		case BOTTOM_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 6;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 8;
+				complementFace = FRONT_FACE;
+				complementPiece = 6;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 2;
+				complementFace = FRONT_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BACK_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 2;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 0;
+				complementFace = BACK_FACE;
+				complementPiece = 2;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 0;
 			}
 		break;
 	}
@@ -507,14 +507,14 @@ but reflect this in the representation since this is multiple moves, or a compou
 void RightOperation()
 {
 	TurnCubeOperation();
-	ClawPull();
+	ClawPullOperation();
 	RotateBottomOperation();
 }
 
 void InvertedRightOperation()
 {
 	TurnCubeOperation();
-	ClawPull();
+	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
     {
         RotateBottomOperation();
@@ -527,7 +527,7 @@ void LeftOperation()
 	{
 		TurnCubeOperation();
 	}
-	ClawPull();
+	ClawPullOperation();
 	RotateBottomOperation();
 }
 
@@ -537,7 +537,7 @@ void InvertedLeftOperation()
     {
         TurnCubeOperation();
     }
-	ClawPull();
+	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
     {
         RotateBottomOperation();
@@ -548,7 +548,7 @@ void TopOperation()
 {
 	for(int i = 0; i < 2; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	RotateBottomOperation();
 }
@@ -557,7 +557,7 @@ void InvertedTopOperation()
 {
 	for(int i = 0; i < 2; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	for(int i = 0; i < 3; i++)
     {
@@ -582,7 +582,7 @@ void FrontOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	RotateBottomOperation();
 }
@@ -591,7 +591,7 @@ void InvertedFrontOperation()
 {
 	for(int i = 0; i < 3; i++)
     {
-        ClawPull();
+        ClawPullOperation();
     }
 	for(int i = 0; i < 3; i++)
     {
@@ -601,13 +601,13 @@ void InvertedFrontOperation()
 
 void BackOperation()
 {
-	ClawPull();
+	ClawPullOperation();
 	RotateBottomOperation();
 }
 
 void InvertedBackOperation()
 {
-	ClawPull();
+	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
 	{
 		RotateBottomOperation();

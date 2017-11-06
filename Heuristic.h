@@ -19,11 +19,11 @@ int CheckWhiteEdges(int whiteFace)
 {
 	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0;
 	
-	for(i = 1; i < 8; i = i + 2)
+	for(int i = 1; i < 8; i = i + 2)
 	{
-		if(myCube[whiteFace][i] = 'w')
+		if(myCube[whiteFace][i] == 'w')
 		{
-			FindComplementingEdge(whiteFace, i, &complementingFace, &complementingPiece);
+			FindComplementingEdge(whiteFace, i, complementingFace, complementingPiece);
 			
 			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
@@ -42,11 +42,11 @@ int CheckWhiteCorner(int whiteFace)
 {
 	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0, complementingPiece2 = 0, complementingFace2 = 0;
 	
-	for(i = 0; i < 9; i = i + 2)
+	for(int i = 0; i < 9; i = i + 2)
 	{
-		if(myCube[whiteFace][i] = 'w')
+		if(myCube[whiteFace][i] == 'w')
 		{
-			FindComplementingCorners(whiteFace, i, &complementingFace, &complementingPiece, &complementingFace2, &complementingPiece2);
+			FindComplementingCorners(whiteFace, i, complementingFace, complementingPiece, complementingFace2, complementingPiece2);
 			
 			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
@@ -63,23 +63,42 @@ int CheckWhiteCorner(int whiteFace)
 		
 		if(i == 2)
 		{
-			i = i + 4;
+			i = i + 2;
 		}
 	}
 	
 	return heuristicValue;
 }
 
+void IndividualEdgePieceCheck(int face, int centerLayerPiece, int &heuristicValue)
+{
+	int complementingFace, complementingPiece;
+	
+	if(myCube[face][centerLayerPiece] == myCube[face][CENTER_PIECE])
+	{
+		FindComplementingEdge(face, centerLayerPiece, complementingFace, complementingPiece);
+		
+		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
+		{
+			heuristicValue++;
+		}
+	}
+    else
+	{
+		heuristicValue++;
+	}
+}
+
 int CheckCenterLayerEdges(int whiteFace)
 {
-	int face, oppositeFace, centerlayerpiece, centerLayerPiece2, complementingFace, complementingPiece, heuristicValue = 0;
+	int face, oppositeFace, centerLayerPiece, centerLayerPiece2, heuristicValue = 0;
 	switch(whiteFace)
 	{
 		case TOP_FACE:
 		case BOTTOM_FACE:
 			face = FRONT_FACE;
 			oppositeFace = BACK_FACE;
-			centerlayerpiece = 4;
+			centerLayerPiece = 4;
 			centerLayerPiece2 = 6;
 		break;
 		
@@ -87,7 +106,7 @@ int CheckCenterLayerEdges(int whiteFace)
 		case LEFT_FACE:
 			face = TOP_FACE;
 			oppositeFace = BOTTOM_FACE;
-			centerlayerpiece = 2;
+			centerLayerPiece = 2;
 			centerLayerPiece2 = 8;
 		break;
 		
@@ -95,34 +114,15 @@ int CheckCenterLayerEdges(int whiteFace)
 		case BACK_FACE:
 			face = TOP_FACE;
 			oppositeFace = BOTTOM_FACE;
-			centerlayerpiece = 4;
+			centerLayerPiece = 4;
 			centerLayerPiece2 = 6;
 		break;
 	}
 	
-	if(myCube[face][centerlayerpiece] == myCube[face][CENTER_PIECE])
-	{
-		FindComplementingEdge(face, centerlayerpiece, &complementingFace, &complementingPiece)
-		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
-		{
-			heuristicValue++;
-		}
-	} else 
-	{
-		heuristicValue++;
-	}
-	
-	if(myCube[oppositeFace][centerlayerpiece2] == myCube[oppositeFace][CENTER_PIECE])
-	{
-		FindComplementingEdge(face, centerlayerpiece2, &complementingFace, &complementingPiece)
-		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
-		{
-			heuristicValue++;
-		}
-	} else 
-	{
-		heuristicValue++;
-	}
+	IndividualEdgePieceCheck(face, centerLayerPiece, heuristicValue);
+	IndividualEdgePieceCheck(face, centerLayerPiece2, heuristicValue);
+	IndividualEdgePieceCheck(oppositeFace, centerLayerPiece, heuristicValue);
+	IndividualEdgePieceCheck(oppositeFace, centerLayerPiece2, heuristicValue);
 	
 	return heuristicValue;
 	
@@ -136,10 +136,16 @@ int HeuristicValue()
 	whiteFace = FindWhiteFace();
 	
 	heuristicValue += CheckWhiteEdges(whiteFace);
+	NumOut(0, LCD_LINE2, heuristicValue);
+	Wait(SEC_3);
 	
 	heuristicValue += CheckWhiteCorner(whiteFace);
+	NumOut(0, LCD_LINE3, heuristicValue);
+	Wait(SEC_3);
 	
-	heuristicValue += CheckCenterLayerEdges();
+	heuristicValue += CheckCenterLayerEdges(whiteFace);
+	NumOut(0, LCD_LINE4, heuristicValue);
+	Wait(SEC_3);
 	
 	return heuristicValue;
 }
