@@ -17,46 +17,44 @@ void InitializeSide(char face[], int sidenumber)
 
 void CubeCheck()
 {
-	int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
+  int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
   
-  	for (int face = 0; face < 6; face++)
-  	{
-	
+  for (int face = 0; face < 6; face++)
+	{
 		for (int piece = 0; piece < 9; piece++)
 		{
-     		if (myCube[face][piece] == 'w')
-	  		{
-     	    	white++;
-	 	    }
-     	  	else if (myCube[face][piece] == 'o')
-	 	  	{
-      	    	orange++;
-	  	 	}
-      	 	else if (myCube[face][piece] == 'b')
-	  	 	{
-      	   		blue++;
-	  	 	}
-	  	 	else if (myCube[face][piece] == 'y')
-	  	 	{
-      	    	yellow++;
-	  	 	}
-	  	 	else if (myCube[face][piece] == 'g')
-	  	 	{
-      	    	green++;
-	  	 	}
-      	 	else if (myCube[face][piece] == 'r')
-	  	 	{
-      	    	red++;
-	  	 	}
+       if (myCube[face][piece] == 'w')
+		   {
+          white++;
+		   }
+       else if (myCube[face][piece] == 'o')
+		   {
+          orange++;
+		   }
+       else if (myCube[face][piece] == 'b')
+		   {
+          blue++;
+		   }
+		   else if (myCube[face][piece] == 'y')
+		   {
+          yellow++;
+		   }
+	     else if (myCube[face][piece] == 'g')
+		   {
+          green++;
+		   }
+       else if (myCube[face][piece] == 'r')
+		   {
+          red++;
+		   }
 		}
-  	}
+	}
 	
-
 	if (white != 9 || orange != 9 || blue != 9 || yellow != 9 || green != 9 || red != 9)
-	{
-    	PlaySound(SOUND_UP);
-    	StopAllTasks();
-  	}
+  {
+     PlaySound(SOUND_UP);
+     StopAllTasks();
+  }
 }
 
 void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap space one with space two on a given face */
@@ -80,7 +78,6 @@ void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right 
 void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
 {
 	char temp;
-	
 	temp = myCube[FaceTwo][SpaceTwo];
 	myCube[FaceTwo][SpaceTwo] = myCube[FaceOne][SpaceOne];
 	myCube[FaceOne][SpaceOne] = temp;
@@ -91,11 +88,11 @@ void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the
 	char temp;
 
 	for(int i = 0; i < 9; i++)
-	{
-    	temp = myCube[faceTwoIdentifier][i];
-    	myCube[faceTwoIdentifier][i] = myCube[faceOneIdentifier][i];
-    	myCube[faceOneIdentifier][i] = temp;
-  	}
+  {
+    temp = myCube[faceTwoIdentifier][i];
+    myCube[faceTwoIdentifier][i] = myCube[faceOneIdentifier][i];
+    myCube[faceOneIdentifier][i] = temp;
+  }
 	// memcpy(temp, myCube[faceTwoIdentifier], 9);
 	//memcpy(myCube[faceTwoIdentifier], myCube[faceOneIdentifier], 9);
 	//memcpy(myCube[faceOneIdentifier], temp, 9);
@@ -165,338 +162,338 @@ void ClawPullOperation() /* representation changes when the claw pulls the cube 
 }
 
 // FInd complementing edge for heuristic.
-void FindComplementingEdge(int face, int piece, int *complementFace, int *complementPiece)
+void FindComplementingEdge(int face, int piece, int &complementFace, int &complementPiece)
 {
 	switch(face)
 	{
 		case TOP_FACE:
 			if(piece == 1)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 7;
+				complementFace = BACK_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 1;
+				complementFace = LEFT_FACE;
+				complementPiece = 1;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 7;
+				complementFace = RIGHT_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 1;
+				complementFace = FRONT_FACE;
+				complementPiece = 1;
 			}
 		break;
 
 		case RIGHT_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 5;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 5;
+				complementFace = BACK_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 5;
+				complementFace = FRONT_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 5;
+				complementFace = TOP_FACE;
+				complementPiece = 5;
 			}
 		break; 
 
 		case FRONT_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 7;
+				complementFace = TOP_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 5;
+				complementFace = LEFT_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 5;
+				complementFace = RIGHT_FACE;
+				complementPiece = 5;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 1;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 1;
 			}
 		break; 
 
 		case BACK_FACE:
 			if(piece == 1)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 7;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 3;
+				complementFace = LEFT_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 3;
+				complementFace = RIGHT_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 1;
+				complementFace = TOP_FACE;
+				complementPiece = 1;
 			}
 		break;
 
 		case LEFT_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 3;
+				complementFace = TOP_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 3;
+				complementFace = BACK_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 3;
+				complementFace = RIGHT_FACE;
+				complementPiece = 3;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 3;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 3;
 			}
 		break; 
 
 		case BOTTOM_FACE: 
 			if(piece == 1)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 7;
+				complementFace = FRONT_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 3)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 7;
+				complementFace = LEFT_FACE;
+				complementPiece = 7;
 			}
 			else if (piece == 5)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 1;
+				complementFace = RIGHT_FACE;
+				complementPiece = 1;
 			}
 			else if (piece == 7)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 7;
+				complementFace = FRONT_FACE;
+				complementPiece = 7;
 			}
 
 		break;
 	}
 }
 
-void FindComplementingCorners(int face, int piece, int *complementFace, int *complementPiece, int *complementFace2, int *complementPiece2)
+void FindComplementingCorners(int face, int piece, int &complementFace, int &complementPiece, int &complementFace2, int &complementPiece2)
 {
 	switch(face)
 	{
 		case TOP_FACE:
 			if(piece == 0)
 			{
-				*complementFace = LEFT_FACE;
-				*complementPiece = 0;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 6;
+				complementFace = LEFT_FACE;
+				complementPiece = 0;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BACK_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = FRONT_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = RIGHT_FACE;
-				*complementPiece = 8;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 2;
+				complementFace = RIGHT_FACE;
+				complementPiece = 8;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 2;
 			}
 		break;
 
 		case RIGHT_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 8;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 2;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 8;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 8;
-				*complementFace2 = BOTTOM_FACE;
-				*complementPiece2 = 2;
+				complementFace = FRONT_FACE;
+				complementPiece = 8;
+				complementFace2 = BOTTOM_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 2;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 8;
+				complementFace = TOP_FACE;
+				complementPiece = 2;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 8;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 2;
+				complementFace = TOP_FACE;
+				complementPiece = 8;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 2;
 			}
 		break; 
 
 		case FRONT_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 6;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = TOP_FACE;
+				complementPiece = 6;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 8;
+				complementFace = TOP_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 8;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 2;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 2;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 2;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 2;
 			}
 		break;
 
 		case BACK_FACE:
 			if(piece == 0)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 6;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 6;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 0;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 0;
+				complementFace = TOP_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 2;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 6;
+				complementFace = TOP_FACE;
+				complementPiece = 2;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 6;
 			}
 		break;
 
 		case LEFT_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 0;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 6;
+				complementFace = TOP_FACE;
+				complementPiece = 0;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = TOP_FACE;
-				*complementPiece = 6;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 0;
+				complementFace = TOP_FACE;
+				complementPiece = 6;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 6;
-				*complementFace2 = BACK_FACE;
-				*complementPiece2 = 0;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 6;
+				complementFace2 = BACK_FACE;
+				complementPiece2 = 0;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = BOTTOM_FACE;
-				*complementPiece = 0;
-				*complementFace2 = FRONT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BOTTOM_FACE;
+				complementPiece = 0;
+				complementFace2 = FRONT_FACE;
+				complementPiece2 = 6;
 			}
 		break;
 
 		case BOTTOM_FACE: 
 			if(piece == 0)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 6;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 8;
+				complementFace = FRONT_FACE;
+				complementPiece = 6;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 8;
 			}
 			else if (piece == 2)
 			{
-				*complementFace = FRONT_FACE;
-				*complementPiece = 8;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 2;
+				complementFace = FRONT_FACE;
+				complementPiece = 8;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 2;
 			}
 			else if (piece == 6)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 0;
-				*complementFace2 = LEFT_FACE;
-				*complementPiece2 = 6;
+				complementFace = BACK_FACE;
+				complementPiece = 0;
+				complementFace2 = LEFT_FACE;
+				complementPiece2 = 6;
 			}
 			else if (piece == 8)
 			{
-				*complementFace = BACK_FACE;
-				*complementPiece = 2;
-				*complementFace2 = RIGHT_FACE;
-				*complementPiece2 = 0;
+				complementFace = BACK_FACE;
+				complementPiece = 2;
+				complementFace2 = RIGHT_FACE;
+				complementPiece2 = 0;
 			}
 		break;
 	}
