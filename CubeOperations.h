@@ -9,44 +9,44 @@ char myCube[6][10];
  
 void InitializeSide(char face[], int sidenumber)
 {
-	for (int i = 0; i < 9; i++)
+	for (int piece = 0; piece < 9; piece++)
 	{
-		myCube[sidenumber][i] = face[i];
+		myCube[sidenumber][piece] = face[piece];
 	}
 }
 
 void CubeCheck()
 {
-  int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
-  
-  for (int face = 0; face < 6; face++)
+	int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
+
+	for (int face = 0; face < 6; face++)
 	{
 		for (int piece = 0; piece < 9; piece++)
 		{
-       if (myCube[face][piece] == 'w')
-		   {
-          white++;
-		   }
-       else if (myCube[face][piece] == 'o')
-		   {
-          orange++;
-		   }
-       else if (myCube[face][piece] == 'b')
-		   {
-          blue++;
-		   }
-		   else if (myCube[face][piece] == 'y')
-		   {
-          yellow++;
-		   }
-	     else if (myCube[face][piece] == 'g')
-		   {
-          green++;
-		   }
-       else if (myCube[face][piece] == 'r')
-		   {
-          red++;
-		   }
+			if (myCube[face][piece] == 'w')
+			{
+				white++;
+			}
+			else if (myCube[face][piece] == 'o')
+			{
+				orange++;
+			}
+			else if (myCube[face][piece] == 'b')
+			{
+				blue++;
+			}
+			else if (myCube[face][piece] == 'y')
+			{
+				yellow++;
+			}
+			else if (myCube[face][piece] == 'g')
+			{
+				green++;
+			}
+			else if (myCube[face][piece] == 'r')
+			{
+				red++;
+			}
 		}
 	}
 	
@@ -67,12 +67,12 @@ void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap
 
 void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on the right face) */
 {
-	SwapOnFaceOperation(faceIdentifier,1,3);
-	SwapOnFaceOperation(faceIdentifier,3,7);
-	SwapOnFaceOperation(faceIdentifier,7,5);
-	SwapOnFaceOperation(faceIdentifier,0,6);
-	SwapOnFaceOperation(faceIdentifier,6,8);
-	SwapOnFaceOperation(faceIdentifier,8,2);
+	SwapOnFaceOperation(faceIdentifier, 1, 3);
+	SwapOnFaceOperation(faceIdentifier, 3, 7);
+	SwapOnFaceOperation(faceIdentifier, 7, 5);
+	SwapOnFaceOperation(faceIdentifier, 0, 6);
+	SwapOnFaceOperation(faceIdentifier, 6, 8);
+	SwapOnFaceOperation(faceIdentifier, 8, 2);
 }
 
 void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
@@ -87,78 +87,74 @@ void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the
 {
 	char temp;
 
-	for(int i = 0; i < 9; i++)
-  {
-    temp = myCube[faceTwoIdentifier][i];
-    myCube[faceTwoIdentifier][i] = myCube[faceOneIdentifier][i];
-    myCube[faceOneIdentifier][i] = temp;
-  }
-	// memcpy(temp, myCube[faceTwoIdentifier], 9);
-	//memcpy(myCube[faceTwoIdentifier], myCube[faceOneIdentifier], 9);
-	//memcpy(myCube[faceOneIdentifier], temp, 9);
+	for(int piece = 0; piece < 9; piece++)
+	{
+		temp = myCube[faceTwoIdentifier][piece];
+		myCube[faceTwoIdentifier][piece] = myCube[faceOneIdentifier][piece];
+		myCube[faceOneIdentifier][piece] = temp;
+	}
 }
 
 void TurnCubeOperation() /* turn cube without holding it, aka turning the cube entirly */
 {
 	/* face swap operations */
 	/* swap front to left */
-	FaceSwapOperation(4,2);
+	FaceSwapOperation(LEFT_FACE, FRONT_FACE);
 
 	/*swap left to back */
-	SwapBetweenFacesOperation(4,0,3,8);
-	SwapBetweenFacesOperation(4,1,3,7);
-	SwapBetweenFacesOperation(4,2,3,6);
-	SwapBetweenFacesOperation(4,3,3,5);
-	SwapBetweenFacesOperation(4,4,3,4);
-	SwapBetweenFacesOperation(4,5,3,3);
-	SwapBetweenFacesOperation(4,6,3,2);
-	SwapBetweenFacesOperation(4,7,3,1);
-	SwapBetweenFacesOperation(4,8,3,0);
+	for(int leftFaceSquare = 0, backFaceSquare = 8; leftFaceSquare < 9; leftFaceSquare++, backFaceSquare--)
+	{
+		SwapBetweenFacesOperation(LEFT_FACE, leftFaceSquare, BACK_FACE, backFaceSquare);
+	}
 
 	/*swap back to left */
-	FaceSwapOperation(3,1);
+	FaceSwapOperation(BACK_FACE, RIGHT_FACE);
 
 	/* face rotate operations */
 	/* top face operations */
-	for(int i = 0; i<3 ; i++)
-		RotateFaceRightOperation(0);
+	for(int i = 0; i < 3 ; i++)
+		RotateFaceRightOperation(TOP_FACE);
 
 	/* bot face operations */
-	RotateFaceRightOperation(5);
+	RotateFaceRightOperation(BOTTOM_FACE);
 }
 
 void RotateBottomOperation() /*holding the top and rotating the buttom face */
 {
 	/* swap colors on bot */
-	RotateFaceRightOperation(5);
+	RotateFaceRightOperation(BOTTOM_FACE);
 
 	/* rotate the 4 rows that get rotated */
 	/* front 7,8,9 to left 7,8,9 */
-	SwapBetweenFacesOperation(2,6,4,6);
-	SwapBetweenFacesOperation(2,7,4,7);
-	SwapBetweenFacesOperation(2,8,4,8);
+	for(int faceSquare = 6; faceSquare < 9; faceSquare++)
+	{
+		SwapBetweenFacesOperation(FRONT_FACE, faceSquare, LEFT_FACE, faceSquare);
+	}
+	
 	/* swap 7,8,9 left with 3,2,1 back */
-	SwapBetweenFacesOperation(4,6,3,2);
-	SwapBetweenFacesOperation(4,7,3,1);
-	SwapBetweenFacesOperation(4,8,3,0);
-	/* swap 3,2,1 back with 3,2,1 right */
-	SwapBetweenFacesOperation(3,2,1,2);
-	SwapBetweenFacesOperation(3,1,1,1);
-	SwapBetweenFacesOperation(3,0,1,0);
+	for(int leftFaceSquare = 6, backFaceSquare = 2; leftFaceSquare < 9; leftFaceSquare++, backFaceSquare--)
+	{
+		SwapBetweenFacesOperation(LEFT_FACE, leftFaceSquare, BACK_FACE, backFaceSquare);
+	}
 
+	/* swap 3,2,1 back with 3,2,1 right */
+	for(int faceSquare = 2; faceSquare < 9; faceSquare--)
+	{
+		SwapBetweenFacesOperation(BACK_FACE, faceSquare, RIGHT_FACE, faceSquare);
+	}
 }
 
 void ClawPullOperation() /* representation changes when the claw pulls the cube front to top etc. */
 {
-	FaceSwapOperation(2,5);
-	FaceSwapOperation(5,3);
-	FaceSwapOperation(3,0);
+	FaceSwapOperation(FRONT_FACE, BOTTOM_FACE);
+	FaceSwapOperation(BOTTOM_FACE, BACK_FACE);
+	FaceSwapOperation(BACK_FACE, TOP_FACE);
 
 	/* right face operations */
-	RotateFaceRightOperation(1);
+	RotateFaceRightOperation(RIGHT_FACE);
 	/* left face operations */
-	for (int i = 0; i<3; i++)
-		RotateFaceRightOperation(4);
+	for (int i = 0; i < 3; i++)
+		RotateFaceRightOperation(LEFT_FACE);
 }
 
 // FInd complementing edge for heuristic.

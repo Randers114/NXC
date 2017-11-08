@@ -6,16 +6,16 @@ void LockCube()
 {
     isLocked = TRUE;
     RotateMotorPID(OUT_B, 50, -140, 20, 40, 100);
-    Wait(300);
+    Wait(MS_300);
 }
 
 void UnlockCube()
 {
     isLocked = FALSE;
     OnFwd(OUT_B, 50);
-    Wait(1000);
+    Wait(SEC_1);
     Off(OUT_B);
-    Wait(300);
+    Wait(MS_300);
 }
 
 
@@ -27,9 +27,9 @@ void AlignCubeLayers()
 
 	isLocked = TRUE;
 	RotateMotorPID(OUT_B, 30, 60, 20, 40, 100);
-    Wait(300);
+    Wait(MS_300);
     RotateMotorPID(OUT_B, 30, -60, 20, 40, 100);
-    Wait(300);
+    Wait(MS_300);
 }
 
 void FlipCube(int count) /* Tells the robot to flip the cube. */
@@ -44,24 +44,24 @@ void FlipCube(int count) /* Tells the robot to flip the cube. */
     for (int i = 0; i < count; i++)
     {
 	    RotateMotorPID(OUT_B, 70, -90, 20, 40, 100);
-	    Wait(300);
+	    Wait(MS_300);
 	    RotateMotorPID(OUT_B, 30, 130, 20, 40, 100);
-	    Wait(300);
+	    Wait(MS_300);
 	    RotateMotorPID(OUT_B, 30, -40, 20, 40, 100);
-	    Wait(300);
+	    Wait(MS_300);
     }
 }
 
 void TurnCube(int degrees) /* Tells the robot to turn the cube. */
 { 
     RotateMotorPID(OUT_C, 15, degrees, 20, 40, 100);
-    Wait(300);
+    Wait(MS_300);
 }
 
 void RotateCube(int degrees) /* Same as turn, higher power. */
 {
 	RotateMotorPID(OUT_C, 30, degrees, 20, 40, 100);
-	Wait(300);
+	Wait(MS_300);
 }
 
 void TurnCubeRight() /* turn cube without holding it, aka turning the cube entirely */
@@ -96,39 +96,48 @@ void ClawPull() /* representation changes when the claw pulls the cube front to 
 
 void DoubleClaw()
 {
-	ClawPull();
-	ClawPull();
+	for(int i = 0; i < 2; i++)
+	{
+		ClawPull();
+	}
 }
 
 void TripleClaw()
 {
-	ClawPull();
-	ClawPull();
-	ClawPull();
+	for(int i = 0; i < 3; i++)
+	{
+		ClawPull();
+	}
 }
 
 void DoubleRotate()
 {
-	RotateBottomRight();
-	RotateBottomRight();
+	for(int i = 0; i < 2; i++)
+	{
+		RotateBottomRight();
+	}
 }
 
 void TripleRotate()
 {
-	RotateBottomRight();
-	RotateBottomRight();
-	RotateBottomRight();
+	for(int i = 0; i < 3; i++)
+	{
+		RotateBottomRight();
+	}
 }
 
 void DoubleTurn()
 {
-	TurnCubeRight();
-	TurnCubeRight();
+	for(int i = 0; i < 2; i++)
+	{
+		TurnCubeRight();
+	}
 }
 
 void TripleTurn()
 {
-	TurnCubeRight();
-	TurnCubeRight();
-	TurnCubeRight();
+	for(int i = 0; i < 3; i++)
+	{
+		TurnCubeRight();
+	}
 }
