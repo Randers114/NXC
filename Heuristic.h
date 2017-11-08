@@ -23,7 +23,7 @@ int CheckWhiteEdges(int whiteFace)
 	{
 		if(myCube[whiteFace][piece] == 'w')
 		{
-			FindComplementingEdge(whiteFace, i, complementingFace, complementingPiece);
+			FindComplementingEdge(whiteFace, piece, complementingFace, complementingPiece);
 			
 			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
