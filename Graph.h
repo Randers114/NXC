@@ -36,12 +36,12 @@ void ConstructNode(int position, int layer)
 	node.heuristicValue = HeuristicValue();
 	node.layer = layer;
 
-	int positionInGraph = (layer * NUM_OF_CHILDREN) + position;
+	int positionInGraph = position;
 	Graph[positionInGraph] = node;
 }
 
 
-void ConstructChildren(int parentIndex)
+int ConstructChildren(int parentIndex)
 {
 	// Layer 0 is the layer where the children of the rootnode are situated.
 
@@ -108,22 +108,24 @@ void ConstructChildren(int parentIndex)
 
 		}
 
-		ConstructNode(childPosition, currentLayer);
+		ConstructNode(parentIndex + childPosition, currentLayer);
 		memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
 	}
 
+	return childPosition;
 }
 
 
 void GraphConstruction()
 {
+	int nextParentNode = 1;
 	ConstructRootNode();
 	ConstructChildren(0);
 
-	for (int graphIndex = 0; graphIndex < 7; graphIndex++)
+	while(!lowerHeuristic)
 	{
-		int nextParentNode = 1 + (graphIndex * NUM_OF_CHILDREN);
-		ConstructChildren(nextParentNode);
+		nextParentNode += ConstructChildren(nextParentNode);
+		
 	}
 
 
