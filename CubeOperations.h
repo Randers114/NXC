@@ -6,6 +6,18 @@ char myCube[6][10];
 #define LEFT_FACE 4
 #define BOTTOM_FACE 5
 #define CENTER_PIECE 4
+
+void ORMyCube(char ORCube[  ][])
+{
+	for(int j = 0; j < 6; j++)
+	{
+    for(int i = 0; i < 9; i++)
+    {
+      myCube[j][i] = ORCube[j][i];
+    }
+		//memcpy(myCube[i], Testcube1.sides[i], 9);
+	}
+}
  
 void InitializeSide(char face[], int sidenumber)
 {
@@ -52,8 +64,8 @@ void CubeCheck()
 	
 	if (white != 9 || orange != 9 || blue != 9 || yellow != 9 || green != 9 || red != 9)
   {
-     PlaySound(SOUND_UP);
-     StopAllTasks();
+   //  PlaySound(SOUND_UP);
+   //  StopAllTasks();
   }
 }
 
