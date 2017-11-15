@@ -2,6 +2,7 @@
 
 #define NUM_OF_FACES 6
 #define NUM_OF_SQUARES_ON_FACE 10
+#define NUM_OF_CHILDREN 12
 
 
 
@@ -10,6 +11,7 @@ struct Node
 	char cube[NUM_OF_FACES][NUM_OF_SQUARES_ON_FACE];
 	int heuristicValue;
 	int layer;
+	bool visited = FALSE;
 
 };
 
@@ -22,18 +24,19 @@ void ConstructRootNode()
 	Node node;
 	memcpy(myCube, node.cube, sizeof myCube);
 	node.heuristicValue = HeuristicValue();
+	node.layer = -1;
 
 	Graph[0] = node;
 }
 
-void ConstructNode(int position, int layer, int parent)
+void ConstructNode(int position, int layer)
 {
 	Node node;
 	memcpy(myCube, node.cube, sizeof myCube);
 	node.heuristicValue = HeuristicValue();
 	node.layer = layer;
 
-	int positionInGraph = (layer * 12) + position;
+	int positionInGraph = (layer * NUM_OF_CHILDREN) + position;
 	Graph[positionInGraph] = node;
 }
 
@@ -45,7 +48,7 @@ void ConstructChildren(int parentIndex)
 	Node parentNode = Graph[parentIndex];
 	int childPosition, currentLayer = parentNode.layer + 1;
 
-	memcpy(myCube, parentCube, sizeof myCube);
+	memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
 
 
 	for (childPosition = 1; childPosition < 13; childPosition++)
@@ -106,10 +109,8 @@ void ConstructChildren(int parentIndex)
 		}
 
 		ConstructNode(childPosition, currentLayer);
-		memcpy(parentCube, myCube, sizeof parentCube);
+		memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
 	}
-
-	currentLayer++;
 
 }
 
@@ -117,10 +118,28 @@ void ConstructChildren(int parentIndex)
 void GraphConstruction()
 {
 	ConstructRootNode();
+	ConstructChildren(0);
 
-	
-	ConstructChildren();
+	for (int graphIndex = 0; graphIndex < 7; graphIndex++)
+	{
+		int nextParentNode = 1 + (graphIndex * NUM_OF_CHILDREN);
+		ConstructChildren(nextParentNode);
+	}
 
 
 
+}
+
+
+while (!Graph[index].lowerHeuristic)
+{
+	DO ConstructChildren ON LEFTMOST Node
+	EVALUATE HeuristicValue
+
+	IF lowerHeuristic = FALSE
+		Continue
+
+	IF lowerHeuristic = TRUE
+		myCube = Graph[index].cube 
+		Delete elements in Graph[]
 }
