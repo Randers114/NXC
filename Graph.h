@@ -24,7 +24,7 @@ void ConstructRootNode()
 	Node node;
 	memcpy(myCube, node.cube, sizeof myCube);
 	node.heuristicValue = HeuristicValue();
-	node.layer = -1;
+	node.layer = 0;
 
 	Graph[0] = node;
 }
@@ -108,7 +108,7 @@ int ConstructChildren(int parentIndex)
 
 		}
 
-		ConstructNode(parentIndex + childPosition, currentLayer);
+		ConstructNode((parentNode.layer * NUM_OF_CHILDREN) + childPosition, currentLayer);
 		memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
 	}
 
@@ -124,8 +124,14 @@ void GraphConstruction()
 
 	while(!lowerHeuristic)
 	{
+		else if(nextParentNode == )
+		else if(nextParentNode > 84)
+		{
+			nextParentNode -= (NUM_OF_CHILDREN - 1);
+
+		}
 		nextParentNode += ConstructChildren(nextParentNode);
-		
+
 	}
 
 
