@@ -4,22 +4,29 @@
 #define NUM_OF_SQUARES_ON_FACE 10
 #define NUM_OF_CHILDREN 12
 
+#define LAST_IN_LAYER_1 0
+#define LAST_IN_LAYER_2 12
+#define LAST_IN_LAYER_3 24
+#define LAST_IN_LAYER_4	36
+#define LAST_IN_LAYER_5 48
+#define LAST_IN_LAYER_6 60
+#define LAST_IN_LAYER_7 72
+#define LAST_IN_LAYER_8 84
 
+#define MOVE_A_LAYER_UP 2 * NUM_OF_CHILDREN
 
 struct Node
 {
 	char cube[NUM_OF_FACES][NUM_OF_SQUARES_ON_FACE];
 	int heuristicValue;
 	int layer;
-	bool visited = FALSE;
-
 };
 
 Node Graph[104];
 
 // HVORFOR ER DET [6][10] OG IKKE [6][9]? FÅ DET HER PÅ PLADS.
 
-void ConstructRootNode()
+int ConstructRootNode()
 {
 	Node node;
 	memcpy(myCube, node.cube, sizeof myCube);
@@ -27,9 +34,11 @@ void ConstructRootNode()
 	node.layer = 0;
 
 	Graph[0] = node;
+	
+	return node.heuristicValue;
 }
 
-void ConstructNode(int position, int layer)
+int ConstructNode(int position, int layer)
 {
 	Node node;
 	memcpy(myCube, node.cube, sizeof myCube);
@@ -38,10 +47,12 @@ void ConstructNode(int position, int layer)
 
 	int positionInGraph = position;
 	Graph[positionInGraph] = node;
+
+	return node.heuristicValue;
 }
 
 
-int ConstructChildren(int parentIndex)
+int ConstructChildren(int parentIndex, int &heuristicValue[12])
 {
 	// Layer 0 is the layer where the children of the rootnode are situated.
 
@@ -108,7 +119,7 @@ int ConstructChildren(int parentIndex)
 
 		}
 
-		ConstructNode((parentNode.layer * NUM_OF_CHILDREN) + childPosition, currentLayer);
+		heuristicValue[childPosition -1] = ConstructNode((parentNode.layer * NUM_OF_CHILDREN) + childPosition, currentLayer);
 		memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
 	}
 
@@ -118,36 +129,86 @@ int ConstructChildren(int parentIndex)
 
 void GraphConstruction()
 {
-	int nextParentNode = 1;
-	ConstructRootNode();
+	int nextParentNode = 1, nextIn7Layer = 1, nextIn6Layer = 1, nextIn5Layer = 1 , nextIn4Layer = 1, nextIn3Layer = 1, nextIn2Layer = 1; 
+	const int resetLayerPosition = 1, heuristicRootValue;
+	int heuristicValue[12]; 
+	bool lowerHeuristic = FALSE; 
+	int path[10];
+	heuristicRootValue = ConstructRootNode();
 	ConstructChildren(0);
+	path[0] = 1;
 
 	while(!lowerHeuristic)
 	{
-		else if(nextParentNode == )
-		else if(nextParentNode > 84)
+		// moving to the next node in 7 layer
+		if(nextParentNode > LAST_IN_LAYER_8)
 		{
-			nextParentNode -= (NUM_OF_CHILDREN - 1);
+			nextParentNode -= (MOVE_A_LAYER_UP - nextIn7Layer);
+			nextIn7Layer++; 
+			 
+			// moving to the next node in 6 layer
+			if(nextParentNode > LAST_IN_LAYER_7)
+			{
+				nextIn7Layer = resetLayerPosition;
+				nextParentNode -= (MOVE_A_LAYER_UP - nextIn6Layer);
+				nextIn6Layer++;
+				
+				// moving to the next node in 5 layer
+				if(nextParentNode > LAST_IN_LAYER_6)
+				{
+					nextIn6Layer = resetLayerPosition;
+					nextParentNode -= (MOVE_A_LAYER_UP - nextIn5Layer); 
+					nextIn5Layer++;
+					
+					// moving to the next node in 4 layer
+					if(nextParentNode > LAST_IN_LAYER_5)
+					{
+						nextIn5Layer = resetLayerPosition;
+						nextParentNode -= (MOVE_A_LAYER_UP - nextIn4Layer);
+						nextIn4Layer++;
+						
+						// moving to the next node in 3 layer
+						if (nextParentNode > LAST_IN_LAYER_4)
+						{
+							 nextIn4Layer = resetLayerPosition;
+							 nextParentNode -= (MOVE_A_LAYER_UP - nextIn3Layer);
+							 nextIn3Layer++;
+							 
+							 // moving to the next node in 2 layer
+							 if(nextParentNode > LAST_IN_LAYER_3)
+							 {
+							 	nextIn3Layer = resetLayerPosition;
+							 	nextParentNode -= (MOVE_A_LAYER_UP - nextIn2Layer);
+							 	nextIn2Layer++;
+							 	path[1] = nextIn2Layer;
+							 }
+						}
+					}
+				}
+			}
 
 		}
-		nextParentNode += ConstructChildren(nextParentNode);
+		// the final path when the while loop is done
+		path[1] = nextIn2Layer;
+		path[2] = nextIn3Layer;
+		path[3] = nextIn4Layer;
+		path[4] = nextIn5Layer;
+		path[5] = nextIn6Layer;
+		path[6] = nextIn7Layer;
 
-	}
-
-
-
+		nextParentNode += ConstructChildren(nextParentNode, heuristicValue[12]);
+		
+		// checks if every child heuristic value is lower than the root value
+		for (int i = 0; i < NUM_OF_CHILDREN; ++i)
+		{
+			if(heuristicRootValue > heuristicValue[i])
+			{
+				path[7] = i;
+				lowerHeuristic = TRUE;
+			} 
+		}
+	
 }
 
 
-while (!Graph[index].lowerHeuristic)
-{
-	DO ConstructChildren ON LEFTMOST Node
-	EVALUATE HeuristicValue
-
-	IF lowerHeuristic = FALSE
-		Continue
-
-	IF lowerHeuristic = TRUE
-		myCube = Graph[index].cube 
-		Delete elements in Graph[]
-}
+// vi mangler at kunne sætte en ny root
