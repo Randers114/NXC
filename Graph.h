@@ -1,8 +1,8 @@
 #include "Heuristic.h"
 
-#define BOUND 8
+#define BOUND 10
 #define HIGHEST_HEURISTIC_VALUE 12
-#define GRAPH_SIZE 120
+#define GRAPH_SIZE 150
 
 #define RIGHT 1
 #define INVERTEDRIGHT 2
@@ -20,10 +20,10 @@
 
 struct Node 
 {
-	char cube[6][10];
 	int heuristicValue;
 	int parent;
 	int move;
+	char cube[6][10];
 };
 
 struct Values
@@ -33,18 +33,20 @@ struct Values
 	int layer;
 	int childChoose;
 	int currentArrayPosition;
-}
+};
 
 Node Graph[GRAPH_SIZE];
+
 int Path[BOUND * HIGHEST_HEURISTIC_VALUE];
 
 
-void ConstructNode(int currentPosition, int parent)
+void ConstructNode(int currentPosition, int parent, int move)
 {
 	Node node;
-	memcpy(myCube, node.cube, sizeof myCube);
+	memcpy(node.cube, myCube, sizeof myCube);
 	node.parent = parent;
 	node.heuristicValue = HeuristicValue();
+	node.move = move;
 	Graph[currentPosition] = node;
 }
 
@@ -53,7 +55,7 @@ void ConstructNodeChildren(int &currentPosition, int &layer)
 {	
 	int parent = currentPosition;
 	char rubix[6][10];
-	memcpy(myCube, rubix, sizeof myCube);
+	memcpy(rubix, myCube, sizeof myCube);
 	
 	for(int move = 1; move < 13; move++)
 	{
@@ -97,11 +99,16 @@ void ConstructNodeChildren(int &currentPosition, int &layer)
 				InvertedBackOperation();
 				break;
 		}
-		ConstructNode(currentPosition, parent);
-		Graph[currentPosition].move = move;
-		memcpy(rubix, myCube, sizeof rubix);
+		ConstructNode(currentPosition, parent, move);
+		
+		memcpy(myCube, rubix, sizeof rubix);
 	}	
+	ClearScreen();
+	NumOut(0, LCD_LINE1, layer);
 	layer++;
+	NumOut(0, LCD_LINE2, layer);
+	Wait(SEC_2);
+	ClearScreen();
 }
 
 int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
@@ -165,6 +172,12 @@ bool CheckBottomLayerLeaves(int &upperHeuristic, int &currentPosition, int &laye
 	{
 		if(Graph[currentPosition + leaf].heuristicValue < upperHeuristic)
 		{
+			// NumOut(0, LCD_LINE2, Graph[currentPosition + leaf].heuristicValue);
+			// NumOut(0, LCD_LINE3, upperHeuristic);
+			// NumOut(0, LCD_LINE4, Graph[currentPosition + leaf].move);
+			TextOut(0, LCD_LINE1, "Win5");
+			Wait(SEC_2);
+			ClearScreen();
 			currentPosition = currentPosition + leaf;
 			
 			PrepareNewTree(upperHeuristic, currentPosition, layer, childChoose, currentArrayPosition);
@@ -175,6 +188,9 @@ bool CheckBottomLayerLeaves(int &upperHeuristic, int &currentPosition, int &laye
 		{
 			if(leaf == 11)
 			{
+				TextOut(0, LCD_LINE1, "Win");
+				Wait(SEC_2);
+				ClearScreen();
 				currentPosition = Graph[currentPosition + leaf].parent;
 				lastLeaf = true;
 			} 
@@ -204,12 +220,10 @@ bool CheckHeuristic(int &upperHeuristic, int &currentPosition, int &layer, int &
 bool MoveUpInLayers(int &upperHeuristic, int &currentPosition, int &layer, int &childChoose, int &currentArrayPosition)
 {
 	bool movingUp = false;
+	int tempPosition;
 	Node tempNode;
 	
-	if(CheckHeuristic(upperHeuristic, currentPosition, layer, childChoose, currentArrayPosition))
-	{
-		//do punk ass shit
-	} else
+	if(!CheckHeuristic(upperHeuristic, currentPosition, layer, childChoose, currentArrayPosition))
 	{
 		if(Graph[currentPosition].move != 12)
 		{
@@ -242,27 +256,46 @@ bool MoveUpInLayers(int &upperHeuristic, int &currentPosition, int &layer, int &
 void MainGraphConstruction()
 {
 	int currentPosition = 0, layer = 0, childChoose = 0, upperHeuristic = HIGHEST_HEURISTIC_VALUE, currentArrayPosition = 0;
+	int counter = 0, uu = 0;
 	
 	bool lastLeafReached; 
 	
-	ConstructNode(currentPosition, -1);
-	ConstructNodeChildren(currentPosition, layer);
 	
-	upperHeuristic = Graph[0].heuristicValue;
-
+	ConstructNode(currentPosition, -1, 0);
+	
+	
+	upperHeuristic = Graph[0].heuristicValue;	
+	
+		
 	while(upperHeuristic != 0)
 	{
 		for(layer; layer < BOUND;)
 		{
+			NumOut(0, LCD_LINE1, Graph[childChoose].move);
+			NumOut(0, LCD_LINE3, FreeMemory());
+			NumOut(0, LCD_LINE2, layer);
+			Wait(SEC_2);
+			ClearScreen();
+			
 			Node newParent = Graph[childChoose];
-		
-			childChoose = layer * (12 - newParent.move) + 1;
-		
-			memcpy(newParent.cube, myCube, sizeof newParent.cube);
+			
+			childChoose = layer * 12 + 1;
+			
+			memcpy(myCube, newParent.cube, sizeof newParent.cube);
 			ConstructNodeChildren(currentPosition, layer);
+			
+			NumOut(0, LCD_LINE5, layer);
 		}
 		
+		// TextOut(0, LCD_LINE1, "Hey2");
+		// NumOut(0, LCD_LINE2, childChoose);
+		// NumOut(0, LCD_LINE3, counter);
+		// NumOut(0, LCD_LINE4, layer);
+		// Wait(SEC_2);
+		// ClearScreen();
+		
 		lastLeafReached = CheckBottomLayerLeaves(upperHeuristic, currentPosition, layer, childChoose, currentArrayPosition);
+		
 		
 		
 		if(lastLeafReached)
@@ -278,14 +311,17 @@ void MainGraphConstruction()
 			//delete the parent node
 			//refactor array
 		}
+		
+		counter++;
 	}
 	
-		
-		
-		
+	PlaySound(SOUND_UP);
 	
+	// NumOut(0, LCD_LINE1, Path[0]);
+	// NumOut(0, LCD_LINE2, Path[1]);
+	// NumOut(0, LCD_LINE3, Path[2]);
 	
-	
+		
 	// Problems
 	// How to move several layers up at a time (possibly solved) (loop in loop maybe impossible)
 	// How to refactor the array (use - move) 

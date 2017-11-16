@@ -1,6 +1,24 @@
-//#include "Heuristic.h"
 #include "Graph.h"
+
+
 task main()
 {
+char top[10] = { 'r', 'y', 'b', 'o', 'y', 'y', 'y', 'o', 'y'};
+char right[10] = { 'b', 'b', 'b', 'b', 'b', 'b', 'y', 'g', 'o'};
+char front[10] = { 'r', 'y', 'g', 'b', 'o', 'o', 'o', 'o', 'o'};
+char back[10] = { 'r', 'r', 'r', 'r', 'r', 'r', 'g', 'r', 'o'};
+char left[10] = { 'y', 'g', 'b', 'g', 'g', 'y', 'g', 'g', 'g'};
+char bottom[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
 
+
+InitializeSide(top, TOP_FACE);
+InitializeSide(right, RIGHT_FACE);
+InitializeSide(front, FRONT_FACE);
+InitializeSide(back, BACK_FACE);
+InitializeSide(left, LEFT_FACE);
+InitializeSide(bottom, BOTTOM_FACE);
+
+
+     //Wait(SEC_5);
+     MainGraphConstruction();
 }

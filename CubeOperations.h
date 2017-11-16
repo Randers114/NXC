@@ -124,21 +124,21 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 	/* swap colors on bot */
 	RotateFaceRightOperation(BOTTOM_FACE);
 
-	/* rotate the 4 rows that get rotated */
-	/* front 7,8,9 to left 7,8,9 */
+	// /* rotate the 4 rows that get rotated */
+	// /* front 7,8,9 to left 7,8,9 */
 	for(int faceSquare = 6; faceSquare < 9; faceSquare++)
 	{
 		SwapBetweenFacesOperation(FRONT_FACE, faceSquare, LEFT_FACE, faceSquare);
 	}
 	
-	/* swap 7,8,9 left with 3,2,1 back */
+	// /* swap 7,8,9 left with 3,2,1 back */
 	for(int leftFaceSquare = 6, backFaceSquare = 2; leftFaceSquare < 9; leftFaceSquare++, backFaceSquare--)
 	{
 		SwapBetweenFacesOperation(LEFT_FACE, leftFaceSquare, BACK_FACE, backFaceSquare);
 	}
 
-	/* swap 3,2,1 back with 3,2,1 right */
-	for(int faceSquare = 2; faceSquare < 9; faceSquare--)
+	// /* swap 3,2,1 back with 3,2,1 right */
+	for(int faceSquare = 2; faceSquare >= 0; faceSquare--)
 	{
 		SwapBetweenFacesOperation(BACK_FACE, faceSquare, RIGHT_FACE, faceSquare);
 	}
