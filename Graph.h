@@ -5,14 +5,14 @@
 #define NUM_OF_SQUARES_ON_FACE 10
 #define NUM_OF_CHILDREN 12
 
-#define LAST_IN_LAYER_1 0
-#define LAST_IN_LAYER_2 12
-#define LAST_IN_LAYER_3 24
-#define LAST_IN_LAYER_4	36
-#define LAST_IN_LAYER_5 48
-#define LAST_IN_LAYER_6 60
-#define LAST_IN_LAYER_7 72
-#define LAST_IN_LAYER_8 84
+#define LAST_IN_LAYER_1 12
+#define LAST_IN_LAYER_2 24
+#define LAST_IN_LAYER_3 36
+#define LAST_IN_LAYER_4	48
+#define LAST_IN_LAYER_5 60
+#define LAST_IN_LAYER_6 72
+#define LAST_IN_LAYER_7 84
+#define LAST_IN_LAYER_8 96
 
 #define MOVE_A_LAYER_UP 2 * NUM_OF_CHILDREN
 
@@ -53,7 +53,7 @@ int ConstructNode(int position, int layer)
 }
 
 
-int ConstructChildren(int parentIndex, int heuristicValue[])
+int ConstructChildren(int parentIndex, int heuristicValue[], int &currentLayer)
 {
 	// Layer 0 is the layer where the children of the rootnode are situated.
 
@@ -130,14 +130,13 @@ int ConstructChildren(int parentIndex, int heuristicValue[])
 
 void GraphConstruction()
 {
-	int nextParentNode = 1, nextIn7Layer = 1, nextIn6Layer = 1, nextIn5Layer = 1 , nextIn4Layer = 1, nextIn3Layer = 1, nextIn2Layer = 1;
+	int nextParentNode = 0, nextIn7Layer = 1, nextIn6Layer = 1, nextIn5Layer = 1 , nextIn4Layer = 1, nextIn3Layer = 1, nextIn2Layer = 1, nextIn1Layer = 1;
 	const int resetLayerPosition = 1;
-    int heuristicRootValue;
+    int heuristicRootValue, currentLayer;
 	int heuristicValue[];
 	bool lowerHeuristic = FALSE;
 	int path[];
 	heuristicRootValue = ConstructRootNode();
-	ConstructChildren(0, heuristicValue);
 	path[0] = 1;
 
 	while(!lowerHeuristic)
@@ -182,8 +181,16 @@ void GraphConstruction()
 							 	nextIn3Layer = resetLayerPosition;
 							 	nextParentNode -= (MOVE_A_LAYER_UP - nextIn2Layer);
 							 	nextIn2Layer++;
-							 	path[1] = nextIn2Layer;
+
+							 	// move to the next node in 1 layer
+							 	if(nextParentNode > LAST_IN_LAYER_2)
+							 	{
+							 		nextIn2Layer = resetLayerPosition;
+							 		nextParentNode -= (MOVE_A_LAYER_UP - nextIn1Layer);
+							 		nextIn1Layer++;
+							 	}
 							 }
+
 						}
 					}
 				}
@@ -191,21 +198,29 @@ void GraphConstruction()
 
 		}
 		// the final path when the while loop is done
+		path[0] = nextIn1Layer;
 		path[1] = nextIn2Layer;
 		path[2] = nextIn3Layer;
 		path[3] = nextIn4Layer;
 		path[4] = nextIn5Layer;
 		path[5] = nextIn6Layer;
 		path[6] = nextIn7Layer;
-
-		nextParentNode += ConstructChildren(nextParentNode, heuristicValue[12]);
-
+		if (nextParentNode == 0)
+		{
+			ConstructChildren(nextParentNode, heuristicValue, currentLayer);
+			nextParentNode++;
+		}
+		else
+		{
+			nextParentNode += ConstructChildren(nextParentNode, heuristicValue, currentLayer);
+		}
 		// checks if every child heuristic value is lower than the root value
 		for (int i = 0; i < NUM_OF_CHILDREN; ++i)
 		{
 			if(heuristicRootValue > heuristicValue[i])
 			{
-				path[7] = i;
+				path[currentLayer - 1] = i+1;
+				path[currentLayer] = 
 				lowerHeuristic = TRUE;
 			}
 		}
