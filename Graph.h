@@ -1,3 +1,4 @@
+
 #include "Heuristic.h"
 
 #define NUM_OF_FACES 6
@@ -29,19 +30,19 @@ Node Graph[104];
 int ConstructRootNode()
 {
 	Node node;
-	memcpy(myCube, node.cube, sizeof myCube);
+	memcpy(node.Cube, myCube, sizeof myCube);
 	node.heuristicValue = HeuristicValue();
 	node.layer = 0;
 
 	Graph[0] = node;
-	
+
 	return node.heuristicValue;
 }
 
 int ConstructNode(int position, int layer)
 {
 	Node node;
-	memcpy(myCube, node.cube, sizeof myCube);
+	memcpy(node.Cube, myCube, sizeof myCube);
 	node.heuristicValue = HeuristicValue();
 	node.layer = layer;
 
@@ -52,14 +53,14 @@ int ConstructNode(int position, int layer)
 }
 
 
-int ConstructChildren(int parentIndex, int &heuristicValue[12])
+int ConstructChildren(int parentIndex, int heuristicValue[])
 {
 	// Layer 0 is the layer where the children of the rootnode are situated.
 
 	Node parentNode = Graph[parentIndex];
 	int childPosition, currentLayer = parentNode.layer + 1;
 
-	memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
+	memcpy(myCube, parentNode.cube, sizeof parentNode.cube);
 
 
 	for (childPosition = 1; childPosition < 13; childPosition++)
@@ -119,8 +120,8 @@ int ConstructChildren(int parentIndex, int &heuristicValue[12])
 
 		}
 
-		heuristicValue[childPosition -1] = ConstructNode((parentNode.layer * NUM_OF_CHILDREN) + childPosition, currentLayer);
-		memcpy(parentNode.cube, myCube, sizeof parentNode.cube);
+		heuristicValue[childPosition -1] = ConstructNode((parentNode.layer * NUM_OF_CHILDREN) + childPosition, currentLayer);  // Construct the child-node.
+		memcpy(myCube, parentNode.cube, sizeof parentNode.cube);  // Reset the parent-node.
 	}
 
 	return childPosition;
@@ -129,13 +130,14 @@ int ConstructChildren(int parentIndex, int &heuristicValue[12])
 
 void GraphConstruction()
 {
-	int nextParentNode = 1, nextIn7Layer = 1, nextIn6Layer = 1, nextIn5Layer = 1 , nextIn4Layer = 1, nextIn3Layer = 1, nextIn2Layer = 1; 
-	const int resetLayerPosition = 1, heuristicRootValue;
-	int heuristicValue[12]; 
-	bool lowerHeuristic = FALSE; 
-	int path[10];
+	int nextParentNode = 1, nextIn7Layer = 1, nextIn6Layer = 1, nextIn5Layer = 1 , nextIn4Layer = 1, nextIn3Layer = 1, nextIn2Layer = 1;
+	const int resetLayerPosition = 1;
+    int heuristicRootValue;
+	int heuristicValue[];
+	bool lowerHeuristic = FALSE;
+	int path[];
 	heuristicRootValue = ConstructRootNode();
-	ConstructChildren(0);
+	ConstructChildren(0, heuristicValue);
 	path[0] = 1;
 
 	while(!lowerHeuristic)
@@ -144,36 +146,36 @@ void GraphConstruction()
 		if(nextParentNode > LAST_IN_LAYER_8)
 		{
 			nextParentNode -= (MOVE_A_LAYER_UP - nextIn7Layer);
-			nextIn7Layer++; 
-			 
+			nextIn7Layer++;
+
 			// moving to the next node in 6 layer
 			if(nextParentNode > LAST_IN_LAYER_7)
 			{
 				nextIn7Layer = resetLayerPosition;
 				nextParentNode -= (MOVE_A_LAYER_UP - nextIn6Layer);
 				nextIn6Layer++;
-				
+
 				// moving to the next node in 5 layer
 				if(nextParentNode > LAST_IN_LAYER_6)
 				{
 					nextIn6Layer = resetLayerPosition;
-					nextParentNode -= (MOVE_A_LAYER_UP - nextIn5Layer); 
+					nextParentNode -= (MOVE_A_LAYER_UP - nextIn5Layer);
 					nextIn5Layer++;
-					
+
 					// moving to the next node in 4 layer
 					if(nextParentNode > LAST_IN_LAYER_5)
 					{
 						nextIn5Layer = resetLayerPosition;
 						nextParentNode -= (MOVE_A_LAYER_UP - nextIn4Layer);
 						nextIn4Layer++;
-						
+
 						// moving to the next node in 3 layer
 						if (nextParentNode > LAST_IN_LAYER_4)
 						{
 							 nextIn4Layer = resetLayerPosition;
 							 nextParentNode -= (MOVE_A_LAYER_UP - nextIn3Layer);
 							 nextIn3Layer++;
-							 
+
 							 // moving to the next node in 2 layer
 							 if(nextParentNode > LAST_IN_LAYER_3)
 							 {
@@ -197,7 +199,7 @@ void GraphConstruction()
 		path[6] = nextIn7Layer;
 
 		nextParentNode += ConstructChildren(nextParentNode, heuristicValue[12]);
-		
+
 		// checks if every child heuristic value is lower than the root value
 		for (int i = 0; i < NUM_OF_CHILDREN; ++i)
 		{
@@ -205,10 +207,7 @@ void GraphConstruction()
 			{
 				path[7] = i;
 				lowerHeuristic = TRUE;
-			} 
+			}
 		}
-	
+    }
 }
-
-
-// vi mangler at kunne sætte en ny root
