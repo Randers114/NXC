@@ -1,8 +1,8 @@
 #include "Heuristic.h"
 
-#define BOUND 10
+#define BOUND 8
 #define HIGHEST_HEURISTIC_VALUE 12
-#define GRAPH_SIZE 150
+#define GRAPH_SIZE 120
 
 #define RIGHT 1
 #define INVERTEDRIGHT 2
@@ -55,11 +55,35 @@ void ConstructNodeChildren(int &currentPosition, int &layer)
 {	
 	int parent = currentPosition;
 	char rubix[6][10];
+	
+	// ClearScreen();
+	// TextOut(0, LCD_LINE1, "args");
+	// NumOut(0, LCD_LINE2, layer);
+	// NumOut(0, LCD_LINE3, currentPosition);
+	// Wait(SEC_2);
+	// ClearScreen();
+	
 	memcpy(rubix, myCube, sizeof myCube);
 	
 	for(int move = 1; move < 13; move++)
 	{
 		currentPosition++;
+		if(layer >= 6)
+		{
+			int ps, ds;
+			TextOut(0, LCD_LINE1, "args");
+			NumOut(0, LCD_LINE2, currentPosition);
+			NumOut(0, LCD_LINE3, move);
+			Wait(SEC_2);
+	 		ClearScreen();
+			
+			int result = GetMemoryInfo(true, ps, ds);
+			NumOut(0, LCD_LINE1, ps);
+			NumOut(0, LCD_LINE2, ds);
+			Wait(SEC_5);
+			ClearScreen();
+			Wait(SEC_1);
+		}
 		switch(move)
 		{
 			case RIGHT:
@@ -193,6 +217,11 @@ bool CheckBottomLayerLeaves(int &upperHeuristic, int &currentPosition, int &laye
 				ClearScreen();
 				currentPosition = Graph[currentPosition + leaf].parent;
 				lastLeaf = true;
+				
+				NumOut(0, LCD_LINE1, currentPosition);
+				NumOut(0, LCD_LINE2, layer);
+				Wait(SEC_2);
+				ClearScreen();
 			} 
 			
 			//Delete the node
@@ -287,12 +316,12 @@ void MainGraphConstruction()
 			NumOut(0, LCD_LINE5, layer);
 		}
 		
-		// TextOut(0, LCD_LINE1, "Hey2");
+		TextOut(0, LCD_LINE1, "All children constructed");
 		// NumOut(0, LCD_LINE2, childChoose);
 		// NumOut(0, LCD_LINE3, counter);
 		// NumOut(0, LCD_LINE4, layer);
-		// Wait(SEC_2);
-		// ClearScreen();
+		Wait(SEC_2);
+		ClearScreen();
 		
 		lastLeafReached = CheckBottomLayerLeaves(upperHeuristic, currentPosition, layer, childChoose, currentArrayPosition);
 		
@@ -300,6 +329,9 @@ void MainGraphConstruction()
 		
 		if(lastLeafReached)
 		{
+			TextOut(0, LCD_LINE1, "Movup");
+			Wait(SEC_2);
+			ClearScreen();
 			bool movingUp = true;
 			
 			while(movingUp)
