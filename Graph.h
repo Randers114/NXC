@@ -20,12 +20,13 @@
 
 struct Node
 {
-	char cube[NUM_OF_FACES][NUM_OF_SQUARES_ON_FACE];
 	int heuristicValue;
 	int layer;
+	char cube[NUM_OF_FACES][NUM_OF_SQUARES_ON_FACE];
 };
 
 Node Graph[100];
+int heuristicValue[12] = {WORST_HEURISTIC_VALUE};
 
 // HVORFOR ER DET [6][10] OG IKKE [6][9]? FÅ DET HER PÅ PLADS.
 
@@ -35,7 +36,6 @@ int ConstructRootNode()
 	memcpy(node.cube, myCube, sizeof myCube);
 	node.heuristicValue = HeuristicValue();
 	node.layer = 0;
-
 	Graph[0] = node;
 
 	return node.heuristicValue;
@@ -44,26 +44,25 @@ int ConstructRootNode()
 int ConstructNode(int position, int layer)
 {
 	Node node;
-	memcpy(node.cube, myCube, sizeof myCube);
+	memcpy(node.cube, myCube, sizeof(myCube));
 	node.heuristicValue = HeuristicValue();
 	node.layer = layer;
 
-	int positionInGraph = position;
-	Graph[positionInGraph] = node;
+	Graph[position] = node;
 
 	return node.heuristicValue;
 }
 
 
-int ConstructChildren(int parentIndex, int heuristicValue[], int &currentLayer)
+int ConstructChildren(int parentIndex, int &currentLayer)
 {
 	// Layer 0 is the layer where the children of the rootnode are situated.
 
 	Node parentNode = Graph[parentIndex];
-	int childPosition;
+	int childPosition, valueIndex = 0;
     currentLayer = parentNode.layer + 1;
 
-	memcpy(myCube, parentNode.cube, sizeof parentNode.cube);
+	memcpy(myCube, parentNode.cube, sizeof(parentNode.cube));
 
 
 	for (childPosition = 1; childPosition < 13; childPosition++)
@@ -119,15 +118,20 @@ int ConstructChildren(int parentIndex, int heuristicValue[], int &currentLayer)
 				break;
 
 			default:
+				ClearScreen();
+				TextOut(0, LCD_LINE2, "Default-switch");
+				Wait(2000);
 				break;
 
 		}
 
-		heuristicValue[childPosition -1] = ConstructNode((parentNode.layer * NUM_OF_CHILDREN) + childPosition, currentLayer);  // Construct the child-node.
-		memcpy(myCube, parentNode.cube, sizeof parentNode.cube);  // Reset the parent-node.
+		heuristicValue[valueIndex] = ConstructNode(((parentNode.layer * NUM_OF_CHILDREN) + childPosition), currentLayer);  // Construct the child-node.
+
+		memcpy(myCube, parentNode.cube, sizeof(parentNode.cube));  // Reset the parent-node.
+		valueIndex++;
 	}
 
-	return childPosition;
+	return NUM_OF_CHILDREN;
 }
 
 
@@ -136,8 +140,9 @@ int ConstructNodesFromRoot(int path[])
 	int nextParentNode = 0, nextIn7Layer = 1, nextIn6Layer = 1, nextIn5Layer = 1 , nextIn4Layer = 1, nextIn3Layer = 1, nextIn2Layer = 1, nextIn1Layer = 1;
 	const int resetLayerPosition = 1;
     int heuristicRootValue, currentLayer, newHeuristicRootValue;
-	int heuristicValue[];
+
 	bool lowerHeuristic = FALSE;
+
 	heuristicRootValue = ConstructRootNode();
 
 	while(!lowerHeuristic)
@@ -145,6 +150,10 @@ int ConstructNodesFromRoot(int path[])
 		// moving to the next node in 7 layer
 		if(nextParentNode > LAST_IN_LAYER_8)
 		{
+			ClearScreen();
+			TextOut(0, LCD_LINE2, "In first if");
+			Wait(2000);
+
 			nextParentNode -= (MOVE_A_LAYER_UP - nextIn7Layer);
 			nextIn7Layer++;
 
@@ -198,6 +207,7 @@ int ConstructNodesFromRoot(int path[])
 			}
 
 		}
+
 		// the final path when the while loop is done
 		path[0] = nextIn1Layer;
 		path[1] = nextIn2Layer;
@@ -209,26 +219,40 @@ int ConstructNodesFromRoot(int path[])
 
 		if (nextParentNode == 0)
 		{
-			ConstructChildren(nextParentNode, heuristicValue, currentLayer);
+			ConstructChildren(nextParentNode, currentLayer);
 			nextParentNode++;
 		}
+
 		else
 		{
-			nextParentNode += ConstructChildren(nextParentNode, heuristicValue, currentLayer);
+			nextParentNode += ConstructChildren(nextParentNode, currentLayer);
 		}
 
 		// checks if every child heuristic value is lower than the root value
-		for (int i = 0; i < NUM_OF_CHILDREN; ++i)
+		for (int i = 0; i < NUM_OF_CHILDREN; i++)
 		{
+
 			if(heuristicRootValue > heuristicValue[i])
 			{
+				ClearScreen();
+				TextOut(0, LCD_LINE2, "In if");
+				Wait(2000);
 				path[currentLayer - 1] = i+1;
 				path[currentLayer] = MOVES_STOPBLOCK;
 				newHeuristicRootValue = heuristicValue[i];
 				lowerHeuristic = TRUE;
 			}
 		}
+
+		ClearScreen();
+		TextOut(0, LCD_LINE2, "nextParentNode");
+		NumOut(0, LCD_LINE3, nextParentNode);
+		Wait(2000);
     }
+
+    ClearScreen();
+	TextOut(0, LCD_LINE2, "Return CNFR");
+	Wait(2000);
 
     return newHeuristicRootValue;
 }
@@ -241,19 +265,44 @@ void GraphConstruction()
 
 	while (heuristicValue != 0)
 	{
+		ClearScreen();
+		TextOut(0, LCD_LINE2, "While GraphConstruction");
+		Wait(2000);
 		heuristicValue = ConstructNodesFromRoot(pathFromCurrentRoot);
+
+		ClearScreen();
+		TextOut(0, LCD_LINE2, "After HV return");
+		Wait(2000);
 
 		for (int i = 0; i < 8; i++)
 		{
-			completePath[ArrayLen(completePath)] = pathFromCurrentRoot[i];
-
-			if (pathFromCurrentRoot[i+1] == MOVES_STOPBLOCK)
+			if (pathFromCurrentRoot[i] == MOVES_STOPBLOCK)
 			{	
 				i = 8;
 			}
+			else
+			{
+				completePath[ArrayLen(completePath)] = pathFromCurrentRoot[i];
+			}
 		}
 
+		ClearScreen();
+		TextOut(0, LCD_LINE3, "Graph While");
+		NumOut(0, LCD_LINE2, heuristicValue);
+		Wait(2000);
 	}
 
+
+	ClearScreen();
+	TextOut(0, LCD_LINE2, "Program Correct?");
+	Wait(2000);
+
+	for (int i = 0; i < ArrayLen(completePath); ++i) //Only a completePath[] printer. Should be removed at some point after it all works.
+	{
+		ClearScreen();
+		NumOut(0, LCD_LINE2, completePath[i]);
+		Wait(2000);
+	}
+	
 }
 

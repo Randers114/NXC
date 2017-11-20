@@ -138,7 +138,7 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 	}
 
 	/* swap 3,2,1 back with 3,2,1 right */
-	for(int faceSquare = 2; faceSquare < 9; faceSquare--)
+	for(int faceSquare = 2; faceSquare >= 0; faceSquare--)
 	{
 		SwapBetweenFacesOperation(BACK_FACE, faceSquare, RIGHT_FACE, faceSquare);
 	}
