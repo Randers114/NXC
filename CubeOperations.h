@@ -11,11 +11,10 @@ void ORMyCube(char ORCube[  ][])
 {
 	for(int j = 0; j < 6; j++)
 	{
-    for(int i = 0; i < 9; i++)
-    {
-      myCube[j][i] = ORCube[j][i];
-    }
-		//memcpy(myCube[i], Testcube1.sides[i], 9);
+		for(int i = 0; i < 9; i++)
+		{
+			myCube[j][i] = ORCube[j][i];
+		}
 	}
 }
  
@@ -150,7 +149,7 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 	}
 
 	/* swap 3,2,1 back with 3,2,1 right */
-	for(int faceSquare = 2; faceSquare < 9; faceSquare--)
+	for(int faceSquare = 2; faceSquare >= 0; faceSquare--)
 	{
 		SwapBetweenFacesOperation(BACK_FACE, faceSquare, RIGHT_FACE, faceSquare);
 	}

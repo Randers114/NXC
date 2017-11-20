@@ -1,12 +1,17 @@
 #include "Graph.h"
 task main()
 {
-char top[10] = { 'b', 'g', 'y', 'g', 'w', 'g', 'g', 'o', 'r'};
-char right[10] = { 'y', 'r', 'g', 'w', 'r', 'y', 'o', 'r', 'g'};
-char front[10] = { 'o', 'y', 'w', 'w', 'g', 'b', 'w', 'r', 'o'};
-char back[10] = { 'g', 'w', 'r', 'r', 'b', 'o', 'w', 'y', 'b'};
-char left[10] = { 'r', 'o', 'w', 'y', 'o', 'g', 'r', 'o', 'b'};
-char bottom[10] = { 'o', 'w', 'y', 'b', 'y', 'b', 'y', 'b', 'b'};
+char top[10] = { 'b', 'y', 'y', 'o', 'o', 'y', 'o', 'y', 'w'};
+char right[10] = { 'w', 'w', 'g', 'g', 'g', 'b', 'o', 'b', 'b'};
+char front[10] = { 'g', 'g', 'r', 'o', 'y', 'r', 'y', 'w', 'W'};
+char back[10] = { 'g', 'g', 'o', 'o', 'w', 'w', 'r', 'r', 'b'};
+char left[10] = { 'y', 'y', 'y', 'g', 'b', 'b', 'w', 'w', 'r'};
+char bottom[10] = { 'g', 'o', 'o', 'r', 'r', 'b', 'r', 'r', 'b'};
+
+// 2 layers at bot - yellow top blue front - works
+
+//2 layers top - white top blue front - works
+
 
 
 InitializeSide(top, TOP_FACE);
@@ -15,10 +20,26 @@ InitializeSide(front, FRONT_FACE);
 InitializeSide(back, BACK_FACE);
 InitializeSide(left, LEFT_FACE);
 InitializeSide(bottom, BOTTOM_FACE);
-     
-     int heuval = HeuristicValue();
-     
-     while(BESTHEURISTIC != 0)
-          RootNodeMethod(myCube);
+
+BESTHEURISTIC = HeuristicValue();
+
+while(BESTHEURISTIC != 0)
+{
+    RootNodeMethod(myCube);
+    PlaySound(SOUND_CLICK);
+}
+    PlaySound(SOUND_UP);
+TextOut(0,LCD_LINE6,"Path: " );
+for(int i = 0; i<ArrayLen(FullPath);i++)
+{
+	if(FullPath[i] == "R" || FullPath[i] == "IR"
+	|| FullPath[i] == "L" || FullPath[i] == "IL"
+	|| FullPath[i] == "T" || FullPath[i] == "IT"
+	|| FullPath[i] == "B" || FullPath[i] == "IB"
+	|| FullPath[i] == "F" || FullPath[i] == "IF"
+	|| FullPath[i] == "V" || FullPath[i] == "IV")
+        TextOut(8*i,LCD_LINE7,FullPath[i]);
+}
+Wait(50000);
 }
 

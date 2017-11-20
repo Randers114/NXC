@@ -1,0 +1,12 @@
+Make 1 be the value that is returned all the way thorugh if no better heuristic was found.
+
+			?? is this even possible? ??
+
+Make removing use of PathReducer in all files
+
+Make going a layer deeper into a method rather than same code all over 
+			
+			?? is this possible? ??
+			
+			
+

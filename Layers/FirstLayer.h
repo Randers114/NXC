@@ -1,90 +1,299 @@
 #include "/Layers/SecondLayer.h"
 
+/*
+	R = Right
+	IR = Inverted Right
+	L = Left
+	IL = Inverted Left
+	T = Top
+	IT = Inverted Top
+	B = Bot
+	IB = Inverted Bot
+	F = Front
+	IF = Inverted Front
+	V = Back (v for vaek)
+	IV = Inverted Back ( V for vaek)
+*/
+
 int FirstLayer(int move, char parentcube[][])
 {
 	switch (move)
 	{
 	case 1:
-	strcat(FullPath, "R");
+	FullPath[FullPathHead] =  "R";
 	FullPathHead++;
 	ORMyCube(parentcube);
 	RightOperation();
-	if(HeuristicValue()<BESTHEURISTIC)
-	{
-		BESTHEURISTIC = HeuristicValue();
-		return 0;
-	}
-	for(int i = 0; i<12;i++)
-		if(SecondLayer(i, parentcube) == 0)
-			return 0;
-	FullPath[FullPathHead] = "\0";
-	FullPathHead--;
-	break;
-	case 2:
-	ORMyCube(parentcube);
-	strcat(FullPath, "IR");
-	FullPathHead++;
-	ORMyCube(parentcube);
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue();
-		// reset from this node
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
 	}
-	FullPath[FullPathHead-1] = "\0";
-	FullPath[FullPathHead] = "\0";
-	FullPathHead--;
-	FullPathHead--;
-	//SaveCube();
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
+	break;
+	case 2:
+	FullPath[FullPathHead] =  "IR";
+	FullPathHead++;
+	ORMyCube(parentcube);
+	InvertedRightOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 3:
+	FullPath[FullPathHead] =  "L";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	LeftOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 4:
+	FullPath[FullPathHead] =  "IL";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	InvertedLeftOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 5:
+	FullPath[FullPathHead] =  "T";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	TopOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 6:
+	FullPath[FullPathHead] =  "IT";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	InvertedTopOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 7:
+	FullPath[FullPathHead] =  "B";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	BottomOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 8:
+	FullPath[FullPathHead] =  "IB";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	InvertedBottomOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 9:
+	FullPath[FullPathHead] =  "F";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	FrontOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 10:
+	FullPath[FullPathHead] =  "IF";
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	InvertedFrontOperation();
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 11:
+	FullPath[FullPathHead] =  "V"; 
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	BackOperation();	
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	case 12:
+	FullPath[FullPathHead] =  "IV"; 
+	FullPathHead++;
 	ORMyCube(parentcube);
-	
-	//SaveCube();
+	InvertedBackOperation(); 
+	if(HeuristicValue() < BESTHEURISTIC)
+	{
+		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		return 0;
+	}
+	else
+	{
+		for(int i = 1; i<=12;i++)
+		{
+			if(SecondLayer(i, myCube) == 0)
+			{
+				return 0;	
+			}
+		}
+		PathReducer();
+		return 1;
+	}
 	break;
 	}
 }
