@@ -3,12 +3,12 @@
 
 task main()
 {
-char top[10] = { 'r', 'y', 'b', 'o', 'y', 'y', 'y', 'o', 'y'};
-char right[10] = { 'b', 'b', 'b', 'b', 'b', 'b', 'y', 'g', 'o'};
-char front[10] = { 'r', 'y', 'g', 'b', 'o', 'o', 'o', 'o', 'o'};
-char back[10] = { 'r', 'r', 'r', 'r', 'r', 'r', 'g', 'r', 'o'};
-char left[10] = { 'y', 'g', 'b', 'g', 'g', 'y', 'g', 'g', 'g'};
-char bottom[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
+char top[10] = { 'y', 'o', 'g', 'b', 'w', 'r', 'o', 'g', 'w'};
+char right[10] = { 'o', 'w', 'g', 'o', 'r', 'y', 'o', 'g', 'g'};
+char front[10] = { 'b', 'o', 'o', 'y', 'g', 'b', 'r', 'y', 'r'};
+char back[10] = { 'y', 'w', 'y', 'g', 'b', 'w', 'r', 'b', 'y'};
+char left[10] = { 'g', 'r', 'w', 'y', 'o', 'o', 'r', 'w', 'b'};
+char bottom[10] = { 'w', 'r', 'w', 'r', 'y', 'b', 'b', 'g', 'b'};
 
 
 InitializeSide(top, TOP_FACE);
@@ -17,6 +17,28 @@ InitializeSide(front, FRONT_FACE);
 InitializeSide(back, BACK_FACE);
 InitializeSide(left, LEFT_FACE);
 InitializeSide(bottom, BOTTOM_FACE);
+
+
+
+
+
+
+
+
+//char top[10] = { 'g', 'o', 'o', 'o', 'w', 'w', 'b', 'w', 'w'};
+//char right[10] = { 'o', 'b', 'b', 'o', 'r', 'r', 'g', 'r', 'r'};
+//char front[10] = { 'o', 'g', 'g', 'y', 'g', 'g', 'y', 'y', 'w'};
+//char back[10] = { 'y', 'b', 'b', 'g', 'b', 'b', 'y', 'w', 'w'};
+//char left[10] = { 'r', 'y', 'y', 'o', 'o', 'g', 'r', 'b', 'g'};
+//char bottom[10] = { 'o', 'r', 'r', 'y', 'y', 'r', 'b', 'w', 'w'};
+
+
+//InitializeSide(top, TOP_FACE);
+//InitializeSide(right, RIGHT_FACE);
+//InitializeSide(front, FRONT_FACE);
+//InitializeSide(back, BACK_FACE);
+//InitializeSide(left, LEFT_FACE);
+//InitializeSide(bottom, BOTTOM_FACE);
 
 
      //Wait(SEC_5);
