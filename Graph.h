@@ -147,22 +147,25 @@ int ConstructNodesFromRoot(int path[])
 
 	while(!lowerHeuristic)
 	{
+		ClearScreen();
+		TextOut(0, LCD_LINE2, "Start while");
+		Wait(1000);
 		// moving to the next node in 7 layer
-		if(nextParentNode > LAST_IN_LAYER_8)
+	/*	if(nextParentNode > LAST_IN_LAYER_8)
 		{
 			ClearScreen();
 			TextOut(0, LCD_LINE2, "In first if");
 			Wait(2000);
 
 			nextParentNode -= (MOVE_A_LAYER_UP - nextIn7Layer);
-			nextIn7Layer++;
+			nextIn7Layer++; 
 
 			// moving to the next node in 6 layer
 			if(nextParentNode > LAST_IN_LAYER_7)
 			{
-				nextIn7Layer = resetLayerPosition;
+				//nextIn7Layer = resetLayerPosition;
 				nextParentNode -= (MOVE_A_LAYER_UP - nextIn6Layer);
-				nextIn6Layer++;
+				nextIn6Layer++; */
 
 				// moving to the next node in 5 layer
 				if(nextParentNode > LAST_IN_LAYER_6)
@@ -204,9 +207,14 @@ int ConstructNodesFromRoot(int path[])
 						}
 					}
 				}
-			}
+			//}
 
-		}
+		//}
+				ClearScreen();
+		TextOut(0, LCD_LINE2, "After if-lort");
+		TextOut(0, LCD_LINE3, "nextParentNode");
+		NumOut(0, LCD_LINE4, nextParentNode);
+		Wait(1000);
 
 		// the final path when the while loop is done
 		path[0] = nextIn1Layer;
@@ -215,7 +223,7 @@ int ConstructNodesFromRoot(int path[])
 		path[3] = nextIn4Layer;
 		path[4] = nextIn5Layer;
 		path[5] = nextIn6Layer;
-		path[6] = nextIn7Layer;
+		//path[6] = nextIn7Layer;
 
 		if (nextParentNode == 0)
 		{
@@ -247,7 +255,7 @@ int ConstructNodesFromRoot(int path[])
 		ClearScreen();
 		TextOut(0, LCD_LINE2, "nextParentNode");
 		NumOut(0, LCD_LINE3, nextParentNode);
-		Wait(2000);
+		Wait(1000);
     }
 
     ClearScreen();
@@ -274,7 +282,7 @@ void GraphConstruction()
 		TextOut(0, LCD_LINE2, "After HV return");
 		Wait(2000);
 
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 7; i++)
 		{
 			if (pathFromCurrentRoot[i] == MOVES_STOPBLOCK)
 			{	
