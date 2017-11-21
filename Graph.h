@@ -17,7 +17,7 @@
 #define LAST_IN_LAYER_8 96
 
 #define MOVE_A_LAYER_UP NUM_OF_CHILDREN
-#define MOVE_2_LAYERS_UP 2 * NUM_OF_CHILDREN
+#define MOVE_2_LAYER_UP 2 * NUM_OF_CHILDREN
 
 struct Node
 {
@@ -26,7 +26,7 @@ struct Node
 	char cube[NUM_OF_FACES][NUM_OF_SQUARES_ON_FACE];
 };
 
-Node Graph[100];
+Node Graph[95];
 int heuristicValue[12] = {WORST_HEURISTIC_VALUE};
 
 // HVORFOR ER DET [6][10] OG IKKE [6][9]? FÅ DET HER PÅ PLADS.
@@ -125,6 +125,13 @@ int ConstructChildren(int parentIndex, int &currentLayer)
 				break;
 
 		}
+
+		ClearScreen();
+		TextOut(0, LCD_LINE2, "In ConstChild");
+		NumOut(0, LCD_LINE3, childPosition);
+		NumOut(5, LCD_LINE4, parentNode.layer);
+		NumOut(10, LCD_LINE5, ((parentNode.layer * NUM_OF_CHILDREN) + childPosition));
+		Wait(500);
 
 		heuristicValue[valueIndex] = ConstructNode(((parentNode.layer * NUM_OF_CHILDREN) + childPosition), currentLayer);  // Construct the child-node.
 
@@ -245,7 +252,7 @@ int ConstructNodesFromRoot(int path[])
 			if(heuristicRootValue > heuristicValue[i])
 			{
 				ClearScreen();
-				TextOut(0, LCD_LINE2, "In if");
+				TextOut(0, LCD_LINE2, "In value if");
 				Wait(2000);
 				path[currentLayer - 1] = i+1;
 				path[currentLayer] = MOVES_STOPBLOCK;
