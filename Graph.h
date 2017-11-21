@@ -16,7 +16,8 @@
 #define LAST_IN_LAYER_7 84
 #define LAST_IN_LAYER_8 96
 
-#define MOVE_A_LAYER_UP 2 * NUM_OF_CHILDREN
+#define MOVE_A_LAYER_UP NUM_OF_CHILDREN
+#define MOVE_2_LAYERS_UP 2 * NUM_OF_CHILDREN
 
 struct Node
 {
@@ -170,36 +171,37 @@ int ConstructNodesFromRoot(int path[])
 				// moving to the next node in 5 layer
 				if(nextParentNode > LAST_IN_LAYER_6)
 				{
-					nextIn6Layer = resetLayerPosition;
+					//nextIn6Layer = resetLayerPosition;
+					nextParentNode = 73;
 					nextParentNode -= (MOVE_A_LAYER_UP - nextIn5Layer);
 					nextIn5Layer++;
 
 					// moving to the next node in 4 layer
-					if(nextParentNode > LAST_IN_LAYER_5)
+					if(nextParentNode > LAST_IN_LAYER_6)
 					{
 						nextIn5Layer = resetLayerPosition;
-						nextParentNode -= (MOVE_A_LAYER_UP - nextIn4Layer);
+						nextParentNode -= (MOVE_2_LAYER_UP - nextIn4Layer);
 						nextIn4Layer++;
 
 						// moving to the next node in 3 layer
-						if (nextParentNode > LAST_IN_LAYER_4)
+						if (nextParentNode > LAST_IN_LAYER_5)
 						{
 							 nextIn4Layer = resetLayerPosition;
-							 nextParentNode -= (MOVE_A_LAYER_UP - nextIn3Layer);
+							 nextParentNode -= (MOVE_2_LAYER_UP - nextIn3Layer);
 							 nextIn3Layer++;
 
 							 // moving to the next node in 2 layer
-							 if(nextParentNode > LAST_IN_LAYER_3)
+							 if(nextParentNode > LAST_IN_LAYER_4)
 							 {
 							 	nextIn3Layer = resetLayerPosition;
-							 	nextParentNode -= (MOVE_A_LAYER_UP - nextIn2Layer);
+							 	nextParentNode -= (MOVE_2_LAYER_UP - nextIn2Layer);
 							 	nextIn2Layer++;
 
 							 	// move to the next node in 1 layer
-							 	if(nextParentNode > LAST_IN_LAYER_2)
+							 	if(nextParentNode > LAST_IN_LAYER_3)
 							 	{
 							 		nextIn2Layer = resetLayerPosition;
-							 		nextParentNode -= (MOVE_A_LAYER_UP - nextIn1Layer);
+							 		nextParentNode -= (MOVE_2_LAYER_UP - nextIn1Layer);
 							 		nextIn1Layer++;
 							 	}
 							 }
