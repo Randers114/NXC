@@ -1,0 +1,6 @@
+C:\Users\Alberg\Documents\Uni\5_semester\Kode\Andet\HandSolve_Translator\HandSolve_Translator\bin\Debug\HandSolve_Translator.exe.config
+C:\Users\Alberg\Documents\Uni\5_semester\Kode\Andet\HandSolve_Translator\HandSolve_Translator\bin\Debug\HandSolve_Translator.exe
+C:\Users\Alberg\Documents\Uni\5_semester\Kode\Andet\HandSolve_Translator\HandSolve_Translator\bin\Debug\HandSolve_Translator.pdb
+C:\Users\Alberg\Documents\Uni\5_semester\Kode\Andet\HandSolve_Translator\HandSolve_Translator\obj\Debug\HandSolve_Translator.csprojResolveAssemblyReference.cache
+C:\Users\Alberg\Documents\Uni\5_semester\Kode\Andet\HandSolve_Translator\HandSolve_Translator\obj\Debug\HandSolve_Translator.exe
+C:\Users\Alberg\Documents\Uni\5_semester\Kode\Andet\HandSolve_Translator\HandSolve_Translator\obj\Debug\HandSolve_Translator.pdb
