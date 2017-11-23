@@ -2,3 +2,13 @@
 *.bak
 
 *.sym
+
+NewTranslator/\.vs/HandSolve_Translator/v15/
+
+NewTranslator/HandSolve_Translator/bin/Debug/
+
+*.exe
+
+*.pdb
+
+*.cache

@@ -8,7 +8,7 @@ namespace HandSolve_Translator
 {
     public class Translator
     {
-        private string inputMoveset;
+        string inputMoveset;
         List<string> moveset = new List<string>();
         List<string> translatedMoves = new List<string>();
 
@@ -21,15 +21,15 @@ namespace HandSolve_Translator
 
         public void TranslateMoves()
         {
+            ReplaceMovesInMoveset();
+
             var moveset = inputMoveset.Split(' ').ToList();
-
-            foreach (string str in moveset)
-            {
-
-            }
 
             int movesetLength = moveset.Count;
 
+            
+
+            /*
             for (int i = 0; i < movesetLength; i++)
             {
                 string move = moveset.First();
@@ -38,22 +38,33 @@ namespace HandSolve_Translator
 
                 foreach (string f in moveset)
                 {
-                    ReplaceInMoveset(move, f);
+                    
                 }
             }
-
+            */
 
         }
 
-        public void ReplaceInMoveset(string move, string nextMove)
+        public void ReplaceMovesInMoveset()
         {
-            if (move == "R" | move == "Ri")
-            {
-                switch (nextMove)
-                {
-                    default:
-                }
-            }
+            inputMoveset = inputMoveset.Replace("Mi", "Ri L X")
+                .Replace("M", "R Li Xi")
+                .Replace("Ei", "Ui D Y")
+                .Replace("E", "U Di Yi")
+                .Replace("Si", "F Bi Zi")
+                .Replace("S", "Fi B Z")
+                .Replace("ui", "Di Yi")
+                .Replace("li", "Ri X")
+                .Replace("fi", "Bi Zi")
+                .Replace("ri", "Li Xi")
+                .Replace("bi", "Fi Z")
+                .Replace("di", "Ui Y")
+                .Replace("u", "D Y")
+                .Replace("l", "R Xi")
+                .Replace("f", "B Z")
+                .Replace("r", "L X")
+                .Replace("b", "F Zi")
+                .Replace("d", "U Yi");
         }
 
     }
