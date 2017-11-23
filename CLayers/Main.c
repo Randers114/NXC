@@ -1,18 +1,19 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "Graph.h"
-task main()
+
+
+int main()
 {
+	
+	
 char top[10] = { 'b', 'r', 'y', 'g', 'w', 'g', 'w', 'r', 'w'};
 char right[10] = { 'y', 'w', 'w', 'r', 'r', 'g', 'r', 'w', 'o'};
 char front[10] = { 'b', 'b', 'b', 'b', 'g', 'o', 'r', 'o', 'o'};
 char back[10] = { 'r', 'b', 'o', 'w', 'b', 'w', 'y', 'g', 'g'};
 char left[10] = { 'o', 'y', 'r', 'o', 'o', 'o', 'g', 'r', 'y'};
 char bottom[10] = { 'b', 'y', 'g', 'y', 'y', 'b', 'w', 'y', 'g'};
-
-// 2 layers at bot - yellow top blue front - works
-
-//2 layers top - white top blue front - works
-
-
 
 InitializeSide(top, TOP_FACE);
 InitializeSide(right, RIGHT_FACE);
@@ -26,20 +27,23 @@ BESTHEURISTIC = HeuristicValue();
 while(BESTHEURISTIC != 0)
 {
     RootNodeMethod(myCube);
-    PlaySound(SOUND_CLICK);
 }
-    PlaySound(SOUND_UP);
-TextOut(0,LCD_LINE6,"Path: " );
-for(int i = 0; i<ArrayLen(FullPath);i++)
+for(int i = 0; i < FullPathHead;i++)
 {
-	if(FullPath[i] == "R" || FullPath[i] == "IR"
-	|| FullPath[i] == "L" || FullPath[i] == "IL"
-	|| FullPath[i] == "T" || FullPath[i] == "IT"
-	|| FullPath[i] == "B" || FullPath[i] == "IB"
-	|| FullPath[i] == "F" || FullPath[i] == "IF"
-	|| FullPath[i] == "V" || FullPath[i] == "IV")
-        TextOut(8*i,LCD_LINE7,FullPath[i]);
+	if(FullPath[i] == 'R'
+	|| FullPath[i] == 'L'
+	|| FullPath[i] == 'T'
+	|| FullPath[i] == 'B' 
+	|| FullPath[i] == 'F' 
+	|| FullPath[i] == 'V' )
+		printf("%c",FullPath[i]);
+	if( FullPath[i] == 'I'
+	&&( FullPath[i+1] == 'R'
+	|| FullPath[i+1] == 'L'
+	|| FullPath[i+1] == 'T'
+	|| FullPath[i+1] == 'B'
+	|| FullPath[i+1] == 'F'
+	|| FullPath[i+1] == 'V'))
+        printf("%c%c",FullPath[i], FullPath[i+1]);
+}	
 }
-Wait(50000);
-}
-

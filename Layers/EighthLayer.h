@@ -4,15 +4,14 @@ int EighthLayer(int move, char parentcube[][])
 {
 switch (move)
 	{
-	case 1:    
-	TextOut(0,LCD_LINE2, "Im at L 8 ");
+	case 1:
 	FullPath[FullPathHead] =  "R";
 	FullPathHead++;
 	ORMyCube(parentcube);
 	RightOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -35,7 +34,7 @@ switch (move)
 	InvertedRightOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -58,7 +57,7 @@ switch (move)
 	LeftOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -81,7 +80,7 @@ switch (move)
 	InvertedLeftOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -104,7 +103,7 @@ switch (move)
 	TopOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -127,7 +126,7 @@ switch (move)
 	InvertedTopOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -150,7 +149,7 @@ switch (move)
 	BottomOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -173,7 +172,7 @@ switch (move)
 	InvertedBottomOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -196,7 +195,7 @@ switch (move)
 	FrontOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -219,7 +218,7 @@ switch (move)
 	InvertedFrontOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -242,7 +241,7 @@ switch (move)
 	BackOperation();	
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -265,7 +264,7 @@ switch (move)
 	InvertedBackOperation(); 
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else

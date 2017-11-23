@@ -4,14 +4,14 @@ int SecondLayer(int move, char parentcube[][])
 {
 	switch (move)
 	{
-	case 1:     TextOut(0,LCD_LINE2, "Im at L 2 ");
+	case 1:
 	FullPath[FullPathHead] =  "R";
 	FullPathHead++;
 	ORMyCube(parentcube);
 	RightOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -34,7 +34,7 @@ int SecondLayer(int move, char parentcube[][])
 	InvertedRightOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -57,7 +57,7 @@ int SecondLayer(int move, char parentcube[][])
 	LeftOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -80,7 +80,7 @@ int SecondLayer(int move, char parentcube[][])
 	InvertedLeftOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -103,7 +103,7 @@ int SecondLayer(int move, char parentcube[][])
 	TopOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -126,7 +126,7 @@ int SecondLayer(int move, char parentcube[][])
 	InvertedTopOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -149,7 +149,7 @@ int SecondLayer(int move, char parentcube[][])
 	BottomOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -172,7 +172,7 @@ int SecondLayer(int move, char parentcube[][])
 	InvertedBottomOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -195,7 +195,7 @@ int SecondLayer(int move, char parentcube[][])
 	FrontOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -218,7 +218,7 @@ int SecondLayer(int move, char parentcube[][])
 	InvertedFrontOperation();
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -241,7 +241,7 @@ int SecondLayer(int move, char parentcube[][])
 	BackOperation();	
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
@@ -264,7 +264,7 @@ int SecondLayer(int move, char parentcube[][])
 	InvertedBackOperation(); 
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
-		BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
+		TextOut(0,LCD_LINE6,"   ");BESTHEURISTIC = HeuristicValue(); NumOut(0,LCD_LINE6, BESTHEURISTIC);
 		return 0;
 	}
 	else
