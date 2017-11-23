@@ -18,19 +18,19 @@ namespace HandSolve_Translator
             dictFirstTranslation.Add("S", "Fi B Z");
             dictFirstTranslation.Add("Si", "F Bi Zi");
 
-            dictFirstTranslation.Add("u", "");
-            dictFirstTranslation.Add("l", "");
-            dictFirstTranslation.Add("f", "");
-            dictFirstTranslation.Add("r", "");
-            dictFirstTranslation.Add("b", "");
-            dictFirstTranslation.Add("d", "");
+            dictFirstTranslation.Add("u", "D y");
+            dictFirstTranslation.Add("l", "R Xi");
+            dictFirstTranslation.Add("f", "B Z");
+            dictFirstTranslation.Add("r", "L X");
+            dictFirstTranslation.Add("b", "F Zi");
+            dictFirstTranslation.Add("d", "U Yi");
 
-            dictFirstTranslation.Add("ui", "");
-            dictFirstTranslation.Add("li", "");
-            dictFirstTranslation.Add("fi", "");
-            dictFirstTranslation.Add("ri", "");
-            dictFirstTranslation.Add("bi", "");
-            dictFirstTranslation.Add("di", "");
+            dictFirstTranslation.Add("ui", "Di Yi");
+            dictFirstTranslation.Add("li", "Ri X");
+            dictFirstTranslation.Add("fi", "Bi Zi");
+            dictFirstTranslation.Add("ri", "Li Xi");
+            dictFirstTranslation.Add("bi", "Fi Z");
+            dictFirstTranslation.Add("di", "Ui Y");
         }
 
 
