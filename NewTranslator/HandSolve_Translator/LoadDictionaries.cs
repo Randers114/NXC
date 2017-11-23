@@ -35,8 +35,6 @@ namespace HandSolve_Translator
             dictFirstTranslation.Add("Bi", backTranslation);
             dictFirstTranslation.Add("L", leftTranslation);
             dictFirstTranslation.Add("Li", leftTranslation);
-            dictFirstTranslation.Add("D", downTranslation);
-            dictFirstTranslation.Add("Di", downTranslation);
 
             dictFirstTranslation.Add("X", xTranslation);
             dictFirstTranslation.Add("Xi", xInvertedTranslation);
@@ -157,6 +155,145 @@ namespace HandSolve_Translator
 			leftTranslation.Add("Yi",);
 			leftTranslation.Add("Z",);
 			leftTranslation.Add("Zi",);
+
+			// xTranslation
+
+			xTranslation.Add("U", "");
+			xTranslation.Add("Ui", "");
+			xTranslation.Add("R", "");
+			xTranslation.Add("Ri",);
+			xTranslation.Add("F",);
+			xTranslation.Add("Fi",);
+
+			xTranslation.Add("B",);
+			xTranslation.Add("Bi",);
+			xTranslation.Add("L",);
+			xTranslation.Add("Li",);
+			xTranslation.Add("D",);
+			xTranslation.Add("Di",);
+
+			xTranslation.Add("X",);
+			xTranslation.Add("Xi",);
+			xTranslation.Add("Y",);
+			xTranslation.Add("Yi",);
+			xTranslation.Add("Z",);
+			xTranslation.Add("Zi",);
+
+			// xInvetedTranslation
+
+			xInvertedTranslation.Add("U", "");
+			xInvertedTranslation.Add("Ui", "");
+			xInvertedTranslation.Add("R", "");
+			xInvertedTranslation.Add("Ri",);
+			xInvertedTranslation.Add("F",);
+			xInvertedTranslation.Add("Fi",);
+
+			xInvertedTranslation.Add("B",);
+			xInvertedTranslation.Add("Bi",);
+			xInvertedTranslation.Add("L",);
+			xInvertedTranslation.Add("Li",);
+			xInvertedTranslation.Add("D",);
+			xInvertedTranslation.Add("Di",);
+
+			xInvertedTranslation.Add("X",);
+			xInvertedTranslation.Add("Xi",);
+			xInvertedTranslation.Add("Y",);
+			xInvertedTranslation.Add("Yi",);
+			xInvertedTranslation.Add("Z",);
+			xInvertedTranslation.Add("Zi",);
+
+			// yTranslation
+
+			yTranslation.Add("U", "");
+			yTranslation.Add("Ui", "");
+			yTranslation.Add("R", "");
+			yTranslation.Add("Ri",);
+			yTranslation.Add("F",);
+			yTranslation.Add("Fi",);
+
+			yTranslation.Add("B",);
+			yTranslation.Add("Bi",);
+			yTranslation.Add("L",);
+			yTranslation.Add("Li",);
+			yTranslation.Add("D",);
+			yTranslation.Add("Di",);
+
+			yTranslation.Add("X",);
+			yTranslation.Add("Xi",);
+			yTranslation.Add("Y",);
+			yTranslation.Add("Yi",);
+			yTranslation.Add("Z",);
+			yTranslation.Add("Zi",);
+
+			// yInvertedTranslation
+
+			yInvertedTranslation.Add("U", "");
+			yInvertedTranslation.Add("Ui", "");
+			yInvertedTranslation.Add("R", "");
+			yInvertedTranslation.Add("Ri",);
+			yInvertedTranslation.Add("F",);
+			yInvertedTranslation.Add("Fi",);
+
+			yInvertedTranslation.Add("B",);
+			yInvertedTranslation.Add("Bi",);
+			yInvertedTranslation.Add("L",);
+			yInvertedTranslation.Add("Li",);
+			yInvertedTranslation.Add("D",);
+			yInvertedTranslation.Add("Di",);
+
+			yInvertedTranslation.Add("X",);
+			yInvertedTranslation.Add("Xi",);
+			yInvertedTranslation.Add("Y",);
+			yInvertedTranslation.Add("Yi",);
+			yInvertedTranslation.Add("Z",);
+			yInvertedTranslation.Add("Zi",);
+
+			// zTranslation
+
+			zTranslation.Add("U", "");
+			zTranslation.Add("Ui", "");
+			zTranslation.Add("R", "");
+			zTranslation.Add("Ri",);
+			zTranslation.Add("F",);
+			zTranslation.Add("Fi",);
+
+			zTranslation.Add("B",);
+			zTranslation.Add("Bi",);
+			zTranslation.Add("L",);
+			zTranslation.Add("Li",);
+			zTranslation.Add("D",);
+			zTranslation.Add("Di",);
+
+			zTranslation.Add("X",);
+			zTranslation.Add("Xi",);
+			zTranslation.Add("Y",);
+			zTranslation.Add("Yi",);
+			zTranslation.Add("Z",);
+			zTranslation.Add("Zi",);
+
+			// zInvertedTranslation
+
+			zInvertedTranslation.Add("U", "");
+			zInvertedTranslation.Add("Ui", "");
+			zInvertedTranslation.Add("R", "");
+			zInvertedTranslation.Add("Ri",);
+			zInvertedTranslation.Add("F",);
+			zInvertedTranslation.Add("Fi",);
+
+			zInvertedTranslation.Add("B",);
+			zInvertedTranslation.Add("Bi",);
+			zInvertedTranslation.Add("L",);
+			zInvertedTranslation.Add("Li",);
+			zInvertedTranslation.Add("D",);
+			zInvertedTranslation.Add("Di",);
+
+			zInvertedTranslation.Add("X",);
+			zInvertedTranslation.Add("Xi",);
+			zInvertedTranslation.Add("Y",);
+			zInvertedTranslation.Add("Yi",);
+			zInvertedTranslation.Add("Z",);
+			zInvertedTranslation.Add("Zi",);
+
 
         }
 
