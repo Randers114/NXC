@@ -21,27 +21,35 @@ namespace HandSolve_Translator
 
         public void TranslateMoves()
         {
-            ReplaceMovesInMoveset();
+            LoadDictionaries LD = new LoadDictionaries();
+            LD.AddTranslationsToDictionaries();
+            Dictionary<string, string> dictFromMove = new Dictionary<string, string>();
+            List<string> tempMoveset = new List<string>();
+            string translatedMove = "";
+
+            ReplaceMovesInMoveset();  // Replaces Middle-turns and Double-layer turns with corresponding single-layer and orientation turns.
 
             var moveset = inputMoveset.Split(' ').ToList();
-
             int movesetLength = moveset.Count;
 
-            
 
-            /*
+            
             for (int i = 0; i < movesetLength; i++)
             {
-                string move = moveset.First();
-                translatedMoves.Add(move);
-                moveset.Remove(move);
+                LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                translatedMoves.Add(moveset.First());
+                moveset.Remove(moveset.First());
 
-                foreach (string f in moveset)
+                foreach (string move in moveset)
                 {
-                    
+                    dictFromMove.TryGetValue(move, out translatedMove);
+
+                    tempMoveset.Add(translatedMove);
                 }
+
+                moveset = tempMoveset;
             }
-            */
+            
 
         }
 
