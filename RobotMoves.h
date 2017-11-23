@@ -141,3 +141,77 @@ void TripleTurn()
 		TurnCubeRight();
 	}
 }
+
+// Rotates top face
+void RotateTopFace()
+{
+	DoubleClaw();
+	RotateBottomRight();
+}
+
+// Rotates right face
+void RotateRightFace()
+{
+	TurnCube();
+	ClawPull();
+	RotateBottomRight();
+}
+
+// Rotates front face
+void RotateFrontFace():
+{
+	TripleClaw();
+	RotateBottomRight();
+}
+
+// Rotates back face
+void RotateBackFace()
+{
+	ClawPull();
+	RotateBottomRight();
+}
+
+// Rotates left face
+void RotateLeftFace()
+{
+	TurnCube();
+	TripleClaw();
+	RotateBottomRight();
+}
+
+// Rotates top face opposite direction
+void InvertedTopFaceRotate()
+{
+	DoubleClaw();
+	TripleRotate();
+}
+
+// Rotates right face opposite direction
+void InvertedRightFaceRotate()
+{
+	TurnCube();
+	ClawPull();
+	TripleRotate();
+}
+
+// Rotates front face opposite direction
+void InvertedFrontFaceRotate():
+{
+	TripleClaw();
+	TripleRotate();
+}
+
+// Rotates back face opposite direction
+void InvertedBackFaceRotate()
+{
+	ClawPull();
+	TripleRotate();
+}
+
+// Rotates left face opposite direction
+void InvertedLeftFaceRotate()
+{
+	TurnCube();
+	TripleClaw();
+	TripleRotate();
+}
