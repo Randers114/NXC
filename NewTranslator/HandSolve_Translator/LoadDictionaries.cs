@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace HandSolve_Translator
 {
-    public static class LoadDictionaries
+    public class LoadDictionaries
     {
-        public static Dictionary<string, Dictionary<string, string>> dictFirstTranslation = new Dictionary<string, Dictionary<string, string>>();
-        public static Dictionary<string, string> upperTranslation     = new Dictionary<string, string>();
-        public static Dictionary<string, string> rightTranslation     = new Dictionary<string, string>();
-        public static Dictionary<string, string> frontTranslation     = new Dictionary<string, string>();
-		public static Dictionary<string, string> backTranslation      = new Dictionary<string, string>();
-        public static Dictionary<string, string> leftTranslation      = new Dictionary<string, string>();
-        public static Dictionary<string, string> xTranslation         = new Dictionary<string, string>();
-        public static Dictionary<string, string> xInvertedTranslation = new Dictionary<string, string>();
-        public static Dictionary<string, string> yTranslation         = new Dictionary<string, string>();
-        public static Dictionary<string, string> yInvertedTranslation = new Dictionary<string, string>();
-        public static Dictionary<string, string> zTranslation         = new Dictionary<string, string>();
-        public static Dictionary<string, string> zInvertedTranslation = new Dictionary<string, string>();
+        public Dictionary<string, Dictionary<string, string>> dictFirstTranslation = new Dictionary<string, Dictionary<string, string>>();
+        public Dictionary<string, string> upperTranslation     = new Dictionary<string, string>();
+        public Dictionary<string, string> rightTranslation     = new Dictionary<string, string>();
+        public Dictionary<string, string> frontTranslation     = new Dictionary<string, string>();
+		public Dictionary<string, string> backTranslation      = new Dictionary<string, string>();
+        public Dictionary<string, string> leftTranslation      = new Dictionary<string, string>();
+        public Dictionary<string, string> downTranslation      = new Dictionary<string, string>();
+        public Dictionary<string, string> xTranslation         = new Dictionary<string, string>();
+        public Dictionary<string, string> xInvertedTranslation = new Dictionary<string, string>();
+        public Dictionary<string, string> yTranslation         = new Dictionary<string, string>();
+        public Dictionary<string, string> yInvertedTranslation = new Dictionary<string, string>();
+        public Dictionary<string, string> zTranslation         = new Dictionary<string, string>();
+        public Dictionary<string, string> zInvertedTranslation = new Dictionary<string, string>();
 
-        public static void AddTranslationsToDictionaries()
+        public void AddTranslationsToDictionaries()
         {
 			// dictFirstTranslation
             dictFirstTranslation.Add("U", upperTranslation);
@@ -35,6 +36,8 @@ namespace HandSolve_Translator
             dictFirstTranslation.Add("Bi", backTranslation);
             dictFirstTranslation.Add("L", leftTranslation);
             dictFirstTranslation.Add("Li", leftTranslation);
+            dictFirstTranslation.Add("D", downTranslation);
+            dictFirstTranslation.Add("Di", downTranslation);
 
             dictFirstTranslation.Add("X", xTranslation);
             dictFirstTranslation.Add("Xi", xInvertedTranslation);
@@ -156,9 +159,32 @@ namespace HandSolve_Translator
 			leftTranslation.Add("Z", "Xi");
 			leftTranslation.Add("Zi", "X");
 
-			// xTranslation
+            // downTranslation
 
-			xTranslation.Add("U", "B");
+            downTranslation.Add("U", "U");
+            downTranslation.Add("Ui", "Ui");
+            downTranslation.Add("R", "R");
+            downTranslation.Add("Ri", "Ri");
+            downTranslation.Add("F", "F");
+            downTranslation.Add("Fi", "Fi");
+
+            downTranslation.Add("B", "B");
+            downTranslation.Add("Bi", "Bi");
+            downTranslation.Add("L", "L");
+            downTranslation.Add("Li", "Li");
+            downTranslation.Add("D", "D");
+            downTranslation.Add("Di", "Di");
+
+            downTranslation.Add("X", "X");
+            downTranslation.Add("Xi", "Xi");
+            downTranslation.Add("Y", "Y");
+            downTranslation.Add("Yi", "Yi");
+            downTranslation.Add("Z", "Z");
+            downTranslation.Add("Zi", "Zi");
+
+            // xTranslation
+
+            xTranslation.Add("U", "B");
 			xTranslation.Add("Ui", "Bi");
 			xTranslation.Add("R", "R");
 			xTranslation.Add("Ri", "Ri");

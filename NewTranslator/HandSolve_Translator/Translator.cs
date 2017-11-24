@@ -21,7 +21,7 @@ namespace HandSolve_Translator
 
         public void PrintMoveset()
         {
-            foreach (string f in moveset)
+            foreach (string f in translatedMoves)
             {
                 Console.WriteLine(f);
             }
@@ -30,12 +30,15 @@ namespace HandSolve_Translator
 
         public void TranslateMoves()
         {
-            LoadDictionaries.AddTranslationsToDictionaries();
+            LoadDictionaries LD = new LoadDictionaries();
+            LD.AddTranslationsToDictionaries();
             Dictionary<string, string> dictFromMove = new Dictionary<string, string>();
             List<string> tempMoveset = new List<string>();
             string translatedMove = "";
 
             ReplaceMovesInMoveset();  // Replaces Middle-turns and Double-layer turns with corresponding single-layer and orientation turns.
+
+            Console.WriteLine(inputMoveset);
 
             var moveset = inputMoveset.Split(' ').ToList();
             int movesetLength = moveset.Count;
@@ -45,7 +48,7 @@ namespace HandSolve_Translator
             {
                 if (moveset.Count != 0)
                 {
-                    LoadDictionaries.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                    LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
                     translatedMoves.Add(moveset.First());
                     moveset.Remove(moveset.First());
                     
@@ -59,7 +62,7 @@ namespace HandSolve_Translator
                             tempMoveset.Add(translatedMove);
                         }
 
-                        moveset = tempMoveset;
+                        moveset = tempMoveset.ToList();
                         tempMoveset.Clear();
                     }
                 }
@@ -85,7 +88,13 @@ namespace HandSolve_Translator
                 .Replace("f", "B Z")
                 .Replace("r", "L X")
                 .Replace("b", "F Zi")
-                .Replace("d", "U Yi");
+                .Replace("d", "U Yi")
+                .Replace("U2", "U U")
+                .Replace("L2", "L L")
+                .Replace("F2", "F F")
+                .Replace("R2", "R R")
+                .Replace("B2", "B B")
+                .Replace("D2", "D D");
         }
 
     }
