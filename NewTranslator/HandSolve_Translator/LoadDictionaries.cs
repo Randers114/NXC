@@ -154,8 +154,8 @@ namespace HandSolve_Translator
 
 			leftTranslation.Add("X", "Y");
 			leftTranslation.Add("Xi", "Yi");
-			leftTranslation.Add("Y", "Z");
-			leftTranslation.Add("Yi", "Zi");
+			leftTranslation.Add("Y", "Zi");
+			leftTranslation.Add("Yi", "Z");
 			leftTranslation.Add("Z", "Xi");
 			leftTranslation.Add("Zi", "X");
 
