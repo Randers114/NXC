@@ -10,18 +10,14 @@ char myCube[6][10];
 #define LEFT_FACE 4
 #define BOTTOM_FACE 5
 #define CENTER_PIECE 4
-
-void ORMyCube(char ORCube[6][10])
+ 
+void ORMyCube(char OverRider[6][10]) 
 {
-	for(int j = 0; j < 6; j++)
-	{
-		for(int i = 0; i < 9; i++)
-		{
-			myCube[j][i] = ORCube[j][i];
-		}
-	}
+	for(int i = 0; i<6;i++)
+		for(int j = 0;j<9;j++)
+			myCube[i][j] = OverRider[i][j];
 }
-
+ 
 void InitializeSide(char face[], int sidenumber)
 {
 	for (int piece = 0; piece < 9; piece++)
