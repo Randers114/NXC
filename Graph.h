@@ -1,6 +1,6 @@
 #include "Heuristic.h"
 
-#define BOUND 8
+#define BOUND 10
 #define HIGHEST_HEURISTIC_VALUE 12
 #define GRAPH_SIZE 12
 
@@ -39,10 +39,12 @@ Node Graph[GRAPH_SIZE];
 
 int Path[];
 int ChildNumber[];
+int nodeCount = 0; 
 
 
 void ConstructNode(int currentPosition, int parent, int move)
 {
+	nodeCount++;
 	Node node;
 	memcpy(node.cube, myCube, sizeof myCube);
 	node.parent = parent;
@@ -52,7 +54,7 @@ void ConstructNode(int currentPosition, int parent, int move)
 }
 
 
-void ConstructNodeChildren(int &currentPosition, int &layer, int counter)
+void ConstructNodeChildren(int &currentPosition, int &layer)
 {	
 	int parent = currentPosition, move;
 	char rubix[6][10];
@@ -65,12 +67,6 @@ void ConstructNodeChildren(int &currentPosition, int &layer, int counter)
 		ChildNumber[layer] = 0;
 	}
 	
-	// if(layer == 6)
-	// {
-		// NumOut(0, LCD_LINE4, ChildNumber[layer]);
-		// Wait(SEC_3);
-		// ClearScreen();
-	// }
 	ChildNumber[layer] += 1;
 	
 	move = ChildNumber[layer];
@@ -123,13 +119,6 @@ void ConstructNodeChildren(int &currentPosition, int &layer, int counter)
 	
 	memcpy(myCube, rubix, sizeof rubix);
 	
-	// NumOut(0, LCD_LINE1, layer);
-	// TextOut(0, LCD_LINE2, "on");
-	// NumOut(0, LCD_LINE3, currentPosition);
-	// Wait(SEC_1);
-	// ClearScreen();
-	
-	
 	layer++;
 }
 
@@ -165,6 +154,7 @@ void ResetValues(int &upperHeuristic, int &currentPosition, int &layer, int &chi
 
 void PrepareNewTree(int &upperHeuristic, int &currentPosition, int &layer, int &childChoose, int &currentArrayPosition)
 {
+	ClearScreen();
 	PlaySound(SOUND_UP);
 	NumOut(0, LCD_LINE1, upperHeuristic);
 	NumOut(0, LCD_LINE2, Graph[currentPosition].heuristicValue);
@@ -250,7 +240,7 @@ bool MoveUpInLayers(int &upperHeuristic, int &currentPosition, int &layer, int &
 void MainGraphConstruction()
 {
 	int currentPosition = 0, layer = 0, childChoose = 0, upperHeuristic = HIGHEST_HEURISTIC_VALUE, currentArrayPosition = 0;
-	int counter = 1, uu = BOUND * HIGHEST_HEURISTIC_VALUE;
+	int uu = BOUND * HIGHEST_HEURISTIC_VALUE;
 	
 	bool lastLeafReached; 
 	
@@ -262,10 +252,11 @@ void MainGraphConstruction()
 	
 	upperHeuristic = Graph[0].heuristicValue;	
 	
+	Wait(60000);
 		
 	while(upperHeuristic != 0)
 	{
-		for(layer; layer < BOUND; counter++)
+		for(layer; layer < BOUND;)
 		{			
 			Node newParent = Graph[childChoose];
 			
@@ -273,28 +264,21 @@ void MainGraphConstruction()
 			
 			memcpy(myCube, newParent.cube, sizeof newParent.cube);
 			
-			ConstructNodeChildren(currentPosition, layer, counter);
+			ConstructNodeChildren(currentPosition, layer);
 			
 		}
 		
-		// if(Graph[5].move == 2)
-		// {
-			// PlaySound(SOUND_UP);
-		// }
-		// TextOut(0, LCD_LINE1, "All children constructed");
-		// NumOut(0, LCD_LINE2, ChildNumber[7]);
-		// NumOut(0, LCD_LINE3, ChildNumber[6]);
-		// NumOut(0, LCD_LINE4, ChildNumber[5]);
-		// NumOut(0, LCD_LINE5, Graph[6].move);
-		//ClearScreen();
-		// NumOut(0, LCD_LINE5, ChildNumber[4]);
-		// Wait(500);
-		// ClearScreen();
 		
 		
 		lastLeafReached = CheckBottomLayerLeaves(upperHeuristic, currentPosition, layer, childChoose, currentArrayPosition);
 		
 		
+		if(nodeCount % 20 == 0)
+		{
+			ClearScreen();
+			TextOut(0, LCD_LINE1, "Still going strong");
+			NumOut(0, LCD_LINE2, nodeCount);
+		}
 		
 		if(lastLeafReached)
 		{
@@ -308,11 +292,10 @@ void MainGraphConstruction()
 			
 			//delete the parent node
 		}
-		
-		
 	}
 	
 	PlaySound(SOUND_UP);
+	ClearScreen();
 	TextOut(0, LCD_LINE1, "Ddu har vundet livet");
 	Wait(SEC_3);
 	ClearScreen();
@@ -326,7 +309,7 @@ void MainGraphConstruction()
 		NumOut(0, LCD_LINE3, Path[jj + 4]);
 		Wait(SEC_5);
 		ClearScreen();
-		if(jj == 0)
+		if(Path[jj] == 0)
 		{
 			break;
 		}
