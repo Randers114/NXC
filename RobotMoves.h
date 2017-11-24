@@ -174,8 +174,8 @@ void RotateBackFace()
 // Rotates left face
 void RotateLeftFace()
 {
-	TurnCube();
-	TripleClaw();
+	TripleTurn();
+	ClawPull();
 	RotateBottomRight();
 }
 
@@ -211,7 +211,7 @@ void InvertedBackFaceRotate()
 // Rotates left face opposite direction
 void InvertedLeftFaceRotate()
 {
-	TurnCube();
-	TripleClaw();
+	TripleTurn();
+	ClawPull();
 	TripleRotate();
 }
