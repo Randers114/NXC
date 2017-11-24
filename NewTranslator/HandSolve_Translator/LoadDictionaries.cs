@@ -59,8 +59,8 @@ namespace HandSolve_Translator
 			upperTranslation.Add("Bi", "Fi");
 			upperTranslation.Add("L", "L");
 			upperTranslation.Add("Li", "Li");
-			upperTranslation.Add("D", "F");
-			upperTranslation.Add("Di", "Fi");
+			upperTranslation.Add("D", "U");
+			upperTranslation.Add("Di", "Ui");
 
 			upperTranslation.Add("X", "X");
 			upperTranslation.Add("Xi", "Xi");

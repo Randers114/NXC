@@ -21,9 +21,10 @@ namespace HandSolve_Translator
 
         public void PrintMoveset()
         {
+            Console.Write("Final Moveset:");
             foreach (string f in translatedMoves)
             {
-                Console.WriteLine(f);
+                Console.Write(f + " ");
             }
             
         }
@@ -38,7 +39,7 @@ namespace HandSolve_Translator
 
             ReplaceMovesInMoveset();  // Replaces Middle-turns and Double-layer turns with corresponding single-layer and orientation turns.
 
-            Console.WriteLine(inputMoveset);
+            Console.WriteLine("Replaced Moveset: " + inputMoveset);
 
             var moveset = inputMoveset.Split(' ').ToList();
             int movesetLength = moveset.Count;
@@ -50,8 +51,11 @@ namespace HandSolve_Translator
                 {
                     LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
                     translatedMoves.Add(moveset.First());
-                    moveset.Remove(moveset.First());
                     
+
+                    Console.WriteLine("\nAdded to translatedMoves: " + moveset.First());
+
+                    moveset.Remove(moveset.First());
 
                     if (moveset.Count != 0)
                     {
@@ -63,6 +67,14 @@ namespace HandSolve_Translator
                         }
 
                         moveset = tempMoveset.ToList();
+
+                        foreach (string lul in moveset)
+                        {
+                            Console.Write(lul + " ");
+                        }
+
+                        Console.WriteLine("\n");
+
                         tempMoveset.Clear();
                     }
                 }
@@ -71,8 +83,8 @@ namespace HandSolve_Translator
 
         public void ReplaceMovesInMoveset()
         {
-            inputMoveset = inputMoveset.Replace("Mi", "Ri L X")
-                .Replace("M", "R Li Xi")
+            inputMoveset = inputMoveset.Replace("Mi", "Ri L")
+                .Replace("M", "R Li")
                 .Replace("Ei", "Ui D Y")
                 .Replace("E", "U Di Yi")
                 .Replace("Si", "F Bi Zi")
