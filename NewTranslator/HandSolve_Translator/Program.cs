@@ -14,6 +14,8 @@ namespace HandSolve_Translator
 
             t.ReadInput();
             t.TranslateMoves();
+            t.PrintMoveset();
+            
 
             Console.ReadKey();
         }

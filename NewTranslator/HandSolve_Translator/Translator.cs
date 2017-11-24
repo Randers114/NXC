@@ -15,8 +15,17 @@ namespace HandSolve_Translator
 
         public void ReadInput()
         {
-            Console.Write(" Write the set of moves to be translated. Separate each move with a space: ");
+            Console.Write("Write the set of moves to be translated. Separate each move with a space: ");
             inputMoveset = Console.ReadLine();
+        }
+
+        public void PrintMoveset()
+        {
+            foreach (string f in moveset)
+            {
+                Console.WriteLine(f);
+            }
+            
         }
 
         public void TranslateMoves()
@@ -40,17 +49,23 @@ namespace HandSolve_Translator
                 translatedMoves.Add(moveset.First());
                 moveset.Remove(moveset.First());
 
-                foreach (string move in moveset)
+                if (moveset.Count != 0)
                 {
-                    dictFromMove.TryGetValue(move, out translatedMove);
+                    foreach (string move in moveset)
+                    {
+                        dictFromMove.TryGetValue(move, out translatedMove);
 
-                    tempMoveset.Add(translatedMove);
+                        tempMoveset.Add(translatedMove);
+                    }
+
+                    moveset = tempMoveset;
+
+                    foreach (string str in moveset)
+                    {
+                        Console.WriteLine(str);
+                    }
                 }
-
-                moveset = tempMoveset;
             }
-            
-
         }
 
         public void ReplaceMovesInMoveset()
