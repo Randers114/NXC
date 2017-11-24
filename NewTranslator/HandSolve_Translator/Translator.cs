@@ -30,8 +30,7 @@ namespace HandSolve_Translator
 
         public void TranslateMoves()
         {
-            LoadDictionaries LD = new LoadDictionaries();
-            LD.AddTranslationsToDictionaries();
+            LoadDictionaries.AddTranslationsToDictionaries();
             Dictionary<string, string> dictFromMove = new Dictionary<string, string>();
             List<string> tempMoveset = new List<string>();
             string translatedMove = "";
@@ -41,28 +40,27 @@ namespace HandSolve_Translator
             var moveset = inputMoveset.Split(' ').ToList();
             int movesetLength = moveset.Count;
 
-
             
             for (int i = 0; i < movesetLength; i++)
             {
-                LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
-                translatedMoves.Add(moveset.First());
-                moveset.Remove(moveset.First());
-
                 if (moveset.Count != 0)
                 {
-                    foreach (string move in moveset)
+                    LoadDictionaries.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                    translatedMoves.Add(moveset.First());
+                    moveset.Remove(moveset.First());
+                    
+
+                    if (moveset.Count != 0)
                     {
-                        dictFromMove.TryGetValue(move, out translatedMove);
+                        foreach (string move in moveset)
+                        {
+                            dictFromMove.TryGetValue(move, out translatedMove);
 
-                        tempMoveset.Add(translatedMove);
-                    }
+                            tempMoveset.Add(translatedMove);
+                        }
 
-                    moveset = tempMoveset;
-
-                    foreach (string str in moveset)
-                    {
-                        Console.WriteLine(str);
+                        moveset = tempMoveset;
+                        tempMoveset.Clear();
                     }
                 }
             }

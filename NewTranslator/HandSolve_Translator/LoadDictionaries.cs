@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace HandSolve_Translator
 {
-    public class LoadDictionaries
+    public static class LoadDictionaries
     {
-        public Dictionary<string, Dictionary<string, string>> dictFirstTranslation = new Dictionary<string, Dictionary<string, string>>();
-        public Dictionary<string, string> upperTranslation     = new Dictionary<string, string>();
-        public Dictionary<string, string> rightTranslation     = new Dictionary<string, string>();
-        public Dictionary<string, string> frontTranslation     = new Dictionary<string, string>();
-		public Dictionary<string, string> backTranslation      = new Dictionary<string, string>();
-        public Dictionary<string, string> leftTranslation      = new Dictionary<string, string>();
-        public Dictionary<string, string> xTranslation         = new Dictionary<string, string>();
-        public Dictionary<string, string> xInvertedTranslation = new Dictionary<string, string>();
-        public Dictionary<string, string> yTranslation         = new Dictionary<string, string>();
-        public Dictionary<string, string> yInvertedTranslation = new Dictionary<string, string>();
-        public Dictionary<string, string> zTranslation         = new Dictionary<string, string>();
-        public Dictionary<string, string> zInvertedTranslation = new Dictionary<string, string>();
+        public static Dictionary<string, Dictionary<string, string>> dictFirstTranslation = new Dictionary<string, Dictionary<string, string>>();
+        public static Dictionary<string, string> upperTranslation     = new Dictionary<string, string>();
+        public static Dictionary<string, string> rightTranslation     = new Dictionary<string, string>();
+        public static Dictionary<string, string> frontTranslation     = new Dictionary<string, string>();
+		public static Dictionary<string, string> backTranslation      = new Dictionary<string, string>();
+        public static Dictionary<string, string> leftTranslation      = new Dictionary<string, string>();
+        public static Dictionary<string, string> xTranslation         = new Dictionary<string, string>();
+        public static Dictionary<string, string> xInvertedTranslation = new Dictionary<string, string>();
+        public static Dictionary<string, string> yTranslation         = new Dictionary<string, string>();
+        public static Dictionary<string, string> yInvertedTranslation = new Dictionary<string, string>();
+        public static Dictionary<string, string> zTranslation         = new Dictionary<string, string>();
+        public static Dictionary<string, string> zInvertedTranslation = new Dictionary<string, string>();
 
-        public void AddTranslationsToDictionaries()
+        public static void AddTranslationsToDictionaries()
         {
 			// dictFirstTranslation
             dictFirstTranslation.Add("U", upperTranslation);
