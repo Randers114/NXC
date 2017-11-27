@@ -35,6 +35,7 @@ namespace HandSolve_Translator
             LD.AddTranslationsToDictionaries();
             Dictionary<string, string> dictFromMove = new Dictionary<string, string>();
             List<string> tempMoveset = new List<string>();
+            List<string> movesetWithoutXYZ = new List<string>();
             string translatedMove = "";
 
             ReplaceMovesInMoveset();  // Replaces Middle-turns and Double-layer turns with corresponding single-layer and orientation turns.
@@ -44,38 +45,57 @@ namespace HandSolve_Translator
             var moveset = inputMoveset.Split(' ').ToList();
             int movesetLength = moveset.Count;
 
-            
-            for (int i = 0; i < movesetLength; i++)
+            movesetLength = moveset.Count;
+
+            for (int j = 0; j < movesetLength; j++) 
             {
-                if (moveset.Count != 0)
+                if (moveset.Count != 0) // Translate XYZ orientation-changes.
                 {
-                    LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
-                    translatedMoves.Add(moveset.First());
-                    
-
-                    Console.WriteLine("\nAdded to translatedMoves: " + moveset.First());
-
-                    moveset.Remove(moveset.First());
-
-                    if (moveset.Count != 0)
+                    if (moveset.First() == "X" || moveset.First() == "Xi" || moveset.First() == "Y" || moveset.First() == "Yi" || moveset.First() == "Z" || moveset.First() == "Zi")
                     {
+                        LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                        moveset.Remove(moveset.First());
+
                         foreach (string move in moveset)
                         {
                             dictFromMove.TryGetValue(move, out translatedMove);
-
                             tempMoveset.Add(translatedMove);
                         }
 
                         moveset = tempMoveset.ToList();
-
-                        foreach (string lul in moveset)
-                        {
-                            Console.Write(lul + " ");
-                        }
-
-                        Console.WriteLine("\n");
-
                         tempMoveset.Clear();
+                    }
+
+                    else // Translate robot-moves.
+                    {
+                        LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                        translatedMoves.Add(moveset.First());
+                    
+
+                        Console.WriteLine("\nAdded to translatedMoves: " + moveset.First());
+
+                        moveset.Remove(moveset.First());
+
+                        if (moveset.Count != 0)
+                        {
+                            foreach (string move in moveset)
+                            {
+                                dictFromMove.TryGetValue(move, out translatedMove);
+
+                                tempMoveset.Add(translatedMove);
+                            }
+
+                            moveset = tempMoveset.ToList();
+
+                            foreach (string lul in moveset)
+                            {
+                                Console.Write(lul + " ");
+                            }
+
+                            Console.WriteLine("\n");
+
+                            tempMoveset.Clear();
+                        }
                     }
                 }
             }
@@ -83,8 +103,8 @@ namespace HandSolve_Translator
 
         public void ReplaceMovesInMoveset()
         {
-            inputMoveset = inputMoveset.Replace("Mi", "Ri L")
-                .Replace("M", "R Li")
+            inputMoveset = inputMoveset.Replace("Mi", "Ri L X")
+                .Replace("M", "R Li Xi")
                 .Replace("Ei", "Ui D Y")
                 .Replace("E", "U Di Yi")
                 .Replace("Si", "F Bi Zi")

@@ -182,143 +182,143 @@ namespace HandSolve_Translator
             downTranslation.Add("Z", "Z");
             downTranslation.Add("Zi", "Zi");
 
-            // xTranslation
+            // xInvertedTranslation
 
-            xTranslation.Add("U", "B");
-			xTranslation.Add("Ui", "Bi");
-			xTranslation.Add("R", "R");
-			xTranslation.Add("Ri", "Ri");
-			xTranslation.Add("F", "U");
-			xTranslation.Add("Fi", "Ui");
-
-			xTranslation.Add("B", "D");
-			xTranslation.Add("Bi", "Di");
-			xTranslation.Add("L", "L");
-			xTranslation.Add("Li", "Li");
-			xTranslation.Add("D", "F");
-			xTranslation.Add("Di", "Fi");
-
-			xTranslation.Add("X", "X");
-			xTranslation.Add("Xi", "Xi");
-			xTranslation.Add("Y", "Zi");
-			xTranslation.Add("Yi", "Z");
-			xTranslation.Add("Z", "Y");
-			xTranslation.Add("Zi", "Yi");
-
-			// xInvetedTranslation
-
-			xInvertedTranslation.Add("U", "F");
-			xInvertedTranslation.Add("Ui", "Fi");
-			xInvertedTranslation.Add("R", "R");
+            xInvertedTranslation.Add("U", "B");
+            xInvertedTranslation.Add("Ui", "Bi");
+            xInvertedTranslation.Add("R", "R");
 			xInvertedTranslation.Add("Ri", "Ri");
-			xInvertedTranslation.Add("F", "D");
-			xInvertedTranslation.Add("Fi", "Di");
+			xInvertedTranslation.Add("F", "U");
+			xInvertedTranslation.Add("Fi", "Ui");
 
-			xInvertedTranslation.Add("B", "U");
-			xInvertedTranslation.Add("Bi", "Ui");
+			xInvertedTranslation.Add("B", "D");
+			xInvertedTranslation.Add("Bi", "Di");
 			xInvertedTranslation.Add("L", "L");
 			xInvertedTranslation.Add("Li", "Li");
-			xInvertedTranslation.Add("D", "B");
-			xInvertedTranslation.Add("Di", "Bi");
+			xInvertedTranslation.Add("D", "F");
+			xInvertedTranslation.Add("Di", "Fi");
 
 			xInvertedTranslation.Add("X", "X");
 			xInvertedTranslation.Add("Xi", "Xi");
-			xInvertedTranslation.Add("Y", "Z");
-			xInvertedTranslation.Add("Yi", "Zi");
-			xInvertedTranslation.Add("Z", "Yi");
-			xInvertedTranslation.Add("Zi", "Y");
+			xInvertedTranslation.Add("Y", "Zi");
+			xInvertedTranslation.Add("Yi", "Z");
+			xInvertedTranslation.Add("Z", "Y");
+			xInvertedTranslation.Add("Zi", "Yi");
+
+			// xTranslation
+
+			xTranslation.Add("U", "F");
+			xTranslation.Add("Ui", "Fi");
+			xTranslation.Add("R", "R");
+			xTranslation.Add("Ri", "Ri");
+			xTranslation.Add("F", "D");
+			xTranslation.Add("Fi", "Di");
+
+			xTranslation.Add("B", "U");
+			xTranslation.Add("Bi", "Ui");
+			xTranslation.Add("L", "L");
+			xTranslation.Add("Li", "Li");
+			xTranslation.Add("D", "B");
+			xTranslation.Add("Di", "Bi");
+
+			xTranslation.Add("X", "X");
+			xTranslation.Add("Xi", "Xi");
+			xTranslation.Add("Y", "Z");
+			xTranslation.Add("Yi", "Zi");
+			xTranslation.Add("Z", "Yi");
+			xTranslation.Add("Zi", "Y");
+
+            // yInvertedTranslation
+
+            yInvertedTranslation.Add("U", "U");
+            yInvertedTranslation.Add("Ui", "Ui");
+            yInvertedTranslation.Add("R", "F");
+            yInvertedTranslation.Add("Ri", "Fi");
+            yInvertedTranslation.Add("F", "L");
+            yInvertedTranslation.Add("Fi", "Li");
+
+            yInvertedTranslation.Add("B", "R");
+            yInvertedTranslation.Add("Bi", "Ri");
+            yInvertedTranslation.Add("L", "B");
+            yInvertedTranslation.Add("Li", "Bi");
+            yInvertedTranslation.Add("D", "D");
+            yInvertedTranslation.Add("Di", "Di");
+
+            yInvertedTranslation.Add("X", "Z");
+            yInvertedTranslation.Add("Xi", "Zi");
+            yInvertedTranslation.Add("Y", "Y");
+            yInvertedTranslation.Add("Yi", "Yi");
+            yInvertedTranslation.Add("Z", "Xi");
+            yInvertedTranslation.Add("Zi", "X");
 
 			// yTranslation
 
 			yTranslation.Add("U", "U");
 			yTranslation.Add("Ui", "Ui");
-			yTranslation.Add("R", "F");
-			yTranslation.Add("Ri", "Fi");
-			yTranslation.Add("F", "L");
-			yTranslation.Add("Fi", "Li");
+			yTranslation.Add("R", "B");
+			yTranslation.Add("Ri", "Bi");
+			yTranslation.Add("F", "R");
+			yTranslation.Add("Fi", "Ri");
 
-			yTranslation.Add("B", "R");
-			yTranslation.Add("Bi", "Ri");
-			yTranslation.Add("L", "B");
-			yTranslation.Add("Li", "Bi");
+			yTranslation.Add("B", "L");
+			yTranslation.Add("Bi", "Li");
+			yTranslation.Add("L", "F");
+			yTranslation.Add("Li", "Fi");
 			yTranslation.Add("D", "D");
 			yTranslation.Add("Di", "Di");
 
-			yTranslation.Add("X", "Z");
-			yTranslation.Add("Xi", "Zi");
+			yTranslation.Add("X", "Zi");
+			yTranslation.Add("Xi", "Z");
 			yTranslation.Add("Y", "Y");
 			yTranslation.Add("Yi", "Yi");
-			yTranslation.Add("Z", "Xi");
-			yTranslation.Add("Zi", "X");
-
-			// yInvertedTranslation
-
-			yInvertedTranslation.Add("U", "U");
-			yInvertedTranslation.Add("Ui", "Ui");
-			yInvertedTranslation.Add("R", "B");
-			yInvertedTranslation.Add("Ri", "Bi");
-			yInvertedTranslation.Add("F", "R");
-			yInvertedTranslation.Add("Fi", "Ri");
-
-			yInvertedTranslation.Add("B", "L");
-			yInvertedTranslation.Add("Bi", "Li");
-			yInvertedTranslation.Add("L", "F");
-			yInvertedTranslation.Add("Li", "Fi");
-			yInvertedTranslation.Add("D", "D");
-			yInvertedTranslation.Add("Di", "Di");
-
-			yInvertedTranslation.Add("X", "Zi");
-			yInvertedTranslation.Add("Xi", "Z");
-			yInvertedTranslation.Add("Y", "Y");
-			yInvertedTranslation.Add("Yi", "Yi");
-			yInvertedTranslation.Add("Z", "X");
-			yInvertedTranslation.Add("Zi", "Xi");
-
-			// zTranslation
-
-			zTranslation.Add("U", "R");
-			zTranslation.Add("Ui", "Ri");
-			zTranslation.Add("R", "D");
-			zTranslation.Add("Ri", "Di");
-			zTranslation.Add("F", "F");
-			zTranslation.Add("Fi", "Fi");
-
-			zTranslation.Add("B", "B");
-			zTranslation.Add("Bi", "Bi");
-			zTranslation.Add("L", "U");
-			zTranslation.Add("Li", "Ui");
-			zTranslation.Add("D", "L");
-			zTranslation.Add("Di", "Li");
-
-			zTranslation.Add("X", "Yi");
-			zTranslation.Add("Xi", "Y");
-			zTranslation.Add("Y", "X");
-			zTranslation.Add("Yi", "Xi");
-			zTranslation.Add("Z", "Z");
-			zTranslation.Add("Zi", "Zi");
+			yTranslation.Add("Z", "X");
+			yTranslation.Add("Zi", "Xi");
 
 			// zInvertedTranslation
 
-			zInvertedTranslation.Add("U", "L");
-			zInvertedTranslation.Add("Ui", "Li");
-			zInvertedTranslation.Add("R", "U");
-			zInvertedTranslation.Add("Ri", "Ui");
+			zInvertedTranslation.Add("U", "R");
+			zInvertedTranslation.Add("Ui", "Ri");
+			zInvertedTranslation.Add("R", "D");
+			zInvertedTranslation.Add("Ri", "Di");
 			zInvertedTranslation.Add("F", "F");
 			zInvertedTranslation.Add("Fi", "Fi");
 
 			zInvertedTranslation.Add("B", "B");
 			zInvertedTranslation.Add("Bi", "Bi");
-			zInvertedTranslation.Add("L", "D");
-			zInvertedTranslation.Add("Li","Di");
-			zInvertedTranslation.Add("D", "R");
-			zInvertedTranslation.Add("Di", "Ri");
+			zInvertedTranslation.Add("L", "U");
+			zInvertedTranslation.Add("Li", "Ui");
+			zInvertedTranslation.Add("D", "L");
+			zInvertedTranslation.Add("Di", "Li");
 
-			zInvertedTranslation.Add("X", "Y");
-			zInvertedTranslation.Add("Xi", "Yi");
-			zInvertedTranslation.Add("Y", "Xi");
-			zInvertedTranslation.Add("Yi", "X");
+			zInvertedTranslation.Add("X", "Yi");
+			zInvertedTranslation.Add("Xi", "Y");
+			zInvertedTranslation.Add("Y", "X");
+			zInvertedTranslation.Add("Yi", "Xi");
 			zInvertedTranslation.Add("Z", "Z");
 			zInvertedTranslation.Add("Zi", "Zi");
+
+			// zTranslation
+
+			zTranslation.Add("U", "L");
+			zTranslation.Add("Ui", "Li");
+			zTranslation.Add("R", "U");
+			zTranslation.Add("Ri", "Ui");
+			zTranslation.Add("F", "F");
+			zTranslation.Add("Fi", "Fi");
+
+			zTranslation.Add("B", "B");
+			zTranslation.Add("Bi", "Bi");
+			zTranslation.Add("L", "D");
+			zTranslation.Add("Li","Di");
+			zTranslation.Add("D", "R");
+			zTranslation.Add("Di", "Ri");
+
+			zTranslation.Add("X", "Y");
+			zTranslation.Add("Xi", "Yi");
+			zTranslation.Add("Y", "Xi");
+			zTranslation.Add("Yi", "X");
+			zTranslation.Add("Z", "Z");
+			zTranslation.Add("Zi", "Zi");
 
 
         }
