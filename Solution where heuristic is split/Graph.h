@@ -1,4 +1,5 @@
 #include "Heuristic.h"
+#include <time.h>
 
 #define BOUND 3
 #define HIGHEST_HEURISTIC_VALUE 12
@@ -339,6 +340,8 @@ void MainGraphConstruction()
 	printf("Start Heuristic value %d\n", values.upperHeuristic);
 	
 	Bound = BOUND;
+	
+	clock_t before = clock();
 		
 	while(values.upperHeuristic != 0)
 	{
@@ -365,6 +368,10 @@ void MainGraphConstruction()
 			}
 		}
 	}	
+	
+	clock_t difference = clock() - before;
+	int msec = difference * 1000 / CLOCKS_PER_SEC;
+	printf("Time taken: %d.%d",msec/1000,msec%1000);
 	
 	printf("Done \n");
 	

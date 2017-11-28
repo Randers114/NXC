@@ -4,14 +4,14 @@
 int main()
 {
 	// An example of our case 
-	// char top[10] = { 'r', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'}; 
-	// char right[10] = { 'y', 'o', 'y', 'g', 'g', 'g', 'g', 'g', 'g'}; 
-	// char front[10] = { 'o', 'o', 'o', 'o', 'o', 'o', 'y', 'y', 'b'}; 
-	// char back[10] = { 'o', 'g', 'g', 'r', 'r', 'r', 'b', 'r', 'r'}; 
-	// char left[10] = { 'w', 'b', 'b', 'b', 'b', 'b', 'g', 'y', 'o'}; 
-	// char bottom[10] = { 'b', 'b', 'r', 'r', 'y', 'y', 'y', 'y', 'r'}; 
+	char top[10] = { 'r', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'}; 
+	char right[10] = { 'y', 'o', 'y', 'g', 'g', 'g', 'g', 'g', 'g'}; 
+	char front[10] = { 'o', 'o', 'o', 'o', 'o', 'o', 'y', 'y', 'b'}; 
+	char back[10] = { 'o', 'g', 'g', 'r', 'r', 'r', 'b', 'r', 'r'}; 
+	char left[10] = { 'w', 'b', 'b', 'b', 'b', 'b', 'g', 'y', 'o'}; 
+	char bottom[10] = { 'b', 'b', 'r', 'r', 'y', 'y', 'y', 'y', 'r'}; 
 		
-	// 46 --- 57
+	// 46 --- 57 time 44.18
 	// char top[10] = { 'b', 'o', 'r', 'g', 'b', 'r', 'o', 'o', 'r'}; 
 	// char right[10] = { 'g', 'b', 'w', 'w', 'r', 'r', 'w', 'b', 'b'}; 
 	// char front[10] = { 'w', 'b', 'y', 'b', 'w', 'g', 'o', 'g', 'r'}; 
@@ -20,7 +20,7 @@ int main()
 	// char bottom[10] = { 'y', 'w', 'b', 'r', 'g', 'y', 'g', 'y', 'o'}; 
 	
 	
-	// 43 instant --- 48
+	// 43 instant --- 48 time 6.481
 	// char top[10] = { 'o', 'b', 'b', 'g', 'w', 'o', 'y', 'o', 'w'}; 
 	// char right[10] = { 'w', 'y', 'o', 'o', 'r', 'g', 'r', 'y', 'g'}; 
 	// char front[10] = { 'g', 'w', 'o', 'b', 'g', 'o', 'r', 'r', 'y'}; 
@@ -28,7 +28,7 @@ int main()
 	// char left[10] = { 'g', 'w', 'r', 'w', 'o', 'r', 'w', 'y', 'b'}; 
 	// char bottom[10] = { 'w', 'w', 'g', 'r', 'y', 'g', 'r', 'g', 'b'}; 
 	
-	// 46 - 56
+	// 46 - 56 time 12.138
 	// char top[10] = { 'r', 'r', 'b', 'r', 'w', 'g', 'b', 'b', 'y'}; 
 	// char right[10] = { 'g', 'y', 'g', 'g', 'o', 'o', 'r', 'w', 'g'}; 
 	// char front[10] = { 'r', 'w', 'r', 'o', 'b', 'y', 'o', 'o', 'w'}; 
@@ -36,13 +36,13 @@ int main()
 	// char left[10] = { 'g', 'b', 'w', 'w', 'r', 'g', 'o', 'w', 'b'}; 
 	// char bottom[10] = { 'y', 'b', 'o', 'r', 'y', 'r', 'b', 'y', 'o'}; 
 	
-	// 46 --- 48
-	char top[10] = { 'r', 'r', 'o', 'r', 'w', 'o', 'y', 'o', 'o'}; 
-	char right[10] = { 'g', 'b', 'b', 'y', 'b', 'w', 'b', 'y', 'w'}; 
-	char front[10] = { 'r', 'b', 'g', 'g', 'r', 'b', 'w', 'w', 'o'}; 
-	char back[10] = { 'y', 'y', 'y', 'r', 'o', 'b', 'w', 'w', 'y'}; 
-	char left[10] = { 'g', 'y', 'b', 'g', 'g', 'o', 'g', 'o', 'r'}; 
-	char bottom[10] = { 'b', 'g', 'w', 'w', 'y', 'r', 'r', 'g', 'o'}; 
+	// 46 --- 48 time 14.312
+	// char top[10] = { 'r', 'r', 'o', 'r', 'w', 'o', 'y', 'o', 'o'}; 
+	// char right[10] = { 'g', 'b', 'b', 'y', 'b', 'w', 'b', 'y', 'w'}; 
+	// char front[10] = { 'r', 'b', 'g', 'g', 'r', 'b', 'w', 'w', 'o'}; 
+	// char back[10] = { 'y', 'y', 'y', 'r', 'o', 'b', 'w', 'w', 'y'}; 
+	// char left[10] = { 'g', 'y', 'b', 'g', 'g', 'o', 'g', 'o', 'r'}; 
+	// char bottom[10] = { 'b', 'g', 'w', 'w', 'y', 'r', 'r', 'g', 'o'}; 
 	
 	// Den vi sendte  38 --- Case
 	// char top[10] = { 'w', 'r', 'r', 'g', 'g', 'r', 'b', 'g', 'r'}; 
@@ -61,7 +61,7 @@ int main()
 	// char bottom[10] = { 'b', 'y', 'g', 'y', 'y', 'b', 'w', 'y', 'g'};
 	
 	
-	// 46 --- 38
+	// 46 --- 38 / time 12.165
 	// char top[10] = { 'y', 'g', 'w', 'r', 'w', 'g', 'b', 'g', 'o'}; 
 	// char right[10] = { 'r', 'b', 'b', 'o', 'g', 'b', 'o', 'o', 'b'}; 
 	// char front[10] = { 'o', 'y', 'w', 'o', 'o', 'r', 'g', 'r', 'w'}; 
