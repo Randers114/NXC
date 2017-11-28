@@ -347,6 +347,13 @@ void MainGraphConstruction()
 	{
 		ConstructNodeChildren(&values);
 		
+		if(nodeCount == 2000000000)
+		{
+			clock_t difference = clock() - before;
+			int msec = difference * 1000 / CLOCKS_PER_SEC;
+			printf("Time taken: %d.%d",msec/1000,msec%1000);	
+		}
+			
 		
 		if(nodeCount % 100000000 == 0)
 		{
@@ -369,9 +376,7 @@ void MainGraphConstruction()
 		}
 	}	
 	
-	clock_t difference = clock() - before;
-	int msec = difference * 1000 / CLOCKS_PER_SEC;
-	printf("Time taken: %d.%d",msec/1000,msec%1000);
+	
 	
 	printf("Done \n");
 	

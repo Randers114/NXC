@@ -4,12 +4,12 @@
 int main()
 {
 	// An example of our case 
-	char top[10] = { 'r', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'}; 
-	char right[10] = { 'y', 'o', 'y', 'g', 'g', 'g', 'g', 'g', 'g'}; 
-	char front[10] = { 'o', 'o', 'o', 'o', 'o', 'o', 'y', 'y', 'b'}; 
-	char back[10] = { 'o', 'g', 'g', 'r', 'r', 'r', 'b', 'r', 'r'}; 
-	char left[10] = { 'w', 'b', 'b', 'b', 'b', 'b', 'g', 'y', 'o'}; 
-	char bottom[10] = { 'b', 'b', 'r', 'r', 'y', 'y', 'y', 'y', 'r'}; 
+	// char top[10] = { 'r', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'}; 
+	// char right[10] = { 'y', 'o', 'y', 'g', 'g', 'g', 'g', 'g', 'g'}; 
+	// char front[10] = { 'o', 'o', 'o', 'o', 'o', 'o', 'y', 'y', 'b'}; 
+	// char back[10] = { 'o', 'g', 'g', 'r', 'r', 'r', 'b', 'r', 'r'}; 
+	// char left[10] = { 'w', 'b', 'b', 'b', 'b', 'b', 'g', 'y', 'o'}; 
+	// char bottom[10] = { 'b', 'b', 'r', 'r', 'y', 'y', 'y', 'y', 'r'}; 
 		
 	// 46 --- 57 time 44.18
 	// char top[10] = { 'b', 'o', 'r', 'g', 'b', 'r', 'o', 'o', 'r'}; 
@@ -45,12 +45,12 @@ int main()
 	// char bottom[10] = { 'b', 'g', 'w', 'w', 'y', 'r', 'r', 'g', 'o'}; 
 	
 	// Den vi sendte  38 --- Case
-	// char top[10] = { 'w', 'r', 'r', 'g', 'g', 'r', 'b', 'g', 'r'}; 
-	// char right[10] = { 'y', 'b', 'y', 'g', 'y', 'o', 'b', 'w', 'y'}; 
-	// char front[10] = { 'w', 'y', 'g', 'g', 'o', 'b', 'o', 'w', 'o'}; 
-	// char back[10] = { 'g', 'y', 'r', 'o', 'r', 'o', 'o', 'y', 'w'}; 
-	// char left[10] = { 'g', 'r', 'o', 'y', 'w', 'w', 'w', 'w', 'y'}; 
-	// char bottom[10] = { 'g', 'o', 'b', 'b', 'b', 'r', 'r', 'b', 'b'}; 
+	char top[10] = { 'w', 'r', 'r', 'g', 'g', 'r', 'b', 'g', 'r'}; 
+	char right[10] = { 'y', 'b', 'y', 'g', 'y', 'o', 'b', 'w', 'y'}; 
+	char front[10] = { 'w', 'y', 'g', 'g', 'o', 'b', 'o', 'w', 'o'}; 
+	char back[10] = { 'g', 'y', 'r', 'o', 'r', 'o', 'o', 'y', 'w'}; 
+	char left[10] = { 'g', 'r', 'o', 'y', 'w', 'w', 'w', 'w', 'y'}; 
+	char bottom[10] = { 'g', 'o', 'b', 'b', 'b', 'r', 'r', 'b', 'b'}; 
 	
 	// Case --- Case
 	// char top[10] = { 'b', 'r', 'y', 'g', 'w', 'g', 'w', 'r', 'w'};
