@@ -1,0 +1,121 @@
+#include "CubeOperations.h"
+
+#define NUM_OF_FACES 6
+#define NUM_OF_PIECES 9
+
+
+sub EvaluateYellowFaceConfiguration(int yellowConfigurationArray[])
+{
+    // Checks each square on the yellow face. If a square is yellow, a value of 1 is saved. If a square isn't yellow, a value of 0 is saved.
+    // These values are placed in an array of int's, where the first entry in the array corresponds to the square noted as the first square in the representation.
+    // An example of an int array would be: 1 0 0 1 1 1 0 0 1, which would correspond to the configuration:
+    //      y 0 y
+    //      y y y
+    //      y 0 y
+
+    for (int face = 0; face < NUM_OF_FACES; face++)
+    {
+        if (myCube[face][4] == 'y')
+        {
+            for (int piece = 0; piece < NUM_OF_PIECES; piece++)
+            {
+                if (myCube[face][piece] == 'y')
+                {
+                    yellowConfigurationArray[piece] = 1;
+                }
+                else
+                {
+                    yellowConfigurationArray[piece] = 0;
+                }
+            }
+        }
+    }
+}
+
+sub FindCorrectMoveset(int yellowConfigurationArray[])
+{
+    // ITERER PÅ INT ARRAY, CHECK FOR ALLE CASES AF YELLOW FACE. DEREFTER CHECK FOR DE ENKELTE CASES MED TOP LAYER.
+
+    if (yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 0]) // Centrum
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 0, 0, 0] || yellowConfigurationArray == [0, 0, 1, 0, 1, 0, 0, 0, 0] ||
+             yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 1, 0, 0] || yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 1]) // Centrum og et hjørne
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 0, 0, 1] || yellowConfigurationArray == [0, 0, 1, 0, 1, 0, 1, 0, 0]) // Skrå linje
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 1, 0, 1]) // Skrå kryds
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 0, 0, 0] || yellowConfigurationArray == [0, 0, 1, 0, 1, 0, 0, 0, 1] ||
+             yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 1, 0, 0] || yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 1, 0, 1]) // Centrum og to hjørner ved siden af hinanden
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [0, 1, 0, 0, 1, 0, 0, 1, 0] || yellowConfigurationArray == [0, 0, 0, 1, 1, 1, 0, 0, 0]) // Lige linje
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 0]) // Lige kryds
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 0, 1, 0] || yellowConfigurationArray == [0, 1, 1, 1, 1, 1, 0, 1, 0] ||
+             yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 1, 1, 0] || yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 1]) // Lige kryds med et hjørne
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 1, 0, 1, 0] || yellowConfigurationArray == [0, 1, 1, 1, 1, 1, 0, 1, 1] ||
+             yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 1, 1, 0] || yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 1, 1, 1]) // Lige kryds med to hjørner ved siden af hinanden
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 0, 1, 1] || yellowConfigurationArray == [0, 1, 1, 1, 1, 1, 1, 1, 0]) // Lige kryds med modsatte hjørner
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 0, 1, 0, 1] || yellowConfigurationArray == [1, 1, 1, 0, 1, 1, 1, 0, 1] ||
+             yellowConfigurationArray == [1, 0, 1, 1, 1, 0, 1, 1, 1] || yellowConfigurationArray == [1, 0, 1, 0, 1, 1, 1, 1, 1]) // Skrå kryds med to kanter ved siden af hinanden
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 0, 1, 1, 1, 1, 1, 0, 1] || yellowConfigurationArray == [1, 1, 1, 0, 1, 0, 1, 1, 1]) // Skrå kryds med modsatte kanter
+    {
+
+
+    }
+    else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 0, 1, 0, 1] || yellowConfigurationArray == [1, 1, 1, 0, 1, 1, 1, 0, 1] ||
+             yellowConfigurationArray == [1, 0, 1, 1, 1, 0, 1, 1, 1] || yellowConfigurationArray == [1, 0, 1, 0, 1, 1, 1, 1, 1])
+
+
+
+    
+
+}
+
+
+task main()
+{
+
+
+
+
+
+}
