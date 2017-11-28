@@ -9,8 +9,10 @@ namespace HandSolve_Translator
     public class Translator
     {
         string inputMoveset;
+		string finalMoveset;
         List<string> moveset = new List<string>();
         List<string> translatedMoves = new List<string>();
+		List<int> machineMoves = new List<int>();
 
 
         public void ReadInput()
@@ -21,13 +23,21 @@ namespace HandSolve_Translator
 
         public void PrintMoveset()
         {
+			ReplaceMovesToMachineMoves();
             Console.Write("Final Moveset:");
-            foreach (string str in translatedMoves)
+            foreach (string move in translatedMoves)
             {
-                Console.Write(str + " ");
+                Console.Write(move + " ");
             }
-            
-        }
+			Console.WriteLine("\nTranslated to MachineMoveset:");
+			foreach(int move in machineMoves)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.Write(move + " ");
+				Console.ResetColor();
+			}
+
+		}
 
         public void TranslateMoves()
         {
@@ -101,6 +111,69 @@ namespace HandSolve_Translator
             }
         }
 
+		public void ReplaceMovesToMachineMoves()
+		{
+			int[] i;
+			foreach (string move in translatedMoves)
+			{
+
+				switch(move)
+				{
+					case "R":
+						machineMoves.Add(1);
+						break;
+						
+					case "Ri":
+						machineMoves.Add(2);
+						break;
+
+					case "L":
+						machineMoves.Add(3);
+						break;
+
+					case "Li":
+						machineMoves.Add(4);
+						break;
+
+					case "T":
+						machineMoves.Add(5);
+						break;
+
+					case "Ti":
+						machineMoves.Add(6);
+						break;
+
+					case "D":
+						machineMoves.Add(7);
+						break;
+
+					case "Di":
+						machineMoves.Add(8);
+						break;
+
+					case "F":
+						machineMoves.Add(9);
+						break;
+
+					case "Fi":
+						machineMoves.Add(10);
+						break;
+
+					case "B":
+						machineMoves.Add(11);
+						break;
+
+					case "Bi":
+						machineMoves.Add(12);
+						break;
+
+
+				}
+		
+			}
+
+		}
+
         public void ReplaceMovesInMoveset()
         {
             inputMoveset = inputMoveset.Replace("U2'", "U2")
@@ -112,8 +185,8 @@ namespace HandSolve_Translator
                 .Replace("'", "i")
                 .Replace("x", "X")
                 .Replace("y", "Y")
-                .Replace("z", "Z");
-
+                .Replace("z", "Z"); 
+			
                 
             inputMoveset = inputMoveset.Replace("Mi", "Ri L X")
                 .Replace("M", "R Li Xi")
