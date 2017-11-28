@@ -9,7 +9,6 @@ namespace HandSolve_Translator
     public class Translator
     {
         string inputMoveset;
-		string finalMoveset;
         List<string> moveset = new List<string>();
         List<string> translatedMoves = new List<string>();
 		List<int> machineMoves = new List<int>();
@@ -35,6 +34,7 @@ namespace HandSolve_Translator
 				Console.ForegroundColor = ConsoleColor.Green;
 				Console.Write(move + " ");
 				Console.ResetColor();
+
 			}
 
 		}
@@ -113,7 +113,6 @@ namespace HandSolve_Translator
 
 		public void ReplaceMovesToMachineMoves()
 		{
-			int[] i;
 			foreach (string move in translatedMoves)
 			{
 
