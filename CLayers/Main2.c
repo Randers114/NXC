@@ -3316,6 +3316,7 @@ int RootNodeMethod	(const char rootcube[6][10]){
 	return 1;
 }
 int main(){
+	
 	// char top[10] = { 'b', 'o', 'r', 'g', 'b', 'r', 'o', 'o', 'r'}; 
 	// char right[10] = { 'g', 'b', 'w', 'w', 'r', 'r', 'w', 'b', 'b'}; 
 	// char front[10] = { 'w', 'b', 'y', 'b', 'w', 'g', 'o', 'g', 'r'}; 
@@ -3365,12 +3366,12 @@ int main(){
 	// char bottom[10] = { 'b', 'y', 'g', 'y', 'y', 'b', 'w', 'y', 'g'};
 	//doesnt work (needs another test)
 	
-	char top[10] = { 'y', 'g', 'w', 'r', 'w', 'g', 'b', 'g', 'o'}; 
-	char right[10] = { 'r', 'b', 'b', 'o', 'g', 'b', 'o', 'o', 'b'}; 
-	char front[10] = { 'o', 'y', 'w', 'o', 'o', 'r', 'g', 'r', 'w'}; 
-	char back[10] = { 'y', 'w', 'b', 'r', 'r', 'y', 'r', 'w', 'g'}; 
-	char left[10] = { 'g', 'g', 'y', 'w', 'b', 'w', 'o', 'b', 'r'}; 
-	char bottom[10] = { 'w', 'y', 'r', 'y', 'y', 'o', 'g', 'b', 'y'}; 
+	// char top[10] = { 'y', 'g', 'w', 'r', 'w', 'g', 'b', 'g', 'o'}; 
+	// char right[10] = { 'r', 'b', 'b', 'o', 'g', 'b', 'o', 'o', 'b'}; 
+	// char front[10] = { 'o', 'y', 'w', 'o', 'o', 'r', 'g', 'r', 'w'}; 
+	// char back[10] = { 'y', 'w', 'b', 'r', 'r', 'y', 'r', 'w', 'g'}; 
+	// char left[10] = { 'g', 'g', 'y', 'w', 'b', 'w', 'o', 'b', 'r'}; 
+	// char bottom[10] = { 'w', 'y', 'r', 'y', 'y', 'o', 'g', 'b', 'y'}; 
 	//works 131 5.395
 
 	InitializeSide(top, TOP_FACE);
@@ -3386,6 +3387,7 @@ int main(){
 	clock_t before = clock();
 	while(BESTHEURISTIC != 0)
 	{
+		printf("Initial Heuristic is: %d",BESTHEURISTIC);
 		RootNodeMethod(myCube);
 		if(FullPathHead > 18)FullPath = realloc(FullPath,(FullPathHead+18)*sizeof(char));
 		//if(BESTHEURISTIC<=4)PrintCube();
