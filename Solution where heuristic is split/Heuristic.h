@@ -1,4 +1,5 @@
 #include "CubeOperations.h"
+#include <Windows.h>
 
 int FindWhiteFace()
 {
@@ -129,8 +130,32 @@ int CheckCenterLayerEdges(int whiteFace)
 	
 }
 
+int HeuristicValueWhiteCross()
+{
+	int whiteFace, heuristicValue = 8;
+	
+	whiteFace = FindWhiteFace();
+	
+	heuristicValue += CheckWhiteEdges(whiteFace);
+	
+	return heuristicValue;
+}
 
-int HeuristicValue()
+
+int HeuristicValueWhiteFace()
+{
+	int whiteFace, heuristicValue = 4;
+	
+	whiteFace = FindWhiteFace();
+	
+	heuristicValue += CheckWhiteEdges(whiteFace);
+	
+	heuristicValue += CheckWhiteCorner(whiteFace);
+	
+	return heuristicValue;
+}
+
+int HeuristicValueCenterLayer()
 {
 	int whiteFace, heuristicValue = 0;
 	
@@ -141,9 +166,10 @@ int HeuristicValue()
 	heuristicValue += CheckWhiteCorner(whiteFace);
 	
 	heuristicValue += CheckCenterLayerEdges(whiteFace);
-	
+
 	return heuristicValue;
 }
+
 
 
 

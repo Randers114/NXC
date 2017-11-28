@@ -1,5 +1,4 @@
 #include "Heuristic.h"
-#include <Windows.h>
 
 #define BOUND 3
 #define HIGHEST_HEURISTIC_VALUE 12
@@ -50,7 +49,7 @@ void clrscr()
     system("@cls||clear");
 }
 
-void ConstructNode(int currentPosition, int move)
+void ConstructNode(int currentPosition, int move, int upperHeuristic)
 {
 	nodeCount++;
 	
@@ -60,7 +59,17 @@ void ConstructNode(int currentPosition, int move)
 	
 	memcpy(node.cube, myCube, sizeof myCube);
 	
-	node.heuristicValue = HeuristicValue();
+	if(upperHeuristic > 8)
+	{
+		node.heuristicValue = HeuristicValueWhiteCross();
+	}
+	else if(upperHeuristic > 4)
+	{
+		node.heuristicValue = HeuristicValueWhiteFace();
+	} else
+	{
+		node.heuristicValue = HeuristicValueCenterLayer();
+	}
 	
 	node.move = move;
 	
@@ -68,24 +77,24 @@ void ConstructNode(int currentPosition, int move)
 }
 
 
-void ConstructNodeChildren(int *currentPosition, int *layer)
+void ConstructNodeChildren(Values *values)
 {	
 	int move;
 	
-	for(*layer; *layer < Bound; ++*currentPosition)
+	for(values->layer; values->layer < Bound; ++values->currentPosition)
 	{
-		Node newParent = Graph[*currentPosition];
+		Node newParent = Graph[values->currentPosition];
 		
 		memcpy(myCube, newParent.cube, sizeof newParent.cube);
 		
-		if(ChildNumber[*layer] == 12)
+		if(ChildNumber[values->layer] == 12)
 		{
-			ChildNumber[*layer] = 0;
+			ChildNumber[values->layer] = 0;
 		}
 		
-		ChildNumber[*layer] += 1;
+		ChildNumber[values->layer] += 1;
 		
-		move = ChildNumber[*layer];
+		move = ChildNumber[values->layer];
 		
 		
 		switch(move)
@@ -130,9 +139,9 @@ void ConstructNodeChildren(int *currentPosition, int *layer)
 				break;
 		}
 		
-		ConstructNode(*currentPosition, move);
+		ConstructNode(values->currentPosition, move, values->upperHeuristic);
 		
-		++*layer;
+		++values->layer;
 		
 		memcpy(myCube, newParent.cube, sizeof newParent.cube);
 	}
@@ -153,34 +162,34 @@ int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
 	return currentArrayPosition;
 }
 
-void ResetValues(int ****upperHeuristic, int ****currentPosition, int ****layer)
+void ResetValues(Values ****values)
 {
-	****upperHeuristic = Graph[****currentPosition].heuristicValue;
-	****currentPosition = 0;
-	****layer = 0;
+	(*(*(*values)))->upperHeuristic = Graph[(*(*(*values)))->currentPosition].heuristicValue;
+	(*(*(*values)))->currentPosition = 0;
+	(*(*(*values)))->layer = 0;
 	//nodeCount = 0;
 }
 
-void PrepareNewTree(int ***upperHeuristic, int ***currentPosition, int ***layer, int ***currentArrayPosition)
+void PrepareNewTree(Values ***values)
 {
 	if(Flag)
 	{
-		printf("Heuristicd %d \n", TempRootNode.heuristicValue);
+		printf("Heuristic %d \n", TempRootNode.heuristicValue);
 		
 		for(int i = 0; i < Bound; i++)
 		{
 			if(TempPath[i] != 0)
 			{
-				Path[***currentArrayPosition] = TempPath[i];
+				Path[(*(*values))->currentArrayPosition] = TempPath[i];
 			
-				++***currentArrayPosition;
+				++(*(*values))->currentArrayPosition;
 			}
 		}
 		
 		//Resets all values to initial 
-		***upperHeuristic = TempRootNode.heuristicValue;
-		***currentPosition = 0;
-		***layer = 0;
+		(*(*values))->upperHeuristic = TempRootNode.heuristicValue;
+		(*(*values))->currentPosition = 0;
+		(*(*values))->layer = 0;
 		//nodeCount = 0;
 		Flag = 0;
 		
@@ -189,20 +198,20 @@ void PrepareNewTree(int ***upperHeuristic, int ***currentPosition, int ***layer,
 			Graph[index] = Blank;
 		}
 		
-		Graph[***currentPosition] = TempRootNode;
+		Graph[(*(*values))->currentPosition] = TempRootNode;
 		
 		
 	} else
 	{
-		TempRootNode = Graph[***currentPosition];
+		TempRootNode = Graph[(*(*values))->currentPosition];
 	
-		printf("Heuristica %d \n", TempRootNode.heuristicValue);
+		printf("Heuristic %d \n", TempRootNode.heuristicValue);
 		
-		***currentArrayPosition = SaveThePath(***currentArrayPosition, ***currentPosition, ***layer);
+		(*(*values))->currentArrayPosition = SaveThePath((*(*values))->currentArrayPosition, (*(*values))->currentPosition, (*(*values))->layer);
 		
 
 		//Resets all values to initial 
-		ResetValues(&upperHeuristic, &currentPosition, &layer);
+		ResetValues(&values);
 
 		for(int index = 0; index < GRAPH_SIZE; index++)
 		{
@@ -210,25 +219,25 @@ void PrepareNewTree(int ***upperHeuristic, int ***currentPosition, int ***layer,
 		}
 
 		//Appoints a new root for the new tree
-		Graph[***currentPosition] = TempRootNode;
+		Graph[(*(*values))->currentPosition] = TempRootNode;
 	}
 
 }
 
-int CheckHeuristic(int **upperHeuristic, int **currentPosition, int **layer, int **currentArrayPosition)
+int CheckHeuristic(Values **values)
 {
 	int heuristicIsLower = 0;
 	
-	if(Graph[**currentPosition].heuristicValue < **upperHeuristic || (Graph[**currentPosition].move == 12 && **layer == 1))
+	if(Graph[(*values)->currentPosition].heuristicValue < (*values)->upperHeuristic || (Graph[(*values)->currentPosition].move == 12 && (*values)->layer == 1))
 	{	
-		if(**upperHeuristic > 4 && !(Graph[**currentPosition].move == 12 && **layer == 1))
+		if((*values)->upperHeuristic > 4 && !(Graph[(*values)->currentPosition].move == 12 && (*values)->layer == 1))
 		{
 			Flag = 1;
 			
 			TempRootNode = Blank;
 			
 			
-			TempRootNode = Graph[**currentPosition];
+			TempRootNode = Graph[(*values)->currentPosition];
 			
 			for(int i = 0; i <= Bound; i++)
 			{
@@ -238,11 +247,11 @@ int CheckHeuristic(int **upperHeuristic, int **currentPosition, int **layer, int
 				}
 			}		
 
-			**upperHeuristic = TempRootNode.heuristicValue;
+			(*values)->upperHeuristic = TempRootNode.heuristicValue;
 			
-		} else if(Flag || Graph[**currentPosition].heuristicValue < **upperHeuristic)
+		} else if(Flag || Graph[(*values)->currentPosition].heuristicValue < (*values)->upperHeuristic)
 		{
-			PrepareNewTree(&upperHeuristic, &currentPosition, &layer, &currentArrayPosition);
+			PrepareNewTree(&values);
 		
 			heuristicIsLower = 1;
 			
@@ -258,8 +267,8 @@ int CheckHeuristic(int **upperHeuristic, int **currentPosition, int **layer, int
 			} else 
 			{
 				Bound++;
-				**currentPosition = 1;
-				**layer = 0;
+				(*values)->currentPosition = 1;
+				(*values)->layer = 0;
 				
 				for(int index = 1; index < GRAPH_SIZE; index++)
 				{
@@ -274,11 +283,11 @@ int CheckHeuristic(int **upperHeuristic, int **currentPosition, int **layer, int
 	return heuristicIsLower;
 }
 
-int CheckBottomLayerLeaves(int *upperHeuristic, int *currentPosition, int *layer, int *currentArrayPosition)
+int CheckBottomLayerLeaves(Values *values)
 {
 	int lastLeaf = 0;
 
-	if(!CheckHeuristic(&upperHeuristic, &currentPosition, &layer, &currentArrayPosition))
+	if(!CheckHeuristic(&values))
 	{
 		lastLeaf = 1;
 	}
@@ -287,24 +296,24 @@ int CheckBottomLayerLeaves(int *upperHeuristic, int *currentPosition, int *layer
 
 
 
-int MoveUpInLayers(int *upperHeuristic, int *currentPosition, int *layer, int *currentArrayPosition)
+int MoveUpInLayers(Values *values)
 {
 	int movingUp = 0;
 	int tempPosition;
 
-	if(!CheckHeuristic(&upperHeuristic, &currentPosition, &layer, &currentArrayPosition))
+	if(!CheckHeuristic(&values))
 	{
 
-		if(Graph[*currentPosition].move == 12)
+		if(Graph[values->currentPosition].move == 12)
 		{
 			movingUp = 1;
 		}
 		
-		tempPosition = *currentPosition;
+		tempPosition = values->currentPosition;
 		
-		if(!*currentPosition <= 0)
+		if(!values->currentPosition <= 0)
 		{
-			--*currentPosition;
+			--values->currentPosition;
 		}
 		
 
@@ -317,22 +326,23 @@ int MoveUpInLayers(int *upperHeuristic, int *currentPosition, int *layer, int *c
 
 void MainGraphConstruction()
 {
-	int currentPosition = 0, layer = 0, upperHeuristic = HIGHEST_HEURISTIC_VALUE, currentArrayPosition = 0, movingUp;
-	int lastLeafReached; 
+	int movingUp, lastLeafReached;
+	
+	Values values = { .upperHeuristic = HIGHEST_HEURISTIC_VALUE, .currentPosition = 0, .layer = 0, .currentArrayPosition = 0};
 	
 	Flag = 0;
 	
-	ConstructNode(currentPosition - 1 , 0);
+	ConstructNode(values.currentPosition - 1 , 0, HIGHEST_HEURISTIC_VALUE);
 	
-	upperHeuristic = Graph[0].heuristicValue;
+	values.upperHeuristic = Graph[0].heuristicValue;
 	
-	printf("Start Heuristic value %d\n", upperHeuristic);
+	printf("Start Heuristic value %d\n", values.upperHeuristic);
 	
 	Bound = BOUND;
 		
-	while(upperHeuristic != 0)
+	while(values.upperHeuristic != 0)
 	{
-		ConstructNodeChildren(&currentPosition, &layer);
+		ConstructNodeChildren(&values);
 		
 		
 		if(nodeCount % 100000000 == 0)
@@ -340,38 +350,38 @@ void MainGraphConstruction()
 			printf("%d\n", nodeCount);
 		}
 		
-
-		movingUp = CheckBottomLayerLeaves(&upperHeuristic, &currentPosition, &layer, &currentArrayPosition);
+		
+		movingUp = CheckBottomLayerLeaves(&values);
 
 		
 		while(movingUp)
 		{
-			movingUp = MoveUpInLayers(&upperHeuristic, &currentPosition, &layer, &currentArrayPosition);
-			layer--;
+			movingUp = MoveUpInLayers(&values);
+			values.layer--;
 			
-			if(layer < 0)
+			if(values.layer < 0)
 			{
-				layer = 0;
+				values.layer = 0;
 			}
 		}
 	}	
 	
 	printf("Done \n");
 	
-	for(int i = 0; i < 6; i++)
-	{
-		printf("Face %d \n", i + 1);
-		for(int q = 0; q < 9; q++)
-		{
-			printf("%c ", Graph[currentPosition].cube[i][q]);
-			if(q % 3 == 2)
-			{
-				printf("\n");
-			}
-		}
-	}
+	// for(int i = 0; i < 6; i++)
+	// {
+		// printf("Face %d \n", i + 1);
+		// for(int q = 0; q < 9; q++)
+		// {
+			// printf("%c ", Graph[values.currentPosition].cube[i][q]);
+			// if(q % 3 == 2)
+			// {
+				// printf("\n");
+			// }
+		// }
+	// }
 	
-	for(int i = 0; i < currentArrayPosition; i++)
+	for(int i = 0; i < values.currentArrayPosition; i++)
 	{
 		printf("Move ");
 		
