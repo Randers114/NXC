@@ -22,17 +22,17 @@ namespace HandSolve_Translator
         public void PrintMoveset()
         {
             Console.Write("Final Moveset:");
-            foreach (string f in translatedMoves)
+            foreach (string str in translatedMoves)
             {
-                Console.Write(f + " ");
+                Console.Write(str + " ");
             }
             
         }
 
         public void TranslateMoves()
         {
-            LoadDictionaries LD = new LoadDictionaries();
-            LD.AddTranslationsToDictionaries();
+            LoadDictionaries LoadDic = new LoadDictionaries();
+            LoadDic.AddTranslationsToDictionaries();
             Dictionary<string, string> dictFromMove = new Dictionary<string, string>();
             List<string> tempMoveset = new List<string>();
             List<string> movesetWithoutXYZ = new List<string>();
@@ -53,7 +53,7 @@ namespace HandSolve_Translator
                 {
                     if (moveset.First() == "X" || moveset.First() == "Xi" || moveset.First() == "Y" || moveset.First() == "Yi" || moveset.First() == "Z" || moveset.First() == "Zi")
                     {
-                        LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                        LoadDic.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
                         moveset.Remove(moveset.First());
 
                         foreach (string move in moveset)
@@ -68,7 +68,7 @@ namespace HandSolve_Translator
 
                     else // Translate robot-moves.
                     {
-                        LD.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
+                        LoadDic.dictFirstTranslation.TryGetValue(moveset.First(), out dictFromMove);
                         translatedMoves.Add(moveset.First());
                     
 
@@ -87,9 +87,9 @@ namespace HandSolve_Translator
 
                             moveset = tempMoveset.ToList();
 
-                            foreach (string lul in moveset)
+                            foreach (string strPrint in moveset)
                             {
-                                Console.Write(lul + " ");
+                                Console.Write(strPrint + " ");
                             }
 
                             Console.WriteLine("\n");
@@ -103,6 +103,18 @@ namespace HandSolve_Translator
 
         public void ReplaceMovesInMoveset()
         {
+            inputMoveset = inputMoveset.Replace("U2'", "U2")
+                .Replace("L2'", "L2")
+                .Replace("F2'", "F2")
+                .Replace("R2'", "R2")
+                .Replace("B2'", "B2")
+                .Replace("D2'", "D2")
+                .Replace("'", "i")
+                .Replace("x", "X")
+                .Replace("y", "Y")
+                .Replace("z", "Z");
+
+                
             inputMoveset = inputMoveset.Replace("Mi", "Ri L X")
                 .Replace("M", "R Li Xi")
                 .Replace("Ei", "Ui D Y")
