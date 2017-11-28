@@ -35,79 +35,116 @@ sub EvaluateYellowFaceConfiguration(int yellowConfigurationArray[])
 sub FindCorrectMoveset(int yellowConfigurationArray[])
 {
     // ITERER PÅ INT ARRAY, CHECK FOR ALLE CASES AF YELLOW FACE. DEREFTER CHECK FOR DE ENKELTE CASES MED TOP LAYER.
+    int numOfTurns = 0;
+    bool configurationFound = FALSE;
 
-    if (yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 0]) // Centrum
+
+    while(!configurationFound)
     {
+        if (yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 0]) // Centrum
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 1]) // Centrum og et hjørne
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 0, 0, 1]) // Skrå linje
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 1, 0, 1]) // Skrå kryds
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 0, 0, 0]) // Centrum og to hjørner ved siden af hinanden
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 0, 0, 1, 0, 0, 1, 0]) // Lige linje
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 0]) // Lige kryds
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 1]) // Lige kryds med et hjørne
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 1, 1, 0]) // Lige kryds med to hjørner ved siden af hinanden
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 0, 1, 1]) // Lige kryds med modsatte hjørner
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 0, 1, 1, 1, 0, 1, 1, 1]) // Skrå kryds med to kanter ved siden af hinanden
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 0, 1, 1, 1, 1, 1, 0, 1]) // Skrå kryds med modsatte kanter
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 0, 0, 1, 1, 0, 0, 0]) // L form
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 1, 0, 1, 1, 0, 0, 0]) // Firkant i hjørnet
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 0, 1, 0, 1]) // L med det modsatte hjørne
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 1, 0, 1, 1, 1, 0, 0]) // Firkant i hjørnet med det modsatte hjørne
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 1, 0, 0, 1, 1, 0, 0, 0]) // Z form
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 1, 1, 1, 0, 0, 0, 0]) // Omvendt Z form
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [1, 1, 0, 0, 1, 1, 1, 0, 0]) // Z form med en i modsatte hjørne af det isolerede ikke-gule hjørne
+        {
+
+
+        }
+        else if (yellowConfigurationArray == [0, 1, 1, 1, 1, 0, 0, 0, 1]) // Omvendt Z form med en i modsatte hjørne af det isolerede ikke-gule hjørne
+        {
+
+
+        }
+
 
 
     }
-    else if (yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 0, 0, 0] || yellowConfigurationArray == [0, 0, 1, 0, 1, 0, 0, 0, 0] ||
-             yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 1, 0, 0] || yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 1]) // Centrum og et hjørne
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 0, 0, 1] || yellowConfigurationArray == [0, 0, 1, 0, 1, 0, 1, 0, 0]) // Skrå linje
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 1, 0, 1]) // Skrå kryds
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 0, 0, 0] || yellowConfigurationArray == [0, 0, 1, 0, 1, 0, 0, 0, 1] ||
-             yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 1, 0, 0] || yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 1, 0, 1]) // Centrum og to hjørner ved siden af hinanden
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [0, 1, 0, 0, 1, 0, 0, 1, 0] || yellowConfigurationArray == [0, 0, 0, 1, 1, 1, 0, 0, 0]) // Lige linje
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 0]) // Lige kryds
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 0, 1, 0] || yellowConfigurationArray == [0, 1, 1, 1, 1, 1, 0, 1, 0] ||
-             yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 1, 1, 0] || yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 1]) // Lige kryds med et hjørne
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 1, 0, 1, 0] || yellowConfigurationArray == [0, 1, 1, 1, 1, 1, 0, 1, 1] ||
-             yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 1, 1, 0] || yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 1, 1, 1]) // Lige kryds med to hjørner ved siden af hinanden
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 0, 1, 1] || yellowConfigurationArray == [0, 1, 1, 1, 1, 1, 1, 1, 0]) // Lige kryds med modsatte hjørner
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 0, 1, 0, 1] || yellowConfigurationArray == [1, 1, 1, 0, 1, 1, 1, 0, 1] ||
-             yellowConfigurationArray == [1, 0, 1, 1, 1, 0, 1, 1, 1] || yellowConfigurationArray == [1, 0, 1, 0, 1, 1, 1, 1, 1]) // Skrå kryds med to kanter ved siden af hinanden
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 0, 1, 1, 1, 1, 1, 0, 1] || yellowConfigurationArray == [1, 1, 1, 0, 1, 0, 1, 1, 1]) // Skrå kryds med modsatte kanter
-    {
-
-
-    }
-    else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 0, 1, 0, 1] || yellowConfigurationArray == [1, 1, 1, 0, 1, 1, 1, 0, 1] ||
-             yellowConfigurationArray == [1, 0, 1, 1, 1, 0, 1, 1, 1] || yellowConfigurationArray == [1, 0, 1, 0, 1, 1, 1, 1, 1])
-
-
-
-    
-
 }
 
 
