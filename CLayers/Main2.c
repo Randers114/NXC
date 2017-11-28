@@ -1,10 +1,12 @@
 #include "Heuristic.h"
 #include <time.h>
+#include <stdlib.h>
 
 char* FullPath;
 unsigned int FullPathHead = 0;
-unsigned long long int checks = 1;
+unsigned long long int checks = 0;
 int BESTHEURISTIC = 0;
+clock_t before;
 
 void PrintCube(){
 	printf("|1| |2| |3| |4| |5| |6| |7| |8| |9|\n");
@@ -20,7 +22,14 @@ void PrintCube(){
 }
 void PathReducer(){
 	
-	//checks++; if(checks % 50000000 == 0)printf("%10llu checks ---> head: |%d| length: |%d| heuristic value |%d|\n",checks,FullPathHead,strlen(FullPath),BESTHEURISTIC);
+/*	checks++;
+	if(checks == 2000000000 )
+	{
+		clock_t difference = clock() - before;
+		int msec = difference * 1000 / CLOCKS_PER_SEC;
+		printf("|%d.%d| Seconds to find\n",msec/1000,msec%1000);
+	}
+*/
 	if(FullPath[FullPathHead-2] == 'I')
 	{
 		FullPath[FullPathHead-1] = '\0';
@@ -35,6 +44,7 @@ void PathReducer(){
 	}
 	
 }
+
 int TwelvthLayer	(int move, const char parentcube[6][10]){
 	char thiscube[6][10]; memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move)
@@ -2208,8 +2218,6 @@ int FourthLayer		(int move, const char parentcube[6][10]){
 	if(HeuristicValue() < BESTHEURISTIC)
 	{
 		BESTHEURISTIC = HeuristicValue();  printf("New H is: |%d|\n",BESTHEURISTIC);
-		if(checks % 10000000 == 0)
-			printf("%d\n",checks);
 		return 0;
 	}
 	else
@@ -3307,6 +3315,20 @@ int FirstLayer		(int move, const char parentcube[6][10]){
 int RootNodeMethod	(const char rootcube[6][10]){
 	for(int i = 1; i<=12;i++)
 	{
+		if(EleventhLayer(i,rootcube) == 0)
+			return 0;
+		if(TenthLayer(i,rootcube) == 0)
+			return 0;
+		if(NinethLayer(i,rootcube) == 0)
+			return 0;
+		if(EighthLayer(i,rootcube) == 0)
+			return 0;
+		if(SeventhLayer(i,rootcube) == 0)
+			return 0;
+		if(SixthLayer(i,rootcube) == 0)
+			return 0;
+		if(FifthLayer(i,rootcube) == 0)
+			return 0;
 		if(FourthLayer(i, rootcube) == 0)
 		{
 			return 0;
@@ -3314,6 +3336,15 @@ int RootNodeMethod	(const char rootcube[6][10]){
 	}
 	printf("You're boned, no solution");
 	return 1;
+}
+int MoveCounter(){
+	int moves = 0;
+	for(int i = 0; i<strlen(FullPath);i++)
+	{
+		if(FullPath[i] != 'I')
+			moves++;
+	}
+	return moves;
 }
 int main(){
 	
@@ -3323,8 +3354,8 @@ int main(){
 	// char back[10] = { 'r', 'o', 'y', 'r', 'y', 'o', 'o', 'g', 'g'}; 
 	// char left[10] = { 'w', 'y', 'g', 'w', 'o', 'w', 'y', 'y', 'b'}; 
 	// char bottom[10] = { 'y', 'w', 'b', 'r', 'g', 'y', 'g', 'y', 'o'}; 
-	//works 116 - 3 ish seconds
-	
+	//works 116 - 3.120
+	// 	works 56 46.667
 	
 	// char top[10] = { 'o', 'b', 'b', 'g', 'w', 'o', 'y', 'o', 'w'}; 
 	// char right[10] = { 'w', 'y', 'o', 'o', 'r', 'g', 'r', 'y', 'g'}; 
@@ -3332,7 +3363,8 @@ int main(){
 	// char back[10] = { 'g', 'r', 'o', 'b', 'b', 'b', 'b', 'y', 'y'}; 
 	// char left[10] = { 'g', 'w', 'r', 'w', 'o', 'r', 'w', 'y', 'b'}; 
 	// char bottom[10] = { 'w', 'w', 'g', 'r', 'y', 'g', 'r', 'g', 'b'}; 
-	//works 113 - 23 ish seconds
+	//works 113 - 23.765
+	//doesnt work with optimisations
 	
 	// char top[10] = { 'r', 'r', 'b', 'r', 'w', 'g', 'b', 'b', 'y'}; 
 	// char right[10] = { 'g', 'y', 'g', 'g', 'o', 'o', 'r', 'w', 'g'}; 
@@ -3341,6 +3373,7 @@ int main(){
 	// char left[10] = { 'g', 'b', 'w', 'w', 'r', 'g', 'o', 'w', 'b'}; 
 	// char bottom[10] = { 'y', 'b', 'o', 'r', 'y', 'r', 'b', 'y', 'o'}; 
 	//works 139 -2:50 ish
+	//works 62 - 787.992
 	
 	// char top[10] = { 'r', 'r', 'o', 'r', 'w', 'o', 'y', 'o', 'o'}; 
 	// char right[10] = { 'g', 'b', 'b', 'y', 'b', 'w', 'b', 'y', 'w'}; 
@@ -3348,7 +3381,8 @@ int main(){
 	// char back[10] = { 'y', 'y', 'y', 'r', 'o', 'b', 'w', 'w', 'y'}; 
 	// char left[10] = { 'g', 'y', 'b', 'g', 'g', 'o', 'g', 'o', 'r'}; 
 	// char bottom[10] = { 'b', 'g', 'w', 'w', 'y', 'r', 'r', 'g', 'o'}; 
-	//works 133 93.526
+	//works 133 93.526 
+	//works 69 153.278
 	
 	// char top[10] = { 'w', 'r', 'r', 'g', 'g', 'r', 'b', 'g', 'r'}; 
 	// char right[10] = { 'y', 'b', 'y', 'g', 'y', 'o', 'b', 'w', 'y'}; 
@@ -3356,7 +3390,8 @@ int main(){
 	// char back[10] = { 'g', 'y', 'r', 'o', 'r', 'o', 'o', 'y', 'w'}; 
 	// char left[10] = { 'g', 'r', 'o', 'y', 'w', 'w', 'w', 'w', 'y'}; 
 	// char bottom[10] = { 'g', 'o', 'b', 'b', 'b', 'r', 'r', 'b', 'b'}; 
-	//works 133 90.858
+	//works 133 90.858 
+	//doesnt not work with optimisations
 	
 	// char top[10] = { 'b', 'r', 'y', 'g', 'w', 'g', 'w', 'r', 'w'};
 	// char right[10] = { 'y', 'w', 'w', 'r', 'r', 'g', 'r', 'w', 'o'};
@@ -3364,15 +3399,25 @@ int main(){
 	// char back[10] = { 'r', 'b', 'o', 'w', 'b', 'w', 'y', 'g', 'g'};
 	// char left[10] = { 'o', 'y', 'r', 'o', 'o', 'o', 'g', 'r', 'y'};
 	// char bottom[10] = { 'b', 'y', 'g', 'y', 'y', 'b', 'w', 'y', 'g'};
-	//doesnt work (needs another test)
+	//works 65 147.473
 	
-	// char top[10] = { 'y', 'g', 'w', 'r', 'w', 'g', 'b', 'g', 'o'}; 
-	// char right[10] = { 'r', 'b', 'b', 'o', 'g', 'b', 'o', 'o', 'b'}; 
-	// char front[10] = { 'o', 'y', 'w', 'o', 'o', 'r', 'g', 'r', 'w'}; 
-	// char back[10] = { 'y', 'w', 'b', 'r', 'r', 'y', 'r', 'w', 'g'}; 
-	// char left[10] = { 'g', 'g', 'y', 'w', 'b', 'w', 'o', 'b', 'r'}; 
-	// char bottom[10] = { 'w', 'y', 'r', 'y', 'y', 'o', 'g', 'b', 'y'}; 
+	char top[10] = { 'y', 'g', 'w', 'r', 'w', 'g', 'b', 'g', 'o'}; 
+	char right[10] = { 'r', 'b', 'b', 'o', 'g', 'b', 'o', 'o', 'b'}; 
+	char front[10] = { 'o', 'y', 'w', 'o', 'o', 'r', 'g', 'r', 'w'}; 
+	char back[10] = { 'y', 'w', 'b', 'r', 'r', 'y', 'r', 'w', 'g'}; 
+	char left[10] = { 'g', 'g', 'y', 'w', 'b', 'w', 'o', 'b', 'r'}; 
+	char bottom[10] = { 'w', 'y', 'r', 'y', 'y', 'o', 'g', 'b', 'y'}; 
 	//works 131 5.395
+	//works 57 6.312
+	
+	// Den vi sendte  38 --- Case
+	// char top[10] = { 'w', 'r', 'r', 'g', 'g', 'r', 'b', 'g', 'r'}; 
+	// char right[10] = { 'y', 'b', 'y', 'g', 'y', 'o', 'b', 'w', 'y'}; 
+	// char front[10] = { 'w', 'y', 'g', 'g', 'o', 'b', 'o', 'w', 'o'}; 
+	// char back[10] = { 'g', 'y', 'r', 'o', 'r', 'o', 'o', 'y', 'w'}; 
+	// char left[10] = { 'g', 'r', 'o', 'y', 'w', 'w', 'w', 'w', 'y'}; 
+	// char bottom[10] = { 'g', 'o', 'b', 'b', 'b', 'r', 'r', 'b', 'b'};
+
 
 	InitializeSide(top, TOP_FACE);
 	InitializeSide(right, RIGHT_FACE);
@@ -3384,17 +3429,16 @@ int main(){
 	FullPath = malloc(36*sizeof(char));
 	BESTHEURISTIC = HeuristicValue();
 
-	clock_t before = clock();
+	before = clock();
 	while(BESTHEURISTIC != 0)
 	{
-		printf("Initial Heuristic is: %d",BESTHEURISTIC);
-		RootNodeMethod(myCube);
+		if(RootNodeMethod(myCube) == 1)
+			exit(0);
 		if(FullPathHead > 18)FullPath = realloc(FullPath,(FullPathHead+18)*sizeof(char));
-		//if(BESTHEURISTIC<=4)PrintCube();
 	}
 	clock_t difference = clock() - before;
 	int msec = difference * 1000 / CLOCKS_PER_SEC;
-	printf("|%d.%d| Seconds to find ---> path is |%d| long and is as follows: \n",msec/1000,msec%1000,strlen(FullPath));
+	printf("|%d.%d| Seconds to find ---> path is |%d| long and is as follows: \n",msec/1000,msec%1000,MoveCounter());
 	for(int i = 0; i < FullPathHead;i++)
 	{
 		if(FullPath[i] == 'R'
