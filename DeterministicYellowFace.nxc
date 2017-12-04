@@ -32,118 +32,628 @@ sub EvaluateYellowFaceConfiguration(int yellowConfigurationArray[])
     }
 }
 
+sub EvaluateLastLayerConfiguration(int lastLayerConfigurationArray[])
+{
+    // Checks each square in the last unsolved layer of the cube. If a square is yellow, a value of 1 is saved. If a square isn't yellow, a value of 0 is saved.
+    // The values are placed in an array of int's, where the first entry in the array corresponds to the leftmost square in the front face.
+    // The faces are evaluated in the following sequence: Front, Right, Back, Left. The squares on each face are all evaluated in the sequence: Left, Middle, Right.
+    // The array is then as follows: [F0, F1, F2, R8, R7, R6, B8, B7, B6, L0, L1, L2] taking the representation into account.
+    int arrayCounter = 0, pieceCounterFront = 0, pieceCounterRight = 8, pieceCounterBack = 8, pieceCounterLeft = 0; 
+
+
+    for (int amount = 0; amount < 3; amount++) // Front face configuration
+    {
+        if (myCube[FRONT_FACE][pieceCounterFront] == 'y')
+        {
+            lastLayerConfigurationArray[arrayCounter] = 1;
+        }
+        else
+        {
+            lastLayerConfigurationArray[arrayCounter] = 0;
+        }
+        pieceCounterFront++;
+        arrayCounter++;
+    }
+
+    for (int amount = 0; amount < 3; amount++) // Right face configuration
+    {
+        if (myCube[RIGHT_FACE][pieceCounterRight] == 'y')
+        {
+            lastLayerConfigurationArray[arrayCounter] = 1;
+        }
+        else
+        {
+            lastLayerConfigurationArray[arrayCounter] = 0;
+        }
+        pieceCounterRight--;
+        arrayCounter++;
+    }
+
+    for (int amount = 0; amount < 3; amount++) // Back face configuration
+    {
+        if (myCube[BACK_FACE][pieceCounterBack] == 'y')
+        {
+            lastLayerConfigurationArray[arrayCounter] = 1;
+        }
+        else
+        {
+            lastLayerConfigurationArray[arrayCounter] = 0;
+        }
+        pieceCounterBack--;
+        arrayCounter++;
+    }
+
+    for (int amount = 0; amount < 3; amount++) // Left face configuration
+    {
+        if (myCube[LEFT_FACE][pieceCounterLeft] == 'y')
+        {
+            lastLayerConfigurationArray[arrayCounter] = 1;
+        }
+        else
+        {
+            lastLayerConfigurationArray[arrayCounter] = 0;
+        }
+        pieceCounterLeft++;
+        arrayCounter++;
+    }
+}
+
+
 sub FindCorrectMoveset(int yellowConfigurationArray[])
 {
-    // ITERER PÅ INT ARRAY, CHECK FOR ALLE CASES AF YELLOW FACE. DEREFTER CHECK FOR DE ENKELTE CASES MED TOP LAYER.
+    // Switches on the configuration of the yellow face. Thereafter, if necessary, switch on the cases for the same yellow-face configuration.
     int numOfTurns = 0;
     bool configurationFound = FALSE;
+    int yellowConfigurationArray[];
+    int lastLayerConfigurationArray[];
+
+
 
 
     while(!configurationFound)
     {
-        if (yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 0]) // Centrum
-        {
+        EvaluateYellowFaceConfiguration(yellowConfigurationArray);
+        EvaluateLastLayerConfiguration(lastLayerConfigurationArray);
 
+        switch(yellowConfigurationArray)
+        {
+            // Dot
+            case [0, 0, 0, 0, 1, 0, 0, 0, 0]: // Centrum
+                if (lastLayerConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 0, 0, 1, 0, 0, 0, 1]: // Centrum og et hjørne - hjørne mod højre ned
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 1, 0, 1, 0, 0, 0, 0]: // Centrum og et hjørne - hjørne mod højre op
+                if (lastLayerConfigurationArray == [1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 0, 0, 1, 0, 0, 0, 1]: // Skrå linje
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 1, 0, 1, 0, 1, 0, 1]: // Skrå kryds
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 1, 0, 1, 0, 0, 0, 0]: // Centrum og to hjørner ved siden af hinanden - Vender opad
+                if (lastLayerConfigurationArray == [0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 0, 0, 1, 0, 1, 0, 1]: // Centrum og to hjørner ved siden af hinanden - Vender nedad
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // Line
+            case [0, 1, 0, 0, 1, 0, 0, 1, 0]: // Lige linje - lodret
+                if (lastLayerConfigurationArray == [1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1])
+                {
+
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 0, 1, 1, 1, 0, 0, 0]: // Lige linje - vandret
+                if (lastLayerConfigurationArray == [1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+            
+
+
+            // Cross
+            case [0, 1, 0, 1, 1, 1, 0, 1, 0]: // Lige kryds
+                if (lastLayerConfigurationArray == [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 0, 1, 1, 1, 0, 1, 1]: // Lige kryds med et hjørne (FISKEN)
+                if (lastLayerConfigurationArray == [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 1, 0, 1, 1, 1, 1, 1, 0]: // Lige kryds med to hjørner ved siden af hinanden - 2 ikke-gule mod højre
+                if (lastLayerConfigurationArray == [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 1, 1, 1, 1, 1, 0, 1, 0]: // Lige kryds med to hjørner ved siden af hinanden - 2 ikke-gule mod ned
+                if (lastLayerConfigurationArray == [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 1, 0, 1, 1, 1, 0, 1, 1]: // Lige kryds med modsatte hjørner
+                if (lastLayerConfigurationArray == [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // 4 CORNERS
+            case [1, 0, 1, 1, 1, 0, 1, 1, 1]: // Skrå kryds med to kanter ved siden af hinanden
+                if (lastLayerConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 1, 1, 1, 1, 1, 0, 1]: // Skrå kryds med modsatte kanter
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // SHAPE _|
+            case [0, 1, 0, 1, 1, 0, 1, 0, 0]: // Z-form drejet mod venstre
+                if (lastLayerConfigurationArray == [0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 1, 0, 1, 1, 0, 0, 0, 1]: // Firkant i hjørnet med det modsatte hjørne - Firkant mod venstre op
+                if (lastLayerConfigurationArray == [1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 0, 1, 1, 0, 0, 0, 1]: // L form mod venstre op med det modsatte hjørne
+                if (lastLayerConfigurationArray == [1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 0, 1, 1, 0, 1, 0, 1]: // Z-form drejet mod venstre med en i modsatte hjørne af det isolerede ikke-gule hjørne
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 0, 1, 1, 0, 0, 0, 0]: // L form mod venstre op
+                if (lastLayerConfigurationArray == [0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // SHAPE |_
+            case [0, 1, 0, 0, 1, 1, 1, 0, 1]: // Omvendt Z form mod højre med en i modsatte hjørne af det isolerede ikke-gule hjørne
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 1, 0, 1, 1, 0, 0, 0]: // Firkant i hjørnet - mod højre op
+                if (lastLayerConfigurationArray == [1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 1, 0, 1, 1, 1, 0, 0]: // Firkant i hjørnet med det modsatte hjørne - firkant mod højre op
+                if (lastLayerConfigurationArray == [0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 0, 0, 1, 1, 0, 0, 0]: // L form
+                if (lastLayerConfigurationArray == [1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            //       _
+            // SHAPE  |
+            case [0, 0, 1, 1, 1, 0, 0, 1, 0]: // L form mod venstre ned med det modsatte hjørne
+                if (lastLayerConfigurationArray == [0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 0, 1, 1, 0, 0, 1, 0]: // Omvendt Z form mod venstre
+                if (lastLayerConfigurationArray == [1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+ 
+
+            case [0, 0, 0, 1, 1, 0, 0, 1, 1]: // Z form mod ned
+                if (lastLayerConfigurationArray == [1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 1, 1, 1, 0, 0, 1, 0]: // Omvendt Z form mod venstre med en i modsatte hjørne af det isolerede ikke-gule hjørne
+                if (lastLayerConfigurationArray == [0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            //        _
+            // SHAPE |
+            case [0, 0, 0, 0, 1, 1, 0, 1, 0]: // L form mod højre ned
+                if (lastLayerConfigurationArray == [0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+     
+            case [0, 0, 0, 0, 1, 1, 1, 1, 0]: // Omvendt Z form mod ned
+                if (lastLayerConfigurationArray == [0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 1, 0, 1, 1, 0, 1, 0]: // Z form mod højre med en i modsatte hjørne af det isolerede ikke-gule hjørne
+                if (lastLayerConfigurationArray == [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+        
+            case [0, 0, 0, 0, 1, 1, 0, 1, 1]: // Firkant i hjørnet mod højre ned
+                if (lastLayerConfigurationArray == [0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // C-form
+            case [1, 1, 0, 0, 1, 0, 1, 1, 0]: // C form mod venstre
+                if (lastLayerConfigurationArray == [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 0, 1, 1, 1, 1, 0, 1]: // C form mod ned
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // Lang L-form
+            case [0, 0, 0, 1, 1, 1, 0, 0, 1]: // Lang L med bunden mod højre
+                if (lastLayerConfigurationArray == [1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 0, 1, 1, 1, 1, 0, 0]: // Lang L med bunden mod venstre
+                if (lastLayerConfigurationArray == [0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // P-form
+            case [1, 1, 0, 1, 1, 0, 1, 0, 0]: // P med ryggen mod venstre
+                if (lastLayerConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 1, 1, 0, 1, 1, 0, 0, 1]: // P med ryggen mod højre
+                if (lastLayerConfigurationArray == [1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // Liggende T-form
+            case [0, 0, 1, 1, 1, 1, 0, 0, 1]: // C form mod venstre
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+                else if (lastLayerConfigurationArray == [1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // W-form
+            case [0, 0, 1, 0, 1, 1, 1, 1, 0]: // W-form med isoleret ikke-gult hjørne mod højre
+                if (lastLayerConfigurationArray == [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [1, 0, 0, 1, 1, 0, 0, 1, 1]: // W-form med isoleret ikke-gult hjørne mod venstre
+                if (lastLayerConfigurationArray == [1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+
+            // Lang og lige Z-form
+            case [1, 0, 0, 1, 1, 1, 0, 0, 1]: // Omvendt langt Z
+                if (lastLayerConfigurationArray == [0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+
+
+            case [0, 0, 1, 1, 1, 1, 1, 0, 0]: // Langt Z
+                if (lastLayerConfigurationArray == [0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0])
+                {
+                    
+                    configurationFound = TRUE;
+                }
+
+                break;
+        }
+
+        if (configurationFound == FALSE)
+        {
+            // TURN 90 DEGREES
 
         }
-        else if (yellowConfigurationArray == [0, 0, 0, 0, 1, 0, 0, 0, 1]) // Centrum og et hjørne
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 0, 0, 0, 1, 0, 0, 0, 1]) // Skrå linje
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 1, 0, 1]) // Skrå kryds
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 0, 1, 0, 1, 0, 0, 0, 0]) // Centrum og to hjørner ved siden af hinanden
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 0, 0, 1, 0, 0, 1, 0]) // Lige linje
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 0]) // Lige kryds
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 0, 1, 1, 1, 0, 1, 1]) // Lige kryds med et hjørne
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 1, 1, 0]) // Lige kryds med to hjørner ved siden af hinanden
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 1, 0, 1, 1, 1, 0, 1, 1]) // Lige kryds med modsatte hjørner
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 0, 1, 1, 1, 0, 1, 1, 1]) // Skrå kryds med to kanter ved siden af hinanden
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 0, 1, 1, 1, 1, 1, 0, 1]) // Skrå kryds med modsatte kanter
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 0, 0, 1, 1, 0, 0, 0]) // L form
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 1, 0, 1, 1, 0, 0, 0]) // Firkant i hjørnet
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 1, 1, 1, 1, 0, 1, 0, 1]) // L med det modsatte hjørne
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 1, 0, 1, 1, 1, 0, 0]) // Firkant i hjørnet med det modsatte hjørne
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 1, 0, 0, 1, 1, 0, 0, 0]) // Z form
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 1, 1, 1, 0, 0, 0, 0]) // Omvendt Z form
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [1, 1, 0, 0, 1, 1, 1, 0, 0]) // Z form med en i modsatte hjørne af det isolerede ikke-gule hjørne
-        {
-
-
-        }
-        else if (yellowConfigurationArray == [0, 1, 1, 1, 1, 0, 0, 0, 1]) // Omvendt Z form med en i modsatte hjørne af det isolerede ikke-gule hjørne
-        {
-
-
-        }
-
-
-
     }
 }
 
