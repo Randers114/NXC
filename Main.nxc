@@ -41,5 +41,12 @@ for(int i = 0; i<ArrayLen(FullPath);i++)
         TextOut(8*i,LCD_LINE7,FullPath[i]);
 }
 Wait(50000);
+
+TestMethod();
+
 }
 
+void TestMethod()
+{
+Wait(500);
+}
