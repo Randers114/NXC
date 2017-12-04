@@ -29,13 +29,16 @@ namespace HandSolve_Translator
                 Console.Write(move + " ");
             }
 			Console.WriteLine("\nTranslated to MachineMoveset:");
+
+            Console.Write("[");
 			foreach(int move in machineMoves)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
-				Console.Write(move + " ");
+				Console.Write(move + ", ");
 				Console.ResetColor();
 
 			}
+            Console.Write("]");
 
 		}
 
@@ -184,7 +187,13 @@ namespace HandSolve_Translator
                 .Replace("'", "i")
                 .Replace("x", "X")
                 .Replace("y", "Y")
-                .Replace("z", "Z"); 
+                .Replace("z", "Z")
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace("[", "")
+                .Replace("]", "")
+                .Replace("Y2i", "Yi Yi"); 
+                
 			
                 
             inputMoveset = inputMoveset.Replace("Mi", "Ri L X")
@@ -193,6 +202,18 @@ namespace HandSolve_Translator
                 .Replace("E", "U Di Yi")
                 .Replace("Si", "F Bi Zi")
                 .Replace("S", "Fi B Z")
+                .Replace("u2i", "ui ui")
+                .Replace("l2i", "li li")
+                .Replace("f2i", "fi fi")
+                .Replace("r2i", "ri ri")
+                .Replace("b2i", "bi bi")
+                .Replace("d2i", "di di")
+                .Replace("u2", "u u")
+                .Replace("l2", "l l")
+                .Replace("f2", "f f")
+                .Replace("r2", "r r")
+                .Replace("b2", "b b")
+                .Replace("d2", "d d")
                 .Replace("ui", "Di Yi")
                 .Replace("li", "Ri X")
                 .Replace("fi", "Bi Zi")

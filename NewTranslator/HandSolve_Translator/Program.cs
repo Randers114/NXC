@@ -10,14 +10,18 @@ namespace HandSolve_Translator
     {
         static void Main(string[] args)
         {
-            Translator translator = new Translator();
-
-            translator.ReadInput();
-            translator.TranslateMoves();
-            translator.PrintMoveset();
             
 
-            Console.ReadKey();
+            while (true)
+            {
+                Translator translator = new Translator();
+                translator.ReadInput();
+                translator.TranslateMoves();
+                translator.PrintMoveset();
+
+                Console.WriteLine("\n");
+                Console.ReadKey();
+            }
         }
     }
 }
