@@ -1,6 +1,8 @@
-#include "Heuristic.h"
+//#include "Heuristic.h"
+#include "DeterministicYellowFace.h"
 task main()
 {
+ int path[25];
 char top[10] = { 'b', 'g', 'y', 'g', 'w', 'g', 'g', 'o', 'r'};
 char right[10] = { 'y', 'r', 'g', 'w', 'r', 'y', 'o', 'r', 'g'};
 char front[10] = { 'o', 'y', 'w', 'w', 'g', 'b', 'w', 'r', 'o'};
@@ -16,8 +18,9 @@ InitializeSide(back, BACK_FACE);
 InitializeSide(left, LEFT_FACE);
 InitializeSide(bottom, BOTTOM_FACE);
      
-     int heuval = HeuristicValue();
+     //int heuval = HeuristicValue();
      
+     //YellowFaceSolution(path);
      NumOut(0, LCD_LINE1, heuval);
      Wait(SEC_3);
 }
