@@ -18,9 +18,5 @@ InitializeSide(back, BACK_FACE);
 InitializeSide(left, LEFT_FACE);
 InitializeSide(bottom, BOTTOM_FACE);
      
-     //int heuval = HeuristicValue();
-     
-     //YellowFaceSolution(path);
-     NumOut(0, LCD_LINE1, heuval);
-     Wait(SEC_3);
+
 }
