@@ -1,4 +1,24 @@
 
+/* STRATEGY:
+
+Gå igennem øverste layer på cuben, ved at force toppen af cuben til at være gul.
+Find ud af hvilke pieces der skal byttes, og smid dem ind i et array af integers. Brug opsætningen nedenfor til at finde den rigtige algoritme.
+
+	1 2 3
+	4 x 5
+	6 7 8
+
+For eksempel vil man gå igennem øverste layer og derved få et array af integers i form af: 1, 3, 4, 7, 7, 5.
+Arrayet vil være sat op så input 0 og 1, 2 og 3, 4 og 5 osv. er kombineret. I array-eksemplet viser dette at 1 skal bytte plads med 3, 4 skal bytte plads med 7
+og 7 skal bytte plads med 5. Derefter sammenligner man dette array med løsningerne fra Ruwix-hjemmesiden, dog hvor løsningerne også er omskrevet så det
+passer med array-formen.
+
+
+*/
+
+
+
+
 sub EvaluateFaceColors(char faceColors[])
 {
 	// Saves the colours of the Front, Right, Back, and Left faces in an array, respectively. Is used to determine the correct algorithm to run.
