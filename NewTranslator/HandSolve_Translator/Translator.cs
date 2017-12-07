@@ -137,11 +137,11 @@ namespace HandSolve_Translator
 						machineMoves.Add(4);
 						break;
 
-					case "T":
+					case "U":
 						machineMoves.Add(5);
 						break;
 
-					case "Ti":
+					case "Ui":
 						machineMoves.Add(6);
 						break;
 
@@ -178,7 +178,13 @@ namespace HandSolve_Translator
 
         public void ReplaceMovesInMoveset()
         {
-            inputMoveset = inputMoveset.Replace("U2'", "U2")
+            inputMoveset = inputMoveset.Replace("(", "")
+                .Replace(")", "")
+                .Replace("[", "")
+                .Replace("]", "")
+                .Replace("Y2i", "Yi Yi")
+                .Replace("M2", "M M")
+                .Replace("U2'", "U2")
                 .Replace("L2'", "L2")
                 .Replace("F2'", "F2")
                 .Replace("R2'", "R2")
@@ -187,12 +193,7 @@ namespace HandSolve_Translator
                 .Replace("'", "i")
                 .Replace("x", "X")
                 .Replace("y", "Y")
-                .Replace("z", "Z")
-                .Replace("(", "")
-                .Replace(")", "")
-                .Replace("[", "")
-                .Replace("]", "")
-                .Replace("Y2i", "Yi Yi"); 
+                .Replace("z", "Z"); 
                 
 			
                 
