@@ -209,7 +209,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 0, 2, 2, 8, 8, 0);  // A1
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 1, 10, 9, 7, 11, 12, 10, 9, 7, 11, 7);
 			configurationFound = TRUE;
 		}
 
@@ -217,7 +217,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 2, 6, 6, 8, 8, 2);  // A2
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 4, 9, 9, 7, 12, 11, 9, 9, 7, 11, 7);
 			configurationFound = TRUE;
 		}
 
@@ -225,7 +225,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 3, 5, 5, 7, 7, 3);  // U1
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 7, 11, 9, 11, 10, 12, 10, 12, 10, 11, 10);
 			configurationFound = TRUE;
 		}
 
@@ -233,7 +233,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 3, 7, 5, 3, 7, 5);  // U2
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 12, 9, 11, 9, 11, 9, 12, 10, 12, 9, 7);
 			configurationFound = TRUE;
 		}
 
@@ -241,7 +241,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 7, 3, 5, 5, 3, 7, 1);  // H
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 6, 5, 6, 11, 11, 6, 5, 6, 9, 7, 9, 6, 5, 6, 11, 11, 6, 5, 6);
 			configurationFound = TRUE;
 		}
 
@@ -249,7 +249,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 3, 5, 5, 3, 2, 8, 8, 2);  // T
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 11, 10, 12, 10, 1, 9, 7, 4, 10, 12, 9, 11, 10, 2);
 			configurationFound = TRUE;
 		}
 
@@ -257,7 +257,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 3, 3, 1, 0, 2, 2, 0);  // J1
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 11, 12, 9, 7, 9, 12, 10, 11, 7, 9, 5, 10);
 			configurationFound = TRUE;
 		}
 
@@ -265,7 +265,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 5, 7, 7, 5, 2, 8, 8, 2);  // J2
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 11, 10, 2, 9, 3, 10, 12, 10, 1, 9, 7, 4, 10, 12);
 			configurationFound = TRUE;
 		}
 
@@ -273,7 +273,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 3, 7, 7, 3, 0, 2, 2, 0);  // R1
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 3, 11, 7, 10, 11, 7, 9, 4, 10, 2, 9, 11, 9, 3, 9, 7, 1);
 			configurationFound = TRUE;
 		}
 
@@ -281,7 +281,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 5, 7, 7, 5, 0, 2, 2, 0);  // R2
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 11, 7, 9, 11, 7, 10, 1, 9, 3, 10, 12, 10, 2, 9, 7, 4);
 			configurationFound = TRUE;
 		}
 
@@ -289,7 +289,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 5, 5, 1, 0, 8, 8, 0);  // V
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 11, 10, 12, 4, 4, 9, 7, 4, 10, 11, 10, 1, 9, 11);
 			configurationFound = TRUE;
 		}
 
@@ -297,7 +297,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 3, 3, 5, 5, 1, 0, 2, 2, 6, 6, 0);  // G1
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 7, 9, 4, 11, 10, 12, 9, 10, 1, 7, 2, 3, 9);
 			configurationFound = TRUE;
 		}
 
@@ -305,7 +305,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 7, 3, 1, 7, 3, 0, 6, 6, 8, 8, 0);  // G2
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 12, 9, 3, 7, 3, 2, 11, 9, 12, 9, 10, 1, 7);
 			configurationFound = TRUE;
 		}
 
@@ -313,7 +313,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 3, 5, 5, 7, 7, 3, 0, 6, 6, 8, 8, 0);  // G3
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 7, 10, 1, 12, 9, 11, 10, 9, 3, 7, 3, 2, 10);
 			configurationFound = TRUE;
 		}
 
@@ -321,7 +321,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 3, 3, 7, 7, 1, 0, 2, 2, 6, 6, 0);  // G4
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 11, 10, 1, 7, 2, 3, 12, 10, 11, 10, 9, 3, 7);
 			configurationFound = TRUE;
 		}
 
@@ -329,7 +329,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 3, 5, 5, 3, 6, 8, 8, 6);  // F
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 11, 7, 10, 12, 4, 4, 9, 7, 4, 10, 11, 10, 1, 9, 4, 1);
 			configurationFound = TRUE;
 		}
 
@@ -337,7 +337,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 3, 3, 1, 5, 7, 7, 5);  // Z
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 6, 5, 6, 11, 11, 6, 5, 6, 9, 10, 5, 1, 7, 11, 6, 5, 6, 9, 7, 10, 5, 1, 7);
 			configurationFound = TRUE;
 		}
 
@@ -345,7 +345,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 3, 3, 1, 0, 8, 8, 0);  // Y
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 9, 1, 2, 10, 12, 9, 11, 10, 2, 9, 3, 10, 12, 10, 1, 9, 12);
 			configurationFound = TRUE;
 		}
 
@@ -353,7 +353,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 7, 7, 1, 0, 8, 8, 0);  // N1
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 3, 12, 11, 9, 7, 10, 11, 12, 5, 12, 11, 9, 7, 10, 11, 12, 9);
 			configurationFound = TRUE;
 		}
 
@@ -361,7 +361,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 1, 7, 7, 1, 2, 6, 6, 2);  // N2
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 2, 11, 12, 9, 7, 9, 12, 11, 6, 11, 12, 9, 7, 9, 12, 11, 10);
 			configurationFound = TRUE;
 		}
 
@@ -369,7 +369,7 @@ sub FindMoveset(int finalMoveset[])
 			ArrayBuild(comparisonArray, 0, 6, 2, 8, 6, 0, 8, 2);  // E
 		if (CmpArray(solutionArray, comparisonArray))
 		{
-			ArrayBuild(lastLayerMoveset, 1);
+			ArrayBuild(lastLayerMoveset, 1, 4, 10, 9, 11, 11, 10, 9, 7, 10, 9, 11, 11, 10, 10, 11);
 			configurationFound = TRUE;
 		}
 
