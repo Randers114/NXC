@@ -1,3 +1,7 @@
+#include "CubeOperations.h"
+
+#define CENTERPIECE 4
+
 
 /* STRATEGY:
 
@@ -14,88 +18,84 @@ og 7 skal bytte plads med 5. Derefter sammenligner man dette array med løsninge
 passer med array-formen.
 
 
+SØRG FOR AT GUL ER TOP FACE
+
 */
 
-
-
-
-sub EvaluateFaceColors(char faceColors[])
+sub CheckEdgeCorrectness(int &correctEdges[])
 {
-	// Saves the colours of the Front, Right, Back, and Left faces in an array, respectively. Is used to determine the correct algorithm to run.
+	int complementingPiece = 0, complementingFace = 0, edgeNumber = 0;
+	
+	for(int piece = 1; piece < 8; piece = piece + 2)
+	{
+		FindComplementingEdge(TOP_FACE, piece, complementingFace, complementingPiece);
+		
+		if(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece])
+		{
+			correctEdges[edgeNumber] = 0;
+		}
+		else
+		{
+			correctEdges[edgeNumber] = 1;
+		}
 
+		edgeNumber++;
+	}
 }
 
-sub EvaluateLastLayerConfiguration(int lastLayerConfigurationArray[])
+sub CheckCornerCorrectness(int &correctCorners[])
 {
-    // Checks each square in the last unsolved layer of the cube. If a square is yellow, a value of 1 is saved. If a square isn't yellow, a value of 0 is saved.
-    // The values are placed in an array of int's, where the first entry in the array corresponds to the leftmost square in the front face.
-    // The faces are evaluated in the following sequence: Front, Right, Back, Left. The squares on each face are all evaluated in the sequence: Left, Middle, Right.
-    // The array is then as follows: [F0, F1, F2, R8, R7, R6, B8, B7, B6, L0, L1, L2] taking the representation into account.
-    int arrayCounter = 0, pieceCounterFront = 0, pieceCounterRight = 8, pieceCounterBack = 8, pieceCounterLeft = 0; 
+	int complementingPiece = 0, complementingFace = 0, complementingPiece2 = 0, complementingFace2 = 0, cornerNumber = 0;
+	
+	for(int piece = 0; piece < 9; piece = piece + 2)
+	{
+		FindComplementingCorners(TOP_FACE, piece, complementingFace, complementingPiece, complementingFace2, complementingPiece2);
+		
+		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
+		{
+			correctCorners[cornerNumber] = 1;
+		} 
+		else if(!(myCube[complementingFace2][CENTER_PIECE] == myCube[complementingFace2][complementingPiece2]))
+		{
+			correctCorners[cornerNumber] = 1;
+		}
+		else
+		{
+			correctCorners[cornerNumber] = 0;
+		}
+		
+		cornerNumber++;	
 
-
-    for (int amount = 0; amount < 3; amount++) // Front face configuration
-    {
-        if (myCube[FRONT_FACE][pieceCounterFront] == 'y')
-        {
-            lastLayerConfigurationArray[arrayCounter] = 1;
-        }
-        else
-        {
-            lastLayerConfigurationArray[arrayCounter] = 0;
-        }
-        pieceCounterFront++;
-        arrayCounter++;
-    }
-
-    for (int amount = 0; amount < 3; amount++) // Right face configuration
-    {
-        if (myCube[RIGHT_FACE][pieceCounterRight] == 'y')
-        {
-            lastLayerConfigurationArray[arrayCounter] = 1;
-        }
-        else
-        {
-            lastLayerConfigurationArray[arrayCounter] = 0;
-        }
-        pieceCounterRight--;
-        arrayCounter++;
-    }
-
-    for (int amount = 0; amount < 3; amount++) // Back face configuration
-    {
-        if (myCube[BACK_FACE][pieceCounterBack] == 'y')
-        {
-            lastLayerConfigurationArray[arrayCounter] = 1;
-        }
-        else
-        {
-            lastLayerConfigurationArray[arrayCounter] = 0;
-        }
-        pieceCounterBack--;
-        arrayCounter++;
-    }
-
-    for (int amount = 0; amount < 3; amount++) // Left face configuration
-    {
-        if (myCube[LEFT_FACE][pieceCounterLeft] == 'y')
-        {
-            lastLayerConfigurationArray[arrayCounter] = 1;
-        }
-        else
-        {
-            lastLayerConfigurationArray[arrayCounter] = 0;
-        }
-        pieceCounterLeft++;
-        arrayCounter++;
-    }
+		if(piece == 2)
+		{
+			piece += 2;
+		}
+	}
 }
-
 
 sub FindMoveset()
 {
 
 
+
+
+}
+
+int EvaluateLastLayer()
+{
+	int correctEdges[4], correctCorners[4], solvedConfiguration[4] = {0, 0, 0, 0};
+
+	CheckEdgeCorrectness(correctEdges);
+	CheckCornerCorrectness(correctCorners);
+
+	if ()
+}
+
+
+
+
+sub LastLayerSolutio()
+{
 
 
 }
