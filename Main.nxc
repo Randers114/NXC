@@ -3,12 +3,13 @@
 task main()
 {
  int path[25];
-char top[10] = { 'b', 'g', 'y', 'g', 'w', 'g', 'g', 'o', 'r'};
-char right[10] = { 'y', 'r', 'g', 'w', 'r', 'y', 'o', 'r', 'g'};
-char front[10] = { 'o', 'y', 'w', 'w', 'g', 'b', 'w', 'r', 'o'};
-char back[10] = { 'g', 'w', 'r', 'r', 'b', 'o', 'w', 'y', 'b'};
-char left[10] = { 'r', 'o', 'w', 'y', 'o', 'g', 'r', 'o', 'b'};
-char bottom[10] = { 'o', 'w', 'y', 'b', 'y', 'b', 'y', 'b', 'b'};
+ 
+char top[10] = { 'g', 'g', 'o', 'g', 'g', 'b', 'g', 'g', 'b'};
+char right[10] = { 'b', 'g', 'r', 'o', 'y', 'y', 'y', 'y', 'g'};
+char front[10] = { 'o', 'o', 'y', 'o', 'o', 'r', 'o', 'o', 'g'};
+char back[10] = { 'r', 'r', 'y', 'r', 'r', 'y', 'r', 'r', 'g'};
+char left[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
+char bottom[10] = { 'b', 'b', 'y', 'b', 'b', 'y', 'b', 'b', 'r'};
 
 
 InitializeSide(top, TOP_FACE);
@@ -17,6 +18,30 @@ InitializeSide(front, FRONT_FACE);
 InitializeSide(back, BACK_FACE);
 InitializeSide(left, LEFT_FACE);
 InitializeSide(bottom, BOTTOM_FACE);
-     
+
+YellowFaceSolution(path);
+
+NumOut(0, LCD_LINE1, ArrayLen(path));
+Wait(2000);
+int x = 0;
+
+for(int i = 0; i < ArrayLen(path); i = i + 3)
+{
+    if(path[i] != 0)
+    {
+     NumOut(x, LCD_LINE1, path[i]);
+     NumOut(x, LCD_LINE2, path[i + 1]);
+     NumOut(x, LCD_LINE3, path[i + 2]);
+     Wait(500);
+     if(i % 60 == 0)
+     {
+      //ClearScreen();
+     }
+     x += 20;
+    }
+}
+
+    TextOut(0, LCD_LINE4, "Shit Works");
+    Wait(5000);
 
 }

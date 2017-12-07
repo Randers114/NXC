@@ -112,7 +112,7 @@ bool CmpArray(int a[], int b[])
 }
 
 
-sub FindCorrectMoveset(int finalMoveset[])
+sub FindCorrectMoveset(int &finalMoveset[])
 {
     // Switches on the configuration of the yellow face. Thereafter, if necessary, switch on the cases for the same yellow-face configuration.
     int numOfTurns = 0;
@@ -843,7 +843,7 @@ sub FindCorrectMoveset(int finalMoveset[])
 }
 
 
-sub YellowFaceSolution(int finalMoveset[])
+sub YellowFaceSolution(int &finalMoveset[])
 {
 	FindCorrectMoveset(finalMoveset);
 
