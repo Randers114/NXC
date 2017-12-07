@@ -109,87 +109,97 @@ int EvaluateLastLayer(int &solutionArray[])
 	int complementingCornerFace = 0, complementingCornerPiece = 0, complementingCornerFace2 = 0, complementingCornerPiece2 = 0;
 	int solutionArrayIndex = 0, correctEdgeFace, correctCornerFace1, correctCornerFace2;
 
-	for (int edge = 0; edge < 4; edge++)
+	if (!(CmpArray(solvedArray, incorrectCorners)) && !(CmpArray(solvedArray, incorrectEdges)))
 	{
-		if (incorrectEdges[edge] != 0)
+		for (int edge = 0; edge < 4; edge++)
 		{
-			solutionArray[solutionArrayIndex] = incorrectEdges[edge];
-
-			FindComplementingEdge(TOP_FACE, incorrectEdges[edge], complementingEdgeFace, complementingEdgePiece);
-			correctEdgeFace = FindFaceFromColor(myCube[complementingEdgeFace][complementingEdgePiece]);
-			
-			solutionArrayIndex++;
-
-			switch (correctEdgeFace)
+			if (incorrectEdges[edge] != 0)
 			{
-				case FRONT_FACE:
-					solutionArray[solutionArrayIndex] = 7;
-					break;
+				solutionArray[solutionArrayIndex] = incorrectEdges[edge];
 
-				case RIGHT_FACE:
-					solutionArray[solutionArrayIndex] = 5;
-					break;
+				FindComplementingEdge(TOP_FACE, incorrectEdges[edge], complementingEdgeFace, complementingEdgePiece);
+				correctEdgeFace = FindFaceFromColor(myCube[complementingEdgeFace][complementingEdgePiece]);
+				
+				solutionArrayIndex++;
 
-				case BACK_FACE:
-					solutionArray[solutionArrayIndex] = 1;
-					break;
+				switch (correctEdgeFace)
+				{
+					case FRONT_FACE:
+						solutionArray[solutionArrayIndex] = 7;
+						break;
 
-				case LEFT_FACE:
-					solutionArray[solutionArrayIndex] = 3;
-					break;
+					case RIGHT_FACE:
+						solutionArray[solutionArrayIndex] = 5;
+						break;
+
+					case BACK_FACE:
+						solutionArray[solutionArrayIndex] = 1;
+						break;
+
+					case LEFT_FACE:
+						solutionArray[solutionArrayIndex] = 3;
+						break;
+				}
+
+				solutionArrayIndex ++;
 			}
-
-			solutionArrayIndex ++;
 		}
+
+		for (int corner = 0; corner < 4; corner++)
+		{
+			if (incorrectCorners[corner] != 0)
+			{
+				solutionArray[solutionArrayIndex] = incorrectCorners[corner];
+
+				FindComplementingCorners(TOP_FACE, incorrectCorners[corner], complementingCornerFace,
+				  complementingCornerPiece, complementingCornerFace2, complementingCornerPiece2);
+
+				correctCornerFace1 = FindFaceFromColor(myCube[complementingCornerFace][complementingCornerPiece]);
+				correctCornerFace2 = FindFaceFromColor(myCube[complementingCornerFace2][complementingCornerPiece2]);
+
+				solutionArrayIndex++;
+
+				switch(correctCornerFace1)
+				{
+					case FRONT_FACE:
+						if (correctCornerFace2 == RIGHT_FACE)
+							solutionArray[solutionArrayIndex] = 8;
+						else
+							solutionArray[solutionArrayIndex] = 6;
+						break;
+
+					case RIGHT_FACE: 
+						if (correctCornerFace2 == BACK_FACE)
+							solutionArray[solutionArrayIndex] = 2;
+						else
+							solutionArray[solutionArrayIndex] = 8;
+						break;
+
+					case BACK_FACE:
+						if (correctCornerFace2 == LEFT_FACE)
+							solutionArray[solutionArrayIndex] = 0;
+						else
+							solutionArray[solutionArrayIndex] = 2;
+						break;
+
+					case LEFT_FACE:
+						if (correctCornerFace2 == FRONT_FACE)
+							solutionArray[solutionArrayIndex] = 6;
+						else
+							solutionArray[solutionArrayIndex] = 0;
+						break;
+				}
+
+				solutionArrayIndex++;
+			}
+		}
+
+		return 1;
 	}
 
-	for (int corner = 0; corner < 4; corner++)
+	else
 	{
-		if (incorrectCorners[corner] != 0)
-		{
-			solutionArray[solutionArrayIndex] = incorrectCorners[corner];
-
-			FindComplementingCorners(TOP_FACE, incorrectCorners[corner], complementingCornerFace,
-			  complementingCornerPiece, complementingCornerFace2, complementingCornerPiece2);
-
-			correctCornerFace1 = FindFaceFromColor(myCube[complementingCornerFace][complementingCornerPiece]);
-			correctCornerFace2 = FindFaceFromColor(myCube[complementingCornerFace2][complementingCornerPiece2]);
-
-			solutionArrayIndex++;
-
-			switch(correctCornerFace1)
-			{
-				case FRONT_FACE:
-					if (correctCornerFace2 == RIGHT_FACE)
-						solutionArray[solutionArrayIndex] = 8;
-					else
-						solutionArray[solutionArrayIndex] = 6;
-					break;
-
-				case RIGHT_FACE: 
-					if (correctCornerFace2 == BACK_FACE)
-						solutionArray[solutionArrayIndex] = 2;
-					else
-						solutionArray[solutionArrayIndex] = 8;
-					break;
-
-				case BACK_FACE:
-					if (correctCornerFace2 == LEFT_FACE)
-						solutionArray[solutionArrayIndex] = 0;
-					else
-						solutionArray[solutionArrayIndex] = 2;
-					break;
-
-				case LEFT_FACE:
-					if (correctCornerFace2 == FRONT_FACE)
-						solutionArray[solutionArrayIndex] = 6;
-					else
-						solutionArray[solutionArrayIndex] = 0;
-					break;
-			}
-
-			solutionArrayIndex++;
-		}
+		return 0;
 	}
 }
 
@@ -197,9 +207,14 @@ int EvaluateLastLayer(int &solutionArray[])
 sub FindMoveset(int finalMoveset[])
 {
 	bool configurationFound = FALSE;
-	int numOfTurns = 0;
+	int numOfTurns = 0, evaluation;
 	int solutionArray[], lastLayerMoveset[], turnsMoveset[], comparisonArray[];
 
+	evaluation = EvaluateLastLayer(solutionArray);
+	if (evaluation == 0) // If the cube is already solved.
+		{
+			configurationFound = TRUE;
+		}
 
 	while(!configurationFound)
 	{
@@ -373,6 +388,24 @@ sub FindMoveset(int finalMoveset[])
 			configurationFound = TRUE;
 		}
 
+
+        if (configurationFound != TRUE)
+        {
+        	TurnCubeOperation(); // TURN 90 DEGREES
+
+        	turnsMoveset[numOfTurns] = 13;
+
+        	numOfTurns++;
+        }
+    }
+
+    if (numOfTurns == 0 && evaluation != 0)
+    {
+    	ArrayBuild(finalMoveset, lastLayerMoveset);
+    }
+    else if (evaluation != 0)
+    {
+    	ArrayBuild(finalMoveset, turnsMoveset, lastLayerMoveset);
 	}
 
 }
