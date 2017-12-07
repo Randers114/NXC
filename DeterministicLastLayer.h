@@ -100,15 +100,7 @@ sub CheckCornerCorrectness(int &incorrectCorners[])
 	}
 }
 
-sub FindMoveset(int &solutionArray[], int &moveset[])
-{
 
-
-	
-
-
-
-}
 
 int EvaluateLastLayer(int &solutionArray[])
 {
@@ -202,13 +194,192 @@ int EvaluateLastLayer(int &solutionArray[])
 }
 
 
-
-
-sub LastLayerSolution()
+sub FindMoveset(int finalMoveset[])
 {
-	int solutionArray[16], moveset[];
+	bool configurationFound = FALSE;
+	int numOfTurns = 0;
+	int solutionArray[], lastLayerMoveset[], turnsMoveset[], comparisonArray[];
 
-	EvaluateLastLayer(solutionArray);
-	FindMoveset(solutionArray, moveset);
+
+	while(!configurationFound)
+	{
+		EvaluateLastLayer(solutionArray);
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 0, 2, 2, 8, 8, 0);  // A1
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 2, 6, 6, 8, 8, 2);  // A2
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 3, 5, 5, 7, 7, 3);  // U1
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 3, 7, 5, 3, 7, 5);  // U2
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 7, 3, 5, 5, 3, 7, 1);  // H
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 3, 5, 5, 3, 2, 8, 8, 2);  // T
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 3, 3, 1, 0, 2, 2, 0);  // J1
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 5, 7, 7, 5, 2, 8, 8, 2);  // J2
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 3, 7, 7, 3, 0, 2, 2, 0);  // R1
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 5, 7, 7, 5, 0, 2, 2, 0);  // R2
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 5, 5, 1, 0, 8, 8, 0);  // V
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 3, 3, 5, 5, 1, 0, 2, 2, 6, 6, 0);  // G1
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 7, 3, 1, 7, 3, 0, 6, 6, 8, 8, 0);  // G2
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 3, 5, 5, 7, 7, 3, 0, 6, 6, 8, 8, 0);  // G3
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 3, 3, 7, 7, 1, 0, 2, 2, 6, 6, 0);  // G4
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 3, 5, 5, 3, 6, 8, 8, 6);  // F
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 3, 3, 1, 5, 7, 7, 5);  // Z
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 3, 3, 1, 0, 8, 8, 0);  // Y
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 7, 7, 1, 0, 8, 8, 0);  // N1
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 1, 7, 7, 1, 2, 6, 6, 2);  // N2
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+		if (!configurationFound)
+			ArrayBuild(comparisonArray, 0, 6, 2, 8, 6, 0, 8, 2);  // E
+		if (CmpArray(solutionArray, comparisonArray))
+		{
+			ArrayBuild(lastLayerMoveset, 1);
+			configurationFound = TRUE;
+		}
+
+	}
+
+}
+
+
+sub LastLayerSolution(int finalMoveset[])
+{
+	FindMoveset(finalMoveset);
 
 }
