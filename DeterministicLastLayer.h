@@ -22,7 +22,34 @@ SØRG FOR AT GUL ER TOP FACE
 
 */
 
-sub CheckEdgeCorrectness(int &correctEdges[])
+bool CmpArray(int a[], int b[])
+{
+	for(int i = 0; i < ArrayLen(a); i++)
+	{
+		if(a[i] != b[i])
+		{
+			return FALSE;
+		}
+	}
+	return TRUE;
+}
+
+int FindFaceFromColor(char color)
+{
+	int colorFace;
+	
+	for(int face = 0; face < 6; face++)
+	{
+		if(myCube[face][CENTER_PIECE] == color)
+		{
+			colorFace = face;
+		}
+	}
+	
+	return colorFace;
+}
+
+sub CheckEdgeCorrectness(int &incorrectEdges[])
 {
 	int complementingPiece = 0, complementingFace = 0, edgeNumber = 0;
 	
@@ -32,18 +59,18 @@ sub CheckEdgeCorrectness(int &correctEdges[])
 		
 		if(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece])
 		{
-			correctEdges[edgeNumber] = 0;
+			incorrectEdges[edgeNumber] = 0;
 		}
 		else
 		{
-			correctEdges[edgeNumber] = 1;
+			incorrectEdges[edgeNumber] = piece;
 		}
 
 		edgeNumber++;
 	}
 }
 
-sub CheckCornerCorrectness(int &correctCorners[])
+sub CheckCornerCorrectness(int &incorrectCorners[])
 {
 	int complementingPiece = 0, complementingFace = 0, complementingPiece2 = 0, complementingFace2 = 0, cornerNumber = 0;
 	
@@ -53,15 +80,15 @@ sub CheckCornerCorrectness(int &correctCorners[])
 		
 		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 		{
-			correctCorners[cornerNumber] = 1;
+			incorrectCorners[cornerNumber] = piece;
 		} 
 		else if(!(myCube[complementingFace2][CENTER_PIECE] == myCube[complementingFace2][complementingPiece2]))
 		{
-			correctCorners[cornerNumber] = 1;
+			incorrectCorners[cornerNumber] = piece;
 		}
 		else
 		{
-			correctCorners[cornerNumber] = 0;
+			incorrectCorners[cornerNumber] = 0;
 		}
 		
 		cornerNumber++;	
@@ -73,29 +100,115 @@ sub CheckCornerCorrectness(int &correctCorners[])
 	}
 }
 
-sub FindMoveset()
+sub FindMoveset(int &solutionArray[], int &moveset[])
 {
 
+
+	
 
 
 
 }
 
-int EvaluateLastLayer()
+int EvaluateLastLayer(int &solutionArray[])
 {
-	int correctEdges[4], correctCorners[4], solvedConfiguration[4] = {0, 0, 0, 0};
+	int incorrectEdges[4], incorrectCorners[4], solvedArray[4] = {0, 0, 0, 0};
+	int complementingEdgeFace = 0, complementingEdgePiece = 0;
+	int complementingCornerFace = 0, complementingCornerPiece = 0, complementingCornerFace2 = 0, complementingCornerPiece2 = 0;
+	int solutionArrayIndex = 0, correctEdgeFace, correctCornerFace1, correctCornerFace2;
 
-	CheckEdgeCorrectness(correctEdges);
-	CheckCornerCorrectness(correctCorners);
+	for (int edge = 0; edge < 4; edge++)
+	{
+		if (incorrectEdges[edge] != 0)
+		{
+			solutionArray[solutionArrayIndex] = incorrectEdges[edge];
 
-	if ()
+			FindComplementingEdge(TOP_FACE, incorrectEdges[edge], complementingEdgeFace, complementingEdgePiece);
+			correctEdgeFace = FindFaceFromColor(myCube[complementingEdgeFace][complementingEdgePiece]);
+			
+			solutionArrayIndex++;
+
+			switch (correctEdgeFace)
+			{
+				case FRONT_FACE:
+					solutionArray[solutionArrayIndex] = 7;
+					break;
+
+				case RIGHT_FACE:
+					solutionArray[solutionArrayIndex] = 5;
+					break;
+
+				case BACK_FACE:
+					solutionArray[solutionArrayIndex] = 1;
+					break;
+
+				case LEFT_FACE:
+					solutionArray[solutionArrayIndex] = 3;
+					break;
+			}
+
+			solutionArrayIndex ++;
+		}
+	}
+
+	for (int corner = 0; corner < 4; corner++)
+	{
+		if (incorrectCorners[corner] != 0)
+		{
+			solutionArray[solutionArrayIndex] = incorrectCorners[corner];
+
+			FindComplementingCorners(TOP_FACE, incorrectCorners[corner], complementingCornerFace,
+			  complementingCornerPiece, complementingCornerFace2, complementingCornerPiece2);
+
+			correctCornerFace1 = FindFaceFromColor(myCube[complementingCornerFace][complementingCornerPiece]);
+			correctCornerFace2 = FindFaceFromColor(myCube[complementingCornerFace2][complementingCornerPiece2]);
+
+			solutionArrayIndex++;
+
+			switch(correctCornerFace1)
+			{
+				case FRONT_FACE:
+					if (correctCornerFace2 == RIGHT_FACE)
+						solutionArray[solutionArrayIndex] = 8;
+					else
+						solutionArray[solutionArrayIndex] = 6;
+					break;
+
+				case RIGHT_FACE: 
+					if (correctCornerFace2 == BACK_FACE)
+						solutionArray[solutionArrayIndex] = 2;
+					else
+						solutionArray[solutionArrayIndex] = 8;
+					break;
+
+				case BACK_FACE:
+					if (correctCornerFace2 == LEFT_FACE)
+						solutionArray[solutionArrayIndex] = 0;
+					else
+						solutionArray[solutionArrayIndex] = 2;
+					break;
+
+				case LEFT_FACE:
+					if (correctCornerFace2 == FRONT_FACE)
+						solutionArray[solutionArrayIndex] = 6;
+					else
+						solutionArray[solutionArrayIndex] = 0;
+					break;
+			}
+
+			solutionArrayIndex++;
+		}
+	}
 }
 
 
 
 
-sub LastLayerSolutio()
+sub LastLayerSolution()
 {
+	int solutionArray[16], moveset[];
 
+	EvaluateLastLayer(solutionArray);
+	FindMoveset(solutionArray, moveset);
 
 }
