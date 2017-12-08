@@ -1,4 +1,5 @@
 #include "CubeOperations.h"
+#include <Windows.h>
 
 int FindWhiteFace()
 {
@@ -23,7 +24,7 @@ int CheckWhiteEdges(int whiteFace)
 	{
 		if(myCube[whiteFace][piece] == 'w')
 		{
-			FindComplementingEdge(whiteFace, piece, complementingFace, complementingPiece);
+			FindComplementingEdge(whiteFace, piece, &complementingFace, &complementingPiece);
 			
 			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
@@ -47,7 +48,7 @@ int CheckWhiteCorner(int whiteFace)
 	{
 		if(myCube[whiteFace][piece] == 'w')
 		{
-			FindComplementingCorners(whiteFace, piece, complementingFace, complementingPiece, complementingFace2, complementingPiece2);
+			FindComplementingCorners(whiteFace, piece, &complementingFace, &complementingPiece, &complementingFace2, &complementingPiece2);
 			
 			if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 			{
@@ -71,22 +72,22 @@ int CheckWhiteCorner(int whiteFace)
 	return heuristicValue;
 }
 
-void IndividualEdgePieceCheck(int face, int centerLayerPiece, int &heuristicValue)
+void IndividualEdgePieceCheck(int face, int centerLayerPiece, int *heuristicValue)
 {
 	int complementingFace, complementingPiece;
 	
 	if(myCube[face][centerLayerPiece] == myCube[face][CENTER_PIECE])
 	{
-		FindComplementingEdge(face, centerLayerPiece, complementingFace, complementingPiece);
+		FindComplementingEdge(face, centerLayerPiece, &complementingFace, &complementingPiece);
 		
 		if(!(myCube[complementingFace][CENTER_PIECE] == myCube[complementingFace][complementingPiece]))
 		{
-			heuristicValue++;
+			++*heuristicValue;
 		}
 	}
     else
 	{
-		heuristicValue++;
+		++*heuristicValue;
 	}
 }
 
@@ -120,33 +121,55 @@ int CheckCenterLayerEdges(int whiteFace)
 		break;
 	}
 	
-	IndividualEdgePieceCheck(face, centerLayerPiece, heuristicValue);
-	IndividualEdgePieceCheck(face, centerLayerPiece2, heuristicValue);
-	IndividualEdgePieceCheck(oppositeFace, centerLayerPiece, heuristicValue);
-	IndividualEdgePieceCheck(oppositeFace, centerLayerPiece2, heuristicValue);
+	IndividualEdgePieceCheck(face, centerLayerPiece, &heuristicValue);
+	IndividualEdgePieceCheck(face, centerLayerPiece2, &heuristicValue);
+	IndividualEdgePieceCheck(oppositeFace, centerLayerPiece, &heuristicValue);
+	IndividualEdgePieceCheck(oppositeFace, centerLayerPiece2, &heuristicValue);
 	
 	return heuristicValue;
 	
 }
 
+int HeuristicValueWhiteCross()
+{
+	int whiteFace, heuristicValue = 8;
+	
+	whiteFace = FindWhiteFace();
+	
+	heuristicValue += CheckWhiteEdges(whiteFace);
+	
+	return heuristicValue;
+}
 
-int HeuristicValue()
+
+int HeuristicValueWhiteFace()
+{
+	int whiteFace, heuristicValue = 4;
+	
+	whiteFace = FindWhiteFace();
+	
+	heuristicValue += CheckWhiteEdges(whiteFace);
+	
+	heuristicValue += CheckWhiteCorner(whiteFace);
+	
+	return heuristicValue;
+}
+
+int HeuristicValueCenterLayer()
 {
 	int whiteFace, heuristicValue = 0;
 	
 	whiteFace = FindWhiteFace();
 	
 	heuristicValue += CheckWhiteEdges(whiteFace);
-
 	
 	heuristicValue += CheckWhiteCorner(whiteFace);
-
 	
 	heuristicValue += CheckCenterLayerEdges(whiteFace);
 
-	
 	return heuristicValue;
 }
+
 
 
 
