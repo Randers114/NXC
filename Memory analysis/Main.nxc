@@ -1,0 +1,51 @@
+#include "Graph.h"
+//#include "DeterministicLastLayer.h"
+
+
+
+task main()
+{
+  int path[100], tempPath[50], arrayCount = 0;
+ 
+  char top[10] = { 'g', 'y', 'y', 'y', 'y', 'o', 'o', 'y', 'g'};
+  char right[10] = { 'o', 'b', 'o', 'r', 'b', 'o', 'b', 'b', 'o'};
+  char front[10] = { 'g', 'o', 'w', 'o', 'o', 'w', 'g', 'g', 'w'};
+  char back[10] = { 'b', 'b', 'y', 'r', 'r', 'y', 'y', 'b', 'r'};
+  char left[10] = { 'r', 'g', 'y', 'g', 'g', 'g', 'r', 'r', 'r'};
+  char bottom[10] = { 'w', 'w', 'b', 'w', 'w', 'r', 'w', 'w', 'b'};
+
+
+  InitializeSide(top, TOP_FACE);
+  InitializeSide(right, RIGHT_FACE);
+  InitializeSide(front, FRONT_FACE);
+  InitializeSide(back, BACK_FACE);
+  InitializeSide(left, LEFT_FACE);
+  InitializeSide(bottom, BOTTOM_FACE);
+
+  MainGraphConstruction();
+  for(int i = 0; i < 100; i++)
+  {
+     if(Path[i] != 0)
+     {
+      path[arrayCount] = Path[i];
+      arrayCount++;
+     }
+  }
+
+  //YellowFaceSolution(tempPath);
+  
+  for(int i = 0; i < 50; i++)
+  {
+    if(tempPath[i] != 0)
+     {
+      path[arrayCount] = Path[i];
+      arrayCount++;
+     }
+  }
+  TextOut(0, LCD_LINE1, "Doneso");
+	NumOut(0, LCD_LINE2, arrayCount);
+	//NumOut(0, LCD_LINE3, Path[1]);
+	//NumOut(0, LCD_LINE4, Path[2]);
+	Wait(3000);
+	ClearScreen();
+}
