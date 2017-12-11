@@ -1,4 +1,4 @@
-#include "DeterministicYellowFace.h"
+#include "CheckCase.h"
 
 #define BOUND 3
 #define HIGHEST_HEURISTIC_VALUE 12
@@ -45,6 +45,25 @@ int TempPath[GRAPH_SIZE];
 int Path[HIGHEST_HEURISTIC_VALUE * GRAPH_SIZE + WORST_NUMBER_OF_CASES * NUMBER_OF_MOVES_IN_CASE];
 int ChildNumber[GRAPH_SIZE];
 int nodeCount = 0;
+
+void CaseFix(Values &values)
+{
+	Node tempNode = Graph[0];
+	
+	memcpy(myCube, tempNode.cube, sizeof myCube);
+	
+	// After we have made a new root to the new tree we check that this root is not one of our cases.
+	if(CheckForCase(values.upperHeuristic))
+	{
+		TextOut(0, LCD_LINE1, "Case hit");
+		Wait(1000);
+		
+		FixCase(Path, values.currentArrayPosition);
+		
+		memcpy(tempNode.cube, myCube, sizeof myCube);
+		Graph[0] = tempNode;
+	}
+}
 
 void ConstructNode(int currentPosition, int move, int upperHeuristic)
 {
@@ -285,6 +304,8 @@ int CheckHeuristic(Values &values)
 			heuristicIsLower = 1;
 			
 			Bound = BOUND;
+			
+			CaseFix(values);
 
 		} else 
 		{
@@ -377,8 +398,9 @@ void MainGraphConstruction()
 	
 	// printf("Start Heuristic value %d\n", values.upperHeuristic);
 	
-	
 	Bound = BOUND;
+	
+	CaseFix(values);
 		
 	while(values.upperHeuristic != 0)
 	{
