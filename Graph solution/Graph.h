@@ -267,7 +267,7 @@ int CheckHeuristic(Values *values)
 		{
 			if(Bound >= 9)
 			{
-				printf("Solution not reachable in appropriate time.. \n");
+				printf("Last node in max bound reached. \n");
 				exit(0);
 			} else 
 			{
@@ -302,23 +302,7 @@ void PrepareNewTree(Values *values)
 			
 				++values->currentArrayPosition;
 			}
-		}
-		
-		//Resets all values to initial 
-		values->upperHeuristic = TempRootNode.heuristicValue;
-		values->currentPosition = 0;
-		values->layer = 0;
-		TempRootNode.move = 0;
-		Flag = 0;
-		
-		for(int index = 0; index <= GRAPH_SIZE; index++)
-		{
-			Graph[index] = Blank;
-		}
-		
-		Graph[values->currentPosition] = TempRootNode;
-		
-		
+		}		
 	} else
 	{
 		TempRootNode = Graph[values->currentPosition];
@@ -326,20 +310,10 @@ void PrepareNewTree(Values *values)
 		printf("Heuristic %d \n", TempRootNode.heuristicValue);
 		
 		values->currentArrayPosition = SaveThePath(values->currentArrayPosition, values->currentPosition, values->layer);
-		
-
-		//Resets all values to initial 
-		ResetValues(values);
-
-		for(int index = 0; index <= GRAPH_SIZE; index++)
-		{
-			Graph[index] = Blank;
-		}
-
-		//Appoints a new root for the new tree
-		Graph[values->currentPosition] = TempRootNode;
 	}
-
+	
+	//Resets all values to initial and appoints new root 
+	ResetValues(values);
 }
 
 int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
@@ -359,10 +333,19 @@ int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
 
 void ResetValues(Values *values)
 {
-	values->upperHeuristic = Graph[values->currentPosition].heuristicValue;
+	values->upperHeuristic = TempRootNode.heuristicValue;
 	values->currentPosition = 0;
 	values->layer = 0;
 	TempRootNode.move = 0;
+	Flag = 0;
+	
+	for(int index = 0; index <= GRAPH_SIZE; index++)
+	{
+		Graph[index] = Blank;
+	}
+
+	//Appoints a new root for the new tree
+	Graph[values->currentPosition] = TempRootNode;
 }
 
 void CaseFix(Values *values)
