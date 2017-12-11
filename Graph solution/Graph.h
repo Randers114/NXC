@@ -19,7 +19,6 @@
 #define BACK 11
 #define INVERTEDBACK 12
 
-
 typedef struct Node 
 {
 	int heuristicValue;
@@ -33,6 +32,10 @@ typedef struct Values
 	int currentPosition; 
 	int layer;
 	int currentArrayPosition;
+	int bound;
+	int lowerHeuristicInFullTreeSearch;
+	Node blank;
+	Node tempRootNode;
 } Values;
 
 void ConstructNode(int currentPosition, int move, int upperHeuristic);
@@ -48,22 +51,16 @@ void PrintMoves(int currentArrayPosition);
 void CaseFix(Values *values);
 
 Node Graph[GRAPH_SIZE];
-Node Blank;
-Node TempRootNode;
 
 int Path[HIGHEST_HEURISTIC_VALUE * GRAPH_SIZE + WORST_NUMBER_OF_CASES * NUMBER_OF_MOVES_IN_CASE];
 int TempPath[GRAPH_SIZE];
 int ChildNumber[GRAPH_SIZE];
-int Bound;
-int Flag;
 
 void MainGraphConstruction()
 {
 	int movingUp;
 	
-	Values values = { .upperHeuristic = HIGHEST_HEURISTIC_VALUE, .currentPosition = 0, .layer = 0, .currentArrayPosition = 0};
-	
-	Flag = 0;
+	Values values = { .upperHeuristic = HIGHEST_HEURISTIC_VALUE, .currentPosition = 0, .layer = 0, .currentArrayPosition = 0, .bound = BOUND, .lowerHeuristicInFullTreeSearch = 0};
 	
 	// Constructing root node
 	ConstructNode(values.currentPosition - 1 , 0, HIGHEST_HEURISTIC_VALUE);
@@ -72,9 +69,6 @@ void MainGraphConstruction()
 	values.upperHeuristic = Graph[0].heuristicValue;
 	
 	printf("Start Heuristic value %d\n", values.upperHeuristic);
-	
-	// Setting initial bound 
-	Bound = BOUND;
 	
 	CaseFix(&values);
 	
@@ -146,7 +140,7 @@ void ConstructNodeChildren(Values *values)
 	Node newParent;
 	
 	// For loop to move down to the leafs in the bound layer
-	for(values->layer; values->layer < Bound; ++values->currentPosition)
+	for(values->layer; values->layer < values->bound; ++values->currentPosition)
 	{
 		newParent = Graph[values->currentPosition];
 		
@@ -234,9 +228,9 @@ int CheckHeuristic(Values *values)
 	{	
 		if(values->upperHeuristic > 4 && !(Graph[values->currentPosition].move == 12 && values->layer == 1))
 		{
-			Flag = 1;
+			values->lowerHeuristicInFullTreeSearch = 1;
 			
-			TempRootNode = Graph[values->currentPosition];
+			values->tempRootNode = Graph[values->currentPosition];
 			
 			for(int i = 0; i < GRAPH_SIZE; i++)
 			{
@@ -251,38 +245,36 @@ int CheckHeuristic(Values *values)
 				}
 			}		
 
-			values->upperHeuristic = TempRootNode.heuristicValue;
+			values->upperHeuristic = values->tempRootNode.heuristicValue;
 			
-		} else if(Flag || Graph[values->currentPosition].heuristicValue < values->upperHeuristic)
+		} else if(values->lowerHeuristicInFullTreeSearch || Graph[values->currentPosition].heuristicValue < values->upperHeuristic)
 		{
 			PrepareNewTree(values);
 			
 			heuristicIsLower = 1;
 			
-			Bound = BOUND;
+			values->bound = BOUND;
 			
 			CaseFix(values);
 			
 		} else 
 		{
-			if(Bound >= 9)
+			if(values->bound >= 9)
 			{
 				printf("Last node in max bound reached. \n");
 				exit(0);
 			} else 
 			{
-				Bound++;
+				++values->bound;
 				values->currentPosition = 1;
 				values->layer = 0;
 				
 				for(int index = 1; index < GRAPH_SIZE; index++)
 				{
-					Graph[index] = Blank;
+					Graph[index] = values->blank;
 				}
 			}
-		}
-		
-		
+		}		
 	}
 	
 	return heuristicIsLower;
@@ -290,9 +282,9 @@ int CheckHeuristic(Values *values)
 
 void PrepareNewTree(Values *values)
 {
-	if(Flag)
+	if(values->lowerHeuristicInFullTreeSearch)
 	{
-		printf("Heuristic %d \n", TempRootNode.heuristicValue);
+		printf("Heuristic %d \n", values->tempRootNode.heuristicValue);
 		
 		for(int i = 0; i < GRAPH_SIZE; i++)
 		{
@@ -305,9 +297,9 @@ void PrepareNewTree(Values *values)
 		}		
 	} else
 	{
-		TempRootNode = Graph[values->currentPosition];
+		values->tempRootNode = Graph[values->currentPosition];
 	
-		printf("Heuristic %d \n", TempRootNode.heuristicValue);
+		printf("Heuristic %d \n", values->tempRootNode.heuristicValue);
 		
 		values->currentArrayPosition = SaveThePath(values->currentArrayPosition, values->currentPosition, values->layer);
 	}
@@ -333,19 +325,19 @@ int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
 
 void ResetValues(Values *values)
 {
-	values->upperHeuristic = TempRootNode.heuristicValue;
+	values->upperHeuristic = values->tempRootNode.heuristicValue;
 	values->currentPosition = 0;
 	values->layer = 0;
-	TempRootNode.move = 0;
-	Flag = 0;
+	values->tempRootNode.move = 0;
+	values->lowerHeuristicInFullTreeSearch = 0;
 	
 	for(int index = 0; index <= GRAPH_SIZE; index++)
 	{
-		Graph[index] = Blank;
+		Graph[index] = values->blank;
 	}
 
 	//Appoints a new root for the new tree
-	Graph[values->currentPosition] = TempRootNode;
+	Graph[values->currentPosition] = values->tempRootNode;
 }
 
 void CaseFix(Values *values)
@@ -355,7 +347,6 @@ void CaseFix(Values *values)
 	// After we have made a new root to the new tree we check that this root is not one of our cases.
 	if(CheckForCase(values->upperHeuristic))
 	{
-		
 		printf("Case hit \n");
 		
 		FixCase(Path, &values->currentArrayPosition);
@@ -371,7 +362,6 @@ int MoveUpInLayers(Values *values)
 
 	if(!CheckHeuristic(values))
 	{
-
 		if(Graph[values->currentPosition].move == 12)
 		{
 			movingUp = 1;
@@ -384,7 +374,7 @@ int MoveUpInLayers(Values *values)
 			--values->currentPosition;
 		}
 
-		Graph[tempPosition] = Blank;
+		Graph[tempPosition] = values->blank;
 	}
 	
 	return movingUp;
