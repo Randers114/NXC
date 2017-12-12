@@ -245,7 +245,15 @@ int CheckHeuristic(Values *values)
 				}
 			}		
 
-			values->upperHeuristic = values->tempRootNode.heuristicValue;
+			if(TempRootNode->heuristicValue != 0)
+			{
+				values->upperHeuristic = TempRootNode->heuristicValue;
+			} else 
+			{
+				values->upperHeuristic = TempRootNode->heuristicValue;
+				PrepareNewTree(values);
+				heuristicIsLower = 1;
+			}
 			
 		} else if(values->lowerHeuristicInFullTreeSearch || Graph[values->currentPosition].heuristicValue < values->upperHeuristic)
 		{

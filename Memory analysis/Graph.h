@@ -101,13 +101,7 @@ void ConstructNodeChildren(Values &values)
 	int move;
 	
 	for(values.layer; values.layer < Bound; ++values.currentPosition)
-	{
-		// ClearScreen();
-		// TextOut(0, LCD_LINE1, "Hey ");
-		// NumOut(0, LCD_LINE2, values.currentPosition);
-		//Wait(500);
-		
-		
+	{		
 		Node newParent = Graph[values.currentPosition];
 		
 		memcpy(myCube, newParent.cube, sizeof newParent.cube);
@@ -120,10 +114,10 @@ void ConstructNodeChildren(Values &values)
 		
 		ChildNumber[values.layer] += 1;
 		
-		// // ChildNumber decides the move
+		// ChildNumber decides the move
 		move = ChildNumber[values.layer];
 		
-		// // Choose the operation for the node from childnumber
+		// Choose the operation for the node from childnumber
 		switch(move)
 		{
 			case RIGHT:
@@ -195,18 +189,12 @@ void ResetValues(Values &values)
 	values.currentPosition = 0;
 	values.layer = 0;
 	TempRootNode.move = 0;
-	//nodeCount = 0;
 }
 
 void PrepareNewTree(Values &values)
 {
 	if(Flag)
-	{
-		//printf("Heuristic %d \n", TempRootNode.heuristicValue);
-		// TextOut(0, LCD_LINE1, "Heuristic value11 ");
-		// NumOut(0, LCD_LINE2, TempRootNode.heuristicValue);
-		// Wait(1000);
-		
+	{		
 		for(int i = 0; i < GRAPH_SIZE; i++)
 		{
 			if(TempPath[i] != 0)
@@ -235,14 +223,8 @@ void PrepareNewTree(Values &values)
 	} else
 	{
 		TempRootNode = Graph[values.currentPosition];
-	
-		// TextOut(0, LCD_LINE1, "Heuristic value22 ");
-		// NumOut(0, LCD_LINE2, TempRootNode.heuristicValue);
-		// Wait(1000);
-		//printf("Heuristic %d \n", TempRootNode.heuristicValue);
 		
 		values.currentArrayPosition = SaveThePath(values.currentArrayPosition, values.currentPosition, values.layer);
-		
 
 		//Resets all values to initial 
 		ResetValues(values);
@@ -266,13 +248,7 @@ int CheckHeuristic(Values &values)
 	{	
 		if(values.upperHeuristic > 4 && !(Graph[values.currentPosition].move == 12 && values.layer == 1))
 		{
-			Flag = 1;
-			
-			// ClearScreen();
-			// TextOut(0, LCD_LINE1, "hhhhhh");
-			// NumOut(0, LCD_LINE2, values.upperHeuristic);
-			// NumOut(0, LCD_LINE3, Graph[values.currentPosition].heuristicValue);
-			
+			Flag = 1;			
 			
 			TempRootNode = Graph[values.currentPosition];
 			
@@ -311,8 +287,7 @@ int CheckHeuristic(Values &values)
 		{
 			if(Bound >= 9)
 			{
-				//printf("Solution not reachable in appropriate time.. \n");
-				//exit(0);
+				StopAllTasks();
 			} else 
 			{
 				Bound++;
@@ -365,8 +340,6 @@ int MoveUpInLayers(Values &values)
 			--values.currentPosition;
 		}
 		
-
-			
 		Graph[tempPosition] = Blank;
 	}
 	
@@ -395,9 +368,6 @@ void MainGraphConstruction()
 	NumOut(0, LCD_LINE2, values.upperHeuristic);
 	Wait(1000);
 	ClearScreen();
-	
-	// printf("Start Heuristic value %d\n", values.upperHeuristic);
-	
 	Bound = BOUND;
 	
 	CaseFix(values);
