@@ -155,7 +155,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 10, 7, 3, 10, 11, 11, 1, 7, 10, 1, 12);
+                ArrayBuild(yellowFaceMoveset, 10, 5, 7, 3, 10, 11, 11, 1, 7, 10, 1, 12, 5);
                 configurationFound = TRUE;
             }
 
@@ -197,7 +197,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 2, 1, 7, 11, 1, 7, 12, 3, 11, 1, 7, 12, 3, 7, 11);
+                ArrayBuild(yellowFaceMoveset, 2, 5, 1, 7, 11, 6, 1, 7, 12, 5, 3, 11, 6, 1, 7, 12, 5, 3, 7, 11, 6);
                 configurationFound = TRUE;
             }
 
@@ -269,7 +269,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 4, 2, 9, 4, 12, 9, 11, 10, 12, 9, 11, 1, 9);
+                ArrayBuild(yellowFaceMoveset, 4, 2, 9, 4, 12, 9, 11, 10, 12, 9, 11, 6, 1, 9);
                 configurationFound = TRUE;
             }
 
@@ -371,7 +371,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 2, 2, 11, 1, 7, 12, 4, 11);
+                ArrayBuild(yellowFaceMoveset, 2, 5, 2, 11, 6, 1, 7, 12, 5, 4, 11, 6);
                 configurationFound = TRUE;
             }
 
@@ -385,7 +385,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 4, 9, 12, 10, 9, 3, 9, 12);
+                ArrayBuild(yellowFaceMoveset, 4, 5, 9, 12, 10, 9, 6, 3, 9, 12);
                 configurationFound = TRUE;
             }
 
@@ -443,7 +443,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 1, 9, 7, 12, 10, 11, 10, 11, 7, 4, 4, 9, 11, 3);
+                ArrayBuild(yellowFaceMoveset, 6, 1, 9, 7, 12, 10, 11, 10, 11, 7, 4, 4, 9, 11, 3);
                 configurationFound = TRUE;
             }
 
@@ -480,7 +480,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 2, 9, 7, 11, 9, 12, 9, 11, 7, 1, 1, 10, 12, 2);
+                ArrayBuild(yellowFaceMoveset, 6, 2, 9, 7, 11, 9, 12, 9, 11, 7, 1, 1, 10, 12, 2);
                 configurationFound = TRUE;
             }
 
@@ -562,7 +562,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 4, 2, 9, 4, 12, 9, 11, 1, 9);
+                ArrayBuild(yellowFaceMoveset, 4, 2, 9, 4, 12, 9, 11, 6, 1, 9);
                 configurationFound = TRUE;
             }
         }
@@ -574,7 +574,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 7, 3, 7, 2, 9, 12, 10, 11, 7, 9, 12, 9);
+                ArrayBuild(yellowFaceMoveset, 5, 7, 3, 5, 7, 2, 9, 12, 10, 11, 7, 9, 12, 9, 6);
                 configurationFound = TRUE;
             }
         }
@@ -612,7 +612,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 7, 2, 7, 3, 10, 11, 9, 11, 7, 10, 11, 11);
+                ArrayBuild(yellowFaceMoveset, 5, 7, 2, 5, 7, 3, 10, 11, 9, 11, 7, 10, 11, 11, 6);
                 configurationFound = TRUE;
             }
         }
@@ -662,7 +662,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 1, 11, 10, 12, 4, 4, 11, 9, 12);
+                ArrayBuild(yellowFaceMoveset, 1, 11, 10, 12, 4, 4, 11, 9, 12, 5);
                 configurationFound = TRUE;
             }
         }
@@ -683,7 +683,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 4, 2, 9, 4, 9, 11, 12, 3, 9);
+                ArrayBuild(yellowFaceMoveset, 4, 2, 9, 6, 4, 9, 11, 12, 3, 9);
                 configurationFound = TRUE;
             }
         }
@@ -702,7 +702,7 @@ sub FindCorrectMoveset(int finalMoveset[])
             ArrayBuild(lastLayerComparisonArray, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0);
             if (CmpArray(lastLayerConfigurationArray, lastLayerComparisonArray))
             {
-                ArrayBuild(yellowFaceMoveset, 1, 3, 10, 1, 10, 12, 11, 2, 10);
+                ArrayBuild(yellowFaceMoveset, 1, 3, 10, 5, 1, 10, 12, 11, 2, 10);
                 configurationFound = TRUE;
             }
         }
