@@ -4,7 +4,7 @@
 #define NUM_OF_PIECES 9
 
 
-sub EvaluateYellowFaceConfiguration(int &yellowConfigurationArray[])
+sub EvaluateYellowFaceConfiguration(int &yellowConfigurationArray[])						//2 int
 {
     // Checks each square on the yellow face. If a square is yellow, a value of 1 is saved. If a square isn't yellow, a value of 0 is saved.
     // These values are placed in an array of int's, where the first entry in the array corresponds to the square noted as the first square in the representation.
@@ -33,7 +33,7 @@ sub EvaluateYellowFaceConfiguration(int &yellowConfigurationArray[])
 }
 
 
-sub EvaluateLastLayerConfiguration(int &lastLayerConfigurationArray[])
+sub EvaluateLastLayerConfiguration(int &lastLayerConfigurationArray[]) 					//6 int
 {
     // Checks each square in the last unsolved layer of the cube. If a square is yellow, a value of 1 is saved. If a square isn't yellow, a value of 0 is saved.
     // The values are placed in an array of int's, where the first entry in the array corresponds to the leftmost square in the front face.
@@ -99,7 +99,7 @@ sub EvaluateLastLayerConfiguration(int &lastLayerConfigurationArray[])
     }
 }
 
-sub FindCorrectMoveset(int &finalMoveset[])
+sub FindCorrectMoveset(int &finalMoveset[])									//1 bool + int[9] + int[12] + int[4] + (YellowFaceMoveSet[]) + (TrunsMoveSet[]) + (TempArray[]) + (int[9]) + (LastLayerComparisonArray[]) + //here non const// (PlaceYellowOnTop) (EvaluateYellowFaceConfiguration) (EvaluateYellowFaceConfiguration) (EvaluateLastLayerConfiguration)
 {
     // Switches on the configuration of the yellow face. Thereafter, if necessary, switch on the cases for the same yellow-face configuration.
     bool configurationFound = FALSE;
