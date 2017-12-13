@@ -1,6 +1,4 @@
 #include "CubeOperations.h"
-#include <Windows.h>
-
 int FindWhiteFace()
 {
 	int whiteFace;
