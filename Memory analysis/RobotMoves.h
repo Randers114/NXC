@@ -26,9 +26,9 @@ void AlignCubeLayers()
 	} 
 
 	isLocked = TRUE;
-	RotateMotorPID(OUT_B, 30, 60, 20, 40, 100);
+	RotateMotorPID(OUT_B, 50, 60, 20, 40, 100);
     Wait(MS_300);
-    RotateMotorPID(OUT_B, 30, -60, 20, 40, 100);
+    RotateMotorPID(OUT_B, 50, -60, 20, 40, 100);
     Wait(MS_300);
 }
 
@@ -36,18 +36,20 @@ void FlipCube(int count) /* Tells the robot to flip the cube. */
 {
 	if (!isLocked){
 		LockCube();
+	} else 
+	{
+		AlignCubeLayers();
 	}
 
     isLocked = TRUE;
-    AlignCubeLayers();
 
     for (int i = 0; i < count; i++)
     {
-	    RotateMotorPID(OUT_B, 70, -90, 20, 40, 100);
+	    RotateMotorPID(OUT_B, 80, -90, 20, 40, 100);
 	    Wait(MS_300);
-	    RotateMotorPID(OUT_B, 30, 130, 20, 40, 100);
+	    RotateMotorPID(OUT_B, 60, 130, 20, 40, 100);
 	    Wait(MS_300);
-	    RotateMotorPID(OUT_B, 30, -40, 20, 40, 100);
+	    RotateMotorPID(OUT_B, 60, -40, 20, 40, 100);
 	    Wait(MS_300);
     }
 }

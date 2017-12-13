@@ -804,9 +804,9 @@ sub FindCorrectMoveset(int &finalMoveset[])
 			ArrayBuild(turnsMoveset, tempArray, 13);
         }
     }
-    
-	ChangeRepresentationFromMoveSet(turnsMoveset);
+	
 	ChangeRepresentationFromMoveSet(yellowFaceMoveset);
+	
 	ArrayBuild(finalMoveset, placeYellowTopPath, turnsMoveset, yellowFaceMoveset);
     
 }

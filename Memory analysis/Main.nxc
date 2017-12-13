@@ -4,12 +4,12 @@ task main()
 {
   int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[];
   
-  char top[10] = { 'b', 'y', 'o', 'b', 'b', 'b', 'b', 'b', 'b'};
-char right[10] = { 'y', 'r', 'r', 'y', 'r', 'r', 'y', 'r', 'r'};
-char front[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
-char back[10] = { 'y', 'g', 'r', 'b', 'y', 'o', 'y', 'r', 'g'};
-char left[10] = { 'o', 'o', 'o', 'y', 'o', 'o', 'g', 'o', 'o'};
-char bottom[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'r', 'y', 'b'};
+char top[10] = { 'g', 'g', 'o', 'b', 'y', 'o', 'b', 'y', 'w'};
+char right[10] = { 'y', 'y', 'y', 'g', 'g', 'g', 'w', 'w', 'r'};
+char front[10] = { 'y', 'r', 'g', 'r', 'r', 'o', 'r', 'r', 'g'};
+char back[10] = { 'y', 'o', 'g', 'o', 'o', 'r', 'w', 'w', 'b'};
+char left[10] = { 'o', 'y', 'r', 'y', 'b', 'b', 'b', 'b', 'b'};
+char bottom[10] = { 'w', 'w', 'o', 'w', 'w', 'g', 'o', 'b', 'r'};
   
   // Try when fixed last layer
  // char top[10] = { 'o', 'w', 'g', 'b', 'w', 'g', 'b', 'w', 'y'};
@@ -43,11 +43,11 @@ char bottom[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'r', 'y', 'b'};
   InitializeSide(left, LEFT_FACE);
   InitializeSide(bottom, BOTTOM_FACE);
 
- // MainGraphConstruction();
+  MainGraphConstruction();
   
-   PlaySound(SOUND_UP);
-   Wait(1000);
-   ClearScreen();
+   //PlaySound(SOUND_UP);
+   //Wait(1000);
+   //ClearScreen();
    
   //ExecuteRobotMovesFromPath(Path);
 
@@ -63,9 +63,11 @@ char bottom[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'r', 'y', 'b'};
   
   LastLayerSolution(lastLayerSolutionPath);
   
- ArrayBuild(fullPath, yellowFaceSolutionPath, lastLayerSolutionPath);
+  //ArrayBuild(fullPath, yellowFaceSolutionPath, lastLayerSolutionPath);
   
-  //ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
+   ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
+  
+  //ArrayBuild(fullPath, lastLayerSolutionPath);
 
   
   PlaySound(SOUND_UP);
@@ -75,6 +77,8 @@ char bottom[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'r', 'y', 'b'};
 	ClearScreen();
 	
 	ExecuteRobotMovesFromPath(fullPath);
+	
+	UnlockCube();
 	
 	PlaySound(SOUND_DOWN);
 }

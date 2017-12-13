@@ -93,7 +93,7 @@ sub CheckCornerCorrectness(int &incorrectCorners[])
 
 int EvaluateLastLayer(int &solutionArray[])
 {
-	int incorrectEdges[4], incorrectCorners[4], solvedArray[4] = {0, 0, 0, 0};
+	int incorrectEdges[4] = {0, 0, 0, 0}, incorrectCorners[4] = {0, 0, 0, 0}, solvedArray[4] = {0, 0, 0, 0};
 	int complementingEdgeFace = 0, complementingEdgePiece = 0;
 	int complementingCornerFace = 0, complementingCornerPiece = 0, complementingCornerFace2 = 0, complementingCornerPiece2 = 0;
 	int solutionArrayIndex = 0, correctEdgeFace, correctCornerFace1, correctCornerFace2;
@@ -101,7 +101,7 @@ int EvaluateLastLayer(int &solutionArray[])
 	CheckCornerCorrectness(incorrectCorners);
 	CheckEdgeCorrectness(incorrectEdges);
 	
-	if (!(CmpArray(solvedArray, incorrectCorners)) && !(CmpArray(solvedArray, incorrectEdges)))
+	if (!(CmpArray(solvedArray, incorrectCorners)) || !(CmpArray(solvedArray, incorrectEdges)))
 	{
 		for (int edge = 0; edge < 4; edge++)
 		{
@@ -110,9 +110,10 @@ int EvaluateLastLayer(int &solutionArray[])
 				solutionArray[solutionArrayIndex] = incorrectEdges[edge];
 
 				FindComplementingEdge(TOP_FACE, incorrectEdges[edge], complementingEdgeFace, complementingEdgePiece);
+				
 				correctEdgeFace = FindFaceFromColor(myCube[complementingEdgeFace][complementingEdgePiece]);
 				
-				solutionArrayIndex++;
+				solutionArrayIndex++;	
 
 				switch (correctEdgeFace)
 				{
@@ -204,28 +205,23 @@ sub FindMoveset(int &finalMoveset[])
 {
 	bool configurationFound = FALSE;
 	int turnCounter = 0, evaluation, topRotationCounter = 0;
-	int solutionArray[16], lastLayerMoveset[], turnsMoveset[], tempArray[], comparisonArray[], placeYellowTopPath[];
+	int solutionArray[16], lastLayerMoveset[], turnsMoveset[], tempArray[], comparisonArray[], placeYellowTopPath[], emptyArray[];
+	
+	ArrayInit(emptyArray, EMPTY_SPACE, 16);
 	
 	PlaceYellowOnTop(placeYellowTopPath);
-	ArrayInit(solutionArray, EMPTY_SPACE, 16);
+	
+	ArrayBuild(solutionArray, emptyArray);
 	
 	evaluation = EvaluateLastLayer(solutionArray);
 	if (evaluation == 0) // If the cube is already solved.
 	{
 		configurationFound = TRUE;
 	}
-	
-	// for(int i = 0; i < ArrayLen(solutionArray); i++)
-	// {
-		// TextOut(0, LCD_LINE2, "asdf");
-		// NumOut(0, LCD_LINE1, solutionArray[i]);
-		// Wait(1500);
-		// ClearScreen();
-	// }
 
 	while(!configurationFound)
 	{
-		ArrayInit(solutionArray, EMPTY_SPACE, 16);
+		ArrayBuild(solutionArray, emptyArray);
 		
 		EvaluateLastLayer(solutionArray);
 		
@@ -261,25 +257,9 @@ sub FindMoveset(int &finalMoveset[])
 
 		if (!configurationFound)
 		{
-			
-			// if(myCube[2][1] == 'g' && myCube[2][4] == 'r')
-			// {
-				// for(int i = 0; i < ArrayLen(solutionArray); i++)
-				// {
-					// NumOut(0, LCD_LINE1, solutionArray[i]);
-					// Wait(1500);
-					// ClearScreen();
-				// }
-			// }
-			Wait(1000);
 			ArrayBuild(comparisonArray, 3, 7, 5, 3, 7, 5);  // U2
 			if (CmpArray(solutionArray, comparisonArray))
 			{
-				PlaySound(SOUND_CLICK);
-				NumOut(0, LCD_LINE2, ArrayLen(placeYellowTopPath));
-				TextOut(0, LCD_LINE1, "fuck");
-				Wait(1000);
-				ClearScreen();
 				ArrayBuild(lastLayerMoveset, 1, 12, 9, 11, 9, 11, 9, 12, 10, 12, 9, 7);
 				configurationFound = TRUE;
 			}

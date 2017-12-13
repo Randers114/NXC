@@ -245,12 +245,12 @@ int CheckHeuristic(Values *values)
 				}
 			}		
 
-			if(TempRootNode->heuristicValue != 0)
+			if(values->tempRootNode->heuristicValue != 0)
 			{
-				values->upperHeuristic = TempRootNode->heuristicValue;
+				values->upperHeuristic = values->tempRootNode->heuristicValue;
 			} else 
 			{
-				values->upperHeuristic = TempRootNode->heuristicValue;
+				values->upperHeuristic = values->tempRootNode->heuristicValue;
 				PrepareNewTree(values);
 				heuristicIsLower = 1;
 			}
