@@ -55,7 +55,7 @@ int CheckForCase(int heuristicValue)
 }
 
 
-int CheckPieces(int face, int centerLayerPiece, int *red, int *green, int *orange, int *blue)
+void CheckPieces(int face, int centerLayerPiece, int *red, int *green, int *orange, int *blue)
 {
 	int complementingFace, complementingPiece;
 	
@@ -65,7 +65,7 @@ int CheckPieces(int face, int centerLayerPiece, int *red, int *green, int *orang
 	IncrementColors(complementingFace, complementingPiece, red, green, orange, blue);
 }
 
-int IncrementColors(int face, int piece, int *red, int *green, int *orange, int *blue)
+void IncrementColors(int face, int piece, int *red, int *green, int *orange, int *blue)
 {
 	switch(myCube[face][piece])
 	{
@@ -84,7 +84,7 @@ int IncrementColors(int face, int piece, int *red, int *green, int *orange, int 
 	}
 }
 
-int FixCase(int path[], int *currentArrayPosition)
+void FixCase(int path[], int *currentArrayPosition)
 {
 	char colourTop = 'y';
 	char colourFront;
