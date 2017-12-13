@@ -26,7 +26,7 @@ char myCube[6][10];
 #define TurnOp 13
 #define Claw 14
  
-void InitializeSide(char face[], int sidenumber)
+void InitializeSide(char face[], int sidenumber) 										// char[10] -- 2 int
 {
 	for (int piece = 0; piece < 9; piece++)
 	{
@@ -34,49 +34,7 @@ void InitializeSide(char face[], int sidenumber)
 	}
 }
 
-void CubeCheck()
-{
-	int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
-
-	for (int face = 0; face < 6; face++)
-	{
-		for (int piece = 0; piece < 9; piece++)
-		{
-			if (myCube[face][piece] == 'w')
-			{
-				white++;
-			}
-			else if (myCube[face][piece] == 'o')
-			{
-				orange++;
-			}
-			else if (myCube[face][piece] == 'b')
-			{
-				blue++;
-			}
-			else if (myCube[face][piece] == 'y')
-			{
-				yellow++;
-			}
-			else if (myCube[face][piece] == 'g')
-			{
-				green++;
-			}
-			else if (myCube[face][piece] == 'r')
-			{
-				red++;
-			}
-		}
-	}
-	
-	if (white != 9 || orange != 9 || blue != 9 || yellow != 9 || green != 9 || red != 9)
-  {
-     PlaySound(SOUND_UP);
-     StopAllTasks();
-  }
-}
-
-void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap space one with space two on a given face */
+void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo)				// 3 int -- 1 char
 {
 	char temp;
 	temp = myCube[faceIdentifier][spaceTwo];
@@ -84,7 +42,7 @@ void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap
 	myCube[faceIdentifier][spaceOne] = temp;
 }
 
-void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on the right face) */
+void RotateFaceRightOperation(int faceIdentifier) 										// 1 int 
 {
 	SwapOnFaceOperation(faceIdentifier, 1, 3);
 	SwapOnFaceOperation(faceIdentifier, 3, 7);
@@ -94,7 +52,7 @@ void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right 
 	SwapOnFaceOperation(faceIdentifier, 8, 2);
 }
 
-void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
+void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) 	// 4 int -- 1 char 
 {
 	char temp;
 	temp = myCube[FaceTwo][SpaceTwo];
@@ -102,7 +60,7 @@ void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int Space
 	myCube[FaceOne][SpaceOne] = temp;
 }
 
-void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the pointer of two faces so they "swap places" */
+void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) 					// 3 int -- 1 char 
 {
 	char temp;
 
@@ -114,7 +72,7 @@ void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the
 	}
 }
 
-void TurnCubeOperation() /* turn cube without holding it, aka turning the cube entirly */
+void TurnCubeOperation() 																// 6 int -- 1 char
 {
 	/* face swap operations */
 	/* swap front to left */
@@ -138,7 +96,7 @@ void TurnCubeOperation() /* turn cube without holding it, aka turning the cube e
 	RotateFaceRightOperation(BOTTOM_FACE);
 }
 
-void RotateBottomOperation() /*holding the top and rotating the buttom face */
+void RotateBottomOperation() 															// 6 int -- 1 char
 {
 	/* swap colors on bot */
 	RotateFaceRightOperation(BOTTOM_FACE);
@@ -163,7 +121,7 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 	}
 }
 
-void ClawPullOperation() /* representation changes when the claw pulls the cube front to top etc. */
+void ClawPullOperation() 																// 3 int -- 1 char
 {
 	FaceSwapOperation(FRONT_FACE, BOTTOM_FACE);
 	FaceSwapOperation(BOTTOM_FACE, BACK_FACE);
@@ -177,7 +135,7 @@ void ClawPullOperation() /* representation changes when the claw pulls the cube 
 }
 
 // FInd complementing edge for heuristic.
-void FindComplementingEdge(int face, int piece, int &complementFace, int &complementPiece)
+void FindComplementingEdge(int face, int piece, int &complementFace, int &complementPiece) // 2 int 
 {
 	switch(face)
 	{
@@ -322,7 +280,7 @@ void FindComplementingEdge(int face, int piece, int &complementFace, int &comple
 	}
 }
 
-void FindComplementingCorners(int face, int piece, int &complementFace, int &complementPiece, int &complementFace2, int &complementPiece2)
+void FindComplementingCorners(int face, int piece, int &complementFace, int &complementPiece, int &complementFace2, int &complementPiece2) // 2 int
 {
 	switch(face)
 	{
@@ -514,19 +472,14 @@ void FindComplementingCorners(int face, int piece, int &complementFace, int &com
 	}
 }
 
-/*
-Compound functions are moves to be executed by hand like inverted right or top or inverted bottom
-but reflect this in the representation since this is multiple moves, or a compound of other functions ;-)
-*/
-
-void RightOperation()
+void RightOperation() 																		// 6 int -- 1 char
 {
 	TurnCubeOperation();
 	ClawPullOperation();
 	RotateBottomOperation();
 }
 
-void InvertedRightOperation()
+void InvertedRightOperation()																// 7 int -- 1 char
 {
 	TurnCubeOperation();
 	ClawPullOperation();
@@ -536,7 +489,7 @@ void InvertedRightOperation()
     }
 }
 
-void LeftOperation()
+void LeftOperation()																		// 7 int -- 1 char
 {
 	for(int i = 0; i < 3; i++)
 	{
@@ -546,7 +499,7 @@ void LeftOperation()
 	RotateBottomOperation();
 }
 
-void InvertedLeftOperation()
+void InvertedLeftOperation()																// 7 int -- 1 char
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -559,7 +512,7 @@ void InvertedLeftOperation()
     }
 }
 
-void TopOperation()
+void TopOperation()																			// 6 int -- 1 char
 {
 	for(int i = 0; i < 2; i++)
     {
@@ -568,7 +521,7 @@ void TopOperation()
 	RotateBottomOperation();
 }
 
-void InvertedTopOperation()
+void InvertedTopOperation()																	// 7 int -- 1 char
 {
 	for(int i = 0; i < 2; i++)
     {
@@ -580,12 +533,12 @@ void InvertedTopOperation()
     }
 }
 
-void BottomOperation()
+void BottomOperation()																		// 6 int -- 1 char
 {
 	RotateBottomOperation();
 }
 
-void InvertedBottomOperation()
+void InvertedBottomOperation()																// 7 int -- 1 char 
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -593,7 +546,7 @@ void InvertedBottomOperation()
     }
 }
 
-void FrontOperation()
+void FrontOperation()																		// 6 int -- 1 char 
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -602,7 +555,7 @@ void FrontOperation()
 	RotateBottomOperation();
 }
 
-void InvertedFrontOperation()
+void InvertedFrontOperation()																// 7 int -- 1 char 
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -614,13 +567,13 @@ void InvertedFrontOperation()
     }
 }
 
-void BackOperation()
+void BackOperation()																		// 6 int -- 1 char 
 {
 	ClawPullOperation();
 	RotateBottomOperation();
 }
 
-void InvertedBackOperation()
+void InvertedBackOperation()																// 7 int -- 1 char
 {
 	ClawPullOperation();
 	for(int i = 0; i < 3; i++)
@@ -630,7 +583,7 @@ void InvertedBackOperation()
 
 }
 
-bool CmpArray(int a[], int b[])
+bool CmpArray(int a[], int b[])													// 1 int + 2 int[] hvad end størrelse der er sendt med, det er pass by value
 {
 	int length = 0;
 	for(int i = 0; i < ArrayLen(a); i++)
@@ -658,11 +611,10 @@ bool CmpArray(int a[], int b[])
 	return TRUE;
 }
 
-int PlaceYellowOnTop(int &path[])
+int PlaceYellowOnTop(int &path[]) 																	// 7 int -- 2 char
 {
 	char colourTop = 'y';
-	
-	/* Turn to the requested colour, given by the two characters of colourFront and colourTop. */
+
 	int topFacePosition = 0;
 
 	for (int i = 0; i < 6; i++)
@@ -718,7 +670,7 @@ int PlaceYellowOnTop(int &path[])
 	}
 }
 
-void ChangeRepresentationFromMoveSet(int moveSet[])
+void ChangeRepresentationFromMoveSet(int moveSet[])										// 1 int + int[] hvad end størrelse der er sendt med, det er pass by value
 {
 	for(int i = 0; i < ArrayLen(moveSet); i++)
 	{
@@ -771,7 +723,7 @@ void ChangeRepresentationFromMoveSet(int moveSet[])
 }
 
 
-void ExecuteRobotMovesFromPath(int moveSet[])
+void ExecuteRobotMovesFromPath(int moveSet[])										// 1 int + int[] hvad end størrelse der er sendt med, det er pass by value
 {
 	for(int i = 0; i < ArrayLen(moveSet); i++)
 	{
