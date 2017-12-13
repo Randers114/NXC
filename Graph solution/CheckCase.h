@@ -1,7 +1,7 @@
 #include "Heuristic.h"
 
 void IncrementColors(int face, int piece, int *red, int *green, int *orange, int *blue);
-int CheckPieces(int face, int centerLayerPiece, int *red, int *green, int *orange, int *blue);
+void CheckPieces(int face, int centerLayerPiece, int *red, int *green, int *orange, int *blue);
 char FindCaseFrontColour();
 
 

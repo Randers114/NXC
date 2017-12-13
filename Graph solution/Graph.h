@@ -377,7 +377,7 @@ int MoveUpInLayers(Values *values)
 		
 		tempPosition = values->currentPosition;
 		
-		if(!values->currentPosition <= 0)
+		if(!(values->currentPosition <= 0))
 		{
 			--values->currentPosition;
 		}
