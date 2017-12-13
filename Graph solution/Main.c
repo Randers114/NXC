@@ -5,12 +5,12 @@ int main()
 {
 	
 	//Test case
-	char top[10] = { 'o', 'g', 'o', 'y', 'y', 'y', 'r', 'b', 'r'}; 
-	char right[10] = { 'o', 'o', 'o', 'o', 'o', 'r', 'y', 'o', 'b'}; 
-	char front[10] = { 'y', 'y', 'y', 'g', 'g', 'g', 'g', 'g', 'g'}; 
-	char back[10] = { 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'y', 'g'}; 
-	char left[10] = { 'y', 'r', 'g', 'r', 'r', 'o', 'r', 'r', 'r'}; 
-	char bottom[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'}; 
+	// char top[10] = { 'o', 'g', 'o', 'y', 'y', 'y', 'r', 'b', 'r'}; 
+	// char right[10] = { 'o', 'o', 'o', 'o', 'o', 'r', 'y', 'o', 'b'}; 
+	// char front[10] = { 'y', 'y', 'y', 'g', 'g', 'g', 'g', 'g', 'g'}; 
+	// char back[10] = { 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'y', 'g'}; 
+	// char left[10] = { 'y', 'r', 'g', 'r', 'r', 'o', 'r', 'r', 'r'}; 
+	// char bottom[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'}; 
 	
 	//
 	// char top[10] = { 'b', 'y', 'y', 'w', 'b', 'b', 'y', 'b', 'w'}; 
@@ -38,12 +38,12 @@ int main()
 	// char bottom[10] = { 'b', 'b', 'r', 'r', 'y', 'y', 'y', 'y', 'r'}; 
 		
 	// 46 --- 57
-	// char top[10] = { 'b', 'o', 'r', 'g', 'b', 'r', 'o', 'o', 'r'}; 
-	// char right[10] = { 'g', 'b', 'w', 'w', 'r', 'r', 'w', 'b', 'b'}; 
-	// char front[10] = { 'w', 'b', 'y', 'b', 'w', 'g', 'o', 'g', 'r'}; 
-	// char back[10] = { 'r', 'o', 'y', 'r', 'y', 'o', 'o', 'g', 'g'}; 
-	// char left[10] = { 'w', 'y', 'g', 'w', 'o', 'w', 'y', 'y', 'b'}; 
-	// char bottom[10] = { 'y', 'w', 'b', 'r', 'g', 'y', 'g', 'y', 'o'}; 
+	char top[10] = { 'b', 'o', 'r', 'g', 'b', 'r', 'o', 'o', 'r'}; 
+	char right[10] = { 'g', 'b', 'w', 'w', 'r', 'r', 'w', 'b', 'b'}; 
+	char front[10] = { 'w', 'b', 'y', 'b', 'w', 'g', 'o', 'g', 'r'}; 
+	char back[10] = { 'r', 'o', 'y', 'r', 'y', 'o', 'o', 'g', 'g'}; 
+	char left[10] = { 'w', 'y', 'g', 'w', 'o', 'w', 'y', 'y', 'b'}; 
+	char bottom[10] = { 'y', 'w', 'b', 'r', 'g', 'y', 'g', 'y', 'o'}; 
 	
 	
 	// 43 instant --- 48

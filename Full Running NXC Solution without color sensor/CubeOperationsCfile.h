@@ -1,7 +1,3 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-
 char myCube[6][10];
 #define TOP_FACE 0
 #define RIGHT_FACE 1
