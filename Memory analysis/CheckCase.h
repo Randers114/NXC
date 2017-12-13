@@ -1,6 +1,6 @@
 #include "DeterministicYellowFace.h"
 
-char FindCaseFrontColour()
+char FindCaseFrontColour()					//1 int
 {
 	for(int i = 1; i < 5; i++)
 	{
@@ -39,7 +39,7 @@ char FindCaseFrontColour()
 	}
 }
 
-int FixCase(int &path[], int &currentArrayPosition)
+int FixCase(int &path[], int &currentArrayPosition)						//2 char + 3 int
 {
 	char colourTop = 'y';
 	char colourFront;
@@ -192,7 +192,7 @@ int FixCase(int &path[], int &currentArrayPosition)
 	++currentArrayPosition;
 }
 
-int IncrementColors(int face, int piece, int &red, int &green, int &orange, int &blue)
+int IncrementColors(int face, int piece, int &red, int &green, int &orange, int &blue) // 2 int
 {
 	switch(myCube[face][piece])
 	{
@@ -212,7 +212,7 @@ int IncrementColors(int face, int piece, int &red, int &green, int &orange, int 
 }
 
 
-int CheckPieces(int face, int centerLayerPiece, int &red, int &green, int &orange, int &blue)
+int CheckPieces(int face, int centerLayerPiece, int &red, int &green, int &orange, int &blue)			//6 int
 {
 	int complementingFace, complementingPiece;
 	
@@ -222,12 +222,12 @@ int CheckPieces(int face, int centerLayerPiece, int &red, int &green, int &orang
 	IncrementColors(complementingFace, complementingPiece, red, green, orange, blue);
 }
 
-int CheckForCase(int heuristicValue)
+int CheckForCase(int heuristicValue)										//16 int
 {
 	int red = 0, green = 0, orange = 0, blue = 0;
 	int whiteFace;
 	int face, oppositeFace, centerLayerPiece, centerLayerPiece2, caseBool = 0;
-	int tempCube[6][10];
+	int tempCube[6][10]; //TODO Delete - if not to dleete why int - not included in memery analysis
 	
 	whiteFace = FindWhiteFace();
 	

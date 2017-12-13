@@ -32,7 +32,7 @@ int Path[HIGHEST_HEURISTIC_VALUE * GRAPH_SIZE + WORST_NUMBER_OF_CASES * NUMBER_O
 int ChildNumber[GRAPH_SIZE];
 int nodeCount = 0;
 
-void CaseFix(Values &values)
+void CaseFix(Values &values)										// Node + 16 int
 {
 	Node tempNode = Graph[0];
 	
@@ -51,7 +51,7 @@ void CaseFix(Values &values)
 	}
 }
 
-void ConstructNode(int currentPosition, int move, int upperHeuristic)
+void ConstructNode(int currentPosition, int move, int upperHeuristic)				//Node + 17 int
 {
 	nodeCount++;
 	
@@ -82,7 +82,7 @@ void ConstructNode(int currentPosition, int move, int upperHeuristic)
 }
 
 
-void ConstructNodeChildren(Values &values)
+void ConstructNodeChildren(Values &values)							//18 int + 2 node
 {	
 	int move;
 	
@@ -154,7 +154,7 @@ void ConstructNodeChildren(Values &values)
 	}
 }
 
-int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
+int SaveThePath(int currentArrayPosition, int currentPosition, int layer)				//4 int
 {
 	for(int i = 0; i <= GRAPH_SIZE; i++)
 	{
@@ -169,7 +169,7 @@ int SaveThePath(int currentArrayPosition, int currentPosition, int layer)
 	return currentArrayPosition;
 }
 
-void ResetValues(Values &values)
+void ResetValues(Values &values)										//0
 {
 	values.upperHeuristic = Graph[values.currentPosition].heuristicValue;
 	values.currentPosition = 0;
@@ -177,7 +177,7 @@ void ResetValues(Values &values)
 	TempRootNode.move = 0;
 }
 
-void PrepareNewTree(Values &values)
+void PrepareNewTree(Values &values)										//4 int
 {
 	if(Flag)
 	{		
@@ -226,7 +226,7 @@ void PrepareNewTree(Values &values)
 
 }
 
-int CheckHeuristic(Values &values)
+int CheckHeuristic(Values &values)								//node + 17 int
 {
 	int heuristicIsLower = 0;
 	
@@ -293,7 +293,7 @@ int CheckHeuristic(Values &values)
 	return heuristicIsLower;
 }
 
-int CheckBottomLayerLeaves(Values &values)
+int CheckBottomLayerLeaves(Values &values) // 1 int
 {
 	int lastLeaf = 0;
 
@@ -306,7 +306,7 @@ int CheckBottomLayerLeaves(Values &values)
 
 
 
-int MoveUpInLayers(Values &values)
+int MoveUpInLayers(Values &values) // 2 int
 {
 	int movingUp = 0;
 	int tempPosition;
@@ -332,7 +332,7 @@ int MoveUpInLayers(Values &values)
 	return movingUp;
 }
 
-void MainGraphConstruction()
+void MainGraphConstruction() 								// values + flag + 20 int + 2 node
 {
 	int movingUp, lastLeafReached;
 	
