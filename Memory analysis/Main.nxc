@@ -1,18 +1,39 @@
 #include "Graph.h"
-//#include "DeterministicLastLayer.h"
-
-
 
 task main()
 {
-  int path[100], tempPath[50], arrayCount = 0;
- 
-  char top[10] = { 'g', 'y', 'y', 'y', 'y', 'o', 'o', 'y', 'g'};
-  char right[10] = { 'o', 'b', 'o', 'r', 'b', 'o', 'b', 'b', 'o'};
-  char front[10] = { 'g', 'o', 'w', 'o', 'o', 'w', 'g', 'g', 'w'};
-  char back[10] = { 'b', 'b', 'y', 'r', 'r', 'y', 'y', 'b', 'r'};
-  char left[10] = { 'r', 'g', 'y', 'g', 'g', 'g', 'r', 'r', 'r'};
-  char bottom[10] = { 'w', 'w', 'b', 'w', 'w', 'r', 'w', 'w', 'b'};
+  int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[];
+  
+  char top[10] = { 'b', 'y', 'o', 'b', 'b', 'b', 'b', 'b', 'b'};
+char right[10] = { 'y', 'r', 'r', 'y', 'r', 'r', 'y', 'r', 'r'};
+char front[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
+char back[10] = { 'y', 'g', 'r', 'b', 'y', 'o', 'y', 'r', 'g'};
+char left[10] = { 'o', 'o', 'o', 'y', 'o', 'o', 'g', 'o', 'o'};
+char bottom[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'r', 'y', 'b'};
+  
+  // Try when fixed last layer
+ // char top[10] = { 'o', 'w', 'g', 'b', 'w', 'g', 'b', 'w', 'y'};
+//char right[10] = { 'o', 'y', 'w', 'r', 'r', 'y', 'r', 'r', 'g'};
+//char front[10] = { 'w', 'g', 'r', 'w', 'g', 'g', 'y', 'r', 'r'};
+//char back[10] = { 'o', 'o', 'g', 'r', 'b', 'w', 'b', 'b', 'w'};
+//char left[10] = { 'y', 'o', 'o', 'y', 'o', 'o', 'w', 'y', 'b'};
+//char bottom[10] = { 'r', 'b', 'b', 'o', 'y', 'b', 'g', 'g', 'y'};
+  
+  // Cannot find solution
+  //char top[10] = { 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'};
+  //char right[10] = { 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'b', 'b'};
+  //char front[10] = { 'o', 'r', 'o', 'b', 'b', 'b', 'b', 'b', 'b'};
+  //char back[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'b', 'o', 'g'};
+  //char left[10] = { 'r', 'g', 'g', 'o', 'o', 'o', 'o', 'o', 'o'};
+  //char bottom[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
+
+  // two step cube
+  //char top[10] = { 'g', 'y', 'y', 'y', 'y', 'o', 'o', 'y', 'g'};
+  //char right[10] = { 'o', 'b', 'o', 'r', 'b', 'o', 'b', 'b', 'o'};
+  //char front[10] = { 'g', 'o', 'w', 'o', 'o', 'w', 'g', 'g', 'w'};
+  //char back[10] = { 'b', 'b', 'y', 'r', 'r', 'y', 'y', 'b', 'r'};
+ // char left[10] = { 'r', 'g', 'y', 'g', 'g', 'g', 'r', 'r', 'r'};
+ // char bottom[10] = { 'w', 'w', 'b', 'w', 'w', 'r', 'w', 'w', 'b'};
 
 
   InitializeSide(top, TOP_FACE);
@@ -22,30 +43,38 @@ task main()
   InitializeSide(left, LEFT_FACE);
   InitializeSide(bottom, BOTTOM_FACE);
 
-  MainGraphConstruction();
-  for(int i = 0; i < 100; i++)
-  {
-     if(Path[i] != 0)
-     {
-      path[arrayCount] = Path[i];
-      arrayCount++;
-     }
-  }
-
-  //YellowFaceSolution(tempPath);
+ // MainGraphConstruction();
   
-  for(int i = 0; i < 50; i++)
-  {
-    if(tempPath[i] != 0)
-     {
-      path[arrayCount] = Path[i];
-      arrayCount++;
-     }
-  }
-  TextOut(0, LCD_LINE1, "Doneso");
-	NumOut(0, LCD_LINE2, arrayCount);
-	//NumOut(0, LCD_LINE3, Path[1]);
-	//NumOut(0, LCD_LINE4, Path[2]);
+   PlaySound(SOUND_UP);
+   Wait(1000);
+   ClearScreen();
+   
+  //ExecuteRobotMovesFromPath(Path);
+
+  YellowFaceSolution(yellowFaceSolutionPath);
+  
+  PlaySound(SOUND_DOWN);
+  TextOut(0, LCD_LINE1, "First Length: ");
+	NumOut(0, LCD_LINE2, ArrayLen(yellowFaceSolutionPath));
 	Wait(3000);
 	ClearScreen();
+  
+  //ExecuteRobotMovesFromPath(yellowFaceSolutionPath);
+  
+  LastLayerSolution(lastLayerSolutionPath);
+  
+ ArrayBuild(fullPath, yellowFaceSolutionPath, lastLayerSolutionPath);
+  
+  //ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
+
+  
+  PlaySound(SOUND_UP);
+  TextOut(0, LCD_LINE1, "Done Length: ");
+	NumOut(0, LCD_LINE2, ArrayLen(fullPath));
+	Wait(3000);
+	ClearScreen();
+	
+	ExecuteRobotMovesFromPath(fullPath);
+	
+	PlaySound(SOUND_DOWN);
 }

@@ -6,20 +6,6 @@
 #define WORST_NUMBER_OF_CASES 4 
 #define NUMBER_OF_MOVES_IN_CASE 7
 
-#define RIGHT 1
-#define INVERTEDRIGHT 2
-#define LEFT 3
-#define INVERTEDLEFT 4
-#define TOP 5
-#define INVERTEDTOP 6
-#define BOTTOM 7
-#define INVERTEDBOTTOM 8
-#define FRONT 9
-#define INVERTEDFRONT 10
-#define BACK 11
-#define INVERTEDBACK 12
-
-
 struct Node 
 {
 	int heuristicValue;
@@ -391,6 +377,11 @@ void MainGraphConstruction()
 	}	
 	ClearScreen();
 	TextOut(0, LCD_LINE1, "Done ");
+	
+	Node root = Graph[0];
+		
+	memcpy(myCube, root.cube, sizeof root.cube);
+	
 	Wait(1000);
 }
 

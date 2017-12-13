@@ -1,3 +1,5 @@
+#include "RobotMoves.h"
+
 char myCube[6][10];
 #define TOP_FACE 0
 #define RIGHT_FACE 1
@@ -6,6 +8,23 @@ char myCube[6][10];
 #define LEFT_FACE 4
 #define BOTTOM_FACE 5
 #define CENTER_PIECE 4
+
+#define EMPTY_SPACE 15
+
+#define RIGHT 1
+#define INVERTEDRIGHT 2
+#define LEFT 3
+#define INVERTEDLEFT 4
+#define TOP 5
+#define INVERTEDTOP 6
+#define BOTTOM 7
+#define INVERTEDBOTTOM 8
+#define FRONT 9
+#define INVERTEDFRONT 10
+#define BACK 11
+#define INVERTEDBACK 12
+#define TurnOp 13
+#define Claw 14
  
 void InitializeSide(char face[], int sidenumber)
 {
@@ -608,4 +627,207 @@ void InvertedBackOperation()
 	{
 		RotateBottomOperation();
 	}
+
 }
+
+bool CmpArray(int a[], int b[])
+{
+	int length = 0;
+	for(int i = 0; i < ArrayLen(a); i++)
+	{
+		if(a[i] != EMPTY_SPACE)
+		{
+			length++;
+		}
+	}
+	
+	if(length == ArrayLen(b))
+	{
+		for(int i = 0; i < length; i++)
+		{
+			if(a[i] != b[i])
+			{
+				return FALSE;
+			}
+		}
+	} else 
+	{
+		return FALSE;
+	}
+	
+	return TRUE;
+}
+
+int PlaceYellowOnTop(int &path[])
+{
+	char colourTop = 'y';
+	
+	/* Turn to the requested colour, given by the two characters of colourFront and colourTop. */
+	int topFacePosition = 0;
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (myCube[i][4] == colourTop)
+		{
+			topFacePosition = i;
+			break;
+		}
+	}
+	
+	switch(topFacePosition) /* Places the requested colourTop on the top layer. */
+	{
+		case 0: /* top */
+			break;
+
+		case 1: /* right */
+			TurnCubeOperation();
+			ClawPullOperation();
+			ClawPullOperation();
+			ClawPullOperation();
+			
+			ArrayBuild(path, 13, 14, 14, 14);
+			break;
+
+		case 2: /* front */
+			ClawPullOperation();
+			
+			ArrayBuild(path, 14);
+			break;
+
+		case 3: /* back */
+			ClawPullOperation();
+			ClawPullOperation();
+			ClawPullOperation();
+		
+			ArrayBuild(path, 14, 14, 14);
+			break;
+
+		case 4: /* left */
+			TurnCubeOperation();
+			ClawPullOperation();
+			
+			ArrayBuild(path, 13, 14);
+			break;
+
+		case 5: /* bottom */
+			ClawPullOperation();
+			ClawPullOperation();
+			
+			ArrayBuild(path, 14, 14);
+			break;
+	}
+}
+
+void ChangeRepresentationFromMoveSet(int moveSet[])
+{
+	for(int i = 0; i < ArrayLen(moveSet); i++)
+	{
+		switch(moveSet[i])
+		{
+			case RIGHT:
+				RightOperation();
+				break;
+			case INVERTEDRIGHT:
+				InvertedRightOperation();
+				break;
+			case LEFT:
+				LeftOperation();
+				break;
+			case INVERTEDLEFT:
+				InvertedLeftOperation();
+				break;
+			case TOP:
+				TopOperation();
+				break;
+			case INVERTEDTOP:
+				InvertedTopOperation();
+				break;
+			case BOTTOM:
+				BottomOperation();
+				break;
+			case INVERTEDBOTTOM:
+				InvertedBottomOperation();
+				break;
+			case FRONT:
+				FrontOperation();
+				break;
+			case INVERTEDFRONT:
+				InvertedFrontOperation();
+				break;
+			case BACK:
+				BackOperation();
+				break;
+			case INVERTEDBACK:
+				InvertedBackOperation();
+				break;
+			case TurnOp:
+				TurnCubeOperation();
+			case Claw:
+				ClawPullOperation();
+			default:
+				break;
+		}
+	}
+}
+
+
+void ExecuteRobotMovesFromPath(int moveSet[])
+{
+	for(int i = 0; i < ArrayLen(moveSet); i++)
+	{
+		switch(moveSet[i])
+		{
+			case RIGHT:
+				RotateRightFace();
+				break;
+			case INVERTEDRIGHT:
+				InvertedRightFaceRotate();
+				break;
+			case LEFT:
+				RotateLeftFace();
+				break;
+			case INVERTEDLEFT:
+				InvertedLeftFaceRotate();
+				break;
+			case TOP:
+				RotateTopFace();
+				break;
+			case INVERTEDTOP:
+				InvertedTopFaceRotate();
+				break;
+			case BOTTOM:
+				RotateBottomFace();
+				break;
+			case INVERTEDBOTTOM:
+				InvertedBottomFaceRotate();
+				break;
+			case FRONT:
+				RotateFrontFace();
+				break;
+			case INVERTEDFRONT:
+				InvertedFrontFaceRotate();
+				break;
+			case BACK:
+				RotateBackFace();
+				break;
+			case INVERTEDBACK:
+				InvertedBackFaceRotate();
+				break;
+			case TurnOp:
+				TurnCubeRight();
+				break;
+			case Claw:
+				ClawPull();
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+
+
+
+
+
+
