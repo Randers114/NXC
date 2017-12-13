@@ -39,7 +39,7 @@ char FindCaseFrontColour()					//1 int
 	}
 }
 
-int FixCase(int &path[], int &currentArrayPosition)						//2 char + 3 int
+int FixCase(int &path[], int &currentArrayPosition)						//3 char + 10 int
 {
 	char colourTop = 'y';
 	char colourFront;
