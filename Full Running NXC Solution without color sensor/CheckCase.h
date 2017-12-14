@@ -227,7 +227,6 @@ int CheckForCase(int heuristicValue)
 	int red = 0, green = 0, orange = 0, blue = 0;
 	int whiteFace;
 	int face, oppositeFace, centerLayerPiece, centerLayerPiece2, caseBool = 0;
-	int tempCube[6][10];
 	
 	whiteFace = FindWhiteFace();
 	

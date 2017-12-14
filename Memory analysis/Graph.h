@@ -30,7 +30,6 @@ int Flag;
 int TempPath[GRAPH_SIZE];
 int Path[HIGHEST_HEURISTIC_VALUE * GRAPH_SIZE + WORST_NUMBER_OF_CASES * NUMBER_OF_MOVES_IN_CASE];
 int ChildNumber[GRAPH_SIZE];
-int nodeCount = 0;
 
 void CaseFix(Values &values)										// Node + 16 int
 {
@@ -53,8 +52,6 @@ void CaseFix(Values &values)										// Node + 16 int
 
 void ConstructNode(int currentPosition, int move, int upperHeuristic)				//Node + 17 int
 {
-	nodeCount++;
-	
 	currentPosition++;
 
 	Node node;

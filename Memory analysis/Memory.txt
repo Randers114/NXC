@@ -84,9 +84,10 @@ sub LastLayerSolution()																	1 bool + 4 int + 5 int[16] + 1 int[24] +
 
 5. file DeterministicYellowFace.h
 
-
-
-
+sub EvaluateYellowFaceConfiguration()													2 int
+sub EvaluateLastLayerConfiguration() 													6 int
+sub FindCorrectMoveset()																1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] + 7 int -- 2 char
+sub YellowFaceSolution()																1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] + 7 int -- 2 char
 
 6. file CheckCase
 
@@ -114,7 +115,9 @@ void MainGraphConstruction() 															values + flag + 20 int + 2 node
 
 8. file Main.nxc
 
+task main()																				
 
+(1379 bytes RAM) + (37 576 bytes in FLASH Memory) == (1,379 kb RAM) + (37,576 kb FLASH Memory)
 
 
 

@@ -10,7 +10,7 @@ struct Node
 {
 	int heuristicValue;
 	int move;
-	char cube[6][10];
+	char cube[6][9];
 };
 
 struct Values
@@ -30,7 +30,6 @@ int Flag;
 int TempPath[GRAPH_SIZE];
 int Path[HIGHEST_HEURISTIC_VALUE * GRAPH_SIZE + WORST_NUMBER_OF_CASES * NUMBER_OF_MOVES_IN_CASE];
 int ChildNumber[GRAPH_SIZE];
-int nodeCount = 0;
 
 void CaseFix(Values &values)
 {
@@ -53,8 +52,6 @@ void CaseFix(Values &values)
 
 void ConstructNode(int currentPosition, int move, int upperHeuristic)
 {
-	nodeCount++;
-	
 	currentPosition++;
 
 	Node node;
