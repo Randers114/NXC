@@ -4,52 +4,9 @@ task main()
 {
   int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[];
   
-char top[10] = { 'g', 'g', 'o', 'b', 'y', 'o', 'b', 'y', 'w'};
-char right[10] = { 'y', 'y', 'y', 'g', 'g', 'g', 'w', 'w', 'r'};
-char front[10] = { 'y', 'r', 'g', 'r', 'r', 'o', 'r', 'r', 'g'};
-char back[10] = { 'y', 'o', 'g', 'o', 'o', 'r', 'w', 'w', 'b'};
-char left[10] = { 'o', 'y', 'r', 'y', 'b', 'b', 'b', 'b', 'b'};
-char bottom[10] = { 'w', 'w', 'o', 'w', 'w', 'g', 'o', 'b', 'r'};
-  
-  // Try when fixed last layer
- // char top[10] = { 'o', 'w', 'g', 'b', 'w', 'g', 'b', 'w', 'y'};
-//char right[10] = { 'o', 'y', 'w', 'r', 'r', 'y', 'r', 'r', 'g'};
-//char front[10] = { 'w', 'g', 'r', 'w', 'g', 'g', 'y', 'r', 'r'};
-//char back[10] = { 'o', 'o', 'g', 'r', 'b', 'w', 'b', 'b', 'w'};
-//char left[10] = { 'y', 'o', 'o', 'y', 'o', 'o', 'w', 'y', 'b'};
-//char bottom[10] = { 'r', 'b', 'b', 'o', 'y', 'b', 'g', 'g', 'y'};
-  
-  // Cannot find solution
-  //char top[10] = { 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'};
-  //char right[10] = { 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'b', 'b'};
-  //char front[10] = { 'o', 'r', 'o', 'b', 'b', 'b', 'b', 'b', 'b'};
-  //char back[10] = { 'g', 'g', 'g', 'g', 'g', 'g', 'b', 'o', 'g'};
-  //char left[10] = { 'r', 'g', 'g', 'o', 'o', 'o', 'o', 'o', 'o'};
-  //char bottom[10] = { 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'};
-
-  // two step cube
-  //char top[10] = { 'g', 'y', 'y', 'y', 'y', 'o', 'o', 'y', 'g'};
-  //char right[10] = { 'o', 'b', 'o', 'r', 'b', 'o', 'b', 'b', 'o'};
-  //char front[10] = { 'g', 'o', 'w', 'o', 'o', 'w', 'g', 'g', 'w'};
-  //char back[10] = { 'b', 'b', 'y', 'r', 'r', 'y', 'y', 'b', 'r'};
- // char left[10] = { 'r', 'g', 'y', 'g', 'g', 'g', 'r', 'r', 'r'};
- // char bottom[10] = { 'w', 'w', 'b', 'w', 'w', 'r', 'w', 'w', 'b'};
-
-
-  InitializeSide(top, TOP_FACE);
-  InitializeSide(right, RIGHT_FACE);
-  InitializeSide(front, FRONT_FACE);
-  InitializeSide(back, BACK_FACE);
-  InitializeSide(left, LEFT_FACE);
-  InitializeSide(bottom, BOTTOM_FACE);
+  ReadCubeColours();
 
   MainGraphConstruction();
-  
-   //PlaySound(SOUND_UP);
-   //Wait(1000);
-   //ClearScreen();
-   
-  //ExecuteRobotMovesFromPath(Path);
 
   YellowFaceSolution(yellowFaceSolutionPath);
   
@@ -59,16 +16,9 @@ char bottom[10] = { 'w', 'w', 'o', 'w', 'w', 'g', 'o', 'b', 'r'};
 	Wait(3000);
 	ClearScreen();
   
-  //ExecuteRobotMovesFromPath(yellowFaceSolutionPath);
-  
   LastLayerSolution(lastLayerSolutionPath);
   
-  //ArrayBuild(fullPath, yellowFaceSolutionPath, lastLayerSolutionPath);
-  
-   ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
-  
-  //ArrayBuild(fullPath, lastLayerSolutionPath);
-
+  ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
   
   PlaySound(SOUND_UP);
   TextOut(0, LCD_LINE1, "Done Length: ");
