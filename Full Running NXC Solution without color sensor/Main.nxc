@@ -1,9 +1,89 @@
 #include "Graph.h"
 
+void WriteFile()
+{
+     byte handle;
+     remove("initialCube.txt");
+     handle = fopen("initialCube.txt", "w");
+
+     for(int face = 0; face < 6; face++)
+     {
+           for(int piece = 0; piece < 9; piece++)
+           {
+                fputc(myCube[face][piece], handle);
+                fputc(' ', handle);
+           }
+
+           fputs("\n", handle);
+     }
+
+     fclose(handle);
+}
+
+void ReadFile(int &path[])
+{
+    byte handle;
+    int tempArray[];
+    int tempNumber, count = 0;
+    string charRead = "", pathString = "";
+    char c;
+    
+    handle = fopen("cube_path.txt", "r");
+    
+    for(int face = 0; face < 6; face++)
+    {
+         for(int piece = 0; piece < 9; piece++)
+         {
+              myCube[face][piece] = fgetc(handle);
+              fgetc(handle);
+         }
+
+         fgetc(handle);
+         fgetc(handle);
+    }
+    
+    
+    while(charRead != "$")
+    {
+        fgets(charRead, 1, handle);
+        if(charRead != "$")
+        {
+            pathString = StrCat(pathString, charRead);
+        }
+    }
+    fclose(handle);
+    
+    charRead = "    ";
+    
+    for(int i = 0; i < StrLen(pathString); i++)
+    {
+         if(pathString[i] != ' ')
+         {
+              if(pathString[i+1] != ' ')
+              {
+                  charRead[0] = pathString[i];
+                  charRead[1] = pathString[i+1];
+                  tempNumber = StrToNum(charRead);
+                  ArrayBuild(tempArray, path, tempNumber);
+                  ArrayBuild(path, tempArray);
+                  charRead = "  ";
+                  i++;
+                  }
+              else if (pathString[i+1] == ' ')
+              {
+                  charRead[0] = pathString[i];
+                  tempNumber = StrToNum(charRead);
+                  ArrayBuild(tempArray, path, tempNumber);
+                  ArrayBuild(path, tempArray);
+                  charRead = "  ";
+             }
+    }
+}            }
+
 int PathLength(int fullPath[])
 {
     int pathLength = 0;
-    
+//    NumOut(0,0,LCD_LINE3,ArrayLen(fullPath));
     for(int i = 0; i < ArrayLen(fullPath); i++)
     {
              if(fullPath[i] != 0)
@@ -18,24 +98,42 @@ int PathLength(int fullPath[])
 
 task main()
 {
-  int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[], pathLength;
+  int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[], pathLength, graphPath[];
 
-  //int hhh[] = {7, 7, 7, 5, 10, 11, 4, 2, 1, 3, 4, 6, 8, 9, 10, 12, 9, 6, 4, 5, 2, 4, 5, 6, 8};
-  ReadCubeColours();
+  char top[10] = { 'b', 'r', 'y', 'o', 'w', 'r', 'w', 'o', 'g'};
+  char right[10] = { 'b', 'b', 'w', 'y', 'o', 'w', 'r', 'w', 'w'};
+  char front[10] = { 'o', 'g', 'r', 'y', 'b', 'b', 'y', 'y', 'o'};
+  char back[10] = { 'b', 'r', 'o', 'g', 'g', 'g', 'r', 'y', 'g'};
+  char left[10] = { 'y', 'w', 'b', 'w', 'r', 'b', 'r', 'g', 'g'};
+  char bottom[10] = { 'o', 'o', 'g', 'r', 'y', 'o', 'w', 'b', 'y'};
 
-  MainGraphConstruction();
+
+  InitializeSide(top, TOP_FACE);
+  InitializeSide(right, RIGHT_FACE);
+  InitializeSide(front, FRONT_FACE);
+  InitializeSide(back, BACK_FACE);
+  InitializeSide(left, LEFT_FACE);
+  InitializeSide(bottom, BOTTOM_FACE);
+
+   WriteFile();
+   
+  //ReadCubeColours();
+   TextOut(0, LCD_LINE1, "Wait for PC to finish ");
+   WaitForButtonPress();
+   
+   ReadFile(graphPath);
+   
+  //MainGraphConstruction();
 
   YellowFaceSolution(yellowFaceSolutionPath);
-  
-  PlaySound(SOUND_DOWN);
+
   
   LastLayerSolution(lastLayerSolutionPath);
   
-  ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
+  ArrayBuild(fullPath, yellowFaceSolutionPath, lastLayerSolutionPath);
   
   pathLength = PathLength(fullPath);
   
-  PlaySound(SOUND_UP);
   TextOut(0, LCD_LINE1, "Done Length: ");
 	NumOut(0, LCD_LINE2, pathLength);
 	Wait(3000);
@@ -45,5 +143,5 @@ task main()
 	
 	UnlockCube();
 	
-	PlaySound(SOUND_DOWN);
+
 }
