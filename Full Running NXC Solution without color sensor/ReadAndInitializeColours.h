@@ -74,7 +74,7 @@ bool CheckCubeColours(int &amountOfColours [])
             return false;
         }
     }
-    
+
     return true;
 }
 
@@ -182,20 +182,21 @@ char FindColourFromRawValues(int degreesToTurnSensor, int &rawColourValues[], in
         }
         else if(amountOfTriesToDetect < 10)
         {
+			
             amountOfTriesToDetect++;
             TextOut(0, LCD_LINE1, "Scanning again");
             NumOut(0, LCD_LINE2, amountOfTriesToDetect);
             
             ScanSquareOnCube(0, rawData);
             
-            rawColourDifference = RAW_COLOUR_DIFFERENCE + 10;
-            
-            PlaySound(SOUND_CLICK);
-            Wait(1000);
+            rawColourDifference = rawColourDifference + 10;
+
             ClearScreen();
+			
         }
         else
         {
+			
             isColourDetected = true;
             tempColour = 'w';
             amountOfColours[5]++;
@@ -223,16 +224,16 @@ void ColourReadFace(int face, int &rawColourValues[], int &amountOfColours[], in
     Wait(500);
 
     // 2
-    myCube[face][7] = FindColourFromRawValues(50, rawColourValues, amountOfColours);
+    myCube[face][7] = FindColourFromRawValues(55, rawColourValues, amountOfColours);
     Wait(500);
 
     // 3
-    TurnCube(-40);
+    TurnCube(-37);
     myCube[face][6] = FindColourFromRawValues(13, rawColourValues, amountOfColours);
     Wait(500);
 
     //4
-    TurnCube(-31);
+    TurnCube(-34);
     myCube[face][3] = FindColourFromRawValues(-10, rawColourValues, amountOfColours);
     Wait(500);
 
@@ -247,27 +248,27 @@ void ColourReadFace(int face, int &rawColourValues[], int &amountOfColours[], in
     Wait(500);
 
     //7
-    TurnCube(-65);
+    TurnCube(-62);
     myCube[face][2] = FindColourFromRawValues(9, rawColourValues, amountOfColours);
     Wait(500);
 
     //8
-    TurnCube(-48);
+    TurnCube(-49);
     myCube[face][5] = FindColourFromRawValues(-14, rawColourValues, amountOfColours);
     Wait(500);
 
     //9
-    TurnCube(-50);
+    TurnCube(-48);
     myCube[face][8] = FindColourFromRawValues(17, rawColourValues, amountOfColours);
     Wait(500);
 
     if(counter % 2 == 0)
     {
-        TurnCube(-42); // to reach exactly one 360 degrees rotation
+        TurnCube(-45); // to reach exactly one 360 degrees rotation
     }
     else
     {
-        TurnCube(-40); // to reach exactly one 360 degrees rotation
+        TurnCube(-43); // to reach exactly one 360 degrees rotation
     }
     
     counter++;

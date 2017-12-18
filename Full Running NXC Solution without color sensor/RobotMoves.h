@@ -44,15 +44,17 @@ void FlipCube(int count = 1) /* Tells the robot to flip the cube. */
     }
 }
 
-void TurnCube(int degrees) /* Tells the robot to turn the cube. */
+void TurnCube(int degrees, int power = 15) /* Tells the robot to turn the cube. */
 { 
-    RotateMotorPID(OUT_C, 15, degrees, 20, 40, 100);
+	// power was 15
+    RotateMotorPID(OUT_C, power, degrees, 20, 40, 100);
     Wait(MS_300);
 }
 
-void RotateCube(int degrees) /* Same as turn, higher power. */
+void RotateCube(int degrees, int power = 30) /* Same as turn, higher power. */
 {
-	RotateMotorPID(OUT_C, 30, degrees, 20, 40, 100);
+	// power was 30
+	RotateMotorPID(OUT_C, power, degrees, 20, 40, 100);
 	Wait(MS_300);
 }
 
@@ -65,7 +67,7 @@ void TurnCubeRight(int count = 1) /* turn cube without holding it, aka turning t
 			UnlockCube();
 		}
 
-		TurnCube(-90);
+		TurnCube(-90, 40);
 	}
 	
 }
@@ -79,7 +81,7 @@ void RotateBottomRight(int count = 1) /*holding the top and rotating the Bottom 
 			LockCube();
 		}
 
-		RotateCube(-90);
+		RotateCube(-90, 70);
 	}
 	
 	AlignCubeLayers();
