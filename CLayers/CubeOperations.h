@@ -11,14 +11,14 @@ char myCube[6][10];
 #define BOTTOM_FACE 5
 #define CENTER_PIECE 4
  
-void ORMyCube(char OverRider[6][10]) 
+void ORMyCube(char OverRider[6][10]) 			//1cube + 2 int
 {
 	for(int i = 0; i<6;i++)
 		for(int j = 0;j<9;j++)
 			myCube[i][j] = OverRider[i][j];
 }
  
-void InitializeSide(char face[], int sidenumber)
+void InitializeSide(char face[], int sidenumber)		//1 int	
 {
 	for (int piece = 0; piece < 9; piece++)
 	{
@@ -26,7 +26,7 @@ void InitializeSide(char face[], int sidenumber)
 	}
 }
 
-void CubeCheck()
+void CubeCheck()									//7 int
 {
 	int white = 0, blue = 0, red = 0, green = 0, orange = 0, yellow = 0;
 
@@ -67,7 +67,7 @@ void CubeCheck()
 	}
 }
 
-void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap space one with space two on a given face */
+void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap space one with space two on a given face */ //3 int + 1 char
 {
 	char temp;
 	temp = myCube[faceIdentifier][spaceTwo];
@@ -75,7 +75,7 @@ void SwapOnFaceOperation(int faceIdentifier, int spaceOne, int spaceTwo) /* swap
 	myCube[faceIdentifier][spaceOne] = temp;
 }
 
-void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on the right face) */
+void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right (like when you rotate right side this is what happens to the colours on the right face) */ //19 int + 6 char
 {
 	SwapOnFaceOperation(faceIdentifier, 1, 3);
 	SwapOnFaceOperation(faceIdentifier, 3, 7);
@@ -85,7 +85,7 @@ void RotateFaceRightOperation(int faceIdentifier) /* rotate a face to the right 
 	SwapOnFaceOperation(faceIdentifier, 8, 2);
 }
 
-void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */
+void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int SpaceTwo) /* swap space one on face one with space two on face two */ //4 int + 1 char
 {
 	char temp;
 	temp = myCube[FaceTwo][SpaceTwo];
@@ -93,7 +93,7 @@ void SwapBetweenFacesOperation(int FaceOne, int SpaceOne, int FaceTwo, int Space
 	myCube[FaceOne][SpaceOne] = temp;
 }
 
-void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the pointer of two faces so they "swap places" */
+void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the pointer of two faces so they "swap places" */ //3 int + 1 char
 {
 	char temp;
 
@@ -105,7 +105,7 @@ void FaceSwapOperation(int faceOneIdentifier, int faceTwoIdentifier) /* swap the
 	}
 }
 
-void TurnCubeOperation() /* turn cube without holding it, aka turning the cube entirly */
+void TurnCubeOperation() /* turn cube without holding it, aka turning the cube entirly */			//51 int + 15 char
 {
 	/* face swap operations */
 	/* swap front to left */
@@ -129,7 +129,7 @@ void TurnCubeOperation() /* turn cube without holding it, aka turning the cube e
 	RotateFaceRightOperation(BOTTOM_FACE);
 }
 
-void RotateBottomOperation() /*holding the top and rotating the buttom face */
+void RotateBottomOperation() /*holding the top and rotating the buttom face */ //35 int 9 char
 {
 	/* swap colors on bot */
 	RotateFaceRightOperation(BOTTOM_FACE);
@@ -154,7 +154,7 @@ void RotateBottomOperation() /*holding the top and rotating the buttom face */
 	}
 }
 
-void ClawPullOperation() /* representation changes when the claw pulls the cube front to top etc. */
+void ClawPullOperation() /* representation changes when the claw pulls the cube front to top etc. */	//48 int + 15 char
 {
 	FaceSwapOperation(FRONT_FACE, BOTTOM_FACE);
 	FaceSwapOperation(BOTTOM_FACE, BACK_FACE);
@@ -168,7 +168,7 @@ void ClawPullOperation() /* representation changes when the claw pulls the cube 
 }
 
 // FInd complementing edge for heuristic.
-void FindComplementingEdge(int face, int piece, int *complementFace, int *complementPiece)
+void FindComplementingEdge(int face, int piece, int *complementFace, int *complementPiece)			//2 int 
 {
 	switch(face)
 	{
@@ -510,14 +510,14 @@ Compound functions are moves to be executed by hand like inverted right or top o
 but reflect this in the representation since this is multiple moves, or a compound of other functions ;-)
 */
 
-void RightOperation()
+void RightOperation()			//134 int + 39 char
 {
 	TurnCubeOperation();
 	ClawPullOperation();
 	RotateBottomOperation();
 }
 
-void InvertedRightOperation()
+void InvertedRightOperation()	//135 int + 39 char
 {
 	TurnCubeOperation();
 	ClawPullOperation();
@@ -527,7 +527,7 @@ void InvertedRightOperation()
     }
 }
 
-void LeftOperation()
+void LeftOperation()			//135 int + 39 char
 {
 	for(int i = 0; i < 3; i++)
 	{
@@ -537,7 +537,7 @@ void LeftOperation()
 	RotateBottomOperation();
 }
 
-void InvertedLeftOperation()
+void InvertedLeftOperation()	//132 int + 39 char
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -550,7 +550,7 @@ void InvertedLeftOperation()
     }
 }
 
-void TopOperation()
+void TopOperation()				//84 int + 24 char
 {
 	for(int i = 0; i < 2; i++)
     {
@@ -559,7 +559,7 @@ void TopOperation()
 	RotateBottomOperation();
 }
 
-void InvertedTopOperation()
+void InvertedTopOperation()		//85 int + 24 char
 {
 	for(int i = 0; i < 2; i++)
     {
@@ -571,12 +571,12 @@ void InvertedTopOperation()
     }
 }
 
-void BottomOperation()
+void BottomOperation()			//35 int + 9 char
 {
 	RotateBottomOperation();
 }
 
-void InvertedBottomOperation()
+void InvertedBottomOperation() //36 int + 9 char
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -584,7 +584,7 @@ void InvertedBottomOperation()
     }
 }
 
-void FrontOperation()
+void FrontOperation() 			//84 int + 24 char
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -593,7 +593,7 @@ void FrontOperation()
 	RotateBottomOperation();
 }
 
-void InvertedFrontOperation()
+void InvertedFrontOperation()	//85 int + 24 char
 {
 	for(int i = 0; i < 3; i++)
     {
@@ -605,13 +605,13 @@ void InvertedFrontOperation()
     }
 }
 
-void BackOperation()
+void BackOperation()			// 83 int + 24 char
 {
 	ClawPullOperation();
 	RotateBottomOperation();
 }
 
-void InvertedBackOperation()
+void InvertedBackOperation()	// 84 int + 24 char
 {
 	ClawPullOperation();
 	for(int i = 0; i < 3; i++)

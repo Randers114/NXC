@@ -6,7 +6,7 @@ unsigned int FullPathHead = 0;
 int BESTHEURISTIC = 0;
 clock_t before;
 
-void PathReducer(){
+void PathReducer(){														//nothing
 	if(FullPath[FullPathHead-2] == 'I')
 	{
 		FullPath[FullPathHead-1] = '\0';
@@ -21,11 +21,11 @@ void PathReducer(){
 	}
 	
 }
-void GoBackTo(char thiscube[6][10]){
+void GoBackTo(char thiscube[6][10]){									//1 cube 2 int
 	ORMyCube(thiscube);
 	PathReducer();
 }
-void AddPath(char toAdd[2]){
+void AddPath(char toAdd[2]){											//char[2]
 	if(toAdd[0] != 'I')
 	{
 		FullPath[FullPathHead] = toAdd[0];
@@ -40,7 +40,7 @@ void AddPath(char toAdd[2]){
 	}
 	
 }
-void PrintCube(){
+void PrintCube(){														//2 int
 	printf("|1| |2| |3| |4| |5| |6| |7| |8| |9|\n");
 		for(int k = 0; k<6;k++)
 		{
@@ -52,7 +52,7 @@ void PrintCube(){
 		}
 		printf("\n");
 }
-int TwelvthLayer	(int move, const char parentcube[6][10]){
+int TwelvthLayer	(int move, const char parentcube[6][10]){			//12- 2 cube + 1689 int + 318 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -203,7 +203,7 @@ int TwelvthLayer	(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int EleventhLayer	(int move, const char parentcube[6][10]){
+int EleventhLayer	(int move, const char parentcube[6][10]){			//11- 4 cube + 3390 int + 636 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -401,7 +401,7 @@ int EleventhLayer	(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int TenthLayer		(int move, const char parentcube[6][10]){
+int TenthLayer		(int move, const char parentcube[6][10]){			//10- 6 cube + 5091 int + 954 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -599,7 +599,7 @@ int TenthLayer		(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int NinethLayer		(int move, const char parentcube[6][10]){
+int NinethLayer		(int move, const char parentcube[6][10]){			//9-  8 cube + 6792 int + 1272 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -797,7 +797,7 @@ int NinethLayer		(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int EighthLayer		(int move, const char parentcube[6][10]){
+int EighthLayer		(int move, const char parentcube[6][10]){			//8- 10 cube + 8493  int + 1590 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -995,7 +995,7 @@ int EighthLayer		(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int SeventhLayer	(int move, const char parentcube[6][10]){
+int SeventhLayer	(int move, const char parentcube[6][10]){			//7- 12 cube + 10194 int + 1908 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -1193,7 +1193,7 @@ int SeventhLayer	(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int SixthLayer		(int move, const char parentcube[6][10]){
+int SixthLayer		(int move, const char parentcube[6][10]){			//6- 14 cube + 11895 int + 2226 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -1391,7 +1391,7 @@ int SixthLayer		(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int FifthLayer		(int move, const char parentcube[6][10]){
+int FifthLayer		(int move, const char parentcube[6][10]){			//5- 16 cube + 13596 int + 2544 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -1589,7 +1589,7 @@ int FifthLayer		(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int FourthLayer		(int move, const char parentcube[6][10]){
+int FourthLayer		(int move, const char parentcube[6][10]){			//4- 18 cube + 15297 int + 2862 char
 	char thiscube[6][10];
 	memcpy(thiscube,parentcube,60*sizeof(char));
 	switch (move){
@@ -1787,7 +1787,7 @@ int FourthLayer		(int move, const char parentcube[6][10]){
 	break;
 	}
 }
-int RootNodeMethod	(const char rootcube[6][10]){
+int RootNodeMethod	(const char rootcube[6][10]){						// 43 cube + 35674 int + 6678 char
 	for(int i = 1; i<=12;i++)
 	{
 		if(EleventhLayer(i,rootcube) == 0) //check at depth 2
@@ -1802,7 +1802,7 @@ int RootNodeMethod	(const char rootcube[6][10]){
 	printf("You're boned, no solution");
 	return 1;
 }
-int MoveCounter(){
+int MoveCounter(){														//2 int
 	int moves = 0;
 	for(int i = 0; i<strlen(FullPath);i++)
 	{
@@ -1811,7 +1811,7 @@ int MoveCounter(){
 	}
 	return moves;
 }
-void InitSides(){
+void InitSides(){														//6 * char[10]
 	char top[10] = { 'y', 'g', 'w', 'r', 'w', 'g', 'b', 'g', 'o'}; 
 	char right[10] = { 'r', 'b', 'b', 'o', 'g', 'b', 'o', 'o', 'b'}; 
 	char front[10] = { 'o', 'y', 'w', 'o', 'o', 'r', 'g', 'r', 'w'}; 
@@ -1826,7 +1826,7 @@ void InitSides(){
 	InitializeSide(left, LEFT_FACE);
 	InitializeSide(bottom, BOTTOM_FACE);
 }
-void PrintPath(){
+void PrintPath(){														//1 int
 	for(int i = 0; i < FullPathHead;i++)
 	{
 		if(FullPath[i] == 'R' 
@@ -1849,10 +1849,10 @@ void PrintPath(){
 		}		
 	}
 }
-void ExtendPath(){
+void ExtendPath(){														//nothing
 	FullPath = realloc(FullPath,(FullPathHead+18)*sizeof(char));
 }
-int main(){
+int main(){																//43 cube + 35675 int + 6744 char 80674 byte or 80.674KB maybe + lastlayer + yellowface
 	InitSides();
 	FullPath = malloc(36*sizeof(char));
 	BESTHEURISTIC = HeuristicValue();

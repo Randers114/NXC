@@ -1,6 +1,6 @@
 #include "CubeOperations.h"
 
-int FindWhiteFace()
+int FindWhiteFace()						//2 int
 {
 	int whiteFace;
 	
@@ -15,7 +15,7 @@ int FindWhiteFace()
 	return whiteFace;
 }
 
-int CheckWhiteEdges(int whiteFace)
+int CheckWhiteEdges(int whiteFace)			//4 int + find complementingedge
 {
 	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0;
 	
@@ -39,7 +39,7 @@ int CheckWhiteEdges(int whiteFace)
 	return heuristicValue;
 }
 
-int CheckWhiteCorner(int whiteFace)
+int CheckWhiteCorner(int whiteFace)				//6 int + findcomplementingcorners
 {
 	int heuristicValue = 0, complementingPiece = 0, complementingFace = 0, complementingPiece2 = 0, complementingFace2 = 0;
 	
@@ -71,7 +71,7 @@ int CheckWhiteCorner(int whiteFace)
 	return heuristicValue;
 }
 
-void IndividualEdgePieceCheck(int face, int centerLayerPiece, int *heuristicValue)
+void IndividualEdgePieceCheck(int face, int centerLayerPiece, int *heuristicValue)					//4 int +find complementingedge
 {
 	int complementingFace, complementingPiece;
 	
@@ -90,7 +90,7 @@ void IndividualEdgePieceCheck(int face, int centerLayerPiece, int *heuristicValu
 	}
 }
 
-int CheckCenterLayerEdges(int whiteFace)
+int CheckCenterLayerEdges(int whiteFace)				
 {
 	int face, oppositeFace, centerLayerPiece, centerLayerPiece2, heuristicValue = 0;
 	switch(whiteFace)
@@ -130,7 +130,7 @@ int CheckCenterLayerEdges(int whiteFace)
 }
 
 
-int HeuristicValue()
+int HeuristicValue()														// 2 int + findwhiteface + checkwhite edges + checkwhite cornors + check centerlayer
 {
 	int whiteFace, heuristicValue = 0;
 	

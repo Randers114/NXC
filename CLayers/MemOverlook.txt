@@ -1,0 +1,33 @@
+ORMyCube					1 cube + 2 int
+InitializeSide				1 int
+CubeCheck					7 int
+SwapOnFace					3 int + 1 char
+RotateFaceRight				19 int + 6 char
+SwapBetween					4 int + 1 char
+FaceSwap					3 int + 1 char
+TurnCube					51 int + 15 char
+RotateBottom				35 int + 9 char
+ClawPull					48 int + 15 char
+FindComplementingEdge		2 int
+FindComplementingCorner		2 int
+RightOperation				134 int + 39 char
+InvertedRightOperation		135 int + 39 char
+LeftOperation				135 int + 39 char
+InvertedLeftOperation		132 int + 39 char
+TopOperation				84 int + 24 char
+InvertedTopOperation		85 int + 24 char
+BottomOperation				35 int + 9 char
+InvertedBottomOperation		36 int + 9 char
+FrontOperation				84 int + 24 char
+InvertedFrontOperation		85 int + 24 char
+BackOperation				83 int + 24 char
+InvertedBackOperation		84 int + 24 char
+
+
+FindWhiteFace				2 int
+CheckWhiteEdges				6 int
+CheckWhiteCorner			8 int
+IndividualPieceCheck		6 int
+CheckCenterLayer			30 int
+HeuristicValue				48 int
+
