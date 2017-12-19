@@ -1,0 +1,7 @@
+b b o r r r r r r 
+g g g r g g b g g 
+w w w w w w w w w 
+r g y o y y r y y 
+y b b y b b y b b 
+o o o o o o g y o 
+5 10 2 1 4 2 1 10 1 9 5 4 10 4 2 11 9 12 2 1 9 10 12 9 6 3 5 1 10 12 10 2 12 11 9 9 1 4 10 11 10 2 9 8 9 11 11 10 10 11 $

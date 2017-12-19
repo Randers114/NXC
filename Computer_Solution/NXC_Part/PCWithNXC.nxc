@@ -99,25 +99,10 @@ int PathLength(int fullPath[])
 task main()
 {
   int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[], pathLength, graphPath[];
-
-  char top[10] = { 'b', 'r', 'y', 'o', 'w', 'r', 'w', 'o', 'g'};
-  char right[10] = { 'b', 'b', 'w', 'y', 'o', 'w', 'r', 'w', 'w'};
-  char front[10] = { 'o', 'g', 'r', 'y', 'b', 'b', 'y', 'y', 'o'};
-  char back[10] = { 'b', 'r', 'o', 'g', 'g', 'g', 'r', 'y', 'g'};
-  char left[10] = { 'y', 'w', 'b', 'w', 'r', 'b', 'r', 'g', 'g'};
-  char bottom[10] = { 'o', 'o', 'g', 'r', 'y', 'o', 'w', 'b', 'y'};
-
-
-  InitializeSide(top, TOP_FACE);
-  InitializeSide(right, RIGHT_FACE);
-  InitializeSide(front, FRONT_FACE);
-  InitializeSide(back, BACK_FACE);
-  InitializeSide(left, LEFT_FACE);
-  InitializeSide(bottom, BOTTOM_FACE);
-
-  WriteFile();
    
-  //ReadCubeColours();
+  ReadCubeColours();
+  
+  WriteFile();
   
   TextOut(0, LCD_LINE1, "Wait for PC ");
   WaitForButtonPress();

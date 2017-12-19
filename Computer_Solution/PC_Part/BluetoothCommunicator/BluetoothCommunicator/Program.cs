@@ -18,7 +18,6 @@ namespace BluetoothCommunicator
             brick.Connection.Open();
 
             brick.StartProgram(mainProgramName);
-            Thread.Sleep(10000);
 
             while (!fileFromNXTExists)
             {
@@ -29,6 +28,7 @@ namespace BluetoothCommunicator
                     if (item.Name == initialFileName)
                     {
                         fileFromNXTExists = true;
+                        Thread.Sleep(3000);
                         downloadFile = item;
                     }
                     else if (item.Name == uploadFileName)
