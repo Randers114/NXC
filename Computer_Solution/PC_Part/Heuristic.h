@@ -167,14 +167,3 @@ int HeuristicValueCenterLayer()
 
 	return heuristicValue;
 }
-
-
-
-
-
-
-
-
-
-
-

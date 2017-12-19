@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char myCube[6][10];
+char myCube[6][9];
 #define TOP_FACE 0
 #define RIGHT_FACE 1
 #define FRONT_FACE 2

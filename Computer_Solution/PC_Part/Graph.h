@@ -1,4 +1,4 @@
-#include "CheckCase.h"
+#include "ReadCube.h"
 
 #define BOUND 3
 #define HIGHEST_HEURISTIC_VALUE 12
@@ -93,13 +93,7 @@ void MainGraphConstruction()
 				values.layer = 0;
 			}
 		}
-	}	
-	
-	printf("Done \n");
-	
-	PrintCube(values.currentPosition);
-	
-	PrintMoves(values.currentArrayPosition);
+	}
 }
 
 void ConstructNode(int currentPosition, int move, int upperHeuristic)
@@ -461,5 +455,3 @@ void PrintMoves(int currentArrayPosition)
 		printf(" %5d \n", i + 1);
 	}
 }
-
-
