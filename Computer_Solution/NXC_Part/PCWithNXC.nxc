@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "DeterministicYellowFace.h"
 
 void WriteFile()
 {
@@ -115,33 +115,27 @@ task main()
   InitializeSide(left, LEFT_FACE);
   InitializeSide(bottom, BOTTOM_FACE);
 
-   WriteFile();
+  WriteFile();
    
   //ReadCubeColours();
-   TextOut(0, LCD_LINE1, "Wait for PC to finish ");
-   WaitForButtonPress();
+  
+  TextOut(0, LCD_LINE1, "Wait for PC ");
+  WaitForButtonPress();
    
-   ReadFile(graphPath);
-   
-  //MainGraphConstruction();
+  ReadFile(graphPath);
 
   YellowFaceSolution(yellowFaceSolutionPath);
-
   
   LastLayerSolution(lastLayerSolutionPath);
   
-  ArrayBuild(fullPath, yellowFaceSolutionPath, lastLayerSolutionPath);
+  ArrayBuild(fullPath, graphPath, yellowFaceSolutionPath, lastLayerSolutionPath);
   
   pathLength = PathLength(fullPath);
   
   TextOut(0, LCD_LINE1, "Done Length: ");
 	NumOut(0, LCD_LINE2, pathLength);
-	Wait(3000);
-	ClearScreen();
 	
 	ExecuteRobotMovesFromPath(fullPath);
 	
 	UnlockCube();
-	
-
 }

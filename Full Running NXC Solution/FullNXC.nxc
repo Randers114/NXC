@@ -1,0 +1,44 @@
+#include "Graph.h"
+
+int PathLength(int fullPath[])
+{
+    int pathLength = 0;
+    for(int i = 0; i < ArrayLen(fullPath); i++)
+    {
+             if(fullPath[i] != 0)
+             {
+                 pathLength++;
+             }
+    }
+    
+    return pathLength;
+}
+
+
+task main()
+{
+  int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[], pathLength;
+   
+  ReadCubeColours();
+   
+  MainGraphConstruction();
+
+  YellowFaceSolution(yellowFaceSolutionPath);
+  
+  LastLayerSolution(lastLayerSolutionPath);
+  
+  ArrayBuild(fullPath, Path, yellowFaceSolutionPath, lastLayerSolutionPath);
+  
+  pathLength = PathLength(fullPath);
+  
+  TextOut(0, LCD_LINE1, "Done Length: ");
+	NumOut(0, LCD_LINE2, pathLength);
+	Wait(3000);
+	ClearScreen();
+	
+	ExecuteRobotMovesFromPath(fullPath);
+	
+	UnlockCube();
+	
+
+}

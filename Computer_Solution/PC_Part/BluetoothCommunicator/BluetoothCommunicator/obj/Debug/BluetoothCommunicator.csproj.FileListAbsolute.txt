@@ -1,0 +1,24 @@
+C:\Users\Simon\Desktop\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe.config
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe.config
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.pdb
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.exe
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.pdb
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\LibUsbDotNet.dll
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\MonoBrick.dll
+C:\Users\Simon\Desktop\BlueTooth communicator\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\MonoBrick.xml
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe.config
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.exe
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.pdb
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.pdb
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\MonoBrick.xml
+C:\Users\Simon\Documents\NXC\Graph solution\PC Part\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe.config
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.exe
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.pdb
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.exe
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\BluetoothCommunicator.pdb
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\bin\Debug\MonoBrick.xml
+C:\Users\Simon\Documents\NXC\Computer_Solution\PC_Part\BluetoothCommunicator\BluetoothCommunicator\obj\Debug\BluetoothCommunicator.csprojResolveAssemblyReference.cache
