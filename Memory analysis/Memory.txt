@@ -50,9 +50,9 @@ void BackOperation()																	6 int -- 1 char
 void InvertedBackOperation()															7 int -- 1 char
 
 bool CmpArray()																			1 int + 2 int[] hvad end størrelse der er sendt med, det er pass by value
-int PlaceYellowOnTop() 																	7 int -- 2 char
-void ChangeRepresentationFromMoveSet()													8 int -- 1 char + int[] hvad end størrelse der er sendt med, det er pass by value
-void ExecuteRobotMovesFromPath()														4 int + int[] hvad end størrelse der er sendt med, det er pass by value
+int PlaceYellowOnTop() 						-SWITCH- V									43 int -- 13 char
+void ChangeRepresentationFromMoveSet()		-SWITCH- V									89 int -- 14 char + int[] hvad end størrelse der er sendt med, det er pass by value
+void ExecuteRobotMovesFromPath()			-SWITCH- V									42 int + int[] hvad end størrelse der er sendt med, det er pass by value
 
 
 3. file Heuristic.h
@@ -61,7 +61,7 @@ int FindWhiteFace()																		2 int
 int CheckWhiteEdges()																	7 int	
 int CheckWhiteCorner()																	9 int	
 void IndividualEdgePieceCheck()															6 int			
-int CheckCenterLayerEdges()																12 int 		
+int CheckCenterLayerEdges()																12 int 	
 
 int HeuristicValueWhiteCross()															9 int
 int HeuristicValueWhiteFace()															11 int 
@@ -76,9 +76,11 @@ int FindFaceFromColor()																	2 int -- 1 char
 sub CheckEdgeCorrectness()																6 int  
 sub CheckCornerCorrectness()															8 int
 
-int EvaluateLastLayer()																	5 int[4] + 11 int				
-sub FindMoveset()																		1 bool + 4 int + 5 int[16] + 1 int[24] + 2 int[2] + 1 int[5] + 1 int[33]
-sub LastLayerSolution()																	1 bool + 4 int + 5 int[16] + 1 int[24] + 2 int[2] + 1 int[5] + 1 int[33]
+int EvaluateLastLayer()																 	5 int[4] + 11 int				
+sub FindMoveset()							PlaceYellowOnTop V							1 bool + 44 int + 14 char + 5 int[16] + 1 int[24] + 2 int[2] + 1 int[5] + 
+																						1 int[33]
+sub LastLayerSolution()						FindMoveset V								1 bool + 44 int + 14 char + 5 int[16] + 1 int[24] + 2 int[2] + 1 int[5] + 
+																						1 int[33]
 
 
 
@@ -86,36 +88,40 @@ sub LastLayerSolution()																	1 bool + 4 int + 5 int[16] + 1 int[24] +
 
 sub EvaluateYellowFaceConfiguration()													2 int
 sub EvaluateLastLayerConfiguration() 													6 int
-sub FindCorrectMoveset()																1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] + 7 int -- 2 char
-sub YellowFaceSolution()																1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] + 7 int -- 2 char
+sub FindCorrectMoveset()					ChangeRepresentationFromMoveset V			1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] +
+																						90 int -- 15 char
+sub YellowFaceSolution()					FindCorrectMoveset V						1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] +
+ 																						90 int -- 15 char
 
-6. file CheckCase
+6. file CheckCase.h
 
 char FindCaseFrontColour()																1 int
-int FixCase()																			3 char + 10 int
+int FixCase()								-SWITCH x 2- V								14 char + 44 int
 int IncrementColors() 	 																2 int
 int CheckPieces()																		6 int
 int CheckForCase()																		16 int
 
 7. file Graph.h
 
-void CaseFix()																			Node + 16 int
+void CaseFix()								FixCase	V									Node + 50 int + 15 char
 void ConstructNode()																	Node + 17 int
-void ConstructNodeChildren()															18 int + 2 node
+void ConstructNodeChildren()				-SWITCH- V									81 int + 12 char + 2 node
 int SaveThePath()																		4 int
 void ResetValues()											
 void PrepareNewTree()																	4 int
-int CheckHeuristic()																	node + 17 int
-int CheckBottomLayerLeaves()															1 int
-int MoveUpInLayers() 																	2 int
-void MainGraphConstruction() 															values + flag + 20 int + 2 node
+int CheckHeuristic()						CaseFix										Node + 51 int + 15 char
+int CheckBottomLayerLeaves()				CheckHeuristic								Node + 52 int + 15 char
+int MoveUpInLayers() 						CheckHeuristic								Node + 53 int + 15 char
+void MainGraphConstruction() 				CaseFix, ConstructNodeChildren, 			values + flag + 83 int + 12 char + 4 node
+											CheckBottomLayerLeaves, MoveUpInLayers
 
 
 
 
 8. file Main.nxc
 
-task main()																				
+task main()									MainGraphConstruction, YellowFaceSolution,	
+											LastLayerMoveset, ExecuteRobotMovesFromPath											
 
 (1379 bytes RAM) + (37 576 bytes in FLASH Memory) == (1,379 kb RAM) + (37,576 kb FLASH Memory)
 
