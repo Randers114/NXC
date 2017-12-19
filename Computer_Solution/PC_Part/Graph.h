@@ -449,6 +449,7 @@ void PrintMoves(int currentArrayPosition)
 				printf("Flip Cube");
 				break;
 			default:
+				printf("Incorrect move error has occured");
 				break;
 		}
 		

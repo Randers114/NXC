@@ -20,7 +20,7 @@ void ReadFileFromNXT(char *filePath)
 	for(int i = 0 ; i < 6; i++)
    	{
         fscanf(rp,"%c %c %c %c %c %c %c %c %c ", &myCube[i][0], &myCube[i][1], &myCube[i][2], &myCube[i][3], &myCube[i][4], 
-        	&myCube[i][5], &myCube[i][6], &myCube[i][7], &myCube[i][8]);
+												 &myCube[i][5], &myCube[i][6], &myCube[i][7], &myCube[i][8]);
     }
 	
 	fclose(rp);
@@ -42,7 +42,7 @@ void WriteFileToNXT(int path[], int length, char *filePath)
 	for(int i = 0 ; i < 6; i++)
    	{
         fprintf(wp,"%c %c %c %c %c %c %c %c %c \n", myCube[i][0], myCube[i][1], myCube[i][2], myCube[i][3], myCube[i][4], 
-        	myCube[i][5], myCube[i][6], myCube[i][7], myCube[i][8]);
+													myCube[i][5], myCube[i][6], myCube[i][7], myCube[i][8]);
     }
 	
     for (int i = 0; i < length; i++)

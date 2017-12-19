@@ -2,22 +2,22 @@
 
 void WriteFile()
 {
-     byte handle;
-     remove("initialCube.txt");
-     handle = fopen("initialCube.txt", "w");
+    byte handle;
+    remove("initialCube.txt");
+    handle = fopen("initialCube.txt", "w");
 
-     for(int face = 0; face < 6; face++)
-     {
-           for(int piece = 0; piece < 9; piece++)
-           {
-                fputc(myCube[face][piece], handle);
-                fputc(' ', handle);
-           }
+    for(int face = 0; face < 6; face++)
+    {
+        for(int piece = 0; piece < 9; piece++)
+        {
+            fputc(myCube[face][piece], handle);
+            fputc(' ', handle);
+        }
 
-           fputs("\n", handle);
-     }
+        fputs("\n", handle);
+    }
 
-     fclose(handle);
+    fclose(handle);
 }
 
 void ReadFile(int &path[])
@@ -32,16 +32,15 @@ void ReadFile(int &path[])
     
     for(int face = 0; face < 6; face++)
     {
-         for(int piece = 0; piece < 9; piece++)
-         {
-              myCube[face][piece] = fgetc(handle);
-              fgetc(handle);
-         }
+        for(int piece = 0; piece < 9; piece++)
+        {
+            myCube[face][piece] = fgetc(handle);
+            fgetc(handle);
+        }
 
-         fgetc(handle);
-         fgetc(handle);
+        fgetc(handle);
+        fgetc(handle);
     }
-    
     
     while(charRead != "$")
     {
@@ -57,39 +56,39 @@ void ReadFile(int &path[])
     
     for(int i = 0; i < StrLen(pathString); i++)
     {
-         if(pathString[i] != ' ')
-         {
-              if(pathString[i+1] != ' ')
-              {
-                  charRead[0] = pathString[i];
-                  charRead[1] = pathString[i+1];
-                  tempNumber = StrToNum(charRead);
-                  ArrayBuild(tempArray, path, tempNumber);
-                  ArrayBuild(path, tempArray);
-                  charRead = "  ";
-                  i++;
-                  }
-              else if (pathString[i+1] == ' ')
-              {
-                  charRead[0] = pathString[i];
-                  tempNumber = StrToNum(charRead);
-                  ArrayBuild(tempArray, path, tempNumber);
-                  ArrayBuild(path, tempArray);
-                  charRead = "  ";
-             }
+        if(pathString[i] != ' ')
+        {
+            if(pathString[i+1] != ' ')
+            {
+                charRead[0] = pathString[i];
+                charRead[1] = pathString[i+1];
+                tempNumber = StrToNum(charRead);
+                ArrayBuild(tempArray, path, tempNumber);
+                ArrayBuild(path, tempArray);
+                charRead = "  ";
+                i++;
+            }
+            else if (pathString[i+1] == ' ')
+            {
+                charRead[0] = pathString[i];
+                tempNumber = StrToNum(charRead);
+                ArrayBuild(tempArray, path, tempNumber);
+                ArrayBuild(path, tempArray);
+                charRead = "  ";
+            }
+        }
     }
-}            }
+}
 
 int PathLength(int fullPath[])
 {
     int pathLength = 0;
-//    NumOut(0,0,LCD_LINE3,ArrayLen(fullPath));
     for(int i = 0; i < ArrayLen(fullPath); i++)
     {
-             if(fullPath[i] != 0)
-             {
-                 pathLength++;
-             }
+        if(fullPath[i] != 0)
+        {
+            pathLength++;
+        }
     }
     
     return pathLength;
@@ -98,29 +97,29 @@ int PathLength(int fullPath[])
 
 task main()
 {
-  int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[], pathLength, graphPath[];
+    int fullPath[], yellowFaceSolutionPath[], lastLayerSolutionPath[], pathLength, graphPath[];
    
-  ReadCubeColours();
+    ReadCubeColours();
   
-  WriteFile();
+    WriteFile();
   
-  TextOut(0, LCD_LINE1, "Wait for PC ");
-  WaitForButtonPress();
+    TextOut(0, LCD_LINE1, "Wait for PC ");
+    WaitForButtonPress();
    
-  ReadFile(graphPath);
+    ReadFile(graphPath);
 
-  YellowFaceSolution(yellowFaceSolutionPath);
+    YellowFaceSolution(yellowFaceSolutionPath);
   
-  LastLayerSolution(lastLayerSolutionPath);
+    LastLayerSolution(lastLayerSolutionPath);
   
-  ArrayBuild(fullPath, graphPath, yellowFaceSolutionPath, lastLayerSolutionPath);
+    ArrayBuild(fullPath, graphPath, yellowFaceSolutionPath, lastLayerSolutionPath);
   
-  pathLength = PathLength(fullPath);
+    pathLength = PathLength(fullPath);
   
-  TextOut(0, LCD_LINE1, "Done Length: ");
-	NumOut(0, LCD_LINE2, pathLength);
+    TextOut(0, LCD_LINE1, "Done Length: ");
+	  NumOut(0, LCD_LINE2, pathLength);
 	
-	ExecuteRobotMovesFromPath(fullPath);
+	  ExecuteRobotMovesFromPath(fullPath);
 	
-	UnlockCube();
+	  UnlockCube();
 }

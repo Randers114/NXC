@@ -19,6 +19,21 @@ namespace BluetoothCommunicator
 
             brick.StartProgram(mainProgramName);
 
+            BrickFile[] initiaryList = brick.FileSystem.FileList();
+
+            foreach (var item in initiaryList)
+            {
+                if (item.Name == initialFileName)
+                {
+                    brick.FileSystem.DeleteFile(item);
+                }
+                else if (item.Name == uploadFileName)
+                {
+                    brick.FileSystem.DeleteFile(item);
+                }
+            }
+
+
             while (!fileFromNXTExists)
             {
                 BrickFile[] list = brick.FileSystem.FileList();
@@ -36,6 +51,8 @@ namespace BluetoothCommunicator
                         brick.FileSystem.DeleteFile(item);
                     }
                 }
+
+                Thread.Sleep(500);
             }
 
             brick.FileSystem.DownloadFile(initialFileName, downloadFile);
