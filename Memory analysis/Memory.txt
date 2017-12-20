@@ -120,8 +120,8 @@ void MainGraphConstruction() 				CaseFix, ConstructNodeChildren, 			values + fla
 
 8. file Main.nxc
 
-task main()									MainGraphConstruction, YellowFaceSolution,	
-											LastLayerMoveset, ExecuteRobotMovesFromPath											
+task main()									1 int + 1 int[202](88 int + 12 char + 4 node), (1 bool + 1 int[9] + 2 int[12] + int[4] + 1 int[21] + 2 int[3] + 1 int[9] + 90 int -- 15 char),	
+											(1 bool + 44 int + 14 char + 5 int[16] + 1 int[24] + 2 int[2] + 1 int[5] + 1 int[33])											
 
 (1379 bytes RAM) + (37 576 bytes in FLASH Memory) == (1,379 kb RAM) + (37,576 kb FLASH Memory)
 
